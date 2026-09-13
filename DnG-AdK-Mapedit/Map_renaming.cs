@@ -12,8 +12,10 @@ namespace DnG_AdK_Mapedit
 {
     public partial class Map_renaming : Form
     {
-        int Old_map_name_length = 0;
+        readonly int Old_map_name_length = 0;
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Map_name
         {
             get => Map_name_edit.Text;

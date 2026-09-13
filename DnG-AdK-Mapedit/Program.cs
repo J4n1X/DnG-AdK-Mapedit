@@ -13,6 +13,9 @@ namespace DnG_AdK_Mapedit
         [STAThread]
         static void Main()
         {
+            //Dark mode support
+            Application.SetColorMode(SystemColorMode.System);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new DnG_AdK_Mapedit());

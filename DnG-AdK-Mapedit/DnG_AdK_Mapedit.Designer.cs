@@ -28,2915 +28,3056 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DnG_AdK_Mapedit));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 5, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 6, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 7, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 8, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 9, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 10, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 11, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 12, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 13, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 14, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 15, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 5, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 6, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 7, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 8, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 9, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 10, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 11, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 12, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 13, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 14, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 15, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 16, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 17, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem39 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem40 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 5, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem41 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 6, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem42 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 7, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem43 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 8, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem44 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 9, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem45 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 10, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem46 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 11, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem47 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 12, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem48 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 13, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem49 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 14, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem50 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 15, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem51 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem52 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem53 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem54 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem55 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem56 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem57 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem58 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem59 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem60 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem61 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem62 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Stone"}, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem63 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Gemstone"}, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            System.Windows.Forms.ListViewItem listViewItem64 = new System.Windows.Forms.ListViewItem(new string[] {
-            ""}, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
-            this.DnG_map_text = new System.Windows.Forms.Label();
-            this.DnG_map_path = new System.Windows.Forms.TextBox();
-            this.DnG_map_load = new System.Windows.Forms.Button();
-            this.Changelog_button = new System.Windows.Forms.LinkLabel();
-            this.Tab_control = new System.Windows.Forms.TabControl();
-            this.Map_info_tab = new System.Windows.Forms.TabPage();
-            this.Map_info_size = new System.Windows.Forms.Label();
-            this.Map_prieview_text = new System.Windows.Forms.Label();
-            this.Map_name_button = new System.Windows.Forms.LinkLabel();
-            this.Player_count_text = new System.Windows.Forms.Label();
-            this.Resource_info = new System.Windows.Forms.TableLayoutPanel();
-            this.Resource_amount_text = new System.Windows.Forms.Label();
-            this.Resource_text = new System.Windows.Forms.Label();
-            this.Share_button = new System.Windows.Forms.LinkLabel();
-            this.Coal_text = new System.Windows.Forms.Label();
-            this.Iron_text = new System.Windows.Forms.Label();
-            this.Salt_text = new System.Windows.Forms.Label();
-            this.Gold_text = new System.Windows.Forms.Label();
-            this.Gemstones_text = new System.Windows.Forms.Label();
-            this.Stone_text = new System.Windows.Forms.Label();
-            this.Coal_amount = new System.Windows.Forms.Label();
-            this.Iron_amount = new System.Windows.Forms.Label();
-            this.Salt_amount = new System.Windows.Forms.Label();
-            this.Gold_amount = new System.Windows.Forms.Label();
-            this.Gemstones_amount = new System.Windows.Forms.Label();
-            this.Stone_amount = new System.Windows.Forms.Label();
-            this.Coal_share = new System.Windows.Forms.Label();
-            this.Iron_share = new System.Windows.Forms.Label();
-            this.Salt_share = new System.Windows.Forms.Label();
-            this.Gold_share = new System.Windows.Forms.Label();
-            this.Gemstones_share = new System.Windows.Forms.Label();
-            this.Stone_share = new System.Windows.Forms.Label();
-            this.Map_preview = new System.Windows.Forms.PictureBox();
-            this.Resources_tab = new System.Windows.Forms.TabPage();
-            this.Continue_editing_panel = new System.Windows.Forms.Panel();
-            this.Continue_editing_text = new System.Windows.Forms.Label();
-            this.Continue_editing_button = new System.Windows.Forms.Button();
-            this.Resources_swap_button = new System.Windows.Forms.Button();
-            this.Resources_wait = new System.Windows.Forms.Label();
-            this.Resources_arrow = new System.Windows.Forms.PictureBox();
-            this.Resources_to_list = new System.Windows.Forms.ListBox();
-            this.Resources_to_text = new System.Windows.Forms.Label();
-            this.Resources_from_text = new System.Windows.Forms.Label();
-            this.Resources_from_list = new System.Windows.Forms.ListBox();
-            this.Textures_tab = new System.Windows.Forms.TabPage();
-            this.Textures_arrow = new System.Windows.Forms.PictureBox();
-            this.Textures_swap_button = new System.Windows.Forms.Button();
-            this.Textures_to_text = new System.Windows.Forms.Label();
-            this.Textures_to_list = new System.Windows.Forms.ListBox();
-            this.Textures_from_text = new System.Windows.Forms.Label();
-            this.Textures_from_list = new System.Windows.Forms.ListBox();
-            this.Logical_grid_tab = new System.Windows.Forms.TabPage();
-            this.Logical_grid_to_list = new System.Windows.Forms.ListBox();
-            this.Logical_grid_to_text = new System.Windows.Forms.Label();
-            this.Logical_grid_swap_button = new System.Windows.Forms.Button();
-            this.Logical_grid_arrow = new System.Windows.Forms.PictureBox();
-            this.Logical_grid_from_list = new System.Windows.Forms.ListBox();
-            this.Logical_grid_from_text = new System.Windows.Forms.Label();
-            this.Logical_grid_overwrite_text = new System.Windows.Forms.Label();
-            this.Small_doodads_tab = new System.Windows.Forms.TabPage();
-            this.Small_doodads_swap_button = new System.Windows.Forms.Button();
-            this.Small_doodads_to_list = new System.Windows.Forms.ListBox();
-            this.Small_doodads_to_text = new System.Windows.Forms.Label();
-            this.Small_doodads_arrow = new System.Windows.Forms.PictureBox();
-            this.Small_doodads_from_list = new System.Windows.Forms.ListBox();
-            this.Small_doodads_from_text = new System.Windows.Forms.Label();
-            this.Swap_list_tab = new System.Windows.Forms.TabPage();
-            this.Swap_move_up_button = new System.Windows.Forms.Button();
-            this.Swap_move_down_button = new System.Windows.Forms.Button();
-            this.Swap_remove_button = new System.Windows.Forms.Button();
-            this.Swap_list_view = new System.Windows.Forms.ListBox();
-            this.Harbours_tab = new System.Windows.Forms.TabPage();
-            this.Harbour_panel = new System.Windows.Forms.Panel();
-            this.Harbour_anchor_panel = new System.Windows.Forms.Panel();
-            this.Anchor_position_text = new System.Windows.Forms.Label();
-            this.Anchor_position_X_text = new System.Windows.Forms.Label();
-            this.Anchor_position_Y_input = new System.Windows.Forms.NumericUpDown();
-            this.Anchor_position_Y_text = new System.Windows.Forms.Label();
-            this.Anchor_position_X_input = new System.Windows.Forms.NumericUpDown();
-            this.Harbour_anchor_checkbox = new System.Windows.Forms.CheckBox();
-            this.Harbour_position_Y_input = new System.Windows.Forms.NumericUpDown();
-            this.Harbour_position_X_input = new System.Windows.Forms.NumericUpDown();
-            this.Buoy_1_connection_select = new System.Windows.Forms.ComboBox();
-            this.Buoy_1_connection_text = new System.Windows.Forms.Label();
-            this.Buoy_2_connection_select = new System.Windows.Forms.ComboBox();
-            this.Buoy_2_connection_text = new System.Windows.Forms.Label();
-            this.Harbour_logical_position_warning = new System.Windows.Forms.Label();
-            this.Harbour_rotation_select = new System.Windows.Forms.ComboBox();
-            this.Harbour_rotation_text = new System.Windows.Forms.Label();
-            this.Harbour_position_X_text = new System.Windows.Forms.Label();
-            this.Harbour_position_Y_text = new System.Windows.Forms.Label();
-            this.Harbour_position_text = new System.Windows.Forms.Label();
-            this.Harbours_list_view = new System.Windows.Forms.ListBox();
-            this.Harbours_remove_button = new System.Windows.Forms.Button();
-            this.Harbours_add_button = new System.Windows.Forms.Button();
-            this.Caves_tab = new System.Windows.Forms.TabPage();
-            this.Cave_panel = new System.Windows.Forms.Panel();
-            this.Cave_position_Y_text = new System.Windows.Forms.Label();
-            this.Cave_position_X_text = new System.Windows.Forms.Label();
-            this.Cave_position_Y_input = new System.Windows.Forms.NumericUpDown();
-            this.Cave_position_X_input = new System.Windows.Forms.NumericUpDown();
-            this.Cave_logical_position_warning = new System.Windows.Forms.Label();
-            this.Cave_position_text = new System.Windows.Forms.Label();
-            this.Cave_type_select = new System.Windows.Forms.ComboBox();
-            this.Cave_type_text = new System.Windows.Forms.Label();
-            this.Caves_remove_button = new System.Windows.Forms.Button();
-            this.Caves_list_view = new System.Windows.Forms.ListBox();
-            this.Caves_add_button = new System.Windows.Forms.Button();
-            this.Sacrifices_tab = new System.Windows.Forms.TabPage();
-            this.Sacrifices_research_Scots = new System.Windows.Forms.ListView();
-            this.Research_Scots_icons = new System.Windows.Forms.ImageList(this.components);
-            this.Sacrifices_research_Egyptians = new System.Windows.Forms.ListView();
-            this.Research_Egyptians_icons = new System.Windows.Forms.ImageList(this.components);
-            this.Sacrifices_research_Bavarians = new System.Windows.Forms.ListView();
-            this.Research_Bavarians_icons = new System.Windows.Forms.ImageList(this.components);
-            this.Research_Scots_usage = new System.Windows.Forms.Label();
-            this.Sacrifices_no_research_Bavarians = new System.Windows.Forms.ListView();
-            this.No_research_Bavarians_icons = new System.Windows.Forms.ImageList(this.components);
-            this.No_research_Scots_usage = new System.Windows.Forms.Label();
-            this.Research_Egyptians_usage = new System.Windows.Forms.Label();
-            this.Research_Bavarians_usage = new System.Windows.Forms.Label();
-            this.No_research_Egyptians_usage = new System.Windows.Forms.Label();
-            this.No_research_Bavarians_usage = new System.Windows.Forms.Label();
-            this.Sacrifices_no_research_Scots = new System.Windows.Forms.ListView();
-            this.No_research_Scots_icons = new System.Windows.Forms.ImageList(this.components);
-            this.Sacrifices_research_text = new System.Windows.Forms.Label();
-            this.Sacrifices_no_research_Egyptians = new System.Windows.Forms.ListView();
-            this.No_research_Egyptians_icons = new System.Windows.Forms.ImageList(this.components);
-            this.Sacrifices_no_research_text = new System.Windows.Forms.Label();
-            this.Colours_tab = new System.Windows.Forms.TabPage();
-            this.Colours_table = new System.Windows.Forms.TableLayoutPanel();
-            this.Player_6_select = new System.Windows.Forms.ComboBox();
-            this.Player_5_select = new System.Windows.Forms.ComboBox();
-            this.Player_4_select = new System.Windows.Forms.ComboBox();
-            this.Player_3_select = new System.Windows.Forms.ComboBox();
-            this.Player_2_select = new System.Windows.Forms.ComboBox();
-            this.Player_3_text = new System.Windows.Forms.Label();
-            this.Player_2_text = new System.Windows.Forms.Label();
-            this.Player_1_text = new System.Windows.Forms.Label();
-            this.Player_4_text = new System.Windows.Forms.Label();
-            this.Player_5_text = new System.Windows.Forms.Label();
-            this.Player_6_text = new System.Windows.Forms.Label();
-            this.Player_1_select = new System.Windows.Forms.ComboBox();
-            this.Export_tab = new System.Windows.Forms.TabPage();
-            this.Export_wait = new System.Windows.Forms.Label();
-            this.Ambient_sounds_warning = new System.Windows.Forms.Label();
-            this.Map_export_panel = new System.Windows.Forms.Panel();
-            this.Multiplayer_prefix_checkbox = new System.Windows.Forms.CheckBox();
-            this.Map_preview_checkbox = new System.Windows.Forms.CheckBox();
-            this.Map_export_button = new System.Windows.Forms.Button();
-            this.Map_export_text = new System.Windows.Forms.Label();
-            this.Map_preset_panel = new System.Windows.Forms.Panel();
-            this.Sacrifice_included_presets = new System.Windows.Forms.ComboBox();
-            this.Sacrifice_included_checkbox = new System.Windows.Forms.CheckBox();
-            this.Sacrifice_preset_export = new System.Windows.Forms.Button();
-            this.Sacrifice_preset_load = new System.Windows.Forms.Button();
-            this.Sacrifice_preset_text = new System.Windows.Forms.Label();
-            this.Map_preset_text = new System.Windows.Forms.Label();
-            this.Map_preset_export = new System.Windows.Forms.Button();
-            this.Map_preset_load = new System.Windows.Forms.Button();
-            this.Tab_control.SuspendLayout();
-            this.Map_info_tab.SuspendLayout();
-            this.Resource_info.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Map_preview)).BeginInit();
-            this.Resources_tab.SuspendLayout();
-            this.Continue_editing_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Resources_arrow)).BeginInit();
-            this.Textures_tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Textures_arrow)).BeginInit();
-            this.Logical_grid_tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Logical_grid_arrow)).BeginInit();
-            this.Small_doodads_tab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Small_doodads_arrow)).BeginInit();
-            this.Swap_list_tab.SuspendLayout();
-            this.Harbours_tab.SuspendLayout();
-            this.Harbour_panel.SuspendLayout();
-            this.Harbour_anchor_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Anchor_position_Y_input)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Anchor_position_X_input)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Harbour_position_Y_input)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Harbour_position_X_input)).BeginInit();
-            this.Caves_tab.SuspendLayout();
-            this.Cave_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Cave_position_Y_input)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Cave_position_X_input)).BeginInit();
-            this.Sacrifices_tab.SuspendLayout();
-            this.Colours_tab.SuspendLayout();
-            this.Colours_table.SuspendLayout();
-            this.Export_tab.SuspendLayout();
-            this.Map_export_panel.SuspendLayout();
-            this.Map_preset_panel.SuspendLayout();
-            this.SuspendLayout();
+            System.Windows.Forms.ListViewItem listViewItem65 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem66 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem67 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem68 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem69 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem70 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 5, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem71 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 6, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem72 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 7, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem73 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 8, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem74 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 9, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem75 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 10, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem76 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 11, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem77 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 12, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem78 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 13, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem79 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 14, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem80 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 15, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 5, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 6, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 7, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 8, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 9, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 10, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 11, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 12, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 13, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 14, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 15, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem81 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 16, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem82 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 17, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 5, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 6, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 7, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 8, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 9, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 10, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 11, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 12, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 13, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 14, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 15, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem39 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem40 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem41 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem42 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 0, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem43 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 1, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem44 = new System.Windows.Forms.ListViewItem(new string[] { "Stone" }, 2, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem45 = new System.Windows.Forms.ListViewItem(new string[] { "Gemstone" }, 3, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            System.Windows.Forms.ListViewItem listViewItem46 = new System.Windows.Forms.ListViewItem(new string[] { "" }, 4, System.Drawing.SystemColors.WindowText, System.Drawing.SystemColors.Window, new System.Drawing.Font("Segoe UI Variable Text", 9F));
+            DnG_map_text = new System.Windows.Forms.Label();
+            DnG_map_path = new System.Windows.Forms.TextBox();
+            DnG_map_load = new System.Windows.Forms.Button();
+            Changelog_button = new System.Windows.Forms.LinkLabel();
+            Tab_control = new System.Windows.Forms.TabControl();
+            Map_info_tab = new System.Windows.Forms.TabPage();
+            Map_info_size = new System.Windows.Forms.Label();
+            Map_info_preview_text = new System.Windows.Forms.Label();
+            Map_info_name = new System.Windows.Forms.LinkLabel();
+            Map_info_player_amount = new System.Windows.Forms.Label();
+            Map_info_resources = new System.Windows.Forms.TableLayoutPanel();
+            Map_info_resources_amount = new System.Windows.Forms.Label();
+            Map_info_resource_text = new System.Windows.Forms.Label();
+            Map_info_resources_share = new System.Windows.Forms.LinkLabel();
+            Map_info_coal_text = new System.Windows.Forms.Label();
+            Map_info_iron_text = new System.Windows.Forms.Label();
+            Map_info_salt_text = new System.Windows.Forms.Label();
+            Map_info_gold_text = new System.Windows.Forms.Label();
+            Map_info_gemstones_text = new System.Windows.Forms.Label();
+            Map_info_stone_text = new System.Windows.Forms.Label();
+            Map_info_coal_amount = new System.Windows.Forms.Label();
+            Map_info_iron_amount = new System.Windows.Forms.Label();
+            Map_info_salt_amount = new System.Windows.Forms.Label();
+            Map_info_gold_amount = new System.Windows.Forms.Label();
+            Map_info_gemstones_amount = new System.Windows.Forms.Label();
+            Map_info_stone_amount = new System.Windows.Forms.Label();
+            Map_info_coal_share = new System.Windows.Forms.Label();
+            Map_info_iron_share = new System.Windows.Forms.Label();
+            Map_info_salt_share = new System.Windows.Forms.Label();
+            Map_info_gold_share = new System.Windows.Forms.Label();
+            Map_info_gemstones_share = new System.Windows.Forms.Label();
+            Map_info_stone_share = new System.Windows.Forms.Label();
+            Map_info_preview = new System.Windows.Forms.PictureBox();
+            Resources_tab = new System.Windows.Forms.TabPage();
+            Resources_continue_editing_panel = new System.Windows.Forms.Panel();
+            Resources_continue_editing_text = new System.Windows.Forms.Label();
+            Resources_continue_editing_button = new System.Windows.Forms.Button();
+            Resources_swap_button = new System.Windows.Forms.Button();
+            Resources_wait = new System.Windows.Forms.Label();
+            Resources_arrow = new System.Windows.Forms.PictureBox();
+            Resources_to_list = new System.Windows.Forms.ListBox();
+            Resources_to_text = new System.Windows.Forms.Label();
+            Resources_from_text = new System.Windows.Forms.Label();
+            Resources_from_list = new System.Windows.Forms.ListBox();
+            Textures_tab = new System.Windows.Forms.TabPage();
+            Textures_arrow = new System.Windows.Forms.PictureBox();
+            Textures_swap_button = new System.Windows.Forms.Button();
+            Textures_to_text = new System.Windows.Forms.Label();
+            Textures_to_list = new System.Windows.Forms.ListBox();
+            Textures_from_text = new System.Windows.Forms.Label();
+            Textures_from_list = new System.Windows.Forms.ListBox();
+            Logical_grid_tab = new System.Windows.Forms.TabPage();
+            Logical_grid_to_list = new System.Windows.Forms.ListBox();
+            Logical_grid_to_text = new System.Windows.Forms.Label();
+            Logical_grid_swap_button = new System.Windows.Forms.Button();
+            Logical_grid_arrow = new System.Windows.Forms.PictureBox();
+            Logical_grid_from_list = new System.Windows.Forms.ListBox();
+            Logical_grid_from_text = new System.Windows.Forms.Label();
+            Logical_grid_overwrite_text = new System.Windows.Forms.Label();
+            Small_doodads_tab = new System.Windows.Forms.TabPage();
+            Small_doodads_swap_button = new System.Windows.Forms.Button();
+            Small_doodads_to_list = new System.Windows.Forms.ListBox();
+            Small_doodads_to_text = new System.Windows.Forms.Label();
+            Small_doodads_arrow = new System.Windows.Forms.PictureBox();
+            Small_doodads_from_list = new System.Windows.Forms.ListBox();
+            Small_doodads_from_text = new System.Windows.Forms.Label();
+            Swap_list_tab = new System.Windows.Forms.TabPage();
+            Environment_highland_water_checkbox = new System.Windows.Forms.CheckBox();
+            Swap_move_up_button = new System.Windows.Forms.Button();
+            Swap_move_down_button = new System.Windows.Forms.Button();
+            Swap_remove_button = new System.Windows.Forms.Button();
+            Swap_list_view = new System.Windows.Forms.ListBox();
+            Harbours_tab = new System.Windows.Forms.TabPage();
+            Harbour_panel = new System.Windows.Forms.Panel();
+            Harbour_anchor_panel = new System.Windows.Forms.Panel();
+            Anchor_position_text = new System.Windows.Forms.Label();
+            Anchor_X_text = new System.Windows.Forms.Label();
+            Anchor_Y_input = new System.Windows.Forms.NumericUpDown();
+            Anchor_Y_text = new System.Windows.Forms.Label();
+            Anchor_X_input = new System.Windows.Forms.NumericUpDown();
+            Harbour_anchor_checkbox = new System.Windows.Forms.CheckBox();
+            Harbour_Y_input = new System.Windows.Forms.NumericUpDown();
+            Harbour_X_input = new System.Windows.Forms.NumericUpDown();
+            Harbour_buoy_1_select = new System.Windows.Forms.ComboBox();
+            Harbour_buoy_1_text = new System.Windows.Forms.Label();
+            Harbour_buoy_2_select = new System.Windows.Forms.ComboBox();
+            Harbour_buoy_2_text = new System.Windows.Forms.Label();
+            Harbour_logical_position_warning = new System.Windows.Forms.Label();
+            Harbour_rotation_select = new System.Windows.Forms.ComboBox();
+            Harbour_rotation_text = new System.Windows.Forms.Label();
+            Harbour_X_text = new System.Windows.Forms.Label();
+            Harbour_Y_text = new System.Windows.Forms.Label();
+            Harbour_position_text = new System.Windows.Forms.Label();
+            Harbours_list_view = new System.Windows.Forms.ListBox();
+            Harbours_remove_button = new System.Windows.Forms.Button();
+            Harbours_add_button = new System.Windows.Forms.Button();
+            Caves_tab = new System.Windows.Forms.TabPage();
+            Cave_panel = new System.Windows.Forms.Panel();
+            Cave_Y_text = new System.Windows.Forms.Label();
+            Cave_X_text = new System.Windows.Forms.Label();
+            Cave_Y_input = new System.Windows.Forms.NumericUpDown();
+            Cave_X_input = new System.Windows.Forms.NumericUpDown();
+            Cave_logical_position_warning = new System.Windows.Forms.Label();
+            Cave_position_text = new System.Windows.Forms.Label();
+            Cave_type_select = new System.Windows.Forms.ComboBox();
+            Cave_type_text = new System.Windows.Forms.Label();
+            Caves_remove_button = new System.Windows.Forms.Button();
+            Caves_list_view = new System.Windows.Forms.ListBox();
+            Caves_add_button = new System.Windows.Forms.Button();
+            Sacrifices_tab = new System.Windows.Forms.TabPage();
+            Sacrifices_Scots_research = new System.Windows.Forms.ListView();
+            Icons_Scots_research = new System.Windows.Forms.ImageList(components);
+            Sacrifices_Egyptians_research = new System.Windows.Forms.ListView();
+            Icons_Egyptians_research = new System.Windows.Forms.ImageList(components);
+            Sacrifices_Bavarians_research = new System.Windows.Forms.ListView();
+            Icons_Bavarians_research = new System.Windows.Forms.ImageList(components);
+            Sacrifices_Scots_research_usage = new System.Windows.Forms.Label();
+            Sacrifices_Bavarians_no_research = new System.Windows.Forms.ListView();
+            Icons_Bavarians_no_research = new System.Windows.Forms.ImageList(components);
+            Sacrifices_Scots_no_research_usage = new System.Windows.Forms.Label();
+            Sacrifices_Egyptians_research_usage = new System.Windows.Forms.Label();
+            Sacrifices_Egyptians_no_research_usage = new System.Windows.Forms.Label();
+            Sacrifices_Bavarians_no_research_usage = new System.Windows.Forms.Label();
+            Sacrifices_Bavarians_research_usage = new System.Windows.Forms.Label();
+            Sacrifices_Scots_no_research = new System.Windows.Forms.ListView();
+            Icons_Scots_no_research = new System.Windows.Forms.ImageList(components);
+            Sacrifices_research_text = new System.Windows.Forms.Label();
+            Sacrifices_Egyptians_no_research = new System.Windows.Forms.ListView();
+            Icons_Egyptians_no_research = new System.Windows.Forms.ImageList(components);
+            Sacrifices_no_research_text = new System.Windows.Forms.Label();
+            Colours_tab = new System.Windows.Forms.TabPage();
+            Colours_table = new System.Windows.Forms.TableLayoutPanel();
+            Colours_player_6_select = new System.Windows.Forms.ComboBox();
+            Colours_player_5_select = new System.Windows.Forms.ComboBox();
+            Colours_player_4_select = new System.Windows.Forms.ComboBox();
+            Colours_player_3_select = new System.Windows.Forms.ComboBox();
+            Colours_player_2_select = new System.Windows.Forms.ComboBox();
+            Colours_player_3_text = new System.Windows.Forms.Label();
+            Colours_player_2_text = new System.Windows.Forms.Label();
+            Colours_player_1_text = new System.Windows.Forms.Label();
+            Colours_player_4_text = new System.Windows.Forms.Label();
+            Colours_player_5_text = new System.Windows.Forms.Label();
+            Colours_player_6_text = new System.Windows.Forms.Label();
+            Colours_player_1_select = new System.Windows.Forms.ComboBox();
+            Environment_tab = new System.Windows.Forms.TabPage();
+            Environment_preset_checkbox = new System.Windows.Forms.CheckBox();
+            Environment_panel = new System.Windows.Forms.Panel();
+            Global_sun_placement_image = new System.Windows.Forms.PictureBox();
+            Global_shadow_intensity_input = new System.Windows.Forms.NumericUpDown();
+            Global_shadow_intensity_text = new System.Windows.Forms.Label();
+            Environment_next_zone = new System.Windows.Forms.Button();
+            Environment_previous_zone = new System.Windows.Forms.Button();
+            Environment_remove_zone = new System.Windows.Forms.Button();
+            Environment_add_zone = new System.Windows.Forms.Button();
+            Environment_local_zones_text = new System.Windows.Forms.Label();
+            Global_sun_height_input = new System.Windows.Forms.NumericUpDown();
+            Global_sun_height_text = new System.Windows.Forms.Label();
+            Global_fog_full_input = new System.Windows.Forms.NumericUpDown();
+            Global_fog_full = new System.Windows.Forms.Label();
+            Global_fog_start_input = new System.Windows.Forms.NumericUpDown();
+            Global_fog_start = new System.Windows.Forms.Label();
+            Global_light_colour = new System.Windows.Forms.Button();
+            Global_ambient_colour = new System.Windows.Forms.Button();
+            Global_light_text = new System.Windows.Forms.Label();
+            Global_ambient_text = new System.Windows.Forms.Label();
+            Global_fog_text = new System.Windows.Forms.Label();
+            Global_fog_colour = new System.Windows.Forms.Button();
+            Global_sun_placement_input = new System.Windows.Forms.NumericUpDown();
+            Global_sky_select = new System.Windows.Forms.ComboBox();
+            Global_sun_placement_text = new System.Windows.Forms.Label();
+            Global_sky_text = new System.Windows.Forms.Label();
+            Environment_zone_panel = new System.Windows.Forms.Panel();
+            Local_X_text = new System.Windows.Forms.Label();
+            Local_transition_input = new System.Windows.Forms.NumericUpDown();
+            Local_transition_text = new System.Windows.Forms.Label();
+            Local_radius_input = new System.Windows.Forms.NumericUpDown();
+            Local_radius_text = new System.Windows.Forms.Label();
+            Local_Y_input = new System.Windows.Forms.NumericUpDown();
+            Local_Y_text = new System.Windows.Forms.Label();
+            Local_X_input = new System.Windows.Forms.NumericUpDown();
+            Local_position_text = new System.Windows.Forms.Label();
+            Local_fog_full_input = new System.Windows.Forms.NumericUpDown();
+            Local_fog_full_text = new System.Windows.Forms.Label();
+            Local_fog_start_input = new System.Windows.Forms.NumericUpDown();
+            Local_fog_start_text = new System.Windows.Forms.Label();
+            Local_shadow_intensity_input = new System.Windows.Forms.NumericUpDown();
+            Local_shadow_intensity_text = new System.Windows.Forms.Label();
+            Local_light_colour = new System.Windows.Forms.Button();
+            Local_light_text = new System.Windows.Forms.Label();
+            Local_ambient_colour = new System.Windows.Forms.Button();
+            Local_ambient_text = new System.Windows.Forms.Label();
+            Local_fog_colour = new System.Windows.Forms.Button();
+            Local_fog_text = new System.Windows.Forms.Label();
+            Environment_preset_global = new System.Windows.Forms.Button();
+            Environment_preset_local = new System.Windows.Forms.Button();
+            Environment_preset_select = new System.Windows.Forms.ComboBox();
+            Environment_global_text = new System.Windows.Forms.Label();
+            Export_tab = new System.Windows.Forms.TabPage();
+            Export_wait = new System.Windows.Forms.Label();
+            Export_preview_warning = new System.Windows.Forms.Label();
+            Export_main_panel = new System.Windows.Forms.Panel();
+            Export_multiplayer_prefix = new System.Windows.Forms.CheckBox();
+            Export_preview_copy = new System.Windows.Forms.CheckBox();
+            Export_button = new System.Windows.Forms.Button();
+            Export_text = new System.Windows.Forms.Label();
+            Export_presets_panel = new System.Windows.Forms.Panel();
+            Sacrifices_included_presets_select = new System.Windows.Forms.ComboBox();
+            Sacrifices_included_presets_checkbox = new System.Windows.Forms.CheckBox();
+            Sacrifices_preset_export = new System.Windows.Forms.Button();
+            Sacrifices_preset_load = new System.Windows.Forms.Button();
+            Sacrifices_preset_text = new System.Windows.Forms.Label();
+            Export_map_preset_text = new System.Windows.Forms.Label();
+            Export_map_preset_button = new System.Windows.Forms.Button();
+            Export_map_preset_load = new System.Windows.Forms.Button();
+            Tab_control.SuspendLayout();
+            Map_info_tab.SuspendLayout();
+            Map_info_resources.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Map_info_preview).BeginInit();
+            Resources_tab.SuspendLayout();
+            Resources_continue_editing_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Resources_arrow).BeginInit();
+            Textures_tab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Textures_arrow).BeginInit();
+            Logical_grid_tab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Logical_grid_arrow).BeginInit();
+            Small_doodads_tab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Small_doodads_arrow).BeginInit();
+            Swap_list_tab.SuspendLayout();
+            Harbours_tab.SuspendLayout();
+            Harbour_panel.SuspendLayout();
+            Harbour_anchor_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Anchor_Y_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Anchor_X_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Harbour_Y_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Harbour_X_input).BeginInit();
+            Caves_tab.SuspendLayout();
+            Cave_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Cave_Y_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Cave_X_input).BeginInit();
+            Sacrifices_tab.SuspendLayout();
+            Colours_tab.SuspendLayout();
+            Colours_table.SuspendLayout();
+            Environment_tab.SuspendLayout();
+            Environment_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Global_sun_placement_image).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Global_shadow_intensity_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Global_sun_height_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Global_fog_full_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Global_fog_start_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Global_sun_placement_input).BeginInit();
+            Environment_zone_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Local_transition_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Local_radius_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Local_Y_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Local_X_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Local_fog_full_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Local_fog_start_input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Local_shadow_intensity_input).BeginInit();
+            Export_tab.SuspendLayout();
+            Export_main_panel.SuspendLayout();
+            Export_presets_panel.SuspendLayout();
+            SuspendLayout();
             // 
             // DnG_map_text
             // 
-            this.DnG_map_text.AutoSize = true;
-            this.DnG_map_text.Location = new System.Drawing.Point(12, 9);
-            this.DnG_map_text.Name = "DnG_map_text";
-            this.DnG_map_text.Size = new System.Drawing.Size(259, 28);
-            this.DnG_map_text.TabIndex = 0;
-            this.DnG_map_text.Text = "10th Anniversary map path";
+            DnG_map_text.AutoSize = true;
+            DnG_map_text.Location = new System.Drawing.Point(12, -1);
+            DnG_map_text.Name = "DnG_map_text";
+            DnG_map_text.Size = new System.Drawing.Size(263, 30);
+            DnG_map_text.TabIndex = 0;
+            DnG_map_text.Text = "10th Anniversary map path";
             // 
             // DnG_map_path
             // 
-            this.DnG_map_path.Location = new System.Drawing.Point(12, 48);
-            this.DnG_map_path.Name = "DnG_map_path";
-            this.DnG_map_path.Size = new System.Drawing.Size(1006, 35);
-            this.DnG_map_path.TabIndex = 1;
-            this.DnG_map_path.Text = "Click to open the map selection dialog";
-            this.DnG_map_path.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DnG_map_path_MouseDown);
+            DnG_map_path.Location = new System.Drawing.Point(12, 34);
+            DnG_map_path.Name = "DnG_map_path";
+            DnG_map_path.Size = new System.Drawing.Size(1014, 35);
+            DnG_map_path.TabIndex = 1;
+            DnG_map_path.Text = "Click to open the map selection dialog";
+            DnG_map_path.MouseDown += DnG_map_path_MouseDown;
             // 
             // DnG_map_load
             // 
-            this.DnG_map_load.AutoSize = true;
-            this.DnG_map_load.Location = new System.Drawing.Point(1024, 44);
-            this.DnG_map_load.Name = "DnG_map_load";
-            this.DnG_map_load.Size = new System.Drawing.Size(200, 42);
-            this.DnG_map_load.TabIndex = 3;
-            this.DnG_map_load.Text = "Load";
-            this.DnG_map_load.UseVisualStyleBackColor = true;
-            this.DnG_map_load.Click += new System.EventHandler(this.DnG_map_load_Click);
+            DnG_map_load.AutoSize = true;
+            DnG_map_load.Location = new System.Drawing.Point(1032, 32);
+            DnG_map_load.Name = "DnG_map_load";
+            DnG_map_load.Size = new System.Drawing.Size(200, 40);
+            DnG_map_load.TabIndex = 3;
+            DnG_map_load.Text = "Load";
+            DnG_map_load.UseVisualStyleBackColor = true;
+            DnG_map_load.Click += DnG_map_load_Click;
             // 
             // Changelog_button
             // 
-            this.Changelog_button.AutoSize = true;
-            this.Changelog_button.Location = new System.Drawing.Point(1024, 9);
-            this.Changelog_button.MinimumSize = new System.Drawing.Size(200, 0);
-            this.Changelog_button.Name = "Changelog_button";
-            this.Changelog_button.Size = new System.Drawing.Size(200, 28);
-            this.Changelog_button.TabIndex = 4;
-            this.Changelog_button.TabStop = true;
-            this.Changelog_button.Text = "Changelog";
-            this.Changelog_button.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.Changelog_button.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Changelog_button_LinkClicked);
+            Changelog_button.AutoSize = true;
+            Changelog_button.Location = new System.Drawing.Point(1032, -1);
+            Changelog_button.MinimumSize = new System.Drawing.Size(200, 0);
+            Changelog_button.Name = "Changelog_button";
+            Changelog_button.Size = new System.Drawing.Size(200, 30);
+            Changelog_button.TabIndex = 4;
+            Changelog_button.TabStop = true;
+            Changelog_button.Text = "Changelog";
+            Changelog_button.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            Changelog_button.LinkClicked += Changelog_button_LinkClicked;
             // 
             // Tab_control
             // 
-            this.Tab_control.Controls.Add(this.Map_info_tab);
-            this.Tab_control.Controls.Add(this.Resources_tab);
-            this.Tab_control.Controls.Add(this.Textures_tab);
-            this.Tab_control.Controls.Add(this.Logical_grid_tab);
-            this.Tab_control.Controls.Add(this.Small_doodads_tab);
-            this.Tab_control.Controls.Add(this.Swap_list_tab);
-            this.Tab_control.Controls.Add(this.Harbours_tab);
-            this.Tab_control.Controls.Add(this.Caves_tab);
-            this.Tab_control.Controls.Add(this.Sacrifices_tab);
-            this.Tab_control.Controls.Add(this.Colours_tab);
-            this.Tab_control.Controls.Add(this.Export_tab);
-            this.Tab_control.ItemSize = new System.Drawing.Size(0, 38);
-            this.Tab_control.Location = new System.Drawing.Point(12, 92);
-            this.Tab_control.Name = "Tab_control";
-            this.Tab_control.SelectedIndex = 0;
-            this.Tab_control.Size = new System.Drawing.Size(1212, 462);
-            this.Tab_control.TabIndex = 5;
+            Tab_control.Controls.Add(Map_info_tab);
+            Tab_control.Controls.Add(Resources_tab);
+            Tab_control.Controls.Add(Textures_tab);
+            Tab_control.Controls.Add(Logical_grid_tab);
+            Tab_control.Controls.Add(Small_doodads_tab);
+            Tab_control.Controls.Add(Swap_list_tab);
+            Tab_control.Controls.Add(Harbours_tab);
+            Tab_control.Controls.Add(Caves_tab);
+            Tab_control.Controls.Add(Sacrifices_tab);
+            Tab_control.Controls.Add(Colours_tab);
+            Tab_control.Controls.Add(Environment_tab);
+            Tab_control.Controls.Add(Export_tab);
+            Tab_control.ItemSize = new System.Drawing.Size(0, 38);
+            Tab_control.Location = new System.Drawing.Point(12, 73);
+            Tab_control.Name = "Tab_control";
+            Tab_control.SelectedIndex = 0;
+            Tab_control.Size = new System.Drawing.Size(1220, 519);
+            Tab_control.TabIndex = 5;
             // 
             // Map_info_tab
             // 
-            this.Map_info_tab.Controls.Add(this.Map_info_size);
-            this.Map_info_tab.Controls.Add(this.Map_prieview_text);
-            this.Map_info_tab.Controls.Add(this.Map_name_button);
-            this.Map_info_tab.Controls.Add(this.Player_count_text);
-            this.Map_info_tab.Controls.Add(this.Resource_info);
-            this.Map_info_tab.Controls.Add(this.Map_preview);
-            this.Map_info_tab.Location = new System.Drawing.Point(4, 42);
-            this.Map_info_tab.Name = "Map_info_tab";
-            this.Map_info_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Map_info_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Map_info_tab.TabIndex = 0;
-            this.Map_info_tab.Text = "Map info";
-            this.Map_info_tab.UseVisualStyleBackColor = true;
+            Map_info_tab.Controls.Add(Map_info_size);
+            Map_info_tab.Controls.Add(Map_info_preview_text);
+            Map_info_tab.Controls.Add(Map_info_name);
+            Map_info_tab.Controls.Add(Map_info_player_amount);
+            Map_info_tab.Controls.Add(Map_info_resources);
+            Map_info_tab.Controls.Add(Map_info_preview);
+            Map_info_tab.Location = new System.Drawing.Point(4, 42);
+            Map_info_tab.Name = "Map_info_tab";
+            Map_info_tab.Padding = new System.Windows.Forms.Padding(3);
+            Map_info_tab.Size = new System.Drawing.Size(1212, 473);
+            Map_info_tab.TabIndex = 0;
+            Map_info_tab.Text = "Map info";
             // 
             // Map_info_size
             // 
-            this.Map_info_size.AutoSize = true;
-            this.Map_info_size.Location = new System.Drawing.Point(6, 59);
-            this.Map_info_size.Name = "Map_info_size";
-            this.Map_info_size.Size = new System.Drawing.Size(99, 28);
-            this.Map_info_size.TabIndex = 7;
-            this.Map_info_size.Text = "Map size:";
+            Map_info_size.AutoSize = true;
+            Map_info_size.Location = new System.Drawing.Point(6, 83);
+            Map_info_size.Name = "Map_info_size";
+            Map_info_size.Size = new System.Drawing.Size(101, 30);
+            Map_info_size.TabIndex = 7;
+            Map_info_size.Text = "Map size:";
             // 
-            // Map_prieview_text
+            // Map_info_preview_text
             // 
-            this.Map_prieview_text.AutoSize = true;
-            this.Map_prieview_text.Location = new System.Drawing.Point(6, 111);
-            this.Map_prieview_text.Name = "Map_prieview_text";
-            this.Map_prieview_text.Size = new System.Drawing.Size(136, 28);
-            this.Map_prieview_text.TabIndex = 6;
-            this.Map_prieview_text.Text = "Map prieview";
+            Map_info_preview_text.AutoSize = true;
+            Map_info_preview_text.Location = new System.Drawing.Point(6, 164);
+            Map_info_preview_text.Name = "Map_info_preview_text";
+            Map_info_preview_text.Size = new System.Drawing.Size(137, 30);
+            Map_info_preview_text.TabIndex = 6;
+            Map_info_preview_text.Text = "Map prieview";
             // 
-            // Map_name_button
+            // Map_info_name
             // 
-            this.Map_name_button.AutoSize = true;
-            this.Map_name_button.Location = new System.Drawing.Point(6, 385);
-            this.Map_name_button.Name = "Map_name_button";
-            this.Map_name_button.Size = new System.Drawing.Size(112, 28);
-            this.Map_name_button.TabIndex = 5;
-            this.Map_name_button.TabStop = true;
-            this.Map_name_button.Text = "Map name";
-            this.Map_name_button.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Map_name_button_LinkClicked);
+            Map_info_name.AutoSize = true;
+            Map_info_name.Location = new System.Drawing.Point(3, 440);
+            Map_info_name.Name = "Map_info_name";
+            Map_info_name.Size = new System.Drawing.Size(113, 30);
+            Map_info_name.TabIndex = 5;
+            Map_info_name.TabStop = true;
+            Map_info_name.Text = "Map name";
+            Map_info_name.LinkClicked += Map_info_name_LinkClicked;
             // 
-            // Player_count_text
+            // Map_info_player_amount
             // 
-            this.Player_count_text.AutoSize = true;
-            this.Player_count_text.Location = new System.Drawing.Point(6, 6);
-            this.Player_count_text.Name = "Player_count_text";
-            this.Player_count_text.Size = new System.Drawing.Size(149, 28);
-            this.Player_count_text.TabIndex = 4;
-            this.Player_count_text.Text = "Player count: 0";
+            Map_info_player_amount.AutoSize = true;
+            Map_info_player_amount.Location = new System.Drawing.Point(3, 3);
+            Map_info_player_amount.Name = "Map_info_player_amount";
+            Map_info_player_amount.Size = new System.Drawing.Size(150, 30);
+            Map_info_player_amount.TabIndex = 4;
+            Map_info_player_amount.Text = "Player count: 0";
             // 
-            // Resource_info
+            // Map_info_resources
             // 
-            this.Resource_info.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.Resource_info.ColumnCount = 3;
-            this.Resource_info.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.Resource_info.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.Resource_info.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.Resource_info.Controls.Add(this.Resource_amount_text, 1, 0);
-            this.Resource_info.Controls.Add(this.Resource_text, 0, 0);
-            this.Resource_info.Controls.Add(this.Share_button, 2, 0);
-            this.Resource_info.Controls.Add(this.Coal_text, 0, 1);
-            this.Resource_info.Controls.Add(this.Iron_text, 0, 2);
-            this.Resource_info.Controls.Add(this.Salt_text, 0, 3);
-            this.Resource_info.Controls.Add(this.Gold_text, 0, 4);
-            this.Resource_info.Controls.Add(this.Gemstones_text, 0, 5);
-            this.Resource_info.Controls.Add(this.Stone_text, 0, 6);
-            this.Resource_info.Controls.Add(this.Coal_amount, 1, 1);
-            this.Resource_info.Controls.Add(this.Iron_amount, 1, 2);
-            this.Resource_info.Controls.Add(this.Salt_amount, 1, 3);
-            this.Resource_info.Controls.Add(this.Gold_amount, 1, 4);
-            this.Resource_info.Controls.Add(this.Gemstones_amount, 1, 5);
-            this.Resource_info.Controls.Add(this.Stone_amount, 1, 6);
-            this.Resource_info.Controls.Add(this.Coal_share, 2, 1);
-            this.Resource_info.Controls.Add(this.Iron_share, 2, 2);
-            this.Resource_info.Controls.Add(this.Salt_share, 2, 3);
-            this.Resource_info.Controls.Add(this.Gold_share, 2, 4);
-            this.Resource_info.Controls.Add(this.Gemstones_share, 2, 5);
-            this.Resource_info.Controls.Add(this.Stone_share, 2, 6);
-            this.Resource_info.Location = new System.Drawing.Point(257, 6);
-            this.Resource_info.Name = "Resource_info";
-            this.Resource_info.RowCount = 7;
-            this.Resource_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.Resource_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.Resource_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.Resource_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.Resource_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.Resource_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.Resource_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.Resource_info.Size = new System.Drawing.Size(941, 376);
-            this.Resource_info.TabIndex = 3;
+            Map_info_resources.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            Map_info_resources.ColumnCount = 3;
+            Map_info_resources.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            Map_info_resources.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            Map_info_resources.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            Map_info_resources.Controls.Add(Map_info_resources_amount, 1, 0);
+            Map_info_resources.Controls.Add(Map_info_resource_text, 0, 0);
+            Map_info_resources.Controls.Add(Map_info_resources_share, 2, 0);
+            Map_info_resources.Controls.Add(Map_info_coal_text, 0, 1);
+            Map_info_resources.Controls.Add(Map_info_iron_text, 0, 2);
+            Map_info_resources.Controls.Add(Map_info_salt_text, 0, 3);
+            Map_info_resources.Controls.Add(Map_info_gold_text, 0, 4);
+            Map_info_resources.Controls.Add(Map_info_gemstones_text, 0, 5);
+            Map_info_resources.Controls.Add(Map_info_stone_text, 0, 6);
+            Map_info_resources.Controls.Add(Map_info_coal_amount, 1, 1);
+            Map_info_resources.Controls.Add(Map_info_iron_amount, 1, 2);
+            Map_info_resources.Controls.Add(Map_info_salt_amount, 1, 3);
+            Map_info_resources.Controls.Add(Map_info_gold_amount, 1, 4);
+            Map_info_resources.Controls.Add(Map_info_gemstones_amount, 1, 5);
+            Map_info_resources.Controls.Add(Map_info_stone_amount, 1, 6);
+            Map_info_resources.Controls.Add(Map_info_coal_share, 2, 1);
+            Map_info_resources.Controls.Add(Map_info_iron_share, 2, 2);
+            Map_info_resources.Controls.Add(Map_info_salt_share, 2, 3);
+            Map_info_resources.Controls.Add(Map_info_gold_share, 2, 4);
+            Map_info_resources.Controls.Add(Map_info_gemstones_share, 2, 5);
+            Map_info_resources.Controls.Add(Map_info_stone_share, 2, 6);
+            Map_info_resources.Location = new System.Drawing.Point(257, 6);
+            Map_info_resources.Name = "Map_info_resources";
+            Map_info_resources.RowCount = 7;
+            Map_info_resources.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            Map_info_resources.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            Map_info_resources.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            Map_info_resources.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            Map_info_resources.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            Map_info_resources.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            Map_info_resources.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            Map_info_resources.Size = new System.Drawing.Size(949, 431);
+            Map_info_resources.TabIndex = 3;
             // 
-            // Resource_amount_text
+            // Map_info_resources_amount
             // 
-            this.Resource_amount_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Resource_amount_text.AutoSize = true;
-            this.Resource_amount_text.Location = new System.Drawing.Point(317, 13);
-            this.Resource_amount_text.Name = "Resource_amount_text";
-            this.Resource_amount_text.Size = new System.Drawing.Size(87, 28);
-            this.Resource_amount_text.TabIndex = 1;
-            this.Resource_amount_text.Text = "Amount";
+            Map_info_resources_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_resources_amount.AutoSize = true;
+            Map_info_resources_amount.Location = new System.Drawing.Point(320, 16);
+            Map_info_resources_amount.Name = "Map_info_resources_amount";
+            Map_info_resources_amount.Size = new System.Drawing.Size(88, 30);
+            Map_info_resources_amount.TabIndex = 1;
+            Map_info_resources_amount.Text = "Amount";
             // 
-            // Resource_text
+            // Map_info_resource_text
             // 
-            this.Resource_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Resource_text.AutoSize = true;
-            this.Resource_text.Location = new System.Drawing.Point(4, 13);
-            this.Resource_text.Name = "Resource_text";
-            this.Resource_text.Size = new System.Drawing.Size(96, 28);
-            this.Resource_text.TabIndex = 0;
-            this.Resource_text.Text = "Resource";
+            Map_info_resource_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_resource_text.AutoSize = true;
+            Map_info_resource_text.Location = new System.Drawing.Point(4, 16);
+            Map_info_resource_text.Name = "Map_info_resource_text";
+            Map_info_resource_text.Size = new System.Drawing.Size(97, 30);
+            Map_info_resource_text.TabIndex = 0;
+            Map_info_resource_text.Text = "Resource";
             // 
-            // Share_button
+            // Map_info_resources_share
             // 
-            this.Share_button.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Share_button.AutoSize = true;
-            this.Share_button.Location = new System.Drawing.Point(630, 13);
-            this.Share_button.Name = "Share_button";
-            this.Share_button.Size = new System.Drawing.Size(64, 28);
-            this.Share_button.TabIndex = 2;
-            this.Share_button.TabStop = true;
-            this.Share_button.Text = "Share";
-            this.Share_button.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Share_button_LinkClicked);
+            Map_info_resources_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_resources_share.AutoSize = true;
+            Map_info_resources_share.Location = new System.Drawing.Point(636, 16);
+            Map_info_resources_share.Name = "Map_info_resources_share";
+            Map_info_resources_share.Size = new System.Drawing.Size(65, 30);
+            Map_info_resources_share.TabIndex = 2;
+            Map_info_resources_share.TabStop = true;
+            Map_info_resources_share.Text = "Share";
+            Map_info_resources_share.LinkClicked += Map_info_resources_share_LinkClicked;
             // 
-            // Coal_text
+            // Map_info_coal_text
             // 
-            this.Coal_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Coal_text.AutoSize = true;
-            this.Coal_text.Location = new System.Drawing.Point(4, 66);
-            this.Coal_text.Name = "Coal_text";
-            this.Coal_text.Size = new System.Drawing.Size(53, 28);
-            this.Coal_text.TabIndex = 3;
-            this.Coal_text.Text = "Coal";
+            Map_info_coal_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_coal_text.AutoSize = true;
+            Map_info_coal_text.Location = new System.Drawing.Point(4, 77);
+            Map_info_coal_text.Name = "Map_info_coal_text";
+            Map_info_coal_text.Size = new System.Drawing.Size(54, 30);
+            Map_info_coal_text.TabIndex = 3;
+            Map_info_coal_text.Text = "Coal";
             // 
-            // Iron_text
+            // Map_info_iron_text
             // 
-            this.Iron_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Iron_text.AutoSize = true;
-            this.Iron_text.Location = new System.Drawing.Point(4, 119);
-            this.Iron_text.Name = "Iron_text";
-            this.Iron_text.Size = new System.Drawing.Size(49, 28);
-            this.Iron_text.TabIndex = 4;
-            this.Iron_text.Text = "Iron";
+            Map_info_iron_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_iron_text.AutoSize = true;
+            Map_info_iron_text.Location = new System.Drawing.Point(4, 138);
+            Map_info_iron_text.Name = "Map_info_iron_text";
+            Map_info_iron_text.Size = new System.Drawing.Size(50, 30);
+            Map_info_iron_text.TabIndex = 4;
+            Map_info_iron_text.Text = "Iron";
             // 
-            // Salt_text
+            // Map_info_salt_text
             // 
-            this.Salt_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Salt_text.AutoSize = true;
-            this.Salt_text.Location = new System.Drawing.Point(4, 172);
-            this.Salt_text.Name = "Salt_text";
-            this.Salt_text.Size = new System.Drawing.Size(46, 28);
-            this.Salt_text.TabIndex = 5;
-            this.Salt_text.Text = "Salt";
+            Map_info_salt_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_salt_text.AutoSize = true;
+            Map_info_salt_text.Location = new System.Drawing.Point(4, 199);
+            Map_info_salt_text.Name = "Map_info_salt_text";
+            Map_info_salt_text.Size = new System.Drawing.Size(47, 30);
+            Map_info_salt_text.TabIndex = 5;
+            Map_info_salt_text.Text = "Salt";
             // 
-            // Gold_text
+            // Map_info_gold_text
             // 
-            this.Gold_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Gold_text.AutoSize = true;
-            this.Gold_text.Location = new System.Drawing.Point(4, 225);
-            this.Gold_text.Name = "Gold_text";
-            this.Gold_text.Size = new System.Drawing.Size(55, 28);
-            this.Gold_text.TabIndex = 6;
-            this.Gold_text.Text = "Gold";
+            Map_info_gold_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_gold_text.AutoSize = true;
+            Map_info_gold_text.Location = new System.Drawing.Point(4, 260);
+            Map_info_gold_text.Name = "Map_info_gold_text";
+            Map_info_gold_text.Size = new System.Drawing.Size(56, 30);
+            Map_info_gold_text.TabIndex = 6;
+            Map_info_gold_text.Text = "Gold";
             // 
-            // Gemstones_text
+            // Map_info_gemstones_text
             // 
-            this.Gemstones_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Gemstones_text.AutoSize = true;
-            this.Gemstones_text.Location = new System.Drawing.Point(4, 278);
-            this.Gemstones_text.Name = "Gemstones_text";
-            this.Gemstones_text.Size = new System.Drawing.Size(115, 28);
-            this.Gemstones_text.TabIndex = 7;
-            this.Gemstones_text.Text = "Gemstones";
+            Map_info_gemstones_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_gemstones_text.AutoSize = true;
+            Map_info_gemstones_text.Location = new System.Drawing.Point(4, 321);
+            Map_info_gemstones_text.Name = "Map_info_gemstones_text";
+            Map_info_gemstones_text.Size = new System.Drawing.Size(116, 30);
+            Map_info_gemstones_text.TabIndex = 7;
+            Map_info_gemstones_text.Text = "Gemstones";
             // 
-            // Stone_text
+            // Map_info_stone_text
             // 
-            this.Stone_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Stone_text.AutoSize = true;
-            this.Stone_text.Location = new System.Drawing.Point(4, 333);
-            this.Stone_text.Name = "Stone_text";
-            this.Stone_text.Size = new System.Drawing.Size(64, 28);
-            this.Stone_text.TabIndex = 8;
-            this.Stone_text.Text = "Stone";
+            Map_info_stone_text.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_stone_text.AutoSize = true;
+            Map_info_stone_text.Location = new System.Drawing.Point(4, 383);
+            Map_info_stone_text.Name = "Map_info_stone_text";
+            Map_info_stone_text.Size = new System.Drawing.Size(65, 30);
+            Map_info_stone_text.TabIndex = 8;
+            Map_info_stone_text.Text = "Stone";
             // 
-            // Coal_amount
+            // Map_info_coal_amount
             // 
-            this.Coal_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Coal_amount.AutoSize = true;
-            this.Coal_amount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Coal_amount.Location = new System.Drawing.Point(317, 66);
-            this.Coal_amount.Name = "Coal_amount";
-            this.Coal_amount.Size = new System.Drawing.Size(23, 28);
-            this.Coal_amount.TabIndex = 9;
-            this.Coal_amount.Text = "0";
+            Map_info_coal_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_coal_amount.AutoSize = true;
+            Map_info_coal_amount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Map_info_coal_amount.Location = new System.Drawing.Point(320, 77);
+            Map_info_coal_amount.Name = "Map_info_coal_amount";
+            Map_info_coal_amount.Size = new System.Drawing.Size(24, 30);
+            Map_info_coal_amount.TabIndex = 9;
+            Map_info_coal_amount.Text = "0";
             // 
-            // Iron_amount
+            // Map_info_iron_amount
             // 
-            this.Iron_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Iron_amount.AutoSize = true;
-            this.Iron_amount.Location = new System.Drawing.Point(317, 119);
-            this.Iron_amount.Name = "Iron_amount";
-            this.Iron_amount.Size = new System.Drawing.Size(23, 28);
-            this.Iron_amount.TabIndex = 10;
-            this.Iron_amount.Text = "0";
+            Map_info_iron_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_iron_amount.AutoSize = true;
+            Map_info_iron_amount.Location = new System.Drawing.Point(320, 138);
+            Map_info_iron_amount.Name = "Map_info_iron_amount";
+            Map_info_iron_amount.Size = new System.Drawing.Size(24, 30);
+            Map_info_iron_amount.TabIndex = 10;
+            Map_info_iron_amount.Text = "0";
             // 
-            // Salt_amount
+            // Map_info_salt_amount
             // 
-            this.Salt_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Salt_amount.AutoSize = true;
-            this.Salt_amount.Location = new System.Drawing.Point(317, 172);
-            this.Salt_amount.Name = "Salt_amount";
-            this.Salt_amount.Size = new System.Drawing.Size(23, 28);
-            this.Salt_amount.TabIndex = 11;
-            this.Salt_amount.Text = "0";
+            Map_info_salt_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_salt_amount.AutoSize = true;
+            Map_info_salt_amount.Location = new System.Drawing.Point(320, 199);
+            Map_info_salt_amount.Name = "Map_info_salt_amount";
+            Map_info_salt_amount.Size = new System.Drawing.Size(24, 30);
+            Map_info_salt_amount.TabIndex = 11;
+            Map_info_salt_amount.Text = "0";
             // 
-            // Gold_amount
+            // Map_info_gold_amount
             // 
-            this.Gold_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Gold_amount.AutoSize = true;
-            this.Gold_amount.Location = new System.Drawing.Point(317, 225);
-            this.Gold_amount.Name = "Gold_amount";
-            this.Gold_amount.Size = new System.Drawing.Size(23, 28);
-            this.Gold_amount.TabIndex = 12;
-            this.Gold_amount.Text = "0";
+            Map_info_gold_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_gold_amount.AutoSize = true;
+            Map_info_gold_amount.Location = new System.Drawing.Point(320, 260);
+            Map_info_gold_amount.Name = "Map_info_gold_amount";
+            Map_info_gold_amount.Size = new System.Drawing.Size(24, 30);
+            Map_info_gold_amount.TabIndex = 12;
+            Map_info_gold_amount.Text = "0";
             // 
-            // Gemstones_amount
+            // Map_info_gemstones_amount
             // 
-            this.Gemstones_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Gemstones_amount.AutoSize = true;
-            this.Gemstones_amount.Location = new System.Drawing.Point(317, 278);
-            this.Gemstones_amount.Name = "Gemstones_amount";
-            this.Gemstones_amount.Size = new System.Drawing.Size(23, 28);
-            this.Gemstones_amount.TabIndex = 13;
-            this.Gemstones_amount.Text = "0";
+            Map_info_gemstones_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_gemstones_amount.AutoSize = true;
+            Map_info_gemstones_amount.Location = new System.Drawing.Point(320, 321);
+            Map_info_gemstones_amount.Name = "Map_info_gemstones_amount";
+            Map_info_gemstones_amount.Size = new System.Drawing.Size(24, 30);
+            Map_info_gemstones_amount.TabIndex = 13;
+            Map_info_gemstones_amount.Text = "0";
             // 
-            // Stone_amount
+            // Map_info_stone_amount
             // 
-            this.Stone_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Stone_amount.AutoSize = true;
-            this.Stone_amount.Location = new System.Drawing.Point(317, 333);
-            this.Stone_amount.Name = "Stone_amount";
-            this.Stone_amount.Size = new System.Drawing.Size(23, 28);
-            this.Stone_amount.TabIndex = 14;
-            this.Stone_amount.Text = "0";
+            Map_info_stone_amount.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_stone_amount.AutoSize = true;
+            Map_info_stone_amount.Location = new System.Drawing.Point(320, 383);
+            Map_info_stone_amount.Name = "Map_info_stone_amount";
+            Map_info_stone_amount.Size = new System.Drawing.Size(24, 30);
+            Map_info_stone_amount.TabIndex = 14;
+            Map_info_stone_amount.Text = "0";
             // 
-            // Coal_share
+            // Map_info_coal_share
             // 
-            this.Coal_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Coal_share.AutoSize = true;
-            this.Coal_share.Location = new System.Drawing.Point(630, 66);
-            this.Coal_share.Name = "Coal_share";
-            this.Coal_share.Size = new System.Drawing.Size(72, 28);
-            this.Coal_share.TabIndex = 15;
-            this.Coal_share.Text = "NaN%";
+            Map_info_coal_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_coal_share.AutoSize = true;
+            Map_info_coal_share.Location = new System.Drawing.Point(636, 77);
+            Map_info_coal_share.Name = "Map_info_coal_share";
+            Map_info_coal_share.Size = new System.Drawing.Size(73, 30);
+            Map_info_coal_share.TabIndex = 15;
+            Map_info_coal_share.Text = "NaN%";
             // 
-            // Iron_share
+            // Map_info_iron_share
             // 
-            this.Iron_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Iron_share.AutoSize = true;
-            this.Iron_share.Location = new System.Drawing.Point(630, 119);
-            this.Iron_share.Name = "Iron_share";
-            this.Iron_share.Size = new System.Drawing.Size(72, 28);
-            this.Iron_share.TabIndex = 16;
-            this.Iron_share.Text = "NaN%";
+            Map_info_iron_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_iron_share.AutoSize = true;
+            Map_info_iron_share.Location = new System.Drawing.Point(636, 138);
+            Map_info_iron_share.Name = "Map_info_iron_share";
+            Map_info_iron_share.Size = new System.Drawing.Size(73, 30);
+            Map_info_iron_share.TabIndex = 16;
+            Map_info_iron_share.Text = "NaN%";
             // 
-            // Salt_share
+            // Map_info_salt_share
             // 
-            this.Salt_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Salt_share.AutoSize = true;
-            this.Salt_share.Location = new System.Drawing.Point(630, 172);
-            this.Salt_share.Name = "Salt_share";
-            this.Salt_share.Size = new System.Drawing.Size(72, 28);
-            this.Salt_share.TabIndex = 17;
-            this.Salt_share.Text = "NaN%";
+            Map_info_salt_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_salt_share.AutoSize = true;
+            Map_info_salt_share.Location = new System.Drawing.Point(636, 199);
+            Map_info_salt_share.Name = "Map_info_salt_share";
+            Map_info_salt_share.Size = new System.Drawing.Size(73, 30);
+            Map_info_salt_share.TabIndex = 17;
+            Map_info_salt_share.Text = "NaN%";
             // 
-            // Gold_share
+            // Map_info_gold_share
             // 
-            this.Gold_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Gold_share.AutoSize = true;
-            this.Gold_share.Location = new System.Drawing.Point(630, 225);
-            this.Gold_share.Name = "Gold_share";
-            this.Gold_share.Size = new System.Drawing.Size(72, 28);
-            this.Gold_share.TabIndex = 18;
-            this.Gold_share.Text = "NaN%";
+            Map_info_gold_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_gold_share.AutoSize = true;
+            Map_info_gold_share.Location = new System.Drawing.Point(636, 260);
+            Map_info_gold_share.Name = "Map_info_gold_share";
+            Map_info_gold_share.Size = new System.Drawing.Size(73, 30);
+            Map_info_gold_share.TabIndex = 18;
+            Map_info_gold_share.Text = "NaN%";
             // 
-            // Gemstones_share
+            // Map_info_gemstones_share
             // 
-            this.Gemstones_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Gemstones_share.AutoSize = true;
-            this.Gemstones_share.Location = new System.Drawing.Point(630, 278);
-            this.Gemstones_share.Name = "Gemstones_share";
-            this.Gemstones_share.Size = new System.Drawing.Size(72, 28);
-            this.Gemstones_share.TabIndex = 19;
-            this.Gemstones_share.Text = "NaN%";
+            Map_info_gemstones_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_gemstones_share.AutoSize = true;
+            Map_info_gemstones_share.Location = new System.Drawing.Point(636, 321);
+            Map_info_gemstones_share.Name = "Map_info_gemstones_share";
+            Map_info_gemstones_share.Size = new System.Drawing.Size(73, 30);
+            Map_info_gemstones_share.TabIndex = 19;
+            Map_info_gemstones_share.Text = "NaN%";
             // 
-            // Stone_share
+            // Map_info_stone_share
             // 
-            this.Stone_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Stone_share.AutoSize = true;
-            this.Stone_share.Location = new System.Drawing.Point(630, 333);
-            this.Stone_share.Name = "Stone_share";
-            this.Stone_share.Size = new System.Drawing.Size(72, 28);
-            this.Stone_share.TabIndex = 20;
-            this.Stone_share.Text = "NaN%";
+            Map_info_stone_share.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            Map_info_stone_share.AutoSize = true;
+            Map_info_stone_share.Location = new System.Drawing.Point(636, 383);
+            Map_info_stone_share.Name = "Map_info_stone_share";
+            Map_info_stone_share.Size = new System.Drawing.Size(73, 30);
+            Map_info_stone_share.TabIndex = 20;
+            Map_info_stone_share.Text = "NaN%";
             // 
-            // Map_preview
+            // Map_info_preview
             // 
-            this.Map_preview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Map_preview.BackgroundImage")));
-            this.Map_preview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Map_preview.ErrorImage = ((System.Drawing.Image)(resources.GetObject("Map_preview.ErrorImage")));
-            this.Map_preview.InitialImage = ((System.Drawing.Image)(resources.GetObject("Map_preview.InitialImage")));
-            this.Map_preview.Location = new System.Drawing.Point(11, 142);
-            this.Map_preview.MinimumSize = new System.Drawing.Size(240, 240);
-            this.Map_preview.Name = "Map_preview";
-            this.Map_preview.Size = new System.Drawing.Size(240, 240);
-            this.Map_preview.TabIndex = 1;
-            this.Map_preview.TabStop = false;
+            Map_info_preview.BackgroundImage = (System.Drawing.Image)resources.GetObject("Map_info_preview.BackgroundImage");
+            Map_info_preview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Map_info_preview.ErrorImage = (System.Drawing.Image)resources.GetObject("Map_info_preview.ErrorImage");
+            Map_info_preview.InitialImage = (System.Drawing.Image)resources.GetObject("Map_info_preview.InitialImage");
+            Map_info_preview.Location = new System.Drawing.Point(3, 197);
+            Map_info_preview.MinimumSize = new System.Drawing.Size(240, 240);
+            Map_info_preview.Name = "Map_info_preview";
+            Map_info_preview.Size = new System.Drawing.Size(240, 240);
+            Map_info_preview.TabIndex = 1;
+            Map_info_preview.TabStop = false;
             // 
             // Resources_tab
             // 
-            this.Resources_tab.Controls.Add(this.Continue_editing_panel);
-            this.Resources_tab.Controls.Add(this.Resources_swap_button);
-            this.Resources_tab.Controls.Add(this.Resources_wait);
-            this.Resources_tab.Controls.Add(this.Resources_arrow);
-            this.Resources_tab.Controls.Add(this.Resources_to_list);
-            this.Resources_tab.Controls.Add(this.Resources_to_text);
-            this.Resources_tab.Controls.Add(this.Resources_from_text);
-            this.Resources_tab.Controls.Add(this.Resources_from_list);
-            this.Resources_tab.Location = new System.Drawing.Point(4, 42);
-            this.Resources_tab.Name = "Resources_tab";
-            this.Resources_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Resources_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Resources_tab.TabIndex = 1;
-            this.Resources_tab.Text = "Resources";
-            this.Resources_tab.UseVisualStyleBackColor = true;
+            Resources_tab.Controls.Add(Resources_continue_editing_panel);
+            Resources_tab.Controls.Add(Resources_swap_button);
+            Resources_tab.Controls.Add(Resources_wait);
+            Resources_tab.Controls.Add(Resources_arrow);
+            Resources_tab.Controls.Add(Resources_to_list);
+            Resources_tab.Controls.Add(Resources_to_text);
+            Resources_tab.Controls.Add(Resources_from_text);
+            Resources_tab.Controls.Add(Resources_from_list);
+            Resources_tab.Location = new System.Drawing.Point(4, 42);
+            Resources_tab.Name = "Resources_tab";
+            Resources_tab.Padding = new System.Windows.Forms.Padding(3);
+            Resources_tab.Size = new System.Drawing.Size(1212, 473);
+            Resources_tab.TabIndex = 1;
+            Resources_tab.Text = "Resources";
             // 
-            // Continue_editing_panel
+            // Resources_continue_editing_panel
             // 
-            this.Continue_editing_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Continue_editing_panel.Controls.Add(this.Continue_editing_text);
-            this.Continue_editing_panel.Controls.Add(this.Continue_editing_button);
-            this.Continue_editing_panel.Location = new System.Drawing.Point(563, 90);
-            this.Continue_editing_panel.Name = "Continue_editing_panel";
-            this.Continue_editing_panel.Size = new System.Drawing.Size(635, 200);
-            this.Continue_editing_panel.TabIndex = 9;
+            Resources_continue_editing_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Resources_continue_editing_panel.Controls.Add(Resources_continue_editing_text);
+            Resources_continue_editing_panel.Controls.Add(Resources_continue_editing_button);
+            Resources_continue_editing_panel.Location = new System.Drawing.Point(556, 110);
+            Resources_continue_editing_panel.Name = "Resources_continue_editing_panel";
+            Resources_continue_editing_panel.Size = new System.Drawing.Size(653, 214);
+            Resources_continue_editing_panel.TabIndex = 9;
             // 
-            // Continue_editing_text
+            // Resources_continue_editing_text
             // 
-            this.Continue_editing_text.AutoSize = true;
-            this.Continue_editing_text.Location = new System.Drawing.Point(3, 61);
-            this.Continue_editing_text.MinimumSize = new System.Drawing.Size(627, 0);
-            this.Continue_editing_text.Name = "Continue_editing_text";
-            this.Continue_editing_text.Size = new System.Drawing.Size(627, 28);
-            this.Continue_editing_text.TabIndex = 4;
-            this.Continue_editing_text.Text = "Save the map in order to add missing resources";
-            this.Continue_editing_text.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            Resources_continue_editing_text.AutoSize = true;
+            Resources_continue_editing_text.Location = new System.Drawing.Point(18, 59);
+            Resources_continue_editing_text.MinimumSize = new System.Drawing.Size(630, 0);
+            Resources_continue_editing_text.Name = "Resources_continue_editing_text";
+            Resources_continue_editing_text.Size = new System.Drawing.Size(630, 30);
+            Resources_continue_editing_text.TabIndex = 4;
+            Resources_continue_editing_text.Text = "Save the map in order to add missing resources";
+            Resources_continue_editing_text.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // Continue_editing_button
+            // Resources_continue_editing_button
             // 
-            this.Continue_editing_button.AutoSize = true;
-            this.Continue_editing_button.Location = new System.Drawing.Point(3, 92);
-            this.Continue_editing_button.MinimumSize = new System.Drawing.Size(250, 0);
-            this.Continue_editing_button.Name = "Continue_editing_button";
-            this.Continue_editing_button.Size = new System.Drawing.Size(627, 42);
-            this.Continue_editing_button.TabIndex = 5;
-            this.Continue_editing_button.Text = "Continue editing";
-            this.Continue_editing_button.UseVisualStyleBackColor = true;
-            this.Continue_editing_button.Click += new System.EventHandler(this.Continue_editing_button_Click);
+            Resources_continue_editing_button.AutoSize = true;
+            Resources_continue_editing_button.Location = new System.Drawing.Point(3, 92);
+            Resources_continue_editing_button.MinimumSize = new System.Drawing.Size(250, 0);
+            Resources_continue_editing_button.Name = "Resources_continue_editing_button";
+            Resources_continue_editing_button.Size = new System.Drawing.Size(645, 40);
+            Resources_continue_editing_button.TabIndex = 5;
+            Resources_continue_editing_button.Text = "Continue editing";
+            Resources_continue_editing_button.UseVisualStyleBackColor = true;
+            Resources_continue_editing_button.Click += Resources_continue_editing_button_Click;
             // 
             // Resources_swap_button
             // 
-            this.Resources_swap_button.AutoSize = true;
-            this.Resources_swap_button.Location = new System.Drawing.Point(210, 248);
-            this.Resources_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Resources_swap_button.Name = "Resources_swap_button";
-            this.Resources_swap_button.Size = new System.Drawing.Size(150, 42);
-            this.Resources_swap_button.TabIndex = 8;
-            this.Resources_swap_button.Text = "Swap";
-            this.Resources_swap_button.UseVisualStyleBackColor = true;
-            this.Resources_swap_button.Click += new System.EventHandler(this.Resources_swap_button_Click);
+            Resources_swap_button.AutoSize = true;
+            Resources_swap_button.Location = new System.Drawing.Point(203, 283);
+            Resources_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Resources_swap_button.Name = "Resources_swap_button";
+            Resources_swap_button.Size = new System.Drawing.Size(150, 40);
+            Resources_swap_button.TabIndex = 8;
+            Resources_swap_button.Text = "Swap";
+            Resources_swap_button.UseVisualStyleBackColor = true;
+            Resources_swap_button.Click += Resources_swap_button_Click;
             // 
             // Resources_wait
             // 
-            this.Resources_wait.AutoSize = true;
-            this.Resources_wait.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
-            this.Resources_wait.Location = new System.Drawing.Point(4, 362);
-            this.Resources_wait.Name = "Resources_wait";
-            this.Resources_wait.Size = new System.Drawing.Size(250, 51);
-            this.Resources_wait.TabIndex = 7;
-            this.Resources_wait.Text = "Please wait...";
+            Resources_wait.AutoSize = true;
+            Resources_wait.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
+            Resources_wait.Location = new System.Drawing.Point(3, 419);
+            Resources_wait.Name = "Resources_wait";
+            Resources_wait.Size = new System.Drawing.Size(250, 51);
+            Resources_wait.TabIndex = 7;
+            Resources_wait.Text = "Please wait...";
             // 
             // Resources_arrow
             // 
-            this.Resources_arrow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Resources_arrow.BackgroundImage")));
-            this.Resources_arrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Resources_arrow.Location = new System.Drawing.Point(210, 90);
-            this.Resources_arrow.MinimumSize = new System.Drawing.Size(150, 150);
-            this.Resources_arrow.Name = "Resources_arrow";
-            this.Resources_arrow.Size = new System.Drawing.Size(150, 150);
-            this.Resources_arrow.TabIndex = 6;
-            this.Resources_arrow.TabStop = false;
+            Resources_arrow.BackgroundImage = (System.Drawing.Image)resources.GetObject("Resources_arrow.BackgroundImage");
+            Resources_arrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Resources_arrow.Location = new System.Drawing.Point(203, 110);
+            Resources_arrow.MinimumSize = new System.Drawing.Size(150, 150);
+            Resources_arrow.Name = "Resources_arrow";
+            Resources_arrow.Size = new System.Drawing.Size(150, 162);
+            Resources_arrow.TabIndex = 6;
+            Resources_arrow.TabStop = false;
             // 
             // Resources_to_list
             // 
-            this.Resources_to_list.FormattingEnabled = true;
-            this.Resources_to_list.ItemHeight = 28;
-            this.Resources_to_list.Items.AddRange(new object[] {
-            "Coal",
-            "Iron",
-            "Salt",
-            "Gold",
-            "Gemstones",
-            "Stone"});
-            this.Resources_to_list.Location = new System.Drawing.Point(366, 90);
-            this.Resources_to_list.Name = "Resources_to_list";
-            this.Resources_to_list.Size = new System.Drawing.Size(191, 200);
-            this.Resources_to_list.TabIndex = 3;
+            Resources_to_list.FormattingEnabled = true;
+            Resources_to_list.Items.AddRange(new object[] { "Coal", "Iron", "Salt", "Gold", "Gemstones", "Stone" });
+            Resources_to_list.Location = new System.Drawing.Point(363, 110);
+            Resources_to_list.Name = "Resources_to_list";
+            Resources_to_list.Size = new System.Drawing.Size(191, 214);
+            Resources_to_list.TabIndex = 3;
             // 
             // Resources_to_text
             // 
-            this.Resources_to_text.AutoSize = true;
-            this.Resources_to_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Resources_to_text.Location = new System.Drawing.Point(360, 7);
-            this.Resources_to_text.Name = "Resources_to_text";
-            this.Resources_to_text.Size = new System.Drawing.Size(33, 28);
-            this.Resources_to_text.TabIndex = 2;
-            this.Resources_to_text.Text = "To";
+            Resources_to_text.AutoSize = true;
+            Resources_to_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Resources_to_text.Location = new System.Drawing.Point(363, 77);
+            Resources_to_text.Name = "Resources_to_text";
+            Resources_to_text.Size = new System.Drawing.Size(34, 30);
+            Resources_to_text.TabIndex = 2;
+            Resources_to_text.Text = "To";
             // 
             // Resources_from_text
             // 
-            this.Resources_from_text.AutoSize = true;
-            this.Resources_from_text.Location = new System.Drawing.Point(7, 7);
-            this.Resources_from_text.Name = "Resources_from_text";
-            this.Resources_from_text.Size = new System.Drawing.Size(59, 28);
-            this.Resources_from_text.TabIndex = 1;
-            this.Resources_from_text.Text = "From";
+            Resources_from_text.AutoSize = true;
+            Resources_from_text.Location = new System.Drawing.Point(6, 77);
+            Resources_from_text.Name = "Resources_from_text";
+            Resources_from_text.Size = new System.Drawing.Size(60, 30);
+            Resources_from_text.TabIndex = 1;
+            Resources_from_text.Text = "From";
             // 
             // Resources_from_list
             // 
-            this.Resources_from_list.FormattingEnabled = true;
-            this.Resources_from_list.ItemHeight = 28;
-            this.Resources_from_list.Items.AddRange(new object[] {
-            "Coal",
-            "Iron",
-            "Salt",
-            "Gold",
-            "Gemstones",
-            "Stone"});
-            this.Resources_from_list.Location = new System.Drawing.Point(13, 90);
-            this.Resources_from_list.Name = "Resources_from_list";
-            this.Resources_from_list.Size = new System.Drawing.Size(191, 200);
-            this.Resources_from_list.TabIndex = 0;
+            Resources_from_list.FormattingEnabled = true;
+            Resources_from_list.Items.AddRange(new object[] { "Coal", "Iron", "Salt", "Gold", "Gemstones", "Stone" });
+            Resources_from_list.Location = new System.Drawing.Point(6, 110);
+            Resources_from_list.Name = "Resources_from_list";
+            Resources_from_list.Size = new System.Drawing.Size(191, 214);
+            Resources_from_list.TabIndex = 0;
             // 
             // Textures_tab
             // 
-            this.Textures_tab.Controls.Add(this.Textures_arrow);
-            this.Textures_tab.Controls.Add(this.Textures_swap_button);
-            this.Textures_tab.Controls.Add(this.Textures_to_text);
-            this.Textures_tab.Controls.Add(this.Textures_to_list);
-            this.Textures_tab.Controls.Add(this.Textures_from_text);
-            this.Textures_tab.Controls.Add(this.Textures_from_list);
-            this.Textures_tab.Location = new System.Drawing.Point(4, 42);
-            this.Textures_tab.Name = "Textures_tab";
-            this.Textures_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Textures_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Textures_tab.TabIndex = 2;
-            this.Textures_tab.Text = "Textures";
-            this.Textures_tab.UseVisualStyleBackColor = true;
+            Textures_tab.Controls.Add(Textures_arrow);
+            Textures_tab.Controls.Add(Textures_swap_button);
+            Textures_tab.Controls.Add(Textures_to_text);
+            Textures_tab.Controls.Add(Textures_to_list);
+            Textures_tab.Controls.Add(Textures_from_text);
+            Textures_tab.Controls.Add(Textures_from_list);
+            Textures_tab.Location = new System.Drawing.Point(4, 42);
+            Textures_tab.Name = "Textures_tab";
+            Textures_tab.Padding = new System.Windows.Forms.Padding(3);
+            Textures_tab.Size = new System.Drawing.Size(1212, 473);
+            Textures_tab.TabIndex = 2;
+            Textures_tab.Text = "Textures";
             // 
             // Textures_arrow
             // 
-            this.Textures_arrow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Textures_arrow.BackgroundImage")));
-            this.Textures_arrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Textures_arrow.Location = new System.Drawing.Point(527, 42);
-            this.Textures_arrow.MinimumSize = new System.Drawing.Size(150, 150);
-            this.Textures_arrow.Name = "Textures_arrow";
-            this.Textures_arrow.Size = new System.Drawing.Size(150, 150);
-            this.Textures_arrow.TabIndex = 5;
-            this.Textures_arrow.TabStop = false;
+            Textures_arrow.BackgroundImage = (System.Drawing.Image)resources.GetObject("Textures_arrow.BackgroundImage");
+            Textures_arrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Textures_arrow.Location = new System.Drawing.Point(530, 46);
+            Textures_arrow.MinimumSize = new System.Drawing.Size(150, 150);
+            Textures_arrow.Name = "Textures_arrow";
+            Textures_arrow.Size = new System.Drawing.Size(150, 150);
+            Textures_arrow.TabIndex = 5;
+            Textures_arrow.TabStop = false;
             // 
             // Textures_swap_button
             // 
-            this.Textures_swap_button.AutoSize = true;
-            this.Textures_swap_button.Location = new System.Drawing.Point(527, 368);
-            this.Textures_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Textures_swap_button.Name = "Textures_swap_button";
-            this.Textures_swap_button.Size = new System.Drawing.Size(150, 42);
-            this.Textures_swap_button.TabIndex = 4;
-            this.Textures_swap_button.Text = "Swap";
-            this.Textures_swap_button.UseVisualStyleBackColor = true;
-            this.Textures_swap_button.Click += new System.EventHandler(this.Textures_swap_button_Click);
+            Textures_swap_button.AutoSize = true;
+            Textures_swap_button.Location = new System.Drawing.Point(530, 430);
+            Textures_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Textures_swap_button.Name = "Textures_swap_button";
+            Textures_swap_button.Size = new System.Drawing.Size(150, 40);
+            Textures_swap_button.TabIndex = 4;
+            Textures_swap_button.Text = "Swap";
+            Textures_swap_button.UseVisualStyleBackColor = true;
+            Textures_swap_button.Click += Textures_swap_button_Click;
             // 
             // Textures_to_text
             // 
-            this.Textures_to_text.AutoSize = true;
-            this.Textures_to_text.Location = new System.Drawing.Point(683, 3);
-            this.Textures_to_text.Name = "Textures_to_text";
-            this.Textures_to_text.Size = new System.Drawing.Size(33, 28);
-            this.Textures_to_text.TabIndex = 3;
-            this.Textures_to_text.Text = "To";
+            Textures_to_text.AutoSize = true;
+            Textures_to_text.Location = new System.Drawing.Point(686, 3);
+            Textures_to_text.Name = "Textures_to_text";
+            Textures_to_text.Size = new System.Drawing.Size(34, 30);
+            Textures_to_text.TabIndex = 3;
+            Textures_to_text.Text = "To";
             // 
             // Textures_to_list
             // 
-            this.Textures_to_list.FormattingEnabled = true;
-            this.Textures_to_list.ItemHeight = 28;
-            this.Textures_to_list.Items.AddRange(new object[] {
-            "__Highland meadow bright",
-            "__Highland meadow bright rocks",
-            "__Highland meadow medium",
-            "__Highland meadow medium rocks",
-            "__Highland meadow dark",
-            "__Highland meadow dark rocks",
-            "__Highland earth fir moss",
-            "__Highland earth fir",
-            "__Highland earth",
-            "__Highland rock",
-            "__Highland rock big",
-            "__Highland (RES) rocky earth",
-            "__Highland rock flat",
-            "__Highland rock dark big",
-            "__Highland rock dark flat",
-            "__Highland rock braid flat",
-            "__Highland stone ground",
-            "--Snow highland rock much",
-            "--Snow highland rock",
-            "--Snow highland rock part",
-            "--Snow (RES) rocky earth",
-            "--Snow meadow",
-            "--Snow meadow snow",
-            "--Snow meadow snow 2",
-            "--Snow meadow snow 3",
-            "--Snow meadow Treeground 80x80,200x200",
-            "--Snow meadow Treeground 125x125",
-            "--Snow meadow Treeground 170x170",
-            "--Snow meadow Treeground 255x255",
-            "__Highland swamp land",
-            "__Highland swamp water",
-            "__Highland swamp meadow (unblocked)",
-            "__Highland seaground rocks",
-            "__Highland seaground rocks dark flat",
-            "__Highland seaground pebbles",
-            "--Snow Ice Crackles",
-            "--Snow Ice Crackles Dark",
-            "--Snow Ice Clean",
-            "--Snow Ice Clean Dark",
-            "--Snow medium border",
-            "--Snow soft border"});
-            this.Textures_to_list.Location = new System.Drawing.Point(683, 42);
-            this.Textures_to_list.MinimumSize = new System.Drawing.Size(515, 0);
-            this.Textures_to_list.Name = "Textures_to_list";
-            this.Textures_to_list.Size = new System.Drawing.Size(515, 368);
-            this.Textures_to_list.TabIndex = 2;
+            Textures_to_list.FormattingEnabled = true;
+            Textures_to_list.Items.AddRange(new object[] { "__Highland meadow bright", "__Highland meadow bright rocks", "__Highland meadow medium", "__Highland meadow medium rocks", "__Highland meadow dark", "__Highland meadow dark rocks", "__Highland earth fir moss", "__Highland earth fir", "__Highland earth", "__Highland rock", "__Highland rock big", "__Highland (RES) rocky earth", "__Highland rock flat", "__Highland rock dark big", "__Highland rock dark flat", "__Highland rock braid flat", "__Highland stone ground", "--Snow highland rock much", "--Snow highland rock", "--Snow highland rock part", "--Snow (RES) rocky earth", "--Snow meadow", "--Snow meadow snow", "--Snow meadow snow 2", "--Snow meadow snow 3", "--Snow meadow Treeground 80x80,200x200", "--Snow meadow Treeground 125x125", "--Snow meadow Treeground 170x170", "--Snow meadow Treeground 255x255", "__Highland swamp land", "__Highland swamp water", "__Highland swamp meadow (unblocked)", "__Highland seaground rocks", "__Highland seaground rocks dark flat", "__Highland seaground pebbles", "--Snow Ice Crackles", "--Snow Ice Crackles Dark", "--Snow Ice Clean", "--Snow Ice Clean Dark", "--Snow medium border", "--Snow soft border" });
+            Textures_to_list.Location = new System.Drawing.Point(686, 46);
+            Textures_to_list.MinimumSize = new System.Drawing.Size(520, 4);
+            Textures_to_list.Name = "Textures_to_list";
+            Textures_to_list.Size = new System.Drawing.Size(520, 424);
+            Textures_to_list.TabIndex = 2;
             // 
             // Textures_from_text
             // 
-            this.Textures_from_text.AutoSize = true;
-            this.Textures_from_text.Location = new System.Drawing.Point(6, 3);
-            this.Textures_from_text.Name = "Textures_from_text";
-            this.Textures_from_text.Size = new System.Drawing.Size(59, 28);
-            this.Textures_from_text.TabIndex = 1;
-            this.Textures_from_text.Text = "From";
+            Textures_from_text.AutoSize = true;
+            Textures_from_text.Location = new System.Drawing.Point(3, 3);
+            Textures_from_text.Name = "Textures_from_text";
+            Textures_from_text.Size = new System.Drawing.Size(60, 30);
+            Textures_from_text.TabIndex = 1;
+            Textures_from_text.Text = "From";
             // 
             // Textures_from_list
             // 
-            this.Textures_from_list.FormattingEnabled = true;
-            this.Textures_from_list.ItemHeight = 28;
-            this.Textures_from_list.Items.AddRange(new object[] {
-            "!!!MED (RES) rocky earth",
-            "!!!MED (RES) rocky earth big",
-            "!!!MED (RES) rocky earth dark",
-            "!!!MED (RES) rocky plants",
-            "!!!MED ground 00",
-            "!!!MED ground 01",
-            "!!!MED meadow 00",
-            "!!!MED meadow 01",
-            "!!!MED meadow 02",
-            "!!!MED meadow 03",
-            "!!!MED rock",
-            "!!!MED rock big",
-            "!!!MED rock red",
-            "!!!MED rock red big",
-            "!!!MED rock red small",
-            "!!!MED rock small",
-            "!!!MED seaground rock",
-            "!!!MED seaground rock red",
-            "!!!MED stone ground",
-            "((00 LAVA 01",
-            "((00 LAVA 01 soft",
-            "((00 LAVA 02",
-            "((00 LAVA Meadow 00",
-            "((00 LAVA Sand 00",
-            "((00 LAVA ground",
-            "((00 LAVA ground flat",
-            "((00 LAVA ground rough",
-            "((00 LAVA rock",
-            "((00 LAVA rock big",
-            "((00 LAVA rock floating lava",
-            "((00 LAVA rock small",
-            "(RES) rocky earth",
-            "(RES) rocky earth big",
-            "(RES) rocky earth dark",
-            "(RES) rocky plants",
-            "DO NOT USE",
-            "HARBOR",
-            "border",
-            "earth",
-            "leaf",
-            "meadow",
-            "meadow bright",
-            "meadow dark small",
-            "meadow ground",
-            "meadow leaf",
-            "meadow red flowers",
-            "meadow yellow flowers",
-            "rock",
-            "rock big",
-            "rock small",
-            "rock stretched x",
-            "rock stretched y",
-            "sand",
-            "sand stones",
-            "seaground",
-            "seaground plants",
-            "seaground plants rock",
-            "seaground rock",
-            "seaground rocky",
-            "seaground sand",
-            "snow",
-            "stone ground",
-            "swamp land",
-            "swamp meadow (unblocked)",
-            "swamp water",
-            "water",
-            "§§Desert earth",
-            "§§Desert meadow",
-            "§§Desert sand dune",
-            "§§Desert sand ripple",
-            "§§Desert sand small dune",
-            "§§Desert sand small ripple",
-            "§§Desert sand yellow"});
-            this.Textures_from_list.Location = new System.Drawing.Point(6, 42);
-            this.Textures_from_list.MinimumSize = new System.Drawing.Size(515, 0);
-            this.Textures_from_list.Name = "Textures_from_list";
-            this.Textures_from_list.Size = new System.Drawing.Size(515, 368);
-            this.Textures_from_list.TabIndex = 0;
+            Textures_from_list.FormattingEnabled = true;
+            Textures_from_list.Items.AddRange(new object[] { "!!!MED (RES) rocky earth", "!!!MED (RES) rocky earth big", "!!!MED (RES) rocky earth dark", "!!!MED (RES) rocky plants", "!!!MED ground 00", "!!!MED ground 01", "!!!MED meadow 00", "!!!MED meadow 01", "!!!MED meadow 02", "!!!MED meadow 03", "!!!MED rock", "!!!MED rock big", "!!!MED rock red", "!!!MED rock red big", "!!!MED rock red small", "!!!MED rock small", "!!!MED seaground rock", "!!!MED seaground rock red", "!!!MED stone ground", "((00 LAVA 01", "((00 LAVA 01 soft", "((00 LAVA 02", "((00 LAVA Meadow 00", "((00 LAVA Sand 00", "((00 LAVA ground", "((00 LAVA ground flat", "((00 LAVA ground rough", "((00 LAVA rock", "((00 LAVA rock big", "((00 LAVA rock floating lava", "((00 LAVA rock small", "(RES) rocky earth", "(RES) rocky earth big", "(RES) rocky earth dark", "(RES) rocky plants", "DO NOT USE", "HARBOR", "border", "earth", "leaf", "meadow", "meadow bright", "meadow dark small", "meadow ground", "meadow leaf", "meadow red flowers", "meadow yellow flowers", "rock", "rock big", "rock small", "rock stretched x", "rock stretched y", "sand", "sand stones", "seaground", "seaground plants", "seaground plants rock", "seaground rock", "seaground rocky", "seaground sand", "snow", "stone ground", "swamp land", "swamp meadow (unblocked)", "swamp water", "water", "§§Desert earth", "§§Desert meadow", "§§Desert sand dune", "§§Desert sand ripple", "§§Desert sand small dune", "§§Desert sand small ripple", "§§Desert sand yellow" });
+            Textures_from_list.Location = new System.Drawing.Point(3, 46);
+            Textures_from_list.MinimumSize = new System.Drawing.Size(520, 4);
+            Textures_from_list.Name = "Textures_from_list";
+            Textures_from_list.Size = new System.Drawing.Size(520, 424);
+            Textures_from_list.TabIndex = 0;
             // 
             // Logical_grid_tab
             // 
-            this.Logical_grid_tab.Controls.Add(this.Logical_grid_to_list);
-            this.Logical_grid_tab.Controls.Add(this.Logical_grid_to_text);
-            this.Logical_grid_tab.Controls.Add(this.Logical_grid_swap_button);
-            this.Logical_grid_tab.Controls.Add(this.Logical_grid_arrow);
-            this.Logical_grid_tab.Controls.Add(this.Logical_grid_from_list);
-            this.Logical_grid_tab.Controls.Add(this.Logical_grid_from_text);
-            this.Logical_grid_tab.Controls.Add(this.Logical_grid_overwrite_text);
-            this.Logical_grid_tab.Location = new System.Drawing.Point(4, 42);
-            this.Logical_grid_tab.Name = "Logical_grid_tab";
-            this.Logical_grid_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Logical_grid_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Logical_grid_tab.TabIndex = 3;
-            this.Logical_grid_tab.Text = "Logical grid";
-            this.Logical_grid_tab.UseVisualStyleBackColor = true;
+            Logical_grid_tab.Controls.Add(Logical_grid_to_list);
+            Logical_grid_tab.Controls.Add(Logical_grid_to_text);
+            Logical_grid_tab.Controls.Add(Logical_grid_swap_button);
+            Logical_grid_tab.Controls.Add(Logical_grid_arrow);
+            Logical_grid_tab.Controls.Add(Logical_grid_from_list);
+            Logical_grid_tab.Controls.Add(Logical_grid_from_text);
+            Logical_grid_tab.Controls.Add(Logical_grid_overwrite_text);
+            Logical_grid_tab.Location = new System.Drawing.Point(4, 42);
+            Logical_grid_tab.Name = "Logical_grid_tab";
+            Logical_grid_tab.Padding = new System.Windows.Forms.Padding(3);
+            Logical_grid_tab.Size = new System.Drawing.Size(1212, 473);
+            Logical_grid_tab.TabIndex = 3;
+            Logical_grid_tab.Text = "Logical grid";
             // 
             // Logical_grid_to_list
             // 
-            this.Logical_grid_to_list.FormattingEnabled = true;
-            this.Logical_grid_to_list.ItemHeight = 28;
-            this.Logical_grid_to_list.Items.AddRange(new object[] {
-            "field_egypt",
-            "__HighlandFirA",
-            "__HighlandFirB",
-            "__HighlandFirC",
-            "--SnowFirA straight pos",
-            "--SnowFirB straight pos",
-            "--SnowFirC straight pos",
-            "--SnowFirA random pos",
-            "--SnowFirB random pos",
-            "--SnowFirC random pos",
-            "--SnowFirD random pos",
-            "--SnowFirE random pos",
-            "--SnowFirF random pos",
-            "Weeping Willow",
-            "Birch New 1",
-            "Birch New 2",
-            "Birch New 3",
-            "Chestnut 1",
-            "Chestnut 2",
-            "Chestnut 3",
-            "Apple Tree 1",
-            "Apple Tree 2",
-            "__Highland rock 1",
-            "__Highland rock 2",
-            "__Highland rock 3",
-            "__Highland rock 4",
-            "--Snow Iceberg 1",
-            "--Snow Iceberg 2",
-            "Tent",
-            "Sheep",
-            "Bear",
-            "Ox",
-            "Highland Cattle",
-            "Goat",
-            "Polarbear",
-            "Mountain Hare",
-            "Boar",
-            "Camel",
-            "hightlands less birds",
-            "hightlands normal birds",
-            "hightlands much birds",
-            "ice",
-            "mountains",
-            "AnimalSpawn (Deer, Elk, Rabbit)",
-            "SheepSpawn",
-            "DeerSpawn",
-            "RabbitSpawn",
-            "__Highland Bear Spawn",
-            "!!!MED Bear Spawn",
-            "Bear Spawn",
-            "--Snow Polar Bear Spawn (+ Mountain Hare)",
-            "__Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)",
-            "Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)",
-            "!!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)",
-            "!!!MED Camel Spawn"});
-            this.Logical_grid_to_list.Location = new System.Drawing.Point(683, 70);
-            this.Logical_grid_to_list.MinimumSize = new System.Drawing.Size(515, 0);
-            this.Logical_grid_to_list.Name = "Logical_grid_to_list";
-            this.Logical_grid_to_list.Size = new System.Drawing.Size(515, 340);
-            this.Logical_grid_to_list.TabIndex = 6;
+            Logical_grid_to_list.FormattingEnabled = true;
+            Logical_grid_to_list.Items.AddRange(new object[] { "field_egypt", "__HighlandFirA", "__HighlandFirB", "__HighlandFirC", "--SnowFirA straight pos", "--SnowFirB straight pos", "--SnowFirC straight pos", "--SnowFirA random pos", "--SnowFirB random pos", "--SnowFirC random pos", "--SnowFirD random pos", "--SnowFirE random pos", "--SnowFirF random pos", "Weeping Willow", "Birch New 1", "Birch New 2", "Birch New 3", "Chestnut 1", "Chestnut 2", "Chestnut 3", "Apple Tree 1", "Apple Tree 2", "__Highland rock 1", "__Highland rock 2", "__Highland rock 3", "__Highland rock 4", "--Snow Iceberg 1", "--Snow Iceberg 2", "Tent", "Sheep", "Bear", "Ox", "Highland Cattle", "Goat", "Polarbear", "Mountain Hare", "Boar", "Camel", "hightlands less birds", "hightlands normal birds", "hightlands much birds", "ice", "mountains", "AnimalSpawn (Deer, Elk, Rabbit)", "SheepSpawn", "DeerSpawn", "RabbitSpawn", "__Highland Bear Spawn", "!!!MED Bear Spawn", "Bear Spawn", "--Snow Polar Bear Spawn (+ Mountain Hare)", "__Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)", "Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)", "!!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)", "!!!MED Camel Spawn" });
+            Logical_grid_to_list.Location = new System.Drawing.Point(689, 73);
+            Logical_grid_to_list.MinimumSize = new System.Drawing.Size(520, 4);
+            Logical_grid_to_list.Name = "Logical_grid_to_list";
+            Logical_grid_to_list.Size = new System.Drawing.Size(520, 394);
+            Logical_grid_to_list.TabIndex = 6;
             // 
             // Logical_grid_to_text
             // 
-            this.Logical_grid_to_text.AutoSize = true;
-            this.Logical_grid_to_text.Location = new System.Drawing.Point(678, 39);
-            this.Logical_grid_to_text.Name = "Logical_grid_to_text";
-            this.Logical_grid_to_text.Size = new System.Drawing.Size(33, 28);
-            this.Logical_grid_to_text.TabIndex = 5;
-            this.Logical_grid_to_text.Text = "To";
+            Logical_grid_to_text.AutoSize = true;
+            Logical_grid_to_text.Location = new System.Drawing.Point(680, 40);
+            Logical_grid_to_text.Name = "Logical_grid_to_text";
+            Logical_grid_to_text.Size = new System.Drawing.Size(34, 30);
+            Logical_grid_to_text.TabIndex = 5;
+            Logical_grid_to_text.Text = "To";
             // 
             // Logical_grid_swap_button
             // 
-            this.Logical_grid_swap_button.AutoSize = true;
-            this.Logical_grid_swap_button.Location = new System.Drawing.Point(527, 368);
-            this.Logical_grid_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Logical_grid_swap_button.Name = "Logical_grid_swap_button";
-            this.Logical_grid_swap_button.Size = new System.Drawing.Size(150, 42);
-            this.Logical_grid_swap_button.TabIndex = 4;
-            this.Logical_grid_swap_button.Text = "Swap";
-            this.Logical_grid_swap_button.UseVisualStyleBackColor = true;
-            this.Logical_grid_swap_button.Click += new System.EventHandler(this.Logical_grid_swap_button_Click);
+            Logical_grid_swap_button.AutoSize = true;
+            Logical_grid_swap_button.Location = new System.Drawing.Point(533, 427);
+            Logical_grid_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Logical_grid_swap_button.Name = "Logical_grid_swap_button";
+            Logical_grid_swap_button.Size = new System.Drawing.Size(150, 40);
+            Logical_grid_swap_button.TabIndex = 4;
+            Logical_grid_swap_button.Text = "Swap";
+            Logical_grid_swap_button.UseVisualStyleBackColor = true;
+            Logical_grid_swap_button.Click += Logical_grid_swap_button_Click;
             // 
             // Logical_grid_arrow
             // 
-            this.Logical_grid_arrow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Logical_grid_arrow.BackgroundImage")));
-            this.Logical_grid_arrow.Location = new System.Drawing.Point(527, 70);
-            this.Logical_grid_arrow.MinimumSize = new System.Drawing.Size(150, 150);
-            this.Logical_grid_arrow.Name = "Logical_grid_arrow";
-            this.Logical_grid_arrow.Size = new System.Drawing.Size(150, 150);
-            this.Logical_grid_arrow.TabIndex = 3;
-            this.Logical_grid_arrow.TabStop = false;
+            Logical_grid_arrow.BackgroundImage = (System.Drawing.Image)resources.GetObject("Logical_grid_arrow.BackgroundImage");
+            Logical_grid_arrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Logical_grid_arrow.Location = new System.Drawing.Point(533, 73);
+            Logical_grid_arrow.MinimumSize = new System.Drawing.Size(150, 150);
+            Logical_grid_arrow.Name = "Logical_grid_arrow";
+            Logical_grid_arrow.Size = new System.Drawing.Size(150, 150);
+            Logical_grid_arrow.TabIndex = 3;
+            Logical_grid_arrow.TabStop = false;
             // 
             // Logical_grid_from_list
             // 
-            this.Logical_grid_from_list.FormattingEnabled = true;
-            this.Logical_grid_from_list.ItemHeight = 28;
-            this.Logical_grid_from_list.Items.AddRange(new object[] {
-            "!!!MED StoneResourceA01",
-            "!!!MED StoneResourceA02",
-            "!!!MED StoneResourceA03",
-            "!!!MED StoneResourceA04",
-            "!!!MED StoneResourceA05",
-            "!!!MED StoneResourceA06",
-            "AfricanA",
-            "AsianA",
-            "BirchA",
-            "BirchB",
-            "BirchC",
-            "BroadLeafA",
-            "BroadLeafB",
-            "BroadLeafC",
-            "CypressA",
-            "Field01",
-            "FirA",
-            "FirB",
-            "LavaTreeA",
-            "LavaTreeB",
-            "LavaTreeC",
-            "OliveA",
-            "PalmA",
-            "PalmB",
-            "StoneResourceA01",
-            "StoneResourceA02",
-            "StoneResourceA03",
-            "StoneResourceA04",
-            "StoneResourceA05",
-            "StoneResourceA06",
-            "!!MED rock 1",
-            "!!MED rock 2",
-            "!!MED rock 3",
-            "!!MED rock 4",
-            "((LAVA rock 0",
-            "((LAVA rock 1",
-            "((LAVA rock 2",
-            "Gate01",
-            "rock 1",
-            "rock 2",
-            "rock 3",
-            "rock 4",
-            "Deer",
-            "Elk",
-            "Rabbit",
-            "Beach",
-            "Low Desert Wind",
-            "Middle Desert Wind",
-            "Strong Desert Wind",
-            "bright Forest with birds",
-            "dark Forest with owl",
-            "lava",
-            "meadow with much crickets",
-            "meadow with some crickets and birds",
-            "river",
-            "small water stream",
-            "swamp",
-            "water waves"});
-            this.Logical_grid_from_list.Location = new System.Drawing.Point(6, 70);
-            this.Logical_grid_from_list.MinimumSize = new System.Drawing.Size(515, 0);
-            this.Logical_grid_from_list.Name = "Logical_grid_from_list";
-            this.Logical_grid_from_list.Size = new System.Drawing.Size(515, 340);
-            this.Logical_grid_from_list.TabIndex = 2;
+            Logical_grid_from_list.FormattingEnabled = true;
+            Logical_grid_from_list.Items.AddRange(new object[] { "!!!MED StoneResourceA01", "!!!MED StoneResourceA02", "!!!MED StoneResourceA03", "!!!MED StoneResourceA04", "!!!MED StoneResourceA05", "!!!MED StoneResourceA06", "AfricanA", "AsianA", "BirchA", "BirchB", "BirchC", "BroadLeafA", "BroadLeafB", "BroadLeafC", "CypressA", "Field01", "FirA", "FirB", "LavaTreeA", "LavaTreeB", "LavaTreeC", "OliveA", "PalmA", "PalmB", "StoneResourceA01", "StoneResourceA02", "StoneResourceA03", "StoneResourceA04", "StoneResourceA05", "StoneResourceA06", "!!MED rock 1", "!!MED rock 2", "!!MED rock 3", "!!MED rock 4", "((LAVA rock 0", "((LAVA rock 1", "((LAVA rock 2", "Gate01", "rock 1", "rock 2", "rock 3", "rock 4", "Deer", "Elk", "Rabbit", "Beach", "Low Desert Wind", "Middle Desert Wind", "Strong Desert Wind", "bright Forest with birds", "dark Forest with owl", "lava", "meadow with much crickets", "meadow with some crickets and birds", "river", "small water stream", "swamp", "water waves" });
+            Logical_grid_from_list.Location = new System.Drawing.Point(3, 73);
+            Logical_grid_from_list.MinimumSize = new System.Drawing.Size(520, 4);
+            Logical_grid_from_list.Name = "Logical_grid_from_list";
+            Logical_grid_from_list.Size = new System.Drawing.Size(520, 394);
+            Logical_grid_from_list.TabIndex = 2;
             // 
             // Logical_grid_from_text
             // 
-            this.Logical_grid_from_text.AutoSize = true;
-            this.Logical_grid_from_text.Location = new System.Drawing.Point(7, 39);
-            this.Logical_grid_from_text.Name = "Logical_grid_from_text";
-            this.Logical_grid_from_text.Size = new System.Drawing.Size(59, 28);
-            this.Logical_grid_from_text.TabIndex = 1;
-            this.Logical_grid_from_text.Text = "From";
+            Logical_grid_from_text.AutoSize = true;
+            Logical_grid_from_text.Location = new System.Drawing.Point(3, 40);
+            Logical_grid_from_text.Name = "Logical_grid_from_text";
+            Logical_grid_from_text.Size = new System.Drawing.Size(60, 30);
+            Logical_grid_from_text.TabIndex = 1;
+            Logical_grid_from_text.Text = "From";
             // 
             // Logical_grid_overwrite_text
             // 
-            this.Logical_grid_overwrite_text.AutoSize = true;
-            this.Logical_grid_overwrite_text.Location = new System.Drawing.Point(7, 7);
-            this.Logical_grid_overwrite_text.Name = "Logical_grid_overwrite_text";
-            this.Logical_grid_overwrite_text.Size = new System.Drawing.Size(835, 28);
-            this.Logical_grid_overwrite_text.TabIndex = 0;
-            this.Logical_grid_overwrite_text.Text = "If a conflict occurs, the source object is deleted and the one already present is" +
-    " preserved.";
+            Logical_grid_overwrite_text.AutoSize = true;
+            Logical_grid_overwrite_text.Location = new System.Drawing.Point(3, 3);
+            Logical_grid_overwrite_text.Name = "Logical_grid_overwrite_text";
+            Logical_grid_overwrite_text.Size = new System.Drawing.Size(836, 30);
+            Logical_grid_overwrite_text.TabIndex = 0;
+            Logical_grid_overwrite_text.Text = "If a conflict occurs, the source object is deleted and the one already present is preserved.";
             // 
             // Small_doodads_tab
             // 
-            this.Small_doodads_tab.Controls.Add(this.Small_doodads_swap_button);
-            this.Small_doodads_tab.Controls.Add(this.Small_doodads_to_list);
-            this.Small_doodads_tab.Controls.Add(this.Small_doodads_to_text);
-            this.Small_doodads_tab.Controls.Add(this.Small_doodads_arrow);
-            this.Small_doodads_tab.Controls.Add(this.Small_doodads_from_list);
-            this.Small_doodads_tab.Controls.Add(this.Small_doodads_from_text);
-            this.Small_doodads_tab.Location = new System.Drawing.Point(4, 42);
-            this.Small_doodads_tab.Name = "Small_doodads_tab";
-            this.Small_doodads_tab.Padding = new System.Windows.Forms.Padding(3);
-            this.Small_doodads_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Small_doodads_tab.TabIndex = 5;
-            this.Small_doodads_tab.Text = "Small doodads";
-            this.Small_doodads_tab.UseVisualStyleBackColor = true;
+            Small_doodads_tab.Controls.Add(Small_doodads_swap_button);
+            Small_doodads_tab.Controls.Add(Small_doodads_to_list);
+            Small_doodads_tab.Controls.Add(Small_doodads_to_text);
+            Small_doodads_tab.Controls.Add(Small_doodads_arrow);
+            Small_doodads_tab.Controls.Add(Small_doodads_from_list);
+            Small_doodads_tab.Controls.Add(Small_doodads_from_text);
+            Small_doodads_tab.Location = new System.Drawing.Point(4, 42);
+            Small_doodads_tab.Name = "Small_doodads_tab";
+            Small_doodads_tab.Padding = new System.Windows.Forms.Padding(3);
+            Small_doodads_tab.Size = new System.Drawing.Size(1212, 473);
+            Small_doodads_tab.TabIndex = 5;
+            Small_doodads_tab.Text = "Small doodads";
             // 
             // Small_doodads_swap_button
             // 
-            this.Small_doodads_swap_button.AutoSize = true;
-            this.Small_doodads_swap_button.Location = new System.Drawing.Point(527, 368);
-            this.Small_doodads_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Small_doodads_swap_button.Name = "Small_doodads_swap_button";
-            this.Small_doodads_swap_button.Size = new System.Drawing.Size(150, 42);
-            this.Small_doodads_swap_button.TabIndex = 5;
-            this.Small_doodads_swap_button.Text = "Swap";
-            this.Small_doodads_swap_button.UseVisualStyleBackColor = true;
-            this.Small_doodads_swap_button.Click += new System.EventHandler(this.Small_doodads_swap_button_Click);
+            Small_doodads_swap_button.AutoSize = true;
+            Small_doodads_swap_button.Location = new System.Drawing.Point(530, 430);
+            Small_doodads_swap_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Small_doodads_swap_button.Name = "Small_doodads_swap_button";
+            Small_doodads_swap_button.Size = new System.Drawing.Size(150, 40);
+            Small_doodads_swap_button.TabIndex = 5;
+            Small_doodads_swap_button.Text = "Swap";
+            Small_doodads_swap_button.UseVisualStyleBackColor = true;
+            Small_doodads_swap_button.Click += Small_doodads_swap_button_Click;
             // 
             // Small_doodads_to_list
             // 
-            this.Small_doodads_to_list.FormattingEnabled = true;
-            this.Small_doodads_to_list.ItemHeight = 28;
-            this.Small_doodads_to_list.Items.AddRange(new object[] {
-            "Chest",
-            "OpenChest",
-            "Coal (endless)",
-            "Iron (endless)",
-            "Gold (endless)",
-            "Granite (endless)",
-            "Gemstones (few)",
-            "Gemstones (medium)",
-            "Gemstones (much)",
-            "Gemstones (endless)",
-            "Salt (few)",
-            "Salt (medium)",
-            "Salt (much)",
-            "Salt (endless)",
-            "--Snow Ice Floe 01 moving",
-            "--Snow Ice Floe 01 static",
-            "--Snow Ice Floe 02 static",
-            "--Snow Ice Floe 03 static",
-            "--Snow Ice Floe 04 static",
-            "--Snow Ice Floe 05 static",
-            "--Snow Ice Floe 06 moving",
-            "--Snow Ice Floe 07 moving",
-            "--Snow Ice Floe 08 moving",
-            "--Snow Ice Floe 09 moving",
-            "__Highland fern big",
-            "__Highland fern miedium",
-            "__Highland fern small",
-            "__Highland nettle",
-            "__Highland nettle big",
-            "__Highland nettle high",
-            "__Highland Edelweiss 1",
-            "__Highland Edelweiss 2",
-            "__Highland Edelweiss 3",
-            "__Highland Snowdrop",
-            "__Highland Crocus",
-            "__Highland Foundling 1",
-            "__Highland Foundling 2",
-            "__Highland Foundling 3",
-            "__Highland Underwater Foundling 1",
-            "__Highland Underwater Foundling 2",
-            "__Highland Underwater Foundling 3",
-            "__Highland swamp calmus 01",
-            "__Highland swamp calmus 02",
-            "__Highland swamp calmus 03",
-            "__Highland Fog 01",
-            "__Highland Fog 02",
-            "Male Duck",
-            "Female Duck"});
-            this.Small_doodads_to_list.Location = new System.Drawing.Point(683, 42);
-            this.Small_doodads_to_list.MinimumSize = new System.Drawing.Size(515, 0);
-            this.Small_doodads_to_list.Name = "Small_doodads_to_list";
-            this.Small_doodads_to_list.Size = new System.Drawing.Size(515, 368);
-            this.Small_doodads_to_list.TabIndex = 4;
+            Small_doodads_to_list.FormattingEnabled = true;
+            Small_doodads_to_list.Items.AddRange(new object[] { "Chest", "OpenChest", "Coal (endless)", "Iron (endless)", "Gold (endless)", "Granite (endless)", "Gemstones (few)", "Gemstones (medium)", "Gemstones (much)", "Gemstones (endless)", "Salt (few)", "Salt (medium)", "Salt (much)", "Salt (endless)", "--Snow Ice Floe 01 moving", "--Snow Ice Floe 01 static", "--Snow Ice Floe 02 static", "--Snow Ice Floe 03 static", "--Snow Ice Floe 04 static", "--Snow Ice Floe 05 static", "--Snow Ice Floe 06 moving", "--Snow Ice Floe 07 moving", "--Snow Ice Floe 08 moving", "--Snow Ice Floe 09 moving", "__Highland fern big", "__Highland fern miedium", "__Highland fern small", "__Highland nettle", "__Highland nettle big", "__Highland nettle high", "__Highland Edelweiss 1", "__Highland Edelweiss 2", "__Highland Edelweiss 3", "__Highland Snowdrop", "__Highland Crocus", "__Highland Foundling 1", "__Highland Foundling 2", "__Highland Foundling 3", "__Highland Underwater Foundling 1", "__Highland Underwater Foundling 2", "__Highland Underwater Foundling 3", "__Highland swamp calmus 01", "__Highland swamp calmus 02", "__Highland swamp calmus 03", "__Highland Fog 01", "__Highland Fog 02", "Male Duck", "Female Duck" });
+            Small_doodads_to_list.Location = new System.Drawing.Point(686, 46);
+            Small_doodads_to_list.MinimumSize = new System.Drawing.Size(520, 4);
+            Small_doodads_to_list.Name = "Small_doodads_to_list";
+            Small_doodads_to_list.Size = new System.Drawing.Size(520, 424);
+            Small_doodads_to_list.TabIndex = 4;
             // 
             // Small_doodads_to_text
             // 
-            this.Small_doodads_to_text.AutoSize = true;
-            this.Small_doodads_to_text.Location = new System.Drawing.Point(678, 3);
-            this.Small_doodads_to_text.Name = "Small_doodads_to_text";
-            this.Small_doodads_to_text.Size = new System.Drawing.Size(33, 28);
-            this.Small_doodads_to_text.TabIndex = 3;
-            this.Small_doodads_to_text.Text = "To";
+            Small_doodads_to_text.AutoSize = true;
+            Small_doodads_to_text.Location = new System.Drawing.Point(686, 3);
+            Small_doodads_to_text.Name = "Small_doodads_to_text";
+            Small_doodads_to_text.Size = new System.Drawing.Size(34, 30);
+            Small_doodads_to_text.TabIndex = 3;
+            Small_doodads_to_text.Text = "To";
             // 
             // Small_doodads_arrow
             // 
-            this.Small_doodads_arrow.Image = ((System.Drawing.Image)(resources.GetObject("Small_doodads_arrow.Image")));
-            this.Small_doodads_arrow.Location = new System.Drawing.Point(527, 42);
-            this.Small_doodads_arrow.MinimumSize = new System.Drawing.Size(150, 150);
-            this.Small_doodads_arrow.Name = "Small_doodads_arrow";
-            this.Small_doodads_arrow.Size = new System.Drawing.Size(150, 150);
-            this.Small_doodads_arrow.TabIndex = 2;
-            this.Small_doodads_arrow.TabStop = false;
+            Small_doodads_arrow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Small_doodads_arrow.Image = (System.Drawing.Image)resources.GetObject("Small_doodads_arrow.Image");
+            Small_doodads_arrow.Location = new System.Drawing.Point(530, 46);
+            Small_doodads_arrow.MinimumSize = new System.Drawing.Size(150, 150);
+            Small_doodads_arrow.Name = "Small_doodads_arrow";
+            Small_doodads_arrow.Size = new System.Drawing.Size(150, 150);
+            Small_doodads_arrow.TabIndex = 2;
+            Small_doodads_arrow.TabStop = false;
             // 
             // Small_doodads_from_list
             // 
-            this.Small_doodads_from_list.FormattingEnabled = true;
-            this.Small_doodads_from_list.ItemHeight = 28;
-            this.Small_doodads_from_list.Items.AddRange(new object[] {
-            "!!MED nettle",
-            "!!MED nettle big",
-            "!!MED nettle high",
-            "((LAVA fog",
-            "((LAVA fog high",
-            "((LAVA fog highest",
-            "((LAVA fog vertical",
-            "Coal (few)",
-            "Coal (medium)",
-            "Coal (much)",
-            "DoNotUse-Skull01",
-            "Empty",
-            "Gold (few)",
-            "Gold (medium)",
-            "Gold (much)",
-            "Granit (few)",
-            "Granit (medium)",
-            "Granit (much)",
-            "Iron (few)",
-            "Iron (medium)",
-            "Iron (much)",
-            "Water",
-            "bones0",
-            "bones1",
-            "bones2",
-            "bones3",
-            "bush01",
-            "cactus01",
-            "cactus02",
-            "cactus03",
-            "cactus04",
-            "dead Tree 1",
-            "dead Tree 2",
-            "fern big",
-            "fern medium",
-            "fern small",
-            "fingerpost E",
-            "fingerpost N",
-            "fingerpost NE",
-            "fingerpost NW",
-            "fingerpost S",
-            "fingerpost SE",
-            "fingerpost SW",
-            "fingerpost W",
-            "flower red",
-            "flower red big",
-            "flower red high",
-            "flower violet",
-            "flower violet big",
-            "flower violet high",
-            "flower white",
-            "flower white big",
-            "flower white high",
-            "flower yellow",
-            "flower yellow big",
-            "flower yellow high",
-            "grass translucent",
-            "grass translucent big dark",
-            "grass01",
-            "grass02",
-            "grass03",
-            "grass04",
-            "high flower red",
-            "high flower red big",
-            "high flower white",
-            "high flower white big",
-            "high flower yellow",
-            "high flower yellow big",
-            "mushroom brown",
-            "mushroom brown big",
-            "mushroom red",
-            "mushroom red big",
-            "nettle",
-            "nettle big",
-            "nettle high",
-            "shell",
-            "shell small",
-            "stone01",
-            "stone01 grey",
-            "stone02",
-            "stone02 grey",
-            "stone03",
-            "stone03 grey",
-            "stone04",
-            "stone04 grey",
-            "swamp calmus 01",
-            "swamp calmus 02",
-            "swamp calmus 03",
-            "swampthing01",
-            "swampthing02",
-            "waterlily 1",
-            "waterlily 2",
-            "waterplant 1",
-            "waterplant 2",
-            "waterplant 3",
-            "wreck",
-            "wreck big"});
-            this.Small_doodads_from_list.Location = new System.Drawing.Point(6, 42);
-            this.Small_doodads_from_list.MinimumSize = new System.Drawing.Size(515, 0);
-            this.Small_doodads_from_list.Name = "Small_doodads_from_list";
-            this.Small_doodads_from_list.Size = new System.Drawing.Size(515, 368);
-            this.Small_doodads_from_list.TabIndex = 1;
+            Small_doodads_from_list.FormattingEnabled = true;
+            Small_doodads_from_list.Items.AddRange(new object[] { "!!MED nettle", "!!MED nettle big", "!!MED nettle high", "((LAVA fog", "((LAVA fog high", "((LAVA fog highest", "((LAVA fog vertical", "Coal (few)", "Coal (medium)", "Coal (much)", "DoNotUse-Skull01", "Empty", "Gold (few)", "Gold (medium)", "Gold (much)", "Granit (few)", "Granit (medium)", "Granit (much)", "Iron (few)", "Iron (medium)", "Iron (much)", "Water", "bones0", "bones1", "bones2", "bones3", "bush01", "cactus01", "cactus02", "cactus03", "cactus04", "dead Tree 1", "dead Tree 2", "fern big", "fern medium", "fern small", "fingerpost E", "fingerpost N", "fingerpost NE", "fingerpost NW", "fingerpost S", "fingerpost SE", "fingerpost SW", "fingerpost W", "flower red", "flower red big", "flower red high", "flower violet", "flower violet big", "flower violet high", "flower white", "flower white big", "flower white high", "flower yellow", "flower yellow big", "flower yellow high", "grass translucent", "grass translucent big dark", "grass01", "grass02", "grass03", "grass04", "high flower red", "high flower red big", "high flower white", "high flower white big", "high flower yellow", "high flower yellow big", "mushroom brown", "mushroom brown big", "mushroom red", "mushroom red big", "nettle", "nettle big", "nettle high", "shell", "shell small", "stone01", "stone01 grey", "stone02", "stone02 grey", "stone03", "stone03 grey", "stone04", "stone04 grey", "swamp calmus 01", "swamp calmus 02", "swamp calmus 03", "swampthing01", "swampthing02", "waterlily 1", "waterlily 2", "waterplant 1", "waterplant 2", "waterplant 3", "wreck", "wreck big" });
+            Small_doodads_from_list.Location = new System.Drawing.Point(3, 46);
+            Small_doodads_from_list.MinimumSize = new System.Drawing.Size(520, 4);
+            Small_doodads_from_list.Name = "Small_doodads_from_list";
+            Small_doodads_from_list.Size = new System.Drawing.Size(520, 424);
+            Small_doodads_from_list.TabIndex = 1;
             // 
             // Small_doodads_from_text
             // 
-            this.Small_doodads_from_text.AutoSize = true;
-            this.Small_doodads_from_text.Location = new System.Drawing.Point(6, 3);
-            this.Small_doodads_from_text.Name = "Small_doodads_from_text";
-            this.Small_doodads_from_text.Size = new System.Drawing.Size(59, 28);
-            this.Small_doodads_from_text.TabIndex = 0;
-            this.Small_doodads_from_text.Text = "From";
+            Small_doodads_from_text.AutoSize = true;
+            Small_doodads_from_text.Location = new System.Drawing.Point(6, 3);
+            Small_doodads_from_text.Name = "Small_doodads_from_text";
+            Small_doodads_from_text.Size = new System.Drawing.Size(60, 30);
+            Small_doodads_from_text.TabIndex = 0;
+            Small_doodads_from_text.Text = "From";
             // 
             // Swap_list_tab
             // 
-            this.Swap_list_tab.Controls.Add(this.Swap_move_up_button);
-            this.Swap_list_tab.Controls.Add(this.Swap_move_down_button);
-            this.Swap_list_tab.Controls.Add(this.Swap_remove_button);
-            this.Swap_list_tab.Controls.Add(this.Swap_list_view);
-            this.Swap_list_tab.Location = new System.Drawing.Point(4, 42);
-            this.Swap_list_tab.Name = "Swap_list_tab";
-            this.Swap_list_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Swap_list_tab.TabIndex = 12;
-            this.Swap_list_tab.Text = "Swap list";
-            this.Swap_list_tab.UseVisualStyleBackColor = true;
+            Swap_list_tab.Controls.Add(Environment_highland_water_checkbox);
+            Swap_list_tab.Controls.Add(Swap_move_up_button);
+            Swap_list_tab.Controls.Add(Swap_move_down_button);
+            Swap_list_tab.Controls.Add(Swap_remove_button);
+            Swap_list_tab.Controls.Add(Swap_list_view);
+            Swap_list_tab.Location = new System.Drawing.Point(4, 42);
+            Swap_list_tab.Name = "Swap_list_tab";
+            Swap_list_tab.Size = new System.Drawing.Size(1212, 473);
+            Swap_list_tab.TabIndex = 12;
+            Swap_list_tab.Text = "Swap list";
+            // 
+            // Environment_highland_water_checkbox
+            // 
+            Environment_highland_water_checkbox.AutoSize = true;
+            Environment_highland_water_checkbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            Environment_highland_water_checkbox.Location = new System.Drawing.Point(809, 433);
+            Environment_highland_water_checkbox.MinimumSize = new System.Drawing.Size(400, 0);
+            Environment_highland_water_checkbox.Name = "Environment_highland_water_checkbox";
+            Environment_highland_water_checkbox.Size = new System.Drawing.Size(400, 34);
+            Environment_highland_water_checkbox.TabIndex = 5;
+            Environment_highland_water_checkbox.Text = "Use Highlands water shader";
+            Environment_highland_water_checkbox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            Environment_highland_water_checkbox.UseVisualStyleBackColor = true;
             // 
             // Swap_move_up_button
             // 
-            this.Swap_move_up_button.AutoSize = true;
-            this.Swap_move_up_button.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
-            this.Swap_move_up_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Swap_move_up_button.Location = new System.Drawing.Point(675, 371);
-            this.Swap_move_up_button.MinimumSize = new System.Drawing.Size(0, 42);
-            this.Swap_move_up_button.Name = "Swap_move_up_button";
-            this.Swap_move_up_button.Size = new System.Drawing.Size(44, 42);
-            this.Swap_move_up_button.TabIndex = 4;
-            this.Swap_move_up_button.Text = "";
-            this.Swap_move_up_button.UseVisualStyleBackColor = true;
-            this.Swap_move_up_button.Click += new System.EventHandler(this.Swap_move_up_button_Click);
+            Swap_move_up_button.AutoSize = true;
+            Swap_move_up_button.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
+            Swap_move_up_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Swap_move_up_button.Location = new System.Drawing.Point(685, 427);
+            Swap_move_up_button.MaximumSize = new System.Drawing.Size(40, 40);
+            Swap_move_up_button.MinimumSize = new System.Drawing.Size(40, 40);
+            Swap_move_up_button.Name = "Swap_move_up_button";
+            Swap_move_up_button.Size = new System.Drawing.Size(40, 40);
+            Swap_move_up_button.TabIndex = 4;
+            Swap_move_up_button.Text = "";
+            Swap_move_up_button.UseVisualStyleBackColor = true;
+            Swap_move_up_button.Click += Swap_move_up_button_Click;
             // 
             // Swap_move_down_button
             // 
-            this.Swap_move_down_button.AutoSize = true;
-            this.Swap_move_down_button.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
-            this.Swap_move_down_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Swap_move_down_button.Location = new System.Drawing.Point(469, 371);
-            this.Swap_move_down_button.MinimumSize = new System.Drawing.Size(0, 42);
-            this.Swap_move_down_button.Name = "Swap_move_down_button";
-            this.Swap_move_down_button.Size = new System.Drawing.Size(44, 42);
-            this.Swap_move_down_button.TabIndex = 3;
-            this.Swap_move_down_button.Text = "";
-            this.Swap_move_down_button.UseVisualStyleBackColor = true;
-            this.Swap_move_down_button.Click += new System.EventHandler(this.Swap_move_down_button_Click);
+            Swap_move_down_button.AutoSize = true;
+            Swap_move_down_button.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
+            Swap_move_down_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Swap_move_down_button.Location = new System.Drawing.Point(483, 427);
+            Swap_move_down_button.MaximumSize = new System.Drawing.Size(40, 40);
+            Swap_move_down_button.MinimumSize = new System.Drawing.Size(40, 40);
+            Swap_move_down_button.Name = "Swap_move_down_button";
+            Swap_move_down_button.Size = new System.Drawing.Size(40, 40);
+            Swap_move_down_button.TabIndex = 3;
+            Swap_move_down_button.Text = "";
+            Swap_move_down_button.UseVisualStyleBackColor = true;
+            Swap_move_down_button.Click += Swap_move_down_button_Click;
             // 
             // Swap_remove_button
             // 
-            this.Swap_remove_button.AutoSize = true;
-            this.Swap_remove_button.Location = new System.Drawing.Point(519, 371);
-            this.Swap_remove_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Swap_remove_button.Name = "Swap_remove_button";
-            this.Swap_remove_button.Size = new System.Drawing.Size(150, 42);
-            this.Swap_remove_button.TabIndex = 2;
-            this.Swap_remove_button.Text = "Remove";
-            this.Swap_remove_button.UseVisualStyleBackColor = true;
-            this.Swap_remove_button.Click += new System.EventHandler(this.Swap_remove_button_Click);
+            Swap_remove_button.AutoSize = true;
+            Swap_remove_button.Location = new System.Drawing.Point(529, 427);
+            Swap_remove_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Swap_remove_button.Name = "Swap_remove_button";
+            Swap_remove_button.Size = new System.Drawing.Size(150, 40);
+            Swap_remove_button.TabIndex = 2;
+            Swap_remove_button.Text = "Remove";
+            Swap_remove_button.UseVisualStyleBackColor = true;
+            Swap_remove_button.Click += Swap_remove_button_Click;
             // 
             // Swap_list_view
             // 
-            this.Swap_list_view.FormattingEnabled = true;
-            this.Swap_list_view.ItemHeight = 28;
-            this.Swap_list_view.Location = new System.Drawing.Point(3, 3);
-            this.Swap_list_view.Name = "Swap_list_view";
-            this.Swap_list_view.Size = new System.Drawing.Size(1198, 340);
-            this.Swap_list_view.TabIndex = 1;
+            Swap_list_view.FormattingEnabled = true;
+            Swap_list_view.Location = new System.Drawing.Point(3, 3);
+            Swap_list_view.Name = "Swap_list_view";
+            Swap_list_view.Size = new System.Drawing.Size(1206, 394);
+            Swap_list_view.TabIndex = 1;
             // 
             // Harbours_tab
             // 
-            this.Harbours_tab.Controls.Add(this.Harbour_panel);
-            this.Harbours_tab.Controls.Add(this.Harbours_list_view);
-            this.Harbours_tab.Controls.Add(this.Harbours_remove_button);
-            this.Harbours_tab.Controls.Add(this.Harbours_add_button);
-            this.Harbours_tab.Location = new System.Drawing.Point(4, 42);
-            this.Harbours_tab.Name = "Harbours_tab";
-            this.Harbours_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Harbours_tab.TabIndex = 8;
-            this.Harbours_tab.Text = "Harbours";
-            this.Harbours_tab.UseVisualStyleBackColor = true;
+            Harbours_tab.Controls.Add(Harbour_panel);
+            Harbours_tab.Controls.Add(Harbours_list_view);
+            Harbours_tab.Controls.Add(Harbours_remove_button);
+            Harbours_tab.Controls.Add(Harbours_add_button);
+            Harbours_tab.Location = new System.Drawing.Point(4, 42);
+            Harbours_tab.Name = "Harbours_tab";
+            Harbours_tab.Size = new System.Drawing.Size(1212, 473);
+            Harbours_tab.TabIndex = 8;
+            Harbours_tab.Text = "Harbours";
             // 
             // Harbour_panel
             // 
-            this.Harbour_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Harbour_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Harbour_panel.Controls.Add(this.Harbour_anchor_panel);
-            this.Harbour_panel.Controls.Add(this.Harbour_anchor_checkbox);
-            this.Harbour_panel.Controls.Add(this.Harbour_position_Y_input);
-            this.Harbour_panel.Controls.Add(this.Harbour_position_X_input);
-            this.Harbour_panel.Controls.Add(this.Buoy_1_connection_select);
-            this.Harbour_panel.Controls.Add(this.Buoy_1_connection_text);
-            this.Harbour_panel.Controls.Add(this.Buoy_2_connection_select);
-            this.Harbour_panel.Controls.Add(this.Buoy_2_connection_text);
-            this.Harbour_panel.Controls.Add(this.Harbour_logical_position_warning);
-            this.Harbour_panel.Controls.Add(this.Harbour_rotation_select);
-            this.Harbour_panel.Controls.Add(this.Harbour_rotation_text);
-            this.Harbour_panel.Controls.Add(this.Harbour_position_X_text);
-            this.Harbour_panel.Controls.Add(this.Harbour_position_Y_text);
-            this.Harbour_panel.Controls.Add(this.Harbour_position_text);
-            this.Harbour_panel.Location = new System.Drawing.Point(159, 3);
-            this.Harbour_panel.Name = "Harbour_panel";
-            this.Harbour_panel.Size = new System.Drawing.Size(1042, 410);
-            this.Harbour_panel.TabIndex = 4;
+            Harbour_panel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            Harbour_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Harbour_panel.Controls.Add(Harbour_anchor_panel);
+            Harbour_panel.Controls.Add(Harbour_anchor_checkbox);
+            Harbour_panel.Controls.Add(Harbour_Y_input);
+            Harbour_panel.Controls.Add(Harbour_X_input);
+            Harbour_panel.Controls.Add(Harbour_buoy_1_select);
+            Harbour_panel.Controls.Add(Harbour_buoy_1_text);
+            Harbour_panel.Controls.Add(Harbour_buoy_2_select);
+            Harbour_panel.Controls.Add(Harbour_buoy_2_text);
+            Harbour_panel.Controls.Add(Harbour_logical_position_warning);
+            Harbour_panel.Controls.Add(Harbour_rotation_select);
+            Harbour_panel.Controls.Add(Harbour_rotation_text);
+            Harbour_panel.Controls.Add(Harbour_X_text);
+            Harbour_panel.Controls.Add(Harbour_Y_text);
+            Harbour_panel.Controls.Add(Harbour_position_text);
+            Harbour_panel.Location = new System.Drawing.Point(167, 3);
+            Harbour_panel.Name = "Harbour_panel";
+            Harbour_panel.Size = new System.Drawing.Size(1049, 464);
+            Harbour_panel.TabIndex = 4;
             // 
             // Harbour_anchor_panel
             // 
-            this.Harbour_anchor_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Harbour_anchor_panel.Controls.Add(this.Anchor_position_text);
-            this.Harbour_anchor_panel.Controls.Add(this.Anchor_position_X_text);
-            this.Harbour_anchor_panel.Controls.Add(this.Anchor_position_Y_input);
-            this.Harbour_anchor_panel.Controls.Add(this.Anchor_position_Y_text);
-            this.Harbour_anchor_panel.Controls.Add(this.Anchor_position_X_input);
-            this.Harbour_anchor_panel.Location = new System.Drawing.Point(8, 161);
-            this.Harbour_anchor_panel.Name = "Harbour_anchor_panel";
-            this.Harbour_anchor_panel.Size = new System.Drawing.Size(1029, 43);
-            this.Harbour_anchor_panel.TabIndex = 23;
+            Harbour_anchor_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Harbour_anchor_panel.Controls.Add(Anchor_position_text);
+            Harbour_anchor_panel.Controls.Add(Anchor_X_text);
+            Harbour_anchor_panel.Controls.Add(Anchor_Y_input);
+            Harbour_anchor_panel.Controls.Add(Anchor_Y_text);
+            Harbour_anchor_panel.Controls.Add(Anchor_X_input);
+            Harbour_anchor_panel.Location = new System.Drawing.Point(3, 166);
+            Harbour_anchor_panel.Name = "Harbour_anchor_panel";
+            Harbour_anchor_panel.Size = new System.Drawing.Size(1041, 44);
+            Harbour_anchor_panel.TabIndex = 23;
             // 
             // Anchor_position_text
             // 
-            this.Anchor_position_text.AutoSize = true;
-            this.Anchor_position_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Anchor_position_text.Location = new System.Drawing.Point(3, 5);
-            this.Anchor_position_text.Name = "Anchor_position_text";
-            this.Anchor_position_text.Size = new System.Drawing.Size(159, 28);
-            this.Anchor_position_text.TabIndex = 17;
-            this.Anchor_position_text.Text = "Anchor position";
+            Anchor_position_text.AutoSize = true;
+            Anchor_position_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Anchor_position_text.Location = new System.Drawing.Point(3, 5);
+            Anchor_position_text.Name = "Anchor_position_text";
+            Anchor_position_text.Size = new System.Drawing.Size(160, 30);
+            Anchor_position_text.TabIndex = 17;
+            Anchor_position_text.Text = "Anchor position";
             // 
-            // Anchor_position_X_text
+            // Anchor_X_text
             // 
-            this.Anchor_position_X_text.AutoSize = true;
-            this.Anchor_position_X_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Anchor_position_X_text.Location = new System.Drawing.Point(762, 5);
-            this.Anchor_position_X_text.Name = "Anchor_position_X_text";
-            this.Anchor_position_X_text.Size = new System.Drawing.Size(24, 28);
-            this.Anchor_position_X_text.TabIndex = 21;
-            this.Anchor_position_X_text.Text = "X";
+            Anchor_X_text.AutoSize = true;
+            Anchor_X_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Anchor_X_text.Location = new System.Drawing.Point(765, 5);
+            Anchor_X_text.Name = "Anchor_X_text";
+            Anchor_X_text.Size = new System.Drawing.Size(25, 30);
+            Anchor_X_text.TabIndex = 21;
+            Anchor_X_text.Text = "X";
             // 
-            // Anchor_position_Y_input
+            // Anchor_Y_input
             // 
-            this.Anchor_position_Y_input.Location = new System.Drawing.Point(924, 3);
-            this.Anchor_position_Y_input.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.Anchor_position_Y_input.Name = "Anchor_position_Y_input";
-            this.Anchor_position_Y_input.Size = new System.Drawing.Size(100, 35);
-            this.Anchor_position_Y_input.TabIndex = 18;
-            this.Anchor_position_Y_input.ValueChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Anchor_Y_input.Location = new System.Drawing.Point(937, 3);
+            Anchor_Y_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Anchor_Y_input.Name = "Anchor_Y_input";
+            Anchor_Y_input.Size = new System.Drawing.Size(100, 35);
+            Anchor_Y_input.TabIndex = 18;
+            Anchor_Y_input.ValueChanged += SaveCurrentHarbourData;
             // 
-            // Anchor_position_Y_text
+            // Anchor_Y_text
             // 
-            this.Anchor_position_Y_text.AutoSize = true;
-            this.Anchor_position_Y_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Anchor_position_Y_text.Location = new System.Drawing.Point(898, 5);
-            this.Anchor_position_Y_text.Name = "Anchor_position_Y_text";
-            this.Anchor_position_Y_text.Size = new System.Drawing.Size(24, 28);
-            this.Anchor_position_Y_text.TabIndex = 19;
-            this.Anchor_position_Y_text.Text = "Y";
+            Anchor_Y_text.AutoSize = true;
+            Anchor_Y_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Anchor_Y_text.Location = new System.Drawing.Point(902, 5);
+            Anchor_Y_text.Name = "Anchor_Y_text";
+            Anchor_Y_text.Size = new System.Drawing.Size(25, 30);
+            Anchor_Y_text.TabIndex = 19;
+            Anchor_Y_text.Text = "Y";
             // 
-            // Anchor_position_X_input
+            // Anchor_X_input
             // 
-            this.Anchor_position_X_input.Location = new System.Drawing.Point(792, 3);
-            this.Anchor_position_X_input.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.Anchor_position_X_input.Name = "Anchor_position_X_input";
-            this.Anchor_position_X_input.Size = new System.Drawing.Size(100, 35);
-            this.Anchor_position_X_input.TabIndex = 20;
-            this.Anchor_position_X_input.ValueChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Anchor_X_input.Location = new System.Drawing.Point(796, 3);
+            Anchor_X_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Anchor_X_input.Name = "Anchor_X_input";
+            Anchor_X_input.Size = new System.Drawing.Size(100, 35);
+            Anchor_X_input.TabIndex = 20;
+            Anchor_X_input.ValueChanged += SaveCurrentHarbourData;
             // 
             // Harbour_anchor_checkbox
             // 
-            this.Harbour_anchor_checkbox.AutoSize = true;
-            this.Harbour_anchor_checkbox.Location = new System.Drawing.Point(9, 123);
-            this.Harbour_anchor_checkbox.Name = "Harbour_anchor_checkbox";
-            this.Harbour_anchor_checkbox.Size = new System.Drawing.Size(275, 32);
-            this.Harbour_anchor_checkbox.TabIndex = 22;
-            this.Harbour_anchor_checkbox.Text = "Place a ship building spot";
-            this.Harbour_anchor_checkbox.UseVisualStyleBackColor = true;
-            this.Harbour_anchor_checkbox.CheckedChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Harbour_anchor_checkbox.AutoSize = true;
+            Harbour_anchor_checkbox.Location = new System.Drawing.Point(5, 126);
+            Harbour_anchor_checkbox.Name = "Harbour_anchor_checkbox";
+            Harbour_anchor_checkbox.Size = new System.Drawing.Size(276, 34);
+            Harbour_anchor_checkbox.TabIndex = 22;
+            Harbour_anchor_checkbox.Text = "Place a ship building spot";
+            Harbour_anchor_checkbox.UseVisualStyleBackColor = true;
+            Harbour_anchor_checkbox.CheckedChanged += SaveCurrentHarbourData;
             // 
-            // Harbour_position_Y_input
+            // Harbour_Y_input
             // 
-            this.Harbour_position_Y_input.Location = new System.Drawing.Point(937, 2);
-            this.Harbour_position_Y_input.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.Harbour_position_Y_input.Name = "Harbour_position_Y_input";
-            this.Harbour_position_Y_input.Size = new System.Drawing.Size(100, 35);
-            this.Harbour_position_Y_input.TabIndex = 16;
-            this.Harbour_position_Y_input.ValueChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Harbour_Y_input.Location = new System.Drawing.Point(941, 5);
+            Harbour_Y_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Harbour_Y_input.Name = "Harbour_Y_input";
+            Harbour_Y_input.Size = new System.Drawing.Size(100, 35);
+            Harbour_Y_input.TabIndex = 16;
+            Harbour_Y_input.ValueChanged += SaveCurrentHarbourData;
             // 
-            // Harbour_position_X_input
+            // Harbour_X_input
             // 
-            this.Harbour_position_X_input.Location = new System.Drawing.Point(801, 2);
-            this.Harbour_position_X_input.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.Harbour_position_X_input.Name = "Harbour_position_X_input";
-            this.Harbour_position_X_input.Size = new System.Drawing.Size(100, 35);
-            this.Harbour_position_X_input.TabIndex = 15;
-            this.Harbour_position_X_input.ValueChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Harbour_X_input.Location = new System.Drawing.Point(804, 5);
+            Harbour_X_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Harbour_X_input.Name = "Harbour_X_input";
+            Harbour_X_input.Size = new System.Drawing.Size(100, 35);
+            Harbour_X_input.TabIndex = 15;
+            Harbour_X_input.ValueChanged += SaveCurrentHarbourData;
             // 
-            // Buoy_1_connection_select
+            // Harbour_buoy_1_select
             // 
-            this.Buoy_1_connection_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Buoy_1_connection_select.FormattingEnabled = true;
-            this.Buoy_1_connection_select.Location = new System.Drawing.Point(3, 367);
-            this.Buoy_1_connection_select.Name = "Buoy_1_connection_select";
-            this.Buoy_1_connection_select.Size = new System.Drawing.Size(510, 36);
-            this.Buoy_1_connection_select.TabIndex = 14;
-            this.Buoy_1_connection_select.SelectedIndexChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Harbour_buoy_1_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            Harbour_buoy_1_select.FormattingEnabled = true;
+            Harbour_buoy_1_select.Location = new System.Drawing.Point(3, 421);
+            Harbour_buoy_1_select.Name = "Harbour_buoy_1_select";
+            Harbour_buoy_1_select.Size = new System.Drawing.Size(510, 38);
+            Harbour_buoy_1_select.TabIndex = 14;
+            Harbour_buoy_1_select.SelectedIndexChanged += SaveCurrentHarbourData;
             // 
-            // Buoy_1_connection_text
+            // Harbour_buoy_1_text
             // 
-            this.Buoy_1_connection_text.AutoSize = true;
-            this.Buoy_1_connection_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Buoy_1_connection_text.Location = new System.Drawing.Point(3, 333);
-            this.Buoy_1_connection_text.Name = "Buoy_1_connection_text";
-            this.Buoy_1_connection_text.Size = new System.Drawing.Size(181, 28);
-            this.Buoy_1_connection_text.TabIndex = 13;
-            this.Buoy_1_connection_text.Text = "Buoy 1 connection";
+            Harbour_buoy_1_text.AutoSize = true;
+            Harbour_buoy_1_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Harbour_buoy_1_text.Location = new System.Drawing.Point(3, 388);
+            Harbour_buoy_1_text.Name = "Harbour_buoy_1_text";
+            Harbour_buoy_1_text.Size = new System.Drawing.Size(185, 30);
+            Harbour_buoy_1_text.TabIndex = 13;
+            Harbour_buoy_1_text.Text = "Buoy 1 connection";
             // 
-            // Buoy_2_connection_select
+            // Harbour_buoy_2_select
             // 
-            this.Buoy_2_connection_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Buoy_2_connection_select.FormattingEnabled = true;
-            this.Buoy_2_connection_select.Location = new System.Drawing.Point(527, 367);
-            this.Buoy_2_connection_select.Name = "Buoy_2_connection_select";
-            this.Buoy_2_connection_select.Size = new System.Drawing.Size(510, 36);
-            this.Buoy_2_connection_select.TabIndex = 12;
-            this.Buoy_2_connection_select.SelectedIndexChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Harbour_buoy_2_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            Harbour_buoy_2_select.FormattingEnabled = true;
+            Harbour_buoy_2_select.Location = new System.Drawing.Point(531, 421);
+            Harbour_buoy_2_select.Name = "Harbour_buoy_2_select";
+            Harbour_buoy_2_select.Size = new System.Drawing.Size(510, 38);
+            Harbour_buoy_2_select.TabIndex = 12;
+            Harbour_buoy_2_select.SelectedIndexChanged += SaveCurrentHarbourData;
             // 
-            // Buoy_2_connection_text
+            // Harbour_buoy_2_text
             // 
-            this.Buoy_2_connection_text.AutoSize = true;
-            this.Buoy_2_connection_text.Location = new System.Drawing.Point(522, 333);
-            this.Buoy_2_connection_text.Name = "Buoy_2_connection_text";
-            this.Buoy_2_connection_text.Size = new System.Drawing.Size(184, 28);
-            this.Buoy_2_connection_text.TabIndex = 11;
-            this.Buoy_2_connection_text.Text = "Buoy 2 connection";
+            Harbour_buoy_2_text.AutoSize = true;
+            Harbour_buoy_2_text.Location = new System.Drawing.Point(531, 388);
+            Harbour_buoy_2_text.Name = "Harbour_buoy_2_text";
+            Harbour_buoy_2_text.Size = new System.Drawing.Size(185, 30);
+            Harbour_buoy_2_text.TabIndex = 11;
+            Harbour_buoy_2_text.Text = "Buoy 2 connection";
             // 
             // Harbour_logical_position_warning
             // 
-            this.Harbour_logical_position_warning.AutoSize = true;
-            this.Harbour_logical_position_warning.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
-            this.Harbour_logical_position_warning.Location = new System.Drawing.Point(3, 207);
-            this.Harbour_logical_position_warning.Name = "Harbour_logical_position_warning";
-            this.Harbour_logical_position_warning.Size = new System.Drawing.Size(901, 51);
-            this.Harbour_logical_position_warning.TabIndex = 10;
-            this.Harbour_logical_position_warning.Text = "Switch the status bar to show logical coordinates";
+            Harbour_logical_position_warning.AutoSize = true;
+            Harbour_logical_position_warning.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
+            Harbour_logical_position_warning.Location = new System.Drawing.Point(3, 213);
+            Harbour_logical_position_warning.Name = "Harbour_logical_position_warning";
+            Harbour_logical_position_warning.Size = new System.Drawing.Size(901, 51);
+            Harbour_logical_position_warning.TabIndex = 10;
+            Harbour_logical_position_warning.Text = "Switch the status bar to show logical coordinates";
             // 
             // Harbour_rotation_select
             // 
-            this.Harbour_rotation_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Harbour_rotation_select.FormattingEnabled = true;
-            this.Harbour_rotation_select.Items.AddRange(new object[] {
-            "South-west",
-            "North-west",
-            "South-east",
-            "North-east",
-            "North",
-            "South",
-            "East",
-            "West"});
-            this.Harbour_rotation_select.Location = new System.Drawing.Point(9, 79);
-            this.Harbour_rotation_select.Name = "Harbour_rotation_select";
-            this.Harbour_rotation_select.Size = new System.Drawing.Size(1028, 36);
-            this.Harbour_rotation_select.TabIndex = 9;
-            this.Harbour_rotation_select.SelectedIndexChanged += new System.EventHandler(this.SaveCurrentHarbourData);
+            Harbour_rotation_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            Harbour_rotation_select.FormattingEnabled = true;
+            Harbour_rotation_select.Items.AddRange(new object[] { "South-west", "North-west", "South-east", "North-east", "North", "South", "East", "West" });
+            Harbour_rotation_select.Location = new System.Drawing.Point(5, 82);
+            Harbour_rotation_select.Name = "Harbour_rotation_select";
+            Harbour_rotation_select.Size = new System.Drawing.Size(1036, 38);
+            Harbour_rotation_select.TabIndex = 9;
+            Harbour_rotation_select.SelectedIndexChanged += SaveCurrentHarbourData;
             // 
             // Harbour_rotation_text
             // 
-            this.Harbour_rotation_text.AutoSize = true;
-            this.Harbour_rotation_text.Location = new System.Drawing.Point(3, 44);
-            this.Harbour_rotation_text.Name = "Harbour_rotation_text";
-            this.Harbour_rotation_text.Size = new System.Drawing.Size(90, 28);
-            this.Harbour_rotation_text.TabIndex = 8;
-            this.Harbour_rotation_text.Text = "Rotation";
+            Harbour_rotation_text.AutoSize = true;
+            Harbour_rotation_text.Location = new System.Drawing.Point(3, 49);
+            Harbour_rotation_text.Name = "Harbour_rotation_text";
+            Harbour_rotation_text.Size = new System.Drawing.Size(91, 30);
+            Harbour_rotation_text.TabIndex = 8;
+            Harbour_rotation_text.Text = "Rotation";
             // 
-            // Harbour_position_X_text
+            // Harbour_X_text
             // 
-            this.Harbour_position_X_text.AutoSize = true;
-            this.Harbour_position_X_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Harbour_position_X_text.Location = new System.Drawing.Point(771, 6);
-            this.Harbour_position_X_text.Name = "Harbour_position_X_text";
-            this.Harbour_position_X_text.Size = new System.Drawing.Size(24, 28);
-            this.Harbour_position_X_text.TabIndex = 7;
-            this.Harbour_position_X_text.Text = "X";
+            Harbour_X_text.AutoSize = true;
+            Harbour_X_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Harbour_X_text.Location = new System.Drawing.Point(773, 7);
+            Harbour_X_text.Name = "Harbour_X_text";
+            Harbour_X_text.Size = new System.Drawing.Size(25, 30);
+            Harbour_X_text.TabIndex = 7;
+            Harbour_X_text.Text = "X";
             // 
-            // Harbour_position_Y_text
+            // Harbour_Y_text
             // 
-            this.Harbour_position_Y_text.AutoSize = true;
-            this.Harbour_position_Y_text.Location = new System.Drawing.Point(907, 6);
-            this.Harbour_position_Y_text.Name = "Harbour_position_Y_text";
-            this.Harbour_position_Y_text.Size = new System.Drawing.Size(24, 28);
-            this.Harbour_position_Y_text.TabIndex = 5;
-            this.Harbour_position_Y_text.Text = "Y";
+            Harbour_Y_text.AutoSize = true;
+            Harbour_Y_text.Location = new System.Drawing.Point(910, 7);
+            Harbour_Y_text.Name = "Harbour_Y_text";
+            Harbour_Y_text.Size = new System.Drawing.Size(25, 30);
+            Harbour_Y_text.TabIndex = 5;
+            Harbour_Y_text.Text = "Y";
             // 
             // Harbour_position_text
             // 
-            this.Harbour_position_text.AutoSize = true;
-            this.Harbour_position_text.Location = new System.Drawing.Point(3, 6);
-            this.Harbour_position_text.Name = "Harbour_position_text";
-            this.Harbour_position_text.Size = new System.Drawing.Size(130, 28);
-            this.Harbour_position_text.TabIndex = 3;
-            this.Harbour_position_text.Text = "Flag position";
+            Harbour_position_text.AutoSize = true;
+            Harbour_position_text.Location = new System.Drawing.Point(3, 5);
+            Harbour_position_text.Name = "Harbour_position_text";
+            Harbour_position_text.Size = new System.Drawing.Size(131, 30);
+            Harbour_position_text.TabIndex = 3;
+            Harbour_position_text.Text = "Flag position";
             // 
             // Harbours_list_view
             // 
-            this.Harbours_list_view.FormattingEnabled = true;
-            this.Harbours_list_view.ItemHeight = 28;
-            this.Harbours_list_view.Location = new System.Drawing.Point(3, 53);
-            this.Harbours_list_view.Name = "Harbours_list_view";
-            this.Harbours_list_view.Size = new System.Drawing.Size(150, 312);
-            this.Harbours_list_view.TabIndex = 2;
-            this.Harbours_list_view.SelectedIndexChanged += new System.EventHandler(this.Harbours_list_view_SelectedIndexChanged);
+            Harbours_list_view.FormattingEnabled = true;
+            Harbours_list_view.Location = new System.Drawing.Point(3, 49);
+            Harbours_list_view.Name = "Harbours_list_view";
+            Harbours_list_view.Size = new System.Drawing.Size(150, 364);
+            Harbours_list_view.TabIndex = 2;
+            Harbours_list_view.SelectedIndexChanged += Harbours_list_view_SelectedIndexChanged;
             // 
             // Harbours_remove_button
             // 
-            this.Harbours_remove_button.AutoSize = true;
-            this.Harbours_remove_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Harbours_remove_button.Location = new System.Drawing.Point(3, 371);
-            this.Harbours_remove_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Harbours_remove_button.Name = "Harbours_remove_button";
-            this.Harbours_remove_button.Size = new System.Drawing.Size(150, 42);
-            this.Harbours_remove_button.TabIndex = 1;
-            this.Harbours_remove_button.Text = "Remove";
-            this.Harbours_remove_button.UseVisualStyleBackColor = true;
-            this.Harbours_remove_button.Click += new System.EventHandler(this.Harbours_remove_button_Click);
+            Harbours_remove_button.AutoSize = true;
+            Harbours_remove_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Harbours_remove_button.Location = new System.Drawing.Point(3, 427);
+            Harbours_remove_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Harbours_remove_button.Name = "Harbours_remove_button";
+            Harbours_remove_button.Size = new System.Drawing.Size(150, 40);
+            Harbours_remove_button.TabIndex = 1;
+            Harbours_remove_button.Text = "Remove";
+            Harbours_remove_button.UseVisualStyleBackColor = true;
+            Harbours_remove_button.Click += Harbours_remove_button_Click;
             // 
             // Harbours_add_button
             // 
-            this.Harbours_add_button.AutoSize = true;
-            this.Harbours_add_button.Location = new System.Drawing.Point(3, 3);
-            this.Harbours_add_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Harbours_add_button.Name = "Harbours_add_button";
-            this.Harbours_add_button.Size = new System.Drawing.Size(150, 42);
-            this.Harbours_add_button.TabIndex = 0;
-            this.Harbours_add_button.Text = "Add";
-            this.Harbours_add_button.UseVisualStyleBackColor = true;
-            this.Harbours_add_button.Click += new System.EventHandler(this.Harbours_add_button_Click);
+            Harbours_add_button.AutoSize = true;
+            Harbours_add_button.Location = new System.Drawing.Point(3, 3);
+            Harbours_add_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Harbours_add_button.Name = "Harbours_add_button";
+            Harbours_add_button.Size = new System.Drawing.Size(150, 40);
+            Harbours_add_button.TabIndex = 0;
+            Harbours_add_button.Text = "Add";
+            Harbours_add_button.UseVisualStyleBackColor = true;
+            Harbours_add_button.Click += Harbours_add_button_Click;
             // 
             // Caves_tab
             // 
-            this.Caves_tab.Controls.Add(this.Cave_panel);
-            this.Caves_tab.Controls.Add(this.Caves_remove_button);
-            this.Caves_tab.Controls.Add(this.Caves_list_view);
-            this.Caves_tab.Controls.Add(this.Caves_add_button);
-            this.Caves_tab.Location = new System.Drawing.Point(4, 42);
-            this.Caves_tab.Name = "Caves_tab";
-            this.Caves_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Caves_tab.TabIndex = 9;
-            this.Caves_tab.Text = "Caves";
-            this.Caves_tab.UseVisualStyleBackColor = true;
+            Caves_tab.Controls.Add(Cave_panel);
+            Caves_tab.Controls.Add(Caves_remove_button);
+            Caves_tab.Controls.Add(Caves_list_view);
+            Caves_tab.Controls.Add(Caves_add_button);
+            Caves_tab.Location = new System.Drawing.Point(4, 42);
+            Caves_tab.Name = "Caves_tab";
+            Caves_tab.Size = new System.Drawing.Size(1212, 473);
+            Caves_tab.TabIndex = 9;
+            Caves_tab.Text = "Caves";
             // 
             // Cave_panel
             // 
-            this.Cave_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Cave_panel.Controls.Add(this.Cave_position_Y_text);
-            this.Cave_panel.Controls.Add(this.Cave_position_X_text);
-            this.Cave_panel.Controls.Add(this.Cave_position_Y_input);
-            this.Cave_panel.Controls.Add(this.Cave_position_X_input);
-            this.Cave_panel.Controls.Add(this.Cave_logical_position_warning);
-            this.Cave_panel.Controls.Add(this.Cave_position_text);
-            this.Cave_panel.Controls.Add(this.Cave_type_select);
-            this.Cave_panel.Controls.Add(this.Cave_type_text);
-            this.Cave_panel.Location = new System.Drawing.Point(159, 3);
-            this.Cave_panel.Name = "Cave_panel";
-            this.Cave_panel.Size = new System.Drawing.Size(1042, 410);
-            this.Cave_panel.TabIndex = 5;
+            Cave_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Cave_panel.Controls.Add(Cave_Y_text);
+            Cave_panel.Controls.Add(Cave_X_text);
+            Cave_panel.Controls.Add(Cave_Y_input);
+            Cave_panel.Controls.Add(Cave_X_input);
+            Cave_panel.Controls.Add(Cave_logical_position_warning);
+            Cave_panel.Controls.Add(Cave_position_text);
+            Cave_panel.Controls.Add(Cave_type_select);
+            Cave_panel.Controls.Add(Cave_type_text);
+            Cave_panel.Location = new System.Drawing.Point(159, 3);
+            Cave_panel.Name = "Cave_panel";
+            Cave_panel.Size = new System.Drawing.Size(1050, 467);
+            Cave_panel.TabIndex = 5;
             // 
-            // Cave_position_Y_text
+            // Cave_Y_text
             // 
-            this.Cave_position_Y_text.AutoSize = true;
-            this.Cave_position_Y_text.Location = new System.Drawing.Point(3, 237);
-            this.Cave_position_Y_text.Name = "Cave_position_Y_text";
-            this.Cave_position_Y_text.Size = new System.Drawing.Size(24, 28);
-            this.Cave_position_Y_text.TabIndex = 15;
-            this.Cave_position_Y_text.Text = "Y";
+            Cave_Y_text.AutoSize = true;
+            Cave_Y_text.Location = new System.Drawing.Point(3, 250);
+            Cave_Y_text.Name = "Cave_Y_text";
+            Cave_Y_text.Size = new System.Drawing.Size(25, 30);
+            Cave_Y_text.TabIndex = 15;
+            Cave_Y_text.Text = "Y";
             // 
-            // Cave_position_X_text
+            // Cave_X_text
             // 
-            this.Cave_position_X_text.AutoSize = true;
-            this.Cave_position_X_text.Location = new System.Drawing.Point(3, 191);
-            this.Cave_position_X_text.Name = "Cave_position_X_text";
-            this.Cave_position_X_text.Size = new System.Drawing.Size(24, 28);
-            this.Cave_position_X_text.TabIndex = 14;
-            this.Cave_position_X_text.Text = "X";
+            Cave_X_text.AutoSize = true;
+            Cave_X_text.Location = new System.Drawing.Point(3, 209);
+            Cave_X_text.Name = "Cave_X_text";
+            Cave_X_text.Size = new System.Drawing.Size(25, 30);
+            Cave_X_text.TabIndex = 14;
+            Cave_X_text.Text = "X";
             // 
-            // Cave_position_Y_input
+            // Cave_Y_input
             // 
-            this.Cave_position_Y_input.Location = new System.Drawing.Point(37, 230);
-            this.Cave_position_Y_input.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.Cave_position_Y_input.Name = "Cave_position_Y_input";
-            this.Cave_position_Y_input.Size = new System.Drawing.Size(100, 35);
-            this.Cave_position_Y_input.TabIndex = 13;
-            this.Cave_position_Y_input.ValueChanged += new System.EventHandler(this.SaveCurrentCaveData);
+            Cave_Y_input.Location = new System.Drawing.Point(34, 248);
+            Cave_Y_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Cave_Y_input.Name = "Cave_Y_input";
+            Cave_Y_input.Size = new System.Drawing.Size(100, 35);
+            Cave_Y_input.TabIndex = 13;
+            Cave_Y_input.ValueChanged += SaveCurrentCaveData;
             // 
-            // Cave_position_X_input
+            // Cave_X_input
             // 
-            this.Cave_position_X_input.Location = new System.Drawing.Point(37, 189);
-            this.Cave_position_X_input.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.Cave_position_X_input.Name = "Cave_position_X_input";
-            this.Cave_position_X_input.Size = new System.Drawing.Size(100, 35);
-            this.Cave_position_X_input.TabIndex = 12;
-            this.Cave_position_X_input.ValueChanged += new System.EventHandler(this.SaveCurrentCaveData);
+            Cave_X_input.Location = new System.Drawing.Point(34, 207);
+            Cave_X_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Cave_X_input.Name = "Cave_X_input";
+            Cave_X_input.Size = new System.Drawing.Size(100, 35);
+            Cave_X_input.TabIndex = 12;
+            Cave_X_input.ValueChanged += SaveCurrentCaveData;
             // 
             // Cave_logical_position_warning
             // 
-            this.Cave_logical_position_warning.AutoSize = true;
-            this.Cave_logical_position_warning.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
-            this.Cave_logical_position_warning.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Cave_logical_position_warning.Location = new System.Drawing.Point(-1, 356);
-            this.Cave_logical_position_warning.Name = "Cave_logical_position_warning";
-            this.Cave_logical_position_warning.Size = new System.Drawing.Size(901, 51);
-            this.Cave_logical_position_warning.TabIndex = 11;
-            this.Cave_logical_position_warning.Text = "Switch the status bar to show logical coordinates";
+            Cave_logical_position_warning.AutoSize = true;
+            Cave_logical_position_warning.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
+            Cave_logical_position_warning.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Cave_logical_position_warning.Location = new System.Drawing.Point(3, 414);
+            Cave_logical_position_warning.Name = "Cave_logical_position_warning";
+            Cave_logical_position_warning.Size = new System.Drawing.Size(901, 51);
+            Cave_logical_position_warning.TabIndex = 11;
+            Cave_logical_position_warning.Text = "Switch the status bar to show logical coordinates";
             // 
             // Cave_position_text
             // 
-            this.Cave_position_text.AutoSize = true;
-            this.Cave_position_text.Location = new System.Drawing.Point(3, 158);
-            this.Cave_position_text.Name = "Cave_position_text";
-            this.Cave_position_text.Size = new System.Drawing.Size(85, 28);
-            this.Cave_position_text.TabIndex = 2;
-            this.Cave_position_text.Text = "Position";
+            Cave_position_text.AutoSize = true;
+            Cave_position_text.Location = new System.Drawing.Point(3, 172);
+            Cave_position_text.Name = "Cave_position_text";
+            Cave_position_text.Size = new System.Drawing.Size(86, 30);
+            Cave_position_text.TabIndex = 2;
+            Cave_position_text.Text = "Position";
             // 
             // Cave_type_select
             // 
-            this.Cave_type_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Cave_type_select.FormattingEnabled = true;
-            this.Cave_type_select.Items.AddRange(new object[] {
-            "AnimalSpawn (Deer, Elk, Rabbit)",
-            "SheepSpawn",
-            "DeerSpawn",
-            "RabbitSpawn",
-            "__Highland Bear Spawn",
-            "!!!MED Bear Spawn",
-            "Bear Spawn",
-            "--Snow Polar Bear Spawn (+ Mountain Hare)",
-            "__Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)",
-            "Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)",
-            "!!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)",
-            "!!!MED Camel Spawn"});
-            this.Cave_type_select.Location = new System.Drawing.Point(3, 39);
-            this.Cave_type_select.Name = "Cave_type_select";
-            this.Cave_type_select.Size = new System.Drawing.Size(1034, 36);
-            this.Cave_type_select.TabIndex = 1;
-            this.Cave_type_select.SelectedIndexChanged += new System.EventHandler(this.SaveCurrentCaveData);
+            Cave_type_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            Cave_type_select.FormattingEnabled = true;
+            Cave_type_select.Items.AddRange(new object[] { "AnimalSpawn (Deer, Elk, Rabbit)", "SheepSpawn", "DeerSpawn", "RabbitSpawn", "__Highland Bear Spawn", "!!!MED Bear Spawn", "Bear Spawn", "--Snow Polar Bear Spawn (+ Mountain Hare)", "__Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)", "Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)", "!!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)", "!!!MED Camel Spawn" });
+            Cave_type_select.Location = new System.Drawing.Point(3, 37);
+            Cave_type_select.Name = "Cave_type_select";
+            Cave_type_select.Size = new System.Drawing.Size(1042, 38);
+            Cave_type_select.TabIndex = 1;
+            Cave_type_select.SelectedIndexChanged += SaveCurrentCaveData;
             // 
             // Cave_type_text
             // 
-            this.Cave_type_text.AutoSize = true;
-            this.Cave_type_text.Location = new System.Drawing.Point(3, 4);
-            this.Cave_type_text.Name = "Cave_type_text";
-            this.Cave_type_text.Size = new System.Drawing.Size(103, 28);
-            this.Cave_type_text.TabIndex = 0;
-            this.Cave_type_text.Text = "Cave type";
+            Cave_type_text.AutoSize = true;
+            Cave_type_text.Location = new System.Drawing.Point(3, 4);
+            Cave_type_text.Name = "Cave_type_text";
+            Cave_type_text.Size = new System.Drawing.Size(104, 30);
+            Cave_type_text.TabIndex = 0;
+            Cave_type_text.Text = "Cave type";
             // 
             // Caves_remove_button
             // 
-            this.Caves_remove_button.AutoSize = true;
-            this.Caves_remove_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Caves_remove_button.Location = new System.Drawing.Point(3, 371);
-            this.Caves_remove_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Caves_remove_button.Name = "Caves_remove_button";
-            this.Caves_remove_button.Size = new System.Drawing.Size(150, 42);
-            this.Caves_remove_button.TabIndex = 4;
-            this.Caves_remove_button.Text = "Remove";
-            this.Caves_remove_button.UseVisualStyleBackColor = true;
-            this.Caves_remove_button.Click += new System.EventHandler(this.Caves_remove_button_Click);
+            Caves_remove_button.AutoSize = true;
+            Caves_remove_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Caves_remove_button.Location = new System.Drawing.Point(3, 427);
+            Caves_remove_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Caves_remove_button.Name = "Caves_remove_button";
+            Caves_remove_button.Size = new System.Drawing.Size(150, 40);
+            Caves_remove_button.TabIndex = 4;
+            Caves_remove_button.Text = "Remove";
+            Caves_remove_button.UseVisualStyleBackColor = true;
+            Caves_remove_button.Click += Caves_remove_button_Click;
             // 
             // Caves_list_view
             // 
-            this.Caves_list_view.FormattingEnabled = true;
-            this.Caves_list_view.ItemHeight = 28;
-            this.Caves_list_view.Location = new System.Drawing.Point(3, 59);
-            this.Caves_list_view.Name = "Caves_list_view";
-            this.Caves_list_view.Size = new System.Drawing.Size(150, 312);
-            this.Caves_list_view.TabIndex = 3;
-            this.Caves_list_view.SelectedIndexChanged += new System.EventHandler(this.Caves_list_view_SelectedIndexChanged);
+            Caves_list_view.FormattingEnabled = true;
+            Caves_list_view.Location = new System.Drawing.Point(3, 49);
+            Caves_list_view.Name = "Caves_list_view";
+            Caves_list_view.Size = new System.Drawing.Size(150, 364);
+            Caves_list_view.TabIndex = 3;
+            Caves_list_view.SelectedIndexChanged += Caves_list_view_SelectedIndexChanged;
             // 
             // Caves_add_button
             // 
-            this.Caves_add_button.AutoSize = true;
-            this.Caves_add_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Caves_add_button.Location = new System.Drawing.Point(3, 3);
-            this.Caves_add_button.MinimumSize = new System.Drawing.Size(150, 0);
-            this.Caves_add_button.Name = "Caves_add_button";
-            this.Caves_add_button.Size = new System.Drawing.Size(150, 42);
-            this.Caves_add_button.TabIndex = 1;
-            this.Caves_add_button.Text = "Add";
-            this.Caves_add_button.UseVisualStyleBackColor = true;
-            this.Caves_add_button.Click += new System.EventHandler(this.Caves_add_button_Click);
+            Caves_add_button.AutoSize = true;
+            Caves_add_button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Caves_add_button.Location = new System.Drawing.Point(3, 3);
+            Caves_add_button.MinimumSize = new System.Drawing.Size(150, 0);
+            Caves_add_button.Name = "Caves_add_button";
+            Caves_add_button.Size = new System.Drawing.Size(150, 40);
+            Caves_add_button.TabIndex = 1;
+            Caves_add_button.Text = "Add";
+            Caves_add_button.UseVisualStyleBackColor = true;
+            Caves_add_button.Click += Caves_add_button_Click;
             // 
             // Sacrifices_tab
             // 
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_research_Scots);
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_research_Egyptians);
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_research_Bavarians);
-            this.Sacrifices_tab.Controls.Add(this.Research_Scots_usage);
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_no_research_Bavarians);
-            this.Sacrifices_tab.Controls.Add(this.No_research_Scots_usage);
-            this.Sacrifices_tab.Controls.Add(this.Research_Egyptians_usage);
-            this.Sacrifices_tab.Controls.Add(this.Research_Bavarians_usage);
-            this.Sacrifices_tab.Controls.Add(this.No_research_Egyptians_usage);
-            this.Sacrifices_tab.Controls.Add(this.No_research_Bavarians_usage);
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_no_research_Scots);
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_research_text);
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_no_research_Egyptians);
-            this.Sacrifices_tab.Controls.Add(this.Sacrifices_no_research_text);
-            this.Sacrifices_tab.Location = new System.Drawing.Point(4, 42);
-            this.Sacrifices_tab.Name = "Sacrifices_tab";
-            this.Sacrifices_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Sacrifices_tab.TabIndex = 10;
-            this.Sacrifices_tab.Text = "Sarifices";
-            this.Sacrifices_tab.UseVisualStyleBackColor = true;
+            Sacrifices_tab.Controls.Add(Sacrifices_Scots_research);
+            Sacrifices_tab.Controls.Add(Sacrifices_Egyptians_research);
+            Sacrifices_tab.Controls.Add(Sacrifices_Bavarians_research);
+            Sacrifices_tab.Controls.Add(Sacrifices_Scots_research_usage);
+            Sacrifices_tab.Controls.Add(Sacrifices_Bavarians_no_research);
+            Sacrifices_tab.Controls.Add(Sacrifices_Scots_no_research_usage);
+            Sacrifices_tab.Controls.Add(Sacrifices_Egyptians_research_usage);
+            Sacrifices_tab.Controls.Add(Sacrifices_Egyptians_no_research_usage);
+            Sacrifices_tab.Controls.Add(Sacrifices_Bavarians_no_research_usage);
+            Sacrifices_tab.Controls.Add(Sacrifices_Bavarians_research_usage);
+            Sacrifices_tab.Controls.Add(Sacrifices_Scots_no_research);
+            Sacrifices_tab.Controls.Add(Sacrifices_research_text);
+            Sacrifices_tab.Controls.Add(Sacrifices_Egyptians_no_research);
+            Sacrifices_tab.Controls.Add(Sacrifices_no_research_text);
+            Sacrifices_tab.Location = new System.Drawing.Point(4, 42);
+            Sacrifices_tab.Name = "Sacrifices_tab";
+            Sacrifices_tab.Size = new System.Drawing.Size(1212, 473);
+            Sacrifices_tab.TabIndex = 10;
+            Sacrifices_tab.Text = "Sarifices";
             // 
-            // Sacrifices_research_Scots
+            // Sacrifices_Scots_research
             // 
-            this.Sacrifices_research_Scots.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.Sacrifices_research_Scots.CheckBoxes = true;
-            this.Sacrifices_research_Scots.HideSelection = false;
+            Sacrifices_Scots_research.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            Sacrifices_Scots_research.CheckBoxes = true;
+            listViewItem65.StateImageIndex = 0;
+            listViewItem65.ToolTipText = "Blessing of Fortified Foundations";
+            listViewItem66.StateImageIndex = 0;
+            listViewItem66.ToolTipText = "Blessing of the Satiated Miner";
+            listViewItem67.StateImageIndex = 0;
+            listViewItem67.ToolTipText = "Conjuration of Courageous Kilts";
+            listViewItem68.StateImageIndex = 0;
+            listViewItem68.ToolTipText = "Cult of the Clandestine Coinage";
+            listViewItem69.StateImageIndex = 0;
+            listViewItem69.ToolTipText = "Cult of the Fabled Fakes";
+            listViewItem70.StateImageIndex = 0;
+            listViewItem70.ToolTipText = "Curse of the Great Becalming";
+            listViewItem71.StateImageIndex = 0;
+            listViewItem71.ToolTipText = "Incantation of Vitality";
+            listViewItem72.StateImageIndex = 0;
+            listViewItem72.ToolTipText = "Liturgy of the Water of Life";
+            listViewItem73.StateImageIndex = 0;
+            listViewItem73.ToolTipText = "Manifestation of Midas";
+            listViewItem74.StateImageIndex = 0;
+            listViewItem74.ToolTipText = "Rite of the Keen Claymore";
+            listViewItem75.StateImageIndex = 0;
+            listViewItem75.ToolTipText = "Rite of the Shifting Frontier";
+            listViewItem76.StateImageIndex = 0;
+            listViewItem76.ToolTipText = "Ritual of Divine Truce";
+            listViewItem77.StateImageIndex = 0;
+            listViewItem77.ToolTipText = "Ritual of Leonine Strength";
+            listViewItem78.StateImageIndex = 0;
+            listViewItem78.ToolTipText = "Ritual of the Risen Rock";
+            listViewItem79.StateImageIndex = 0;
+            listViewItem79.ToolTipText = "Ritual of the Unseen Scout";
+            listViewItem80.StateImageIndex = 0;
+            listViewItem80.ToolTipText = "The Mermaid's Malice";
+            Sacrifices_Scots_research.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem65, listViewItem66, listViewItem67, listViewItem68, listViewItem69, listViewItem70, listViewItem71, listViewItem72, listViewItem73, listViewItem74, listViewItem75, listViewItem76, listViewItem77, listViewItem78, listViewItem79, listViewItem80 });
+            Sacrifices_Scots_research.Location = new System.Drawing.Point(3, 384);
+            Sacrifices_Scots_research.MinimumSize = new System.Drawing.Size(4, 82);
+            Sacrifices_Scots_research.Name = "Sacrifices_Scots_research";
+            Sacrifices_Scots_research.ShowItemToolTips = true;
+            Sacrifices_Scots_research.Size = new System.Drawing.Size(1206, 82);
+            Sacrifices_Scots_research.SmallImageList = Icons_Scots_research;
+            Sacrifices_Scots_research.TabIndex = 16;
+            Sacrifices_Scots_research.UseCompatibleStateImageBehavior = false;
+            Sacrifices_Scots_research.View = System.Windows.Forms.View.SmallIcon;
+            Sacrifices_Scots_research.ItemChecked += Sacrifices_research_Scots_ItemChecked;
+            // 
+            // Icons_Scots_research
+            // 
+            Icons_Scots_research.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            Icons_Scots_research.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("Icons_Scots_research.ImageStream");
+            Icons_Scots_research.TransparentColor = System.Drawing.Color.Transparent;
+            Icons_Scots_research.Images.SetKeyName(0, "Blessing of Fortified Foundations.png");
+            Icons_Scots_research.Images.SetKeyName(1, "Blessing of the Satiated Miner.png");
+            Icons_Scots_research.Images.SetKeyName(2, "Conjuration of Courageous Kilts.png");
+            Icons_Scots_research.Images.SetKeyName(3, "Cult of the Clandestine Coinage.png");
+            Icons_Scots_research.Images.SetKeyName(4, "Cult of the Fabled Fakes.png");
+            Icons_Scots_research.Images.SetKeyName(5, "Curse of the Great Becalming.png");
+            Icons_Scots_research.Images.SetKeyName(6, "Incantation of Vitality.png");
+            Icons_Scots_research.Images.SetKeyName(7, "Liturgy of the Water of Life.png");
+            Icons_Scots_research.Images.SetKeyName(8, "Manifestation of Midas.png");
+            Icons_Scots_research.Images.SetKeyName(9, "Rite of the Keen Claymore.png");
+            Icons_Scots_research.Images.SetKeyName(10, "Rite of the Shifting Frontier.png");
+            Icons_Scots_research.Images.SetKeyName(11, "Ritual of Divine Truce.png");
+            Icons_Scots_research.Images.SetKeyName(12, "Ritual of Leonine Strength.png");
+            Icons_Scots_research.Images.SetKeyName(13, "Ritual of the Risen Rock.png");
+            Icons_Scots_research.Images.SetKeyName(14, "Ritual of the Unseen Scout.png");
+            Icons_Scots_research.Images.SetKeyName(15, "The Mermaid's Malice.png");
+            // 
+            // Sacrifices_Egyptians_research
+            // 
+            Sacrifices_Egyptians_research.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            Sacrifices_Egyptians_research.CheckBoxes = true;
             listViewItem1.StateImageIndex = 0;
+            listViewItem1.ToolTipText = "Blessing of the Nimble Archer";
             listViewItem2.StateImageIndex = 0;
+            listViewItem2.ToolTipText = "Blessing of the Satiated Miner";
             listViewItem3.StateImageIndex = 0;
+            listViewItem3.ToolTipText = "Cult of the Bottomless Bucket";
             listViewItem4.StateImageIndex = 0;
+            listViewItem4.ToolTipText = "Cult of the Clandestine Coinage";
             listViewItem5.StateImageIndex = 0;
+            listViewItem5.ToolTipText = "Cult of the Fabled Fakes";
             listViewItem6.StateImageIndex = 0;
+            listViewItem6.ToolTipText = "Cult of the Iron Bulwark";
             listViewItem7.StateImageIndex = 0;
+            listViewItem7.ToolTipText = "Cult of the Sacred Schnitzel";
             listViewItem8.StateImageIndex = 0;
+            listViewItem8.ToolTipText = "Cult of the Swift Bow";
             listViewItem9.StateImageIndex = 0;
+            listViewItem9.ToolTipText = "Curse of the Great Becalming";
             listViewItem10.StateImageIndex = 0;
+            listViewItem10.ToolTipText = "Incantation of Vitality";
             listViewItem11.StateImageIndex = 0;
+            listViewItem11.ToolTipText = "Manifestation of Midas";
             listViewItem12.StateImageIndex = 0;
+            listViewItem12.ToolTipText = "Rite of the Shifting Frontier";
             listViewItem13.StateImageIndex = 0;
+            listViewItem13.ToolTipText = "Ritual of Divine Truce";
             listViewItem14.StateImageIndex = 0;
+            listViewItem14.ToolTipText = "Ritual of Leonine Strength";
             listViewItem15.StateImageIndex = 0;
+            listViewItem15.ToolTipText = "Ritual of the Conjured Clay";
             listViewItem16.StateImageIndex = 0;
-            this.Sacrifices_research_Scots.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15,
-            listViewItem16});
-            this.Sacrifices_research_Scots.Location = new System.Drawing.Point(3, 356);
-            this.Sacrifices_research_Scots.MinimumSize = new System.Drawing.Size(0, 60);
-            this.Sacrifices_research_Scots.Name = "Sacrifices_research_Scots";
-            this.Sacrifices_research_Scots.ShowItemToolTips = true;
-            this.Sacrifices_research_Scots.Size = new System.Drawing.Size(1198, 60);
-            this.Sacrifices_research_Scots.SmallImageList = this.Research_Scots_icons;
-            this.Sacrifices_research_Scots.TabIndex = 16;
-            this.Sacrifices_research_Scots.UseCompatibleStateImageBehavior = false;
-            this.Sacrifices_research_Scots.View = System.Windows.Forms.View.SmallIcon;
-            this.Sacrifices_research_Scots.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.Sacrifices_research_Scots_ItemChecked);
+            listViewItem16.ToolTipText = "Ritual of the Risen Rock";
+            listViewItem81.StateImageIndex = 0;
+            listViewItem81.ToolTipText = "Ritual of the Unseen Scout";
+            listViewItem82.StateImageIndex = 0;
+            listViewItem82.ToolTipText = "The Mermaid's Malice";
+            Sacrifices_Egyptians_research.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5, listViewItem6, listViewItem7, listViewItem8, listViewItem9, listViewItem10, listViewItem11, listViewItem12, listViewItem13, listViewItem14, listViewItem15, listViewItem16, listViewItem81, listViewItem82 });
+            Sacrifices_Egyptians_research.Location = new System.Drawing.Point(3, 303);
+            Sacrifices_Egyptians_research.MinimumSize = new System.Drawing.Size(4, 82);
+            Sacrifices_Egyptians_research.Name = "Sacrifices_Egyptians_research";
+            Sacrifices_Egyptians_research.ShowItemToolTips = true;
+            Sacrifices_Egyptians_research.Size = new System.Drawing.Size(1206, 82);
+            Sacrifices_Egyptians_research.SmallImageList = Icons_Egyptians_research;
+            Sacrifices_Egyptians_research.TabIndex = 15;
+            Sacrifices_Egyptians_research.UseCompatibleStateImageBehavior = false;
+            Sacrifices_Egyptians_research.View = System.Windows.Forms.View.SmallIcon;
+            Sacrifices_Egyptians_research.ItemChecked += Sacrifices_research_Egyptians_ItemChecked;
             // 
-            // Research_Scots_icons
+            // Icons_Egyptians_research
             // 
-            this.Research_Scots_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Research_Scots_icons.ImageStream")));
-            this.Research_Scots_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.Research_Scots_icons.Images.SetKeyName(0, "Blessing of Fortified Foundations.png");
-            this.Research_Scots_icons.Images.SetKeyName(1, "Blessing of the Satiated Miner.png");
-            this.Research_Scots_icons.Images.SetKeyName(2, "Conjuration of Courageous Kilts.png");
-            this.Research_Scots_icons.Images.SetKeyName(3, "Cult of the Clandestine Coinage.png");
-            this.Research_Scots_icons.Images.SetKeyName(4, "Cult of the Fabled Fakes.png");
-            this.Research_Scots_icons.Images.SetKeyName(5, "Curse of the Great Becalming.png");
-            this.Research_Scots_icons.Images.SetKeyName(6, "Incantation of Vitality.png");
-            this.Research_Scots_icons.Images.SetKeyName(7, "Liturgy of the Water of Life.png");
-            this.Research_Scots_icons.Images.SetKeyName(8, "Manifestation of Midas.png");
-            this.Research_Scots_icons.Images.SetKeyName(9, "Rite of the Keen Claymore.png");
-            this.Research_Scots_icons.Images.SetKeyName(10, "Rite of the Shifting Frontier.png");
-            this.Research_Scots_icons.Images.SetKeyName(11, "Ritual of Divine Truce.png");
-            this.Research_Scots_icons.Images.SetKeyName(12, "Ritual of Leonine Strength.png");
-            this.Research_Scots_icons.Images.SetKeyName(13, "Ritual of the Risen Rock.png");
-            this.Research_Scots_icons.Images.SetKeyName(14, "Ritual of the Unseen Scout.png");
-            this.Research_Scots_icons.Images.SetKeyName(15, "The Mermaid\'s Malice.png");
+            Icons_Egyptians_research.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            Icons_Egyptians_research.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("Icons_Egyptians_research.ImageStream");
+            Icons_Egyptians_research.TransparentColor = System.Drawing.Color.Transparent;
+            Icons_Egyptians_research.Images.SetKeyName(0, "Blessing of the Nimble Archer.png");
+            Icons_Egyptians_research.Images.SetKeyName(1, "Blessing of the Satiated Miner.png");
+            Icons_Egyptians_research.Images.SetKeyName(2, "Cult of the Bottomless Bucket.png");
+            Icons_Egyptians_research.Images.SetKeyName(3, "Cult of the Clandestine Coinage.png");
+            Icons_Egyptians_research.Images.SetKeyName(4, "Cult of the Fabled Fakes.png");
+            Icons_Egyptians_research.Images.SetKeyName(5, "Cult of the Iron Bulwark.png");
+            Icons_Egyptians_research.Images.SetKeyName(6, "Cult of the Sacred Schnitzel.png");
+            Icons_Egyptians_research.Images.SetKeyName(7, "Cult of the Swift Bow.png");
+            Icons_Egyptians_research.Images.SetKeyName(8, "Curse of the Great Becalming.png");
+            Icons_Egyptians_research.Images.SetKeyName(9, "Incantation of Vitality.png");
+            Icons_Egyptians_research.Images.SetKeyName(10, "Manifestation of Midas.png");
+            Icons_Egyptians_research.Images.SetKeyName(11, "Rite of the Shifting Frontier.png");
+            Icons_Egyptians_research.Images.SetKeyName(12, "Ritual of Divine Truce.png");
+            Icons_Egyptians_research.Images.SetKeyName(13, "Ritual of Leonine Strength.png");
+            Icons_Egyptians_research.Images.SetKeyName(14, "Ritual of the Conjured Clay.png");
+            Icons_Egyptians_research.Images.SetKeyName(15, "Ritual of the Risen Rock.png");
+            Icons_Egyptians_research.Images.SetKeyName(16, "Ritual of the Unseen Scout.png");
+            Icons_Egyptians_research.Images.SetKeyName(17, "The Mermaid's Malice.png");
             // 
-            // Sacrifices_research_Egyptians
+            // Sacrifices_Bavarians_research
             // 
-            this.Sacrifices_research_Egyptians.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.Sacrifices_research_Egyptians.CheckBoxes = true;
-            this.Sacrifices_research_Egyptians.HideSelection = false;
+            Sacrifices_Bavarians_research.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            Sacrifices_Bavarians_research.CheckBoxes = true;
             listViewItem17.StateImageIndex = 0;
+            listViewItem17.ToolTipText = "Blessing of Fortified Foundations";
             listViewItem18.StateImageIndex = 0;
+            listViewItem18.ToolTipText = "Blessing of the Satiated Miner";
             listViewItem19.StateImageIndex = 0;
+            listViewItem19.ToolTipText = "Cult of the Clandestine Coinage";
             listViewItem20.StateImageIndex = 0;
+            listViewItem20.ToolTipText = "Cult of the Fabled Fakes";
             listViewItem21.StateImageIndex = 0;
+            listViewItem21.ToolTipText = "Cult of the Iron Bulwark";
             listViewItem22.StateImageIndex = 0;
+            listViewItem22.ToolTipText = "Haste of the Harrier";
             listViewItem23.StateImageIndex = 0;
+            listViewItem23.ToolTipText = "Incantation of the Overflowing Cask";
             listViewItem24.StateImageIndex = 0;
+            listViewItem24.ToolTipText = "Incantation of Vitality";
             listViewItem25.StateImageIndex = 0;
+            listViewItem25.ToolTipText = "Liturgy of the Pointed Pike";
             listViewItem26.StateImageIndex = 0;
+            listViewItem26.ToolTipText = "Manifestation of Midas";
             listViewItem27.StateImageIndex = 0;
+            listViewItem27.ToolTipText = "Poseidon's Propultion";
             listViewItem28.StateImageIndex = 0;
+            listViewItem28.ToolTipText = "Rite of the Shifting Frontier";
             listViewItem29.StateImageIndex = 0;
+            listViewItem29.ToolTipText = "Ritual of Divine Truce";
             listViewItem30.StateImageIndex = 0;
+            listViewItem30.ToolTipText = "Ritual of the Risen Rock";
             listViewItem31.StateImageIndex = 0;
+            listViewItem31.ToolTipText = "Ritual of the Unseen Scout";
             listViewItem32.StateImageIndex = 0;
+            listViewItem32.ToolTipText = "The Mermaid's Malice";
+            Sacrifices_Bavarians_research.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem17, listViewItem18, listViewItem19, listViewItem20, listViewItem21, listViewItem22, listViewItem23, listViewItem24, listViewItem25, listViewItem26, listViewItem27, listViewItem28, listViewItem29, listViewItem30, listViewItem31, listViewItem32 });
+            Sacrifices_Bavarians_research.Location = new System.Drawing.Point(3, 222);
+            Sacrifices_Bavarians_research.MinimumSize = new System.Drawing.Size(4, 82);
+            Sacrifices_Bavarians_research.Name = "Sacrifices_Bavarians_research";
+            Sacrifices_Bavarians_research.ShowItemToolTips = true;
+            Sacrifices_Bavarians_research.Size = new System.Drawing.Size(1206, 82);
+            Sacrifices_Bavarians_research.SmallImageList = Icons_Bavarians_research;
+            Sacrifices_Bavarians_research.TabIndex = 14;
+            Sacrifices_Bavarians_research.UseCompatibleStateImageBehavior = false;
+            Sacrifices_Bavarians_research.View = System.Windows.Forms.View.SmallIcon;
+            Sacrifices_Bavarians_research.ItemChecked += Sacrifices_research_Bavarians_ItemChecked;
+            // 
+            // Icons_Bavarians_research
+            // 
+            Icons_Bavarians_research.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            Icons_Bavarians_research.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("Icons_Bavarians_research.ImageStream");
+            Icons_Bavarians_research.TransparentColor = System.Drawing.Color.Transparent;
+            Icons_Bavarians_research.Images.SetKeyName(0, "Blessing of Fortified Foundations.png");
+            Icons_Bavarians_research.Images.SetKeyName(1, "Blessing of the Satiated Miner.png");
+            Icons_Bavarians_research.Images.SetKeyName(2, "Cult of the Clandestine Coinage.png");
+            Icons_Bavarians_research.Images.SetKeyName(3, "Cult of the Fabled Fakes.png");
+            Icons_Bavarians_research.Images.SetKeyName(4, "Cult of the Iron Bulwark.png");
+            Icons_Bavarians_research.Images.SetKeyName(5, "Haste of the Harrier.png");
+            Icons_Bavarians_research.Images.SetKeyName(6, "Incantation of the Overflowing Cask.png");
+            Icons_Bavarians_research.Images.SetKeyName(7, "Incantation of Vitality.png");
+            Icons_Bavarians_research.Images.SetKeyName(8, "Liturgy of the Pointed Pike.png");
+            Icons_Bavarians_research.Images.SetKeyName(9, "Manifestation of Midas.png");
+            Icons_Bavarians_research.Images.SetKeyName(10, "Poseidon's Propultion.png");
+            Icons_Bavarians_research.Images.SetKeyName(11, "Rite of the Shifting Frontier.png");
+            Icons_Bavarians_research.Images.SetKeyName(12, "Ritual of Divine Truce.png");
+            Icons_Bavarians_research.Images.SetKeyName(13, "Ritual of the Risen Rock.png");
+            Icons_Bavarians_research.Images.SetKeyName(14, "Ritual of the Unseen Scout.png");
+            Icons_Bavarians_research.Images.SetKeyName(15, "The Mermaid's Malice.png");
+            // 
+            // Sacrifices_Scots_research_usage
+            // 
+            Sacrifices_Scots_research_usage.AutoSize = true;
+            Sacrifices_Scots_research_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
+            Sacrifices_Scots_research_usage.ForeColor = System.Drawing.Color.DarkGreen;
+            Sacrifices_Scots_research_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_Scots_research_usage.Location = new System.Drawing.Point(793, 189);
+            Sacrifices_Scots_research_usage.Name = "Sacrifices_Scots_research_usage";
+            Sacrifices_Scots_research_usage.Size = new System.Drawing.Size(105, 28);
+            Sacrifices_Scots_research_usage.TabIndex = 13;
+            Sacrifices_Scots_research_usage.Text = "Scots 0/8";
+            // 
+            // Sacrifices_Bavarians_no_research
+            // 
+            Sacrifices_Bavarians_no_research.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            Sacrifices_Bavarians_no_research.CheckBoxes = true;
             listViewItem33.StateImageIndex = 0;
+            listViewItem33.ToolTipText = "Conjuration of the Bountiful Harvest";
             listViewItem34.StateImageIndex = 0;
-            this.Sacrifices_research_Egyptians.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem17,
-            listViewItem18,
-            listViewItem19,
-            listViewItem20,
-            listViewItem21,
-            listViewItem22,
-            listViewItem23,
-            listViewItem24,
-            listViewItem25,
-            listViewItem26,
-            listViewItem27,
-            listViewItem28,
-            listViewItem29,
-            listViewItem30,
-            listViewItem31,
-            listViewItem32,
-            listViewItem33,
-            listViewItem34});
-            this.Sacrifices_research_Egyptians.Location = new System.Drawing.Point(3, 297);
-            this.Sacrifices_research_Egyptians.MinimumSize = new System.Drawing.Size(0, 60);
-            this.Sacrifices_research_Egyptians.Name = "Sacrifices_research_Egyptians";
-            this.Sacrifices_research_Egyptians.ShowItemToolTips = true;
-            this.Sacrifices_research_Egyptians.Size = new System.Drawing.Size(1198, 60);
-            this.Sacrifices_research_Egyptians.SmallImageList = this.Research_Egyptians_icons;
-            this.Sacrifices_research_Egyptians.TabIndex = 15;
-            this.Sacrifices_research_Egyptians.UseCompatibleStateImageBehavior = false;
-            this.Sacrifices_research_Egyptians.View = System.Windows.Forms.View.SmallIcon;
-            this.Sacrifices_research_Egyptians.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.Sacrifices_research_Egyptians_ItemChecked);
-            // 
-            // Research_Egyptians_icons
-            // 
-            this.Research_Egyptians_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Research_Egyptians_icons.ImageStream")));
-            this.Research_Egyptians_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.Research_Egyptians_icons.Images.SetKeyName(0, "Blessing of the Nimble Archer.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(1, "Blessing of the Satiated Miner.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(2, "Cult of the Bottomless Bucket.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(3, "Cult of the Clandestine Coinage.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(4, "Cult of the Fabled Fakes.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(5, "Cult of the Iron Bulwark.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(6, "Cult of the Sacred Schnitzel.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(7, "Cult of the Swift Bow.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(8, "Curse of the Great Becalming.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(9, "Incantation of Vitality.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(10, "Manifestation of Midas.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(11, "Rite of the Shifting Frontier.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(12, "Ritual of Divine Truce.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(13, "Ritual of Leonine Strength.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(14, "Ritual of the Conjured Clay.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(15, "Ritual of the Risen Rock.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(16, "Ritual of the Unseen Scout.png");
-            this.Research_Egyptians_icons.Images.SetKeyName(17, "The Mermaid\'s Malice.png");
-            // 
-            // Sacrifices_research_Bavarians
-            // 
-            this.Sacrifices_research_Bavarians.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.Sacrifices_research_Bavarians.CheckBoxes = true;
-            this.Sacrifices_research_Bavarians.HideSelection = false;
+            listViewItem34.ToolTipText = "Cult of Swift Craftsmanship";
             listViewItem35.StateImageIndex = 0;
+            listViewItem35.ToolTipText = "Rites of the Rapid Root";
             listViewItem36.StateImageIndex = 0;
+            listViewItem36.ToolTipText = "The Angler's Apparition";
+            Sacrifices_Bavarians_no_research.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem33, listViewItem34, listViewItem35, listViewItem36 });
+            Sacrifices_Bavarians_no_research.Location = new System.Drawing.Point(3, 32);
+            Sacrifices_Bavarians_no_research.MinimumSize = new System.Drawing.Size(4, 52);
+            Sacrifices_Bavarians_no_research.Name = "Sacrifices_Bavarians_no_research";
+            Sacrifices_Bavarians_no_research.ShowItemToolTips = true;
+            Sacrifices_Bavarians_no_research.Size = new System.Drawing.Size(1206, 52);
+            Sacrifices_Bavarians_no_research.SmallImageList = Icons_Bavarians_no_research;
+            Sacrifices_Bavarians_no_research.TabIndex = 5;
+            Sacrifices_Bavarians_no_research.UseCompatibleStateImageBehavior = false;
+            Sacrifices_Bavarians_no_research.View = System.Windows.Forms.View.SmallIcon;
+            Sacrifices_Bavarians_no_research.ItemChecked += Sacrifices_no_research_Bavarians_ItemChecked;
+            // 
+            // Icons_Bavarians_no_research
+            // 
+            Icons_Bavarians_no_research.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            Icons_Bavarians_no_research.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("Icons_Bavarians_no_research.ImageStream");
+            Icons_Bavarians_no_research.TransparentColor = System.Drawing.Color.Transparent;
+            Icons_Bavarians_no_research.Images.SetKeyName(0, "Conjuration of the Bountiful Harvest.png");
+            Icons_Bavarians_no_research.Images.SetKeyName(1, "Cult of Swift Craftsmanship.png");
+            Icons_Bavarians_no_research.Images.SetKeyName(2, "Rites of the Rapid Root.png");
+            Icons_Bavarians_no_research.Images.SetKeyName(3, "The Angler's Apparition.png");
+            // 
+            // Sacrifices_Scots_no_research_usage
+            // 
+            Sacrifices_Scots_no_research_usage.AutoSize = true;
+            Sacrifices_Scots_no_research_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
+            Sacrifices_Scots_no_research_usage.ForeColor = System.Drawing.Color.DarkGreen;
+            Sacrifices_Scots_no_research_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_Scots_no_research_usage.Location = new System.Drawing.Point(793, 1);
+            Sacrifices_Scots_no_research_usage.Name = "Sacrifices_Scots_no_research_usage";
+            Sacrifices_Scots_no_research_usage.Size = new System.Drawing.Size(105, 28);
+            Sacrifices_Scots_no_research_usage.TabIndex = 10;
+            Sacrifices_Scots_no_research_usage.Text = "Scots 0/4";
+            // 
+            // Sacrifices_Egyptians_research_usage
+            // 
+            Sacrifices_Egyptians_research_usage.AutoSize = true;
+            Sacrifices_Egyptians_research_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
+            Sacrifices_Egyptians_research_usage.ForeColor = System.Drawing.Color.DarkGreen;
+            Sacrifices_Egyptians_research_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_Egyptians_research_usage.Location = new System.Drawing.Point(545, 191);
+            Sacrifices_Egyptians_research_usage.Name = "Sacrifices_Egyptians_research_usage";
+            Sacrifices_Egyptians_research_usage.Size = new System.Drawing.Size(149, 28);
+            Sacrifices_Egyptians_research_usage.TabIndex = 12;
+            Sacrifices_Egyptians_research_usage.Text = "Egyptians 0/8";
+            // 
+            // Sacrifices_Egyptians_no_research_usage
+            // 
+            Sacrifices_Egyptians_no_research_usage.AutoSize = true;
+            Sacrifices_Egyptians_no_research_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
+            Sacrifices_Egyptians_no_research_usage.ForeColor = System.Drawing.Color.DarkGreen;
+            Sacrifices_Egyptians_no_research_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_Egyptians_no_research_usage.Location = new System.Drawing.Point(545, 1);
+            Sacrifices_Egyptians_no_research_usage.Name = "Sacrifices_Egyptians_no_research_usage";
+            Sacrifices_Egyptians_no_research_usage.Size = new System.Drawing.Size(149, 28);
+            Sacrifices_Egyptians_no_research_usage.TabIndex = 9;
+            Sacrifices_Egyptians_no_research_usage.Text = "Egyptians 0/4";
+            // 
+            // Sacrifices_Bavarians_no_research_usage
+            // 
+            Sacrifices_Bavarians_no_research_usage.AutoSize = true;
+            Sacrifices_Bavarians_no_research_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
+            Sacrifices_Bavarians_no_research_usage.ForeColor = System.Drawing.Color.DarkGreen;
+            Sacrifices_Bavarians_no_research_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_Bavarians_no_research_usage.Location = new System.Drawing.Point(314, 0);
+            Sacrifices_Bavarians_no_research_usage.Name = "Sacrifices_Bavarians_no_research_usage";
+            Sacrifices_Bavarians_no_research_usage.Size = new System.Drawing.Size(151, 28);
+            Sacrifices_Bavarians_no_research_usage.TabIndex = 8;
+            Sacrifices_Bavarians_no_research_usage.Text = "Bavarians 0/4";
+            // 
+            // Sacrifices_Bavarians_research_usage
+            // 
+            Sacrifices_Bavarians_research_usage.AutoSize = true;
+            Sacrifices_Bavarians_research_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
+            Sacrifices_Bavarians_research_usage.ForeColor = System.Drawing.Color.DarkGreen;
+            Sacrifices_Bavarians_research_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_Bavarians_research_usage.Location = new System.Drawing.Point(314, 191);
+            Sacrifices_Bavarians_research_usage.Name = "Sacrifices_Bavarians_research_usage";
+            Sacrifices_Bavarians_research_usage.Size = new System.Drawing.Size(151, 28);
+            Sacrifices_Bavarians_research_usage.TabIndex = 11;
+            Sacrifices_Bavarians_research_usage.Text = "Bavarians 0/8";
+            // 
+            // Sacrifices_Scots_no_research
+            // 
+            Sacrifices_Scots_no_research.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            Sacrifices_Scots_no_research.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            Sacrifices_Scots_no_research.CheckBoxes = true;
             listViewItem37.StateImageIndex = 0;
+            listViewItem37.ToolTipText = "Conjuration of the Bountiful Harvest";
             listViewItem38.StateImageIndex = 0;
+            listViewItem38.ToolTipText = "Rite of the Fleet-Footed";
             listViewItem39.StateImageIndex = 0;
+            listViewItem39.ToolTipText = "Rites of the Rapid Root";
             listViewItem40.StateImageIndex = 0;
+            listViewItem40.ToolTipText = "The Angler's Apparition";
             listViewItem41.StateImageIndex = 0;
-            listViewItem42.StateImageIndex = 0;
-            listViewItem43.StateImageIndex = 0;
-            listViewItem44.StateImageIndex = 0;
-            listViewItem45.StateImageIndex = 0;
-            listViewItem46.StateImageIndex = 0;
-            listViewItem47.StateImageIndex = 0;
-            listViewItem48.StateImageIndex = 0;
-            listViewItem49.StateImageIndex = 0;
-            listViewItem50.StateImageIndex = 0;
-            this.Sacrifices_research_Bavarians.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem35,
-            listViewItem36,
-            listViewItem37,
-            listViewItem38,
-            listViewItem39,
-            listViewItem40,
-            listViewItem41,
-            listViewItem42,
-            listViewItem43,
-            listViewItem44,
-            listViewItem45,
-            listViewItem46,
-            listViewItem47,
-            listViewItem48,
-            listViewItem49,
-            listViewItem50});
-            this.Sacrifices_research_Bavarians.Location = new System.Drawing.Point(3, 240);
-            this.Sacrifices_research_Bavarians.MinimumSize = new System.Drawing.Size(0, 60);
-            this.Sacrifices_research_Bavarians.Name = "Sacrifices_research_Bavarians";
-            this.Sacrifices_research_Bavarians.ShowItemToolTips = true;
-            this.Sacrifices_research_Bavarians.Size = new System.Drawing.Size(1198, 60);
-            this.Sacrifices_research_Bavarians.SmallImageList = this.Research_Bavarians_icons;
-            this.Sacrifices_research_Bavarians.TabIndex = 14;
-            this.Sacrifices_research_Bavarians.UseCompatibleStateImageBehavior = false;
-            this.Sacrifices_research_Bavarians.View = System.Windows.Forms.View.SmallIcon;
-            this.Sacrifices_research_Bavarians.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.Sacrifices_research_Bavarians_ItemChecked);
+            listViewItem41.ToolTipText = "The Sluggard's Ceremony";
+            Sacrifices_Scots_no_research.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem37, listViewItem38, listViewItem39, listViewItem40, listViewItem41 });
+            Sacrifices_Scots_no_research.Location = new System.Drawing.Point(3, 134);
+            Sacrifices_Scots_no_research.MinimumSize = new System.Drawing.Size(4, 52);
+            Sacrifices_Scots_no_research.Name = "Sacrifices_Scots_no_research";
+            Sacrifices_Scots_no_research.ShowItemToolTips = true;
+            Sacrifices_Scots_no_research.Size = new System.Drawing.Size(1206, 52);
+            Sacrifices_Scots_no_research.SmallImageList = Icons_Scots_no_research;
+            Sacrifices_Scots_no_research.TabIndex = 7;
+            Sacrifices_Scots_no_research.UseCompatibleStateImageBehavior = false;
+            Sacrifices_Scots_no_research.View = System.Windows.Forms.View.SmallIcon;
+            Sacrifices_Scots_no_research.ItemChecked += Sacrifices_no_research_Scots_ItemChecked;
             // 
-            // Research_Bavarians_icons
+            // Icons_Scots_no_research
             // 
-            this.Research_Bavarians_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Research_Bavarians_icons.ImageStream")));
-            this.Research_Bavarians_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.Research_Bavarians_icons.Images.SetKeyName(0, "Blessing of Fortified Foundations.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(1, "Blessing of the Satiated Miner.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(2, "Cult of the Clandestine Coinage.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(3, "Cult of the Fabled Fakes.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(4, "Cult of the Iron Bulwark.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(5, "Haste of the Harrier.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(6, "Incantation of the Overflowing Cask.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(7, "Incantation of Vitality.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(8, "Liturgy of the Pointed Pike.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(9, "Manifestation of Midas.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(10, "Poseidon\'s Propultion.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(11, "Rite of the Shifting Frontier.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(12, "Ritual of Divine Truce.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(13, "Ritual of the Risen Rock.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(14, "Ritual of the Unseen Scout.png");
-            this.Research_Bavarians_icons.Images.SetKeyName(15, "The Mermaid\'s Malice.png");
-            // 
-            // Research_Scots_usage
-            // 
-            this.Research_Scots_usage.AutoSize = true;
-            this.Research_Scots_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
-            this.Research_Scots_usage.ForeColor = System.Drawing.Color.DarkGreen;
-            this.Research_Scots_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Research_Scots_usage.Location = new System.Drawing.Point(600, 209);
-            this.Research_Scots_usage.Name = "Research_Scots_usage";
-            this.Research_Scots_usage.Size = new System.Drawing.Size(105, 28);
-            this.Research_Scots_usage.TabIndex = 13;
-            this.Research_Scots_usage.Text = "Scots 0/8";
-            // 
-            // Sacrifices_no_research_Bavarians
-            // 
-            this.Sacrifices_no_research_Bavarians.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.Sacrifices_no_research_Bavarians.CheckBoxes = true;
-            this.Sacrifices_no_research_Bavarians.HideSelection = false;
-            listViewItem51.StateImageIndex = 0;
-            listViewItem52.StateImageIndex = 0;
-            listViewItem53.StateImageIndex = 0;
-            listViewItem54.StateImageIndex = 0;
-            this.Sacrifices_no_research_Bavarians.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem51,
-            listViewItem52,
-            listViewItem53,
-            listViewItem54});
-            this.Sacrifices_no_research_Bavarians.Location = new System.Drawing.Point(3, 31);
-            this.Sacrifices_no_research_Bavarians.MinimumSize = new System.Drawing.Size(0, 60);
-            this.Sacrifices_no_research_Bavarians.Name = "Sacrifices_no_research_Bavarians";
-            this.Sacrifices_no_research_Bavarians.ShowItemToolTips = true;
-            this.Sacrifices_no_research_Bavarians.Size = new System.Drawing.Size(1198, 60);
-            this.Sacrifices_no_research_Bavarians.SmallImageList = this.No_research_Bavarians_icons;
-            this.Sacrifices_no_research_Bavarians.TabIndex = 5;
-            this.Sacrifices_no_research_Bavarians.UseCompatibleStateImageBehavior = false;
-            this.Sacrifices_no_research_Bavarians.View = System.Windows.Forms.View.SmallIcon;
-            this.Sacrifices_no_research_Bavarians.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.Sacrifices_no_research_Bavarians_ItemChecked);
-            // 
-            // No_research_Bavarians_icons
-            // 
-            this.No_research_Bavarians_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("No_research_Bavarians_icons.ImageStream")));
-            this.No_research_Bavarians_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.No_research_Bavarians_icons.Images.SetKeyName(0, "Conjuration of the Bountiful Harvest.png");
-            this.No_research_Bavarians_icons.Images.SetKeyName(1, "Cult of Swift Craftsmanship.png");
-            this.No_research_Bavarians_icons.Images.SetKeyName(2, "Rites of the Rapid Root.png");
-            this.No_research_Bavarians_icons.Images.SetKeyName(3, "The Angler\'s Apparition.png");
-            // 
-            // No_research_Scots_usage
-            // 
-            this.No_research_Scots_usage.AutoSize = true;
-            this.No_research_Scots_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
-            this.No_research_Scots_usage.ForeColor = System.Drawing.Color.DarkGreen;
-            this.No_research_Scots_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.No_research_Scots_usage.Location = new System.Drawing.Point(620, 0);
-            this.No_research_Scots_usage.Name = "No_research_Scots_usage";
-            this.No_research_Scots_usage.Size = new System.Drawing.Size(105, 28);
-            this.No_research_Scots_usage.TabIndex = 10;
-            this.No_research_Scots_usage.Text = "Scots 0/4";
-            // 
-            // Research_Egyptians_usage
-            // 
-            this.Research_Egyptians_usage.AutoSize = true;
-            this.Research_Egyptians_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
-            this.Research_Egyptians_usage.ForeColor = System.Drawing.Color.DarkGreen;
-            this.Research_Egyptians_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Research_Egyptians_usage.Location = new System.Drawing.Point(445, 209);
-            this.Research_Egyptians_usage.Name = "Research_Egyptians_usage";
-            this.Research_Egyptians_usage.Size = new System.Drawing.Size(149, 28);
-            this.Research_Egyptians_usage.TabIndex = 12;
-            this.Research_Egyptians_usage.Text = "Egyptians 0/8";
-            // 
-            // Research_Bavarians_usage
-            // 
-            this.Research_Bavarians_usage.AutoSize = true;
-            this.Research_Bavarians_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
-            this.Research_Bavarians_usage.ForeColor = System.Drawing.Color.DarkGreen;
-            this.Research_Bavarians_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Research_Bavarians_usage.Location = new System.Drawing.Point(288, 209);
-            this.Research_Bavarians_usage.Name = "Research_Bavarians_usage";
-            this.Research_Bavarians_usage.Size = new System.Drawing.Size(151, 28);
-            this.Research_Bavarians_usage.TabIndex = 11;
-            this.Research_Bavarians_usage.Text = "Bavarians 0/8";
-            // 
-            // No_research_Egyptians_usage
-            // 
-            this.No_research_Egyptians_usage.AutoSize = true;
-            this.No_research_Egyptians_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
-            this.No_research_Egyptians_usage.ForeColor = System.Drawing.Color.DarkGreen;
-            this.No_research_Egyptians_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.No_research_Egyptians_usage.Location = new System.Drawing.Point(465, 0);
-            this.No_research_Egyptians_usage.Name = "No_research_Egyptians_usage";
-            this.No_research_Egyptians_usage.Size = new System.Drawing.Size(149, 28);
-            this.No_research_Egyptians_usage.TabIndex = 9;
-            this.No_research_Egyptians_usage.Text = "Egyptians 0/4";
-            // 
-            // No_research_Bavarians_usage
-            // 
-            this.No_research_Bavarians_usage.AutoSize = true;
-            this.No_research_Bavarians_usage.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold);
-            this.No_research_Bavarians_usage.ForeColor = System.Drawing.Color.DarkGreen;
-            this.No_research_Bavarians_usage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.No_research_Bavarians_usage.Location = new System.Drawing.Point(308, 0);
-            this.No_research_Bavarians_usage.Name = "No_research_Bavarians_usage";
-            this.No_research_Bavarians_usage.Size = new System.Drawing.Size(151, 28);
-            this.No_research_Bavarians_usage.TabIndex = 8;
-            this.No_research_Bavarians_usage.Text = "Bavarians 0/4";
-            // 
-            // Sacrifices_no_research_Scots
-            // 
-            this.Sacrifices_no_research_Scots.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.Sacrifices_no_research_Scots.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.Sacrifices_no_research_Scots.CheckBoxes = true;
-            this.Sacrifices_no_research_Scots.HideSelection = false;
-            listViewItem55.StateImageIndex = 0;
-            listViewItem56.StateImageIndex = 0;
-            listViewItem57.StateImageIndex = 0;
-            listViewItem58.StateImageIndex = 0;
-            listViewItem59.StateImageIndex = 0;
-            this.Sacrifices_no_research_Scots.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem55,
-            listViewItem56,
-            listViewItem57,
-            listViewItem58,
-            listViewItem59});
-            this.Sacrifices_no_research_Scots.Location = new System.Drawing.Point(3, 145);
-            this.Sacrifices_no_research_Scots.MinimumSize = new System.Drawing.Size(0, 60);
-            this.Sacrifices_no_research_Scots.Name = "Sacrifices_no_research_Scots";
-            this.Sacrifices_no_research_Scots.ShowItemToolTips = true;
-            this.Sacrifices_no_research_Scots.Size = new System.Drawing.Size(1198, 60);
-            this.Sacrifices_no_research_Scots.SmallImageList = this.No_research_Scots_icons;
-            this.Sacrifices_no_research_Scots.TabIndex = 7;
-            this.Sacrifices_no_research_Scots.UseCompatibleStateImageBehavior = false;
-            this.Sacrifices_no_research_Scots.View = System.Windows.Forms.View.SmallIcon;
-            this.Sacrifices_no_research_Scots.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.Sacrifices_no_research_Scots_ItemChecked);
-            // 
-            // No_research_Scots_icons
-            // 
-            this.No_research_Scots_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("No_research_Scots_icons.ImageStream")));
-            this.No_research_Scots_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.No_research_Scots_icons.Images.SetKeyName(0, "Conjuration of the Bountiful Harvest.png");
-            this.No_research_Scots_icons.Images.SetKeyName(1, "Rite of the Fleet-Footed.png");
-            this.No_research_Scots_icons.Images.SetKeyName(2, "Rites of the Rapid Root.png");
-            this.No_research_Scots_icons.Images.SetKeyName(3, "The Angler\'s Apparition.png");
-            this.No_research_Scots_icons.Images.SetKeyName(4, "The Sluggard\'s Ceremony.png");
+            Icons_Scots_no_research.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            Icons_Scots_no_research.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("Icons_Scots_no_research.ImageStream");
+            Icons_Scots_no_research.TransparentColor = System.Drawing.Color.Transparent;
+            Icons_Scots_no_research.Images.SetKeyName(0, "Conjuration of the Bountiful Harvest.png");
+            Icons_Scots_no_research.Images.SetKeyName(1, "Rite of the Fleet-Footed.png");
+            Icons_Scots_no_research.Images.SetKeyName(2, "Rites of the Rapid Root.png");
+            Icons_Scots_no_research.Images.SetKeyName(3, "The Angler's Apparition.png");
+            Icons_Scots_no_research.Images.SetKeyName(4, "The Sluggard's Ceremony.png");
             // 
             // Sacrifices_research_text
             // 
-            this.Sacrifices_research_text.AutoSize = true;
-            this.Sacrifices_research_text.Location = new System.Drawing.Point(3, 209);
-            this.Sacrifices_research_text.Name = "Sacrifices_research_text";
-            this.Sacrifices_research_text.Size = new System.Drawing.Size(279, 28);
-            this.Sacrifices_research_text.TabIndex = 4;
-            this.Sacrifices_research_text.Text = "Research sacrifice slots used:";
+            Sacrifices_research_text.AutoSize = true;
+            Sacrifices_research_text.Location = new System.Drawing.Point(3, 189);
+            Sacrifices_research_text.Name = "Sacrifices_research_text";
+            Sacrifices_research_text.Size = new System.Drawing.Size(280, 30);
+            Sacrifices_research_text.TabIndex = 4;
+            Sacrifices_research_text.Text = "Research sacrifice slots used:";
             // 
-            // Sacrifices_no_research_Egyptians
+            // Sacrifices_Egyptians_no_research
             // 
-            this.Sacrifices_no_research_Egyptians.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.Sacrifices_no_research_Egyptians.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.Sacrifices_no_research_Egyptians.CheckBoxes = true;
-            this.Sacrifices_no_research_Egyptians.HideSelection = false;
-            listViewItem60.StateImageIndex = 0;
-            listViewItem61.StateImageIndex = 0;
-            listViewItem62.StateImageIndex = 0;
-            listViewItem63.StateImageIndex = 0;
-            listViewItem64.StateImageIndex = 0;
-            this.Sacrifices_no_research_Egyptians.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem60,
-            listViewItem61,
-            listViewItem62,
-            listViewItem63,
-            listViewItem64});
-            this.Sacrifices_no_research_Egyptians.Location = new System.Drawing.Point(3, 88);
-            this.Sacrifices_no_research_Egyptians.MinimumSize = new System.Drawing.Size(0, 60);
-            this.Sacrifices_no_research_Egyptians.Name = "Sacrifices_no_research_Egyptians";
-            this.Sacrifices_no_research_Egyptians.ShowItemToolTips = true;
-            this.Sacrifices_no_research_Egyptians.Size = new System.Drawing.Size(1198, 60);
-            this.Sacrifices_no_research_Egyptians.SmallImageList = this.No_research_Egyptians_icons;
-            this.Sacrifices_no_research_Egyptians.TabIndex = 6;
-            this.Sacrifices_no_research_Egyptians.UseCompatibleStateImageBehavior = false;
-            this.Sacrifices_no_research_Egyptians.View = System.Windows.Forms.View.SmallIcon;
-            this.Sacrifices_no_research_Egyptians.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.Sacrifices_no_research_Egyptians_ItemChecked);
+            Sacrifices_Egyptians_no_research.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            Sacrifices_Egyptians_no_research.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            Sacrifices_Egyptians_no_research.CheckBoxes = true;
+            listViewItem42.StateImageIndex = 0;
+            listViewItem42.ToolTipText = "Conjuration of the Bountiful Harvest";
+            listViewItem43.StateImageIndex = 0;
+            listViewItem43.ToolTipText = "Cult of Swift Craftsmanship";
+            listViewItem44.StateImageIndex = 0;
+            listViewItem44.ToolTipText = "Liturgy of the Forester";
+            listViewItem45.StateImageIndex = 0;
+            listViewItem45.ToolTipText = "Liturgy of the Forester";
+            listViewItem46.StateImageIndex = 0;
+            listViewItem46.ToolTipText = "The Angler's Apparition";
+            Sacrifices_Egyptians_no_research.Items.AddRange(new System.Windows.Forms.ListViewItem[] { listViewItem42, listViewItem43, listViewItem44, listViewItem45, listViewItem46 });
+            Sacrifices_Egyptians_no_research.Location = new System.Drawing.Point(3, 83);
+            Sacrifices_Egyptians_no_research.MinimumSize = new System.Drawing.Size(4, 52);
+            Sacrifices_Egyptians_no_research.Name = "Sacrifices_Egyptians_no_research";
+            Sacrifices_Egyptians_no_research.ShowItemToolTips = true;
+            Sacrifices_Egyptians_no_research.Size = new System.Drawing.Size(1206, 52);
+            Sacrifices_Egyptians_no_research.SmallImageList = Icons_Egyptians_no_research;
+            Sacrifices_Egyptians_no_research.TabIndex = 6;
+            Sacrifices_Egyptians_no_research.UseCompatibleStateImageBehavior = false;
+            Sacrifices_Egyptians_no_research.View = System.Windows.Forms.View.SmallIcon;
+            Sacrifices_Egyptians_no_research.ItemChecked += Sacrifices_no_research_Egyptians_ItemChecked;
             // 
-            // No_research_Egyptians_icons
+            // Icons_Egyptians_no_research
             // 
-            this.No_research_Egyptians_icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("No_research_Egyptians_icons.ImageStream")));
-            this.No_research_Egyptians_icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.No_research_Egyptians_icons.Images.SetKeyName(0, "Conjuration of the Bountiful Harvest.png");
-            this.No_research_Egyptians_icons.Images.SetKeyName(1, "Cult of Swift Craftsmanship.png");
-            this.No_research_Egyptians_icons.Images.SetKeyName(2, "Liturgy of the Forester.png");
-            this.No_research_Egyptians_icons.Images.SetKeyName(3, "Liturgy of the Forester.png");
-            this.No_research_Egyptians_icons.Images.SetKeyName(4, "The Angler\'s Apparition.png");
+            Icons_Egyptians_no_research.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            Icons_Egyptians_no_research.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("Icons_Egyptians_no_research.ImageStream");
+            Icons_Egyptians_no_research.TransparentColor = System.Drawing.Color.Transparent;
+            Icons_Egyptians_no_research.Images.SetKeyName(0, "Conjuration of the Bountiful Harvest.png");
+            Icons_Egyptians_no_research.Images.SetKeyName(1, "Cult of Swift Craftsmanship.png");
+            Icons_Egyptians_no_research.Images.SetKeyName(2, "Liturgy of the Forester.png");
+            Icons_Egyptians_no_research.Images.SetKeyName(3, "Liturgy of the Forester.png");
+            Icons_Egyptians_no_research.Images.SetKeyName(4, "The Angler's Apparition.png");
             // 
             // Sacrifices_no_research_text
             // 
-            this.Sacrifices_no_research_text.AutoSize = true;
-            this.Sacrifices_no_research_text.Location = new System.Drawing.Point(3, 0);
-            this.Sacrifices_no_research_text.Name = "Sacrifices_no_research_text";
-            this.Sacrifices_no_research_text.Size = new System.Drawing.Size(308, 28);
-            this.Sacrifices_no_research_text.TabIndex = 1;
-            this.Sacrifices_no_research_text.Text = "No research sacrifice slots used:";
+            Sacrifices_no_research_text.AutoSize = true;
+            Sacrifices_no_research_text.Location = new System.Drawing.Point(0, -1);
+            Sacrifices_no_research_text.Name = "Sacrifices_no_research_text";
+            Sacrifices_no_research_text.Size = new System.Drawing.Size(309, 30);
+            Sacrifices_no_research_text.TabIndex = 1;
+            Sacrifices_no_research_text.Text = "No research sacrifice slots used:";
             // 
             // Colours_tab
             // 
-            this.Colours_tab.Controls.Add(this.Colours_table);
-            this.Colours_tab.Location = new System.Drawing.Point(4, 42);
-            this.Colours_tab.Name = "Colours_tab";
-            this.Colours_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Colours_tab.TabIndex = 13;
-            this.Colours_tab.Text = "Colours";
-            this.Colours_tab.UseVisualStyleBackColor = true;
+            Colours_tab.Controls.Add(Colours_table);
+            Colours_tab.Location = new System.Drawing.Point(4, 42);
+            Colours_tab.Name = "Colours_tab";
+            Colours_tab.Size = new System.Drawing.Size(1212, 473);
+            Colours_tab.TabIndex = 13;
+            Colours_tab.Text = "Colours";
             // 
             // Colours_table
             // 
-            this.Colours_table.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.Colours_table.ColumnCount = 3;
-            this.Colours_table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.Colours_table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.Colours_table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.Colours_table.Controls.Add(this.Player_6_select, 2, 3);
-            this.Colours_table.Controls.Add(this.Player_5_select, 1, 3);
-            this.Colours_table.Controls.Add(this.Player_4_select, 0, 3);
-            this.Colours_table.Controls.Add(this.Player_3_select, 2, 1);
-            this.Colours_table.Controls.Add(this.Player_2_select, 1, 1);
-            this.Colours_table.Controls.Add(this.Player_3_text, 2, 0);
-            this.Colours_table.Controls.Add(this.Player_2_text, 1, 0);
-            this.Colours_table.Controls.Add(this.Player_1_text, 0, 0);
-            this.Colours_table.Controls.Add(this.Player_4_text, 0, 2);
-            this.Colours_table.Controls.Add(this.Player_5_text, 1, 2);
-            this.Colours_table.Controls.Add(this.Player_6_text, 2, 2);
-            this.Colours_table.Controls.Add(this.Player_1_select, 0, 1);
-            this.Colours_table.Location = new System.Drawing.Point(3, 3);
-            this.Colours_table.Name = "Colours_table";
-            this.Colours_table.RowCount = 4;
-            this.Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.Colours_table.Size = new System.Drawing.Size(1198, 410);
-            this.Colours_table.TabIndex = 0;
+            Colours_table.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            Colours_table.ColumnCount = 3;
+            Colours_table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            Colours_table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            Colours_table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            Colours_table.Controls.Add(Colours_player_6_select, 2, 3);
+            Colours_table.Controls.Add(Colours_player_5_select, 1, 3);
+            Colours_table.Controls.Add(Colours_player_4_select, 0, 3);
+            Colours_table.Controls.Add(Colours_player_3_select, 2, 1);
+            Colours_table.Controls.Add(Colours_player_2_select, 1, 1);
+            Colours_table.Controls.Add(Colours_player_3_text, 2, 0);
+            Colours_table.Controls.Add(Colours_player_2_text, 1, 0);
+            Colours_table.Controls.Add(Colours_player_1_text, 0, 0);
+            Colours_table.Controls.Add(Colours_player_4_text, 0, 2);
+            Colours_table.Controls.Add(Colours_player_5_text, 1, 2);
+            Colours_table.Controls.Add(Colours_player_6_text, 2, 2);
+            Colours_table.Controls.Add(Colours_player_1_select, 0, 1);
+            Colours_table.Location = new System.Drawing.Point(3, 3);
+            Colours_table.Name = "Colours_table";
+            Colours_table.RowCount = 4;
+            Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            Colours_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            Colours_table.Size = new System.Drawing.Size(1206, 467);
+            Colours_table.TabIndex = 0;
             // 
-            // Player_6_select
+            // Colours_player_6_select
             // 
-            this.Player_6_select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_6_select.FormattingEnabled = true;
-            this.Player_6_select.Items.AddRange(new object[] {
-            "Blue",
-            "Red",
-            "Green",
-            "Yellow",
-            "White",
-            "Black",
-            "Pink",
-            "Light Blue"});
-            this.Player_6_select.Location = new System.Drawing.Point(800, 342);
-            this.Player_6_select.Name = "Player_6_select";
-            this.Player_6_select.Size = new System.Drawing.Size(394, 36);
-            this.Player_6_select.TabIndex = 11;
+            Colours_player_6_select.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_6_select.FormattingEnabled = true;
+            Colours_player_6_select.Items.AddRange(new object[] { "Blue", "Red", "Green", "Yellow", "White", "Black", "Pink", "Light Blue" });
+            Colours_player_6_select.Location = new System.Drawing.Point(806, 388);
+            Colours_player_6_select.Name = "Colours_player_6_select";
+            Colours_player_6_select.Size = new System.Drawing.Size(396, 38);
+            Colours_player_6_select.TabIndex = 11;
             // 
-            // Player_5_select
+            // Colours_player_5_select
             // 
-            this.Player_5_select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_5_select.FormattingEnabled = true;
-            this.Player_5_select.Items.AddRange(new object[] {
-            "Blue",
-            "Red",
-            "Green",
-            "Yellow",
-            "White",
-            "Black",
-            "Pink",
-            "Light Blue"});
-            this.Player_5_select.Location = new System.Drawing.Point(402, 342);
-            this.Player_5_select.Name = "Player_5_select";
-            this.Player_5_select.Size = new System.Drawing.Size(391, 36);
-            this.Player_5_select.TabIndex = 10;
+            Colours_player_5_select.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_5_select.FormattingEnabled = true;
+            Colours_player_5_select.Items.AddRange(new object[] { "Blue", "Red", "Green", "Yellow", "White", "Black", "Pink", "Light Blue" });
+            Colours_player_5_select.Location = new System.Drawing.Point(405, 388);
+            Colours_player_5_select.Name = "Colours_player_5_select";
+            Colours_player_5_select.Size = new System.Drawing.Size(394, 38);
+            Colours_player_5_select.TabIndex = 10;
             // 
-            // Player_4_select
+            // Colours_player_4_select
             // 
-            this.Player_4_select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_4_select.FormattingEnabled = true;
-            this.Player_4_select.Items.AddRange(new object[] {
-            "Blue",
-            "Red",
-            "Green",
-            "Yellow",
-            "White",
-            "Black",
-            "Pink",
-            "Light Blue"});
-            this.Player_4_select.Location = new System.Drawing.Point(4, 342);
-            this.Player_4_select.Name = "Player_4_select";
-            this.Player_4_select.Size = new System.Drawing.Size(391, 36);
-            this.Player_4_select.TabIndex = 9;
+            Colours_player_4_select.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_4_select.FormattingEnabled = true;
+            Colours_player_4_select.Items.AddRange(new object[] { "Blue", "Red", "Green", "Yellow", "White", "Black", "Pink", "Light Blue" });
+            Colours_player_4_select.Location = new System.Drawing.Point(4, 388);
+            Colours_player_4_select.Name = "Colours_player_4_select";
+            Colours_player_4_select.Size = new System.Drawing.Size(394, 38);
+            Colours_player_4_select.TabIndex = 9;
             // 
-            // Player_3_select
+            // Colours_player_3_select
             // 
-            this.Player_3_select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_3_select.FormattingEnabled = true;
-            this.Player_3_select.Items.AddRange(new object[] {
-            "Blue",
-            "Red",
-            "Green",
-            "Yellow",
-            "White",
-            "Black",
-            "Pink",
-            "Light Blue"});
-            this.Player_3_select.Location = new System.Drawing.Point(800, 135);
-            this.Player_3_select.Name = "Player_3_select";
-            this.Player_3_select.Size = new System.Drawing.Size(394, 36);
-            this.Player_3_select.TabIndex = 8;
+            Colours_player_3_select.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_3_select.FormattingEnabled = true;
+            Colours_player_3_select.Items.AddRange(new object[] { "Blue", "Red", "Green", "Yellow", "White", "Black", "Pink", "Light Blue" });
+            Colours_player_3_select.Location = new System.Drawing.Point(806, 155);
+            Colours_player_3_select.Name = "Colours_player_3_select";
+            Colours_player_3_select.Size = new System.Drawing.Size(396, 38);
+            Colours_player_3_select.TabIndex = 8;
             // 
-            // Player_2_select
+            // Colours_player_2_select
             // 
-            this.Player_2_select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_2_select.FormattingEnabled = true;
-            this.Player_2_select.Items.AddRange(new object[] {
-            "Blue",
-            "Red",
-            "Green",
-            "Yellow",
-            "White",
-            "Black",
-            "Pink",
-            "Light Blue"});
-            this.Player_2_select.Location = new System.Drawing.Point(402, 135);
-            this.Player_2_select.Name = "Player_2_select";
-            this.Player_2_select.Size = new System.Drawing.Size(391, 36);
-            this.Player_2_select.TabIndex = 7;
+            Colours_player_2_select.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_2_select.FormattingEnabled = true;
+            Colours_player_2_select.Items.AddRange(new object[] { "Blue", "Red", "Green", "Yellow", "White", "Black", "Pink", "Light Blue" });
+            Colours_player_2_select.Location = new System.Drawing.Point(405, 155);
+            Colours_player_2_select.Name = "Colours_player_2_select";
+            Colours_player_2_select.Size = new System.Drawing.Size(394, 38);
+            Colours_player_2_select.TabIndex = 7;
             // 
-            // Player_3_text
+            // Colours_player_3_text
             // 
-            this.Player_3_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_3_text.AutoSize = true;
-            this.Player_3_text.Location = new System.Drawing.Point(800, 1);
-            this.Player_3_text.Name = "Player_3_text";
-            this.Player_3_text.Size = new System.Drawing.Size(394, 101);
-            this.Player_3_text.TabIndex = 2;
-            this.Player_3_text.Text = "Player 3";
-            this.Player_3_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Colours_player_3_text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_3_text.AutoSize = true;
+            Colours_player_3_text.Location = new System.Drawing.Point(806, 1);
+            Colours_player_3_text.Name = "Colours_player_3_text";
+            Colours_player_3_text.Size = new System.Drawing.Size(396, 115);
+            Colours_player_3_text.TabIndex = 2;
+            Colours_player_3_text.Text = "Player 3";
+            Colours_player_3_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Player_2_text
+            // Colours_player_2_text
             // 
-            this.Player_2_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_2_text.AutoSize = true;
-            this.Player_2_text.Location = new System.Drawing.Point(402, 1);
-            this.Player_2_text.Name = "Player_2_text";
-            this.Player_2_text.Size = new System.Drawing.Size(391, 101);
-            this.Player_2_text.TabIndex = 1;
-            this.Player_2_text.Text = "Player 2";
-            this.Player_2_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Colours_player_2_text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_2_text.AutoSize = true;
+            Colours_player_2_text.Location = new System.Drawing.Point(405, 1);
+            Colours_player_2_text.Name = "Colours_player_2_text";
+            Colours_player_2_text.Size = new System.Drawing.Size(394, 115);
+            Colours_player_2_text.TabIndex = 1;
+            Colours_player_2_text.Text = "Player 2";
+            Colours_player_2_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Player_1_text
+            // Colours_player_1_text
             // 
-            this.Player_1_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_1_text.AutoSize = true;
-            this.Player_1_text.Location = new System.Drawing.Point(4, 1);
-            this.Player_1_text.Name = "Player_1_text";
-            this.Player_1_text.Size = new System.Drawing.Size(391, 101);
-            this.Player_1_text.TabIndex = 0;
-            this.Player_1_text.Text = "Player 1";
-            this.Player_1_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Colours_player_1_text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_1_text.AutoSize = true;
+            Colours_player_1_text.Location = new System.Drawing.Point(4, 1);
+            Colours_player_1_text.Name = "Colours_player_1_text";
+            Colours_player_1_text.Size = new System.Drawing.Size(394, 115);
+            Colours_player_1_text.TabIndex = 0;
+            Colours_player_1_text.Text = "Player 1";
+            Colours_player_1_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Player_4_text
+            // Colours_player_4_text
             // 
-            this.Player_4_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_4_text.AutoSize = true;
-            this.Player_4_text.Location = new System.Drawing.Point(4, 205);
-            this.Player_4_text.Name = "Player_4_text";
-            this.Player_4_text.Size = new System.Drawing.Size(391, 101);
-            this.Player_4_text.TabIndex = 3;
-            this.Player_4_text.Text = "Player 4";
-            this.Player_4_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Colours_player_4_text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_4_text.AutoSize = true;
+            Colours_player_4_text.Location = new System.Drawing.Point(4, 233);
+            Colours_player_4_text.Name = "Colours_player_4_text";
+            Colours_player_4_text.Size = new System.Drawing.Size(394, 115);
+            Colours_player_4_text.TabIndex = 3;
+            Colours_player_4_text.Text = "Player 4";
+            Colours_player_4_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Player_5_text
+            // Colours_player_5_text
             // 
-            this.Player_5_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_5_text.AutoSize = true;
-            this.Player_5_text.Location = new System.Drawing.Point(402, 205);
-            this.Player_5_text.Name = "Player_5_text";
-            this.Player_5_text.Size = new System.Drawing.Size(391, 101);
-            this.Player_5_text.TabIndex = 4;
-            this.Player_5_text.Text = "Player 5";
-            this.Player_5_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Colours_player_5_text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_5_text.AutoSize = true;
+            Colours_player_5_text.Location = new System.Drawing.Point(405, 233);
+            Colours_player_5_text.Name = "Colours_player_5_text";
+            Colours_player_5_text.Size = new System.Drawing.Size(394, 115);
+            Colours_player_5_text.TabIndex = 4;
+            Colours_player_5_text.Text = "Player 5";
+            Colours_player_5_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Player_6_text
+            // Colours_player_6_text
             // 
-            this.Player_6_text.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_6_text.AutoSize = true;
-            this.Player_6_text.Location = new System.Drawing.Point(800, 205);
-            this.Player_6_text.Name = "Player_6_text";
-            this.Player_6_text.Size = new System.Drawing.Size(394, 101);
-            this.Player_6_text.TabIndex = 5;
-            this.Player_6_text.Text = "Player 6";
-            this.Player_6_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Colours_player_6_text.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_6_text.AutoSize = true;
+            Colours_player_6_text.Location = new System.Drawing.Point(806, 233);
+            Colours_player_6_text.Name = "Colours_player_6_text";
+            Colours_player_6_text.Size = new System.Drawing.Size(396, 115);
+            Colours_player_6_text.TabIndex = 5;
+            Colours_player_6_text.Text = "Player 6";
+            Colours_player_6_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Player_1_select
+            // Colours_player_1_select
             // 
-            this.Player_1_select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Player_1_select.FormattingEnabled = true;
-            this.Player_1_select.Items.AddRange(new object[] {
-            "Blue",
-            "Red",
-            "Green",
-            "Yellow",
-            "White",
-            "Black",
-            "Pink",
-            "Light Blue"});
-            this.Player_1_select.Location = new System.Drawing.Point(4, 135);
-            this.Player_1_select.Name = "Player_1_select";
-            this.Player_1_select.Size = new System.Drawing.Size(391, 36);
-            this.Player_1_select.TabIndex = 6;
+            Colours_player_1_select.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            Colours_player_1_select.FormattingEnabled = true;
+            Colours_player_1_select.Items.AddRange(new object[] { "Blue", "Red", "Green", "Yellow", "White", "Black", "Pink", "Light Blue" });
+            Colours_player_1_select.Location = new System.Drawing.Point(4, 155);
+            Colours_player_1_select.Name = "Colours_player_1_select";
+            Colours_player_1_select.Size = new System.Drawing.Size(394, 38);
+            Colours_player_1_select.TabIndex = 6;
+            // 
+            // Environment_tab
+            // 
+            Environment_tab.Controls.Add(Environment_preset_checkbox);
+            Environment_tab.Controls.Add(Environment_panel);
+            Environment_tab.Controls.Add(Environment_preset_global);
+            Environment_tab.Controls.Add(Environment_preset_local);
+            Environment_tab.Controls.Add(Environment_preset_select);
+            Environment_tab.Controls.Add(Environment_global_text);
+            Environment_tab.Location = new System.Drawing.Point(4, 42);
+            Environment_tab.Name = "Environment_tab";
+            Environment_tab.Padding = new System.Windows.Forms.Padding(3);
+            Environment_tab.Size = new System.Drawing.Size(1212, 473);
+            Environment_tab.TabIndex = 14;
+            Environment_tab.Text = "Environment";
+            // 
+            // Environment_preset_checkbox
+            // 
+            Environment_preset_checkbox.AutoSize = true;
+            Environment_preset_checkbox.Location = new System.Drawing.Point(11, 10);
+            Environment_preset_checkbox.MinimumSize = new System.Drawing.Size(200, 0);
+            Environment_preset_checkbox.Name = "Environment_preset_checkbox";
+            Environment_preset_checkbox.Size = new System.Drawing.Size(227, 34);
+            Environment_preset_checkbox.TabIndex = 3;
+            Environment_preset_checkbox.Text = "Use a custom preset";
+            Environment_preset_checkbox.UseVisualStyleBackColor = true;
+            Environment_preset_checkbox.CheckedChanged += Environment_preset_checkbox_CheckedChanged;
+            // 
+            // Environment_panel
+            // 
+            Environment_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Environment_panel.Controls.Add(Global_sun_placement_image);
+            Environment_panel.Controls.Add(Global_shadow_intensity_input);
+            Environment_panel.Controls.Add(Global_shadow_intensity_text);
+            Environment_panel.Controls.Add(Environment_next_zone);
+            Environment_panel.Controls.Add(Environment_previous_zone);
+            Environment_panel.Controls.Add(Environment_remove_zone);
+            Environment_panel.Controls.Add(Environment_add_zone);
+            Environment_panel.Controls.Add(Environment_local_zones_text);
+            Environment_panel.Controls.Add(Global_sun_height_input);
+            Environment_panel.Controls.Add(Global_sun_height_text);
+            Environment_panel.Controls.Add(Global_fog_full_input);
+            Environment_panel.Controls.Add(Global_fog_full);
+            Environment_panel.Controls.Add(Global_fog_start_input);
+            Environment_panel.Controls.Add(Global_fog_start);
+            Environment_panel.Controls.Add(Global_light_colour);
+            Environment_panel.Controls.Add(Global_ambient_colour);
+            Environment_panel.Controls.Add(Global_light_text);
+            Environment_panel.Controls.Add(Global_ambient_text);
+            Environment_panel.Controls.Add(Global_fog_text);
+            Environment_panel.Controls.Add(Global_fog_colour);
+            Environment_panel.Controls.Add(Global_sun_placement_input);
+            Environment_panel.Controls.Add(Global_sky_select);
+            Environment_panel.Controls.Add(Global_sun_placement_text);
+            Environment_panel.Controls.Add(Global_sky_text);
+            Environment_panel.Controls.Add(Environment_zone_panel);
+            Environment_panel.Location = new System.Drawing.Point(3, 80);
+            Environment_panel.Name = "Environment_panel";
+            Environment_panel.Size = new System.Drawing.Size(1203, 389);
+            Environment_panel.TabIndex = 4;
+            // 
+            // Global_sun_placement_image
+            // 
+            Global_sun_placement_image.Image = (System.Drawing.Image)resources.GetObject("Global_sun_placement_image.Image");
+            Global_sun_placement_image.Location = new System.Drawing.Point(998, 6);
+            Global_sun_placement_image.MaximumSize = new System.Drawing.Size(200, 200);
+            Global_sun_placement_image.MinimumSize = new System.Drawing.Size(200, 200);
+            Global_sun_placement_image.Name = "Global_sun_placement_image";
+            Global_sun_placement_image.Size = new System.Drawing.Size(200, 200);
+            Global_sun_placement_image.TabIndex = 27;
+            Global_sun_placement_image.TabStop = false;
+            // 
+            // Global_shadow_intensity_input
+            // 
+            Global_shadow_intensity_input.Location = new System.Drawing.Point(628, 47);
+            Global_shadow_intensity_input.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            Global_shadow_intensity_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Global_shadow_intensity_input.Name = "Global_shadow_intensity_input";
+            Global_shadow_intensity_input.Size = new System.Drawing.Size(125, 35);
+            Global_shadow_intensity_input.TabIndex = 26;
+            Global_shadow_intensity_input.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // Global_shadow_intensity_text
+            // 
+            Global_shadow_intensity_text.AutoSize = true;
+            Global_shadow_intensity_text.Location = new System.Drawing.Point(390, 49);
+            Global_shadow_intensity_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_shadow_intensity_text.Name = "Global_shadow_intensity_text";
+            Global_shadow_intensity_text.Size = new System.Drawing.Size(205, 30);
+            Global_shadow_intensity_text.TabIndex = 25;
+            Global_shadow_intensity_text.Text = "Shadow intensity (%)";
+            // 
+            // Environment_next_zone
+            // 
+            Environment_next_zone.AutoSize = true;
+            Environment_next_zone.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
+            Environment_next_zone.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Environment_next_zone.Location = new System.Drawing.Point(347, 207);
+            Environment_next_zone.MaximumSize = new System.Drawing.Size(40, 40);
+            Environment_next_zone.MinimumSize = new System.Drawing.Size(40, 40);
+            Environment_next_zone.Name = "Environment_next_zone";
+            Environment_next_zone.Size = new System.Drawing.Size(40, 40);
+            Environment_next_zone.TabIndex = 24;
+            Environment_next_zone.Text = "";
+            Environment_next_zone.UseVisualStyleBackColor = true;
+            Environment_next_zone.Click += Environment_next_zone_Click;
+            // 
+            // Environment_previous_zone
+            // 
+            Environment_previous_zone.AutoSize = true;
+            Environment_previous_zone.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
+            Environment_previous_zone.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Environment_previous_zone.Location = new System.Drawing.Point(301, 207);
+            Environment_previous_zone.MaximumSize = new System.Drawing.Size(40, 40);
+            Environment_previous_zone.MinimumSize = new System.Drawing.Size(40, 40);
+            Environment_previous_zone.Name = "Environment_previous_zone";
+            Environment_previous_zone.Size = new System.Drawing.Size(40, 40);
+            Environment_previous_zone.TabIndex = 23;
+            Environment_previous_zone.Text = "";
+            Environment_previous_zone.UseVisualStyleBackColor = true;
+            Environment_previous_zone.Click += Environment_previous_zone_Click;
+            // 
+            // Environment_remove_zone
+            // 
+            Environment_remove_zone.AutoSize = true;
+            Environment_remove_zone.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
+            Environment_remove_zone.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Environment_remove_zone.Location = new System.Drawing.Point(209, 207);
+            Environment_remove_zone.MaximumSize = new System.Drawing.Size(40, 40);
+            Environment_remove_zone.MinimumSize = new System.Drawing.Size(40, 40);
+            Environment_remove_zone.Name = "Environment_remove_zone";
+            Environment_remove_zone.Size = new System.Drawing.Size(40, 40);
+            Environment_remove_zone.TabIndex = 21;
+            Environment_remove_zone.Text = "";
+            Environment_remove_zone.UseVisualStyleBackColor = true;
+            Environment_remove_zone.Click += Environment_remove_zone_Click;
+            // 
+            // Environment_add_zone
+            // 
+            Environment_add_zone.AutoSize = true;
+            Environment_add_zone.Font = new System.Drawing.Font("Segoe Fluent Icons", 9F);
+            Environment_add_zone.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Environment_add_zone.Location = new System.Drawing.Point(255, 207);
+            Environment_add_zone.MaximumSize = new System.Drawing.Size(40, 40);
+            Environment_add_zone.MinimumSize = new System.Drawing.Size(40, 40);
+            Environment_add_zone.Name = "Environment_add_zone";
+            Environment_add_zone.Size = new System.Drawing.Size(40, 40);
+            Environment_add_zone.TabIndex = 22;
+            Environment_add_zone.Text = "";
+            Environment_add_zone.UseVisualStyleBackColor = true;
+            Environment_add_zone.Click += Environment_add_zone_Click;
+            // 
+            // Environment_local_zones_text
+            // 
+            Environment_local_zones_text.AutoSize = true;
+            Environment_local_zones_text.Font = new System.Drawing.Font("Segoe UI Variable Display", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 238);
+            Environment_local_zones_text.Location = new System.Drawing.Point(3, 215);
+            Environment_local_zones_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Environment_local_zones_text.Name = "Environment_local_zones_text";
+            Environment_local_zones_text.Size = new System.Drawing.Size(200, 28);
+            Environment_local_zones_text.TabIndex = 20;
+            Environment_local_zones_text.Text = "Local zones 0/0";
+            // 
+            // Global_sun_height_input
+            // 
+            Global_sun_height_input.Location = new System.Drawing.Point(209, 47);
+            Global_sun_height_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Global_sun_height_input.Name = "Global_sun_height_input";
+            Global_sun_height_input.Size = new System.Drawing.Size(125, 35);
+            Global_sun_height_input.TabIndex = 17;
+            // 
+            // Global_sun_height_text
+            // 
+            Global_sun_height_text.AutoSize = true;
+            Global_sun_height_text.Location = new System.Drawing.Point(3, 49);
+            Global_sun_height_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_sun_height_text.Name = "Global_sun_height_text";
+            Global_sun_height_text.Size = new System.Drawing.Size(200, 30);
+            Global_sun_height_text.TabIndex = 16;
+            Global_sun_height_text.Text = "Sun height (%)";
+            // 
+            // Global_fog_full_input
+            // 
+            Global_fog_full_input.Location = new System.Drawing.Point(628, 88);
+            Global_fog_full_input.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            Global_fog_full_input.MinimumSize = new System.Drawing.Size(125, 0);
+            Global_fog_full_input.Name = "Global_fog_full_input";
+            Global_fog_full_input.Size = new System.Drawing.Size(125, 35);
+            Global_fog_full_input.TabIndex = 15;
+            // 
+            // Global_fog_full
+            // 
+            Global_fog_full.AutoSize = true;
+            Global_fog_full.Location = new System.Drawing.Point(390, 90);
+            Global_fog_full.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_fog_full.Name = "Global_fog_full";
+            Global_fog_full.Size = new System.Drawing.Size(200, 30);
+            Global_fog_full.TabIndex = 14;
+            Global_fog_full.Text = "Full fog distance";
+            // 
+            // Global_fog_start_input
+            // 
+            Global_fog_start_input.Location = new System.Drawing.Point(209, 88);
+            Global_fog_start_input.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            Global_fog_start_input.MinimumSize = new System.Drawing.Size(125, 0);
+            Global_fog_start_input.Name = "Global_fog_start_input";
+            Global_fog_start_input.Size = new System.Drawing.Size(125, 35);
+            Global_fog_start_input.TabIndex = 13;
+            // 
+            // Global_fog_start
+            // 
+            Global_fog_start.AutoSize = true;
+            Global_fog_start.Location = new System.Drawing.Point(2, 90);
+            Global_fog_start.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_fog_start.Name = "Global_fog_start";
+            Global_fog_start.Size = new System.Drawing.Size(200, 30);
+            Global_fog_start.TabIndex = 12;
+            Global_fog_start.Text = "Fog start distance";
+            // 
+            // Global_light_colour
+            // 
+            Global_light_colour.AutoSize = true;
+            Global_light_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Global_light_colour.Location = new System.Drawing.Point(461, 129);
+            Global_light_colour.MaximumSize = new System.Drawing.Size(40, 40);
+            Global_light_colour.MinimumSize = new System.Drawing.Size(40, 40);
+            Global_light_colour.Name = "Global_light_colour";
+            Global_light_colour.Size = new System.Drawing.Size(40, 40);
+            Global_light_colour.TabIndex = 11;
+            Global_light_colour.UseVisualStyleBackColor = true;
+            Global_light_colour.Click += Global_light_colour_Click;
+            // 
+            // Global_ambient_colour
+            // 
+            Global_ambient_colour.AutoSize = true;
+            Global_ambient_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Global_ambient_colour.Location = new System.Drawing.Point(713, 129);
+            Global_ambient_colour.MaximumSize = new System.Drawing.Size(40, 40);
+            Global_ambient_colour.MinimumSize = new System.Drawing.Size(40, 40);
+            Global_ambient_colour.Name = "Global_ambient_colour";
+            Global_ambient_colour.Size = new System.Drawing.Size(40, 40);
+            Global_ambient_colour.TabIndex = 10;
+            Global_ambient_colour.UseVisualStyleBackColor = true;
+            Global_ambient_colour.Click += Global_ambient_colour_Click;
+            // 
+            // Global_light_text
+            // 
+            Global_light_text.AutoSize = true;
+            Global_light_text.Location = new System.Drawing.Point(255, 134);
+            Global_light_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_light_text.Name = "Global_light_text";
+            Global_light_text.Size = new System.Drawing.Size(200, 30);
+            Global_light_text.TabIndex = 9;
+            Global_light_text.Text = "Light colour";
+            // 
+            // Global_ambient_text
+            // 
+            Global_ambient_text.AutoSize = true;
+            Global_ambient_text.Location = new System.Drawing.Point(507, 134);
+            Global_ambient_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_ambient_text.Name = "Global_ambient_text";
+            Global_ambient_text.Size = new System.Drawing.Size(200, 30);
+            Global_ambient_text.TabIndex = 8;
+            Global_ambient_text.Text = "Ambient colour";
+            // 
+            // Global_fog_text
+            // 
+            Global_fog_text.AutoSize = true;
+            Global_fog_text.Location = new System.Drawing.Point(2, 136);
+            Global_fog_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_fog_text.Name = "Global_fog_text";
+            Global_fog_text.Size = new System.Drawing.Size(200, 30);
+            Global_fog_text.TabIndex = 7;
+            Global_fog_text.Text = "Fog colour";
+            // 
+            // Global_fog_colour
+            // 
+            Global_fog_colour.AutoSize = true;
+            Global_fog_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Global_fog_colour.Location = new System.Drawing.Point(209, 129);
+            Global_fog_colour.MaximumSize = new System.Drawing.Size(40, 40);
+            Global_fog_colour.MinimumSize = new System.Drawing.Size(40, 40);
+            Global_fog_colour.Name = "Global_fog_colour";
+            Global_fog_colour.Size = new System.Drawing.Size(40, 40);
+            Global_fog_colour.TabIndex = 6;
+            Global_fog_colour.UseVisualStyleBackColor = true;
+            Global_fog_colour.Click += Global_fog_colour_Click;
+            // 
+            // Global_sun_placement_input
+            // 
+            Global_sun_placement_input.Location = new System.Drawing.Point(628, 4);
+            Global_sun_placement_input.Maximum = new decimal(new int[] { 359, 0, 0, 0 });
+            Global_sun_placement_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Global_sun_placement_input.Name = "Global_sun_placement_input";
+            Global_sun_placement_input.Size = new System.Drawing.Size(125, 35);
+            Global_sun_placement_input.TabIndex = 4;
+            // 
+            // Global_sky_select
+            // 
+            Global_sky_select.FormattingEnabled = true;
+            Global_sky_select.Items.AddRange(new object[] { "Starfield", "Bavarian", "Egyptian", "Scottish" });
+            Global_sky_select.Location = new System.Drawing.Point(209, 3);
+            Global_sky_select.MinimumSize = new System.Drawing.Size(175, 0);
+            Global_sky_select.Name = "Global_sky_select";
+            Global_sky_select.Size = new System.Drawing.Size(175, 38);
+            Global_sky_select.TabIndex = 3;
+            // 
+            // Global_sun_placement_text
+            // 
+            Global_sun_placement_text.AutoSize = true;
+            Global_sun_placement_text.Location = new System.Drawing.Point(390, 6);
+            Global_sun_placement_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_sun_placement_text.Name = "Global_sun_placement_text";
+            Global_sun_placement_text.Size = new System.Drawing.Size(200, 30);
+            Global_sun_placement_text.TabIndex = 2;
+            Global_sun_placement_text.Text = "Sun placement (°)";
+            // 
+            // Global_sky_text
+            // 
+            Global_sky_text.AutoSize = true;
+            Global_sky_text.Location = new System.Drawing.Point(3, 6);
+            Global_sky_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Global_sky_text.Name = "Global_sky_text";
+            Global_sky_text.Size = new System.Drawing.Size(200, 30);
+            Global_sky_text.TabIndex = 1;
+            Global_sky_text.Text = "Sky texture";
+            // 
+            // Environment_zone_panel
+            // 
+            Environment_zone_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Environment_zone_panel.Controls.Add(Local_X_text);
+            Environment_zone_panel.Controls.Add(Local_transition_input);
+            Environment_zone_panel.Controls.Add(Local_transition_text);
+            Environment_zone_panel.Controls.Add(Local_radius_input);
+            Environment_zone_panel.Controls.Add(Local_radius_text);
+            Environment_zone_panel.Controls.Add(Local_Y_input);
+            Environment_zone_panel.Controls.Add(Local_Y_text);
+            Environment_zone_panel.Controls.Add(Local_X_input);
+            Environment_zone_panel.Controls.Add(Local_position_text);
+            Environment_zone_panel.Controls.Add(Local_fog_full_input);
+            Environment_zone_panel.Controls.Add(Local_fog_full_text);
+            Environment_zone_panel.Controls.Add(Local_fog_start_input);
+            Environment_zone_panel.Controls.Add(Local_fog_start_text);
+            Environment_zone_panel.Controls.Add(Local_shadow_intensity_input);
+            Environment_zone_panel.Controls.Add(Local_shadow_intensity_text);
+            Environment_zone_panel.Controls.Add(Local_light_colour);
+            Environment_zone_panel.Controls.Add(Local_light_text);
+            Environment_zone_panel.Controls.Add(Local_ambient_colour);
+            Environment_zone_panel.Controls.Add(Local_ambient_text);
+            Environment_zone_panel.Controls.Add(Local_fog_colour);
+            Environment_zone_panel.Controls.Add(Local_fog_text);
+            Environment_zone_panel.Location = new System.Drawing.Point(3, 253);
+            Environment_zone_panel.Name = "Environment_zone_panel";
+            Environment_zone_panel.Size = new System.Drawing.Size(1195, 131);
+            Environment_zone_panel.TabIndex = 0;
+            // 
+            // Local_X_text
+            // 
+            Local_X_text.AutoSize = true;
+            Local_X_text.Location = new System.Drawing.Point(209, 92);
+            Local_X_text.Name = "Local_X_text";
+            Local_X_text.Size = new System.Drawing.Size(25, 30);
+            Local_X_text.TabIndex = 40;
+            Local_X_text.Text = "X";
+            // 
+            // Local_transition_input
+            // 
+            Local_transition_input.Location = new System.Drawing.Point(1001, 92);
+            Local_transition_input.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            Local_transition_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Local_transition_input.Name = "Local_transition_input";
+            Local_transition_input.Size = new System.Drawing.Size(100, 35);
+            Local_transition_input.TabIndex = 39;
+            Local_transition_input.ValueChanged += UpdateZonesList;
+            // 
+            // Local_transition_text
+            // 
+            Local_transition_text.AutoSize = true;
+            Local_transition_text.Location = new System.Drawing.Point(795, 92);
+            Local_transition_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_transition_text.Name = "Local_transition_text";
+            Local_transition_text.Size = new System.Drawing.Size(200, 30);
+            Local_transition_text.TabIndex = 38;
+            Local_transition_text.Text = "Transition length";
+            // 
+            // Local_radius_input
+            // 
+            Local_radius_input.Location = new System.Drawing.Point(689, 90);
+            Local_radius_input.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            Local_radius_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Local_radius_input.Name = "Local_radius_input";
+            Local_radius_input.Size = new System.Drawing.Size(100, 35);
+            Local_radius_input.TabIndex = 37;
+            Local_radius_input.ValueChanged += UpdateZonesList;
+            // 
+            // Local_radius_text
+            // 
+            Local_radius_text.AutoSize = true;
+            Local_radius_text.Location = new System.Drawing.Point(483, 92);
+            Local_radius_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_radius_text.Name = "Local_radius_text";
+            Local_radius_text.Size = new System.Drawing.Size(200, 30);
+            Local_radius_text.TabIndex = 36;
+            Local_radius_text.Text = "Radius";
+            // 
+            // Local_Y_input
+            // 
+            Local_Y_input.Location = new System.Drawing.Point(377, 90);
+            Local_Y_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Local_Y_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Local_Y_input.Name = "Local_Y_input";
+            Local_Y_input.Size = new System.Drawing.Size(100, 35);
+            Local_Y_input.TabIndex = 35;
+            Local_Y_input.ValueChanged += UpdateZonesList;
+            // 
+            // Local_Y_text
+            // 
+            Local_Y_text.AutoSize = true;
+            Local_Y_text.Location = new System.Drawing.Point(346, 92);
+            Local_Y_text.Name = "Local_Y_text";
+            Local_Y_text.Size = new System.Drawing.Size(25, 30);
+            Local_Y_text.TabIndex = 34;
+            Local_Y_text.Text = "Y";
+            // 
+            // Local_X_input
+            // 
+            Local_X_input.Location = new System.Drawing.Point(240, 90);
+            Local_X_input.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
+            Local_X_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Local_X_input.Name = "Local_X_input";
+            Local_X_input.Size = new System.Drawing.Size(100, 35);
+            Local_X_input.TabIndex = 33;
+            Local_X_input.ValueChanged += UpdateZonesList;
+            // 
+            // Local_position_text
+            // 
+            Local_position_text.AutoSize = true;
+            Local_position_text.Location = new System.Drawing.Point(3, 92);
+            Local_position_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_position_text.Name = "Local_position_text";
+            Local_position_text.Size = new System.Drawing.Size(200, 30);
+            Local_position_text.TabIndex = 32;
+            Local_position_text.Text = "Position";
+            // 
+            // Local_fog_full_input
+            // 
+            Local_fog_full_input.Location = new System.Drawing.Point(546, 49);
+            Local_fog_full_input.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            Local_fog_full_input.MinimumSize = new System.Drawing.Size(125, 0);
+            Local_fog_full_input.Name = "Local_fog_full_input";
+            Local_fog_full_input.Size = new System.Drawing.Size(125, 35);
+            Local_fog_full_input.TabIndex = 31;
+            Local_fog_full_input.ValueChanged += UpdateZonesList;
+            // 
+            // Local_fog_full_text
+            // 
+            Local_fog_full_text.AutoSize = true;
+            Local_fog_full_text.Location = new System.Drawing.Point(340, 51);
+            Local_fog_full_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_fog_full_text.Name = "Local_fog_full_text";
+            Local_fog_full_text.Size = new System.Drawing.Size(200, 30);
+            Local_fog_full_text.TabIndex = 30;
+            Local_fog_full_text.Text = "Full fog distance";
+            // 
+            // Local_fog_start_input
+            // 
+            Local_fog_start_input.Location = new System.Drawing.Point(209, 49);
+            Local_fog_start_input.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            Local_fog_start_input.MinimumSize = new System.Drawing.Size(125, 0);
+            Local_fog_start_input.Name = "Local_fog_start_input";
+            Local_fog_start_input.Size = new System.Drawing.Size(125, 35);
+            Local_fog_start_input.TabIndex = 29;
+            Local_fog_start_input.ValueChanged += UpdateZonesList;
+            // 
+            // Local_fog_start_text
+            // 
+            Local_fog_start_text.AutoSize = true;
+            Local_fog_start_text.Location = new System.Drawing.Point(3, 51);
+            Local_fog_start_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_fog_start_text.Name = "Local_fog_start_text";
+            Local_fog_start_text.Size = new System.Drawing.Size(200, 30);
+            Local_fog_start_text.TabIndex = 28;
+            Local_fog_start_text.Text = "Fog start distance";
+            // 
+            // Local_shadow_intensity_input
+            // 
+            Local_shadow_intensity_input.Location = new System.Drawing.Point(888, 49);
+            Local_shadow_intensity_input.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            Local_shadow_intensity_input.MinimumSize = new System.Drawing.Size(100, 0);
+            Local_shadow_intensity_input.Name = "Local_shadow_intensity_input";
+            Local_shadow_intensity_input.Size = new System.Drawing.Size(108, 35);
+            Local_shadow_intensity_input.TabIndex = 27;
+            Local_shadow_intensity_input.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            Local_shadow_intensity_input.ValueChanged += UpdateZonesList;
+            // 
+            // Local_shadow_intensity_text
+            // 
+            Local_shadow_intensity_text.AutoSize = true;
+            Local_shadow_intensity_text.Location = new System.Drawing.Point(677, 51);
+            Local_shadow_intensity_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_shadow_intensity_text.Name = "Local_shadow_intensity_text";
+            Local_shadow_intensity_text.Size = new System.Drawing.Size(205, 30);
+            Local_shadow_intensity_text.TabIndex = 26;
+            Local_shadow_intensity_text.Text = "Shadow intensity (%)";
+            // 
+            // Local_light_colour
+            // 
+            Local_light_colour.AutoSize = true;
+            Local_light_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Local_light_colour.Location = new System.Drawing.Point(461, 3);
+            Local_light_colour.MaximumSize = new System.Drawing.Size(40, 40);
+            Local_light_colour.MinimumSize = new System.Drawing.Size(40, 40);
+            Local_light_colour.Name = "Local_light_colour";
+            Local_light_colour.Size = new System.Drawing.Size(40, 40);
+            Local_light_colour.TabIndex = 13;
+            Local_light_colour.UseVisualStyleBackColor = true;
+            Local_light_colour.Click += Local_light_colour_Click;
+            // 
+            // Local_light_text
+            // 
+            Local_light_text.AutoSize = true;
+            Local_light_text.Location = new System.Drawing.Point(255, 8);
+            Local_light_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_light_text.Name = "Local_light_text";
+            Local_light_text.Size = new System.Drawing.Size(200, 30);
+            Local_light_text.TabIndex = 12;
+            Local_light_text.Text = "Light colour";
+            // 
+            // Local_ambient_colour
+            // 
+            Local_ambient_colour.AutoSize = true;
+            Local_ambient_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Local_ambient_colour.Location = new System.Drawing.Point(713, 3);
+            Local_ambient_colour.MaximumSize = new System.Drawing.Size(40, 40);
+            Local_ambient_colour.MinimumSize = new System.Drawing.Size(40, 40);
+            Local_ambient_colour.Name = "Local_ambient_colour";
+            Local_ambient_colour.Size = new System.Drawing.Size(40, 40);
+            Local_ambient_colour.TabIndex = 11;
+            Local_ambient_colour.UseVisualStyleBackColor = true;
+            Local_ambient_colour.Click += Local_ambient_colour_Click;
+            // 
+            // Local_ambient_text
+            // 
+            Local_ambient_text.AutoSize = true;
+            Local_ambient_text.Location = new System.Drawing.Point(507, 8);
+            Local_ambient_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_ambient_text.Name = "Local_ambient_text";
+            Local_ambient_text.Size = new System.Drawing.Size(200, 30);
+            Local_ambient_text.TabIndex = 10;
+            Local_ambient_text.Text = "Ambient colour";
+            // 
+            // Local_fog_colour
+            // 
+            Local_fog_colour.AutoSize = true;
+            Local_fog_colour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Local_fog_colour.Location = new System.Drawing.Point(209, 3);
+            Local_fog_colour.MaximumSize = new System.Drawing.Size(40, 40);
+            Local_fog_colour.MinimumSize = new System.Drawing.Size(40, 40);
+            Local_fog_colour.Name = "Local_fog_colour";
+            Local_fog_colour.Size = new System.Drawing.Size(40, 40);
+            Local_fog_colour.TabIndex = 9;
+            Local_fog_colour.UseVisualStyleBackColor = true;
+            Local_fog_colour.Click += Local_fog_colour_Click;
+            // 
+            // Local_fog_text
+            // 
+            Local_fog_text.AutoSize = true;
+            Local_fog_text.Location = new System.Drawing.Point(3, 8);
+            Local_fog_text.MinimumSize = new System.Drawing.Size(200, 0);
+            Local_fog_text.Name = "Local_fog_text";
+            Local_fog_text.Size = new System.Drawing.Size(200, 30);
+            Local_fog_text.TabIndex = 8;
+            Local_fog_text.Text = "Fog colour";
+            // 
+            // Environment_preset_global
+            // 
+            Environment_preset_global.AutoSize = true;
+            Environment_preset_global.Location = new System.Drawing.Point(603, 6);
+            Environment_preset_global.MinimumSize = new System.Drawing.Size(300, 0);
+            Environment_preset_global.Name = "Environment_preset_global";
+            Environment_preset_global.Size = new System.Drawing.Size(300, 40);
+            Environment_preset_global.TabIndex = 3;
+            Environment_preset_global.Text = "Overwrite global options";
+            Environment_preset_global.UseVisualStyleBackColor = true;
+            Environment_preset_global.Click += Environment_preset_global_Click;
+            // 
+            // Environment_preset_local
+            // 
+            Environment_preset_local.AutoSize = true;
+            Environment_preset_local.Location = new System.Drawing.Point(909, 6);
+            Environment_preset_local.MinimumSize = new System.Drawing.Size(300, 0);
+            Environment_preset_local.Name = "Environment_preset_local";
+            Environment_preset_local.Size = new System.Drawing.Size(300, 40);
+            Environment_preset_local.TabIndex = 2;
+            Environment_preset_local.Text = "Overwrite current zone";
+            Environment_preset_local.UseVisualStyleBackColor = true;
+            Environment_preset_local.Click += Environment_preset_local_Click;
+            // 
+            // Environment_preset_select
+            // 
+            Environment_preset_select.FormattingEnabled = true;
+            Environment_preset_select.Items.AddRange(new object[] { "Meadows", "German Coast", "Autumn", "Alpine Valley", "The Alps", "Mediterranean", "Savanna", "Desert", "Lava Land", "Canyon", "Swamp", "Rainforest", "South China", "Haunted Marsh", "Warm Archipelago", "Tundra", "Scotland", "Iceberg", "Blizzard", "Thunderstorm", "Sand Storm", "Volcanic Dust", "Full Moon", "Blood Moon", "Violet Haze" });
+            Environment_preset_select.Location = new System.Drawing.Point(244, 8);
+            Environment_preset_select.Name = "Environment_preset_select";
+            Environment_preset_select.Size = new System.Drawing.Size(353, 38);
+            Environment_preset_select.TabIndex = 1;
+            // 
+            // Environment_global_text
+            // 
+            Environment_global_text.AutoSize = true;
+            Environment_global_text.Font = new System.Drawing.Font("Segoe UI Variable Display", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 238);
+            Environment_global_text.Location = new System.Drawing.Point(11, 49);
+            Environment_global_text.MinimumSize = new System.Drawing.Size(100, 0);
+            Environment_global_text.Name = "Environment_global_text";
+            Environment_global_text.Size = new System.Drawing.Size(100, 28);
+            Environment_global_text.TabIndex = 5;
+            Environment_global_text.Text = "Global";
             // 
             // Export_tab
             // 
-            this.Export_tab.Controls.Add(this.Export_wait);
-            this.Export_tab.Controls.Add(this.Ambient_sounds_warning);
-            this.Export_tab.Controls.Add(this.Map_export_panel);
-            this.Export_tab.Controls.Add(this.Map_preset_panel);
-            this.Export_tab.Location = new System.Drawing.Point(4, 42);
-            this.Export_tab.Name = "Export_tab";
-            this.Export_tab.Size = new System.Drawing.Size(1204, 416);
-            this.Export_tab.TabIndex = 11;
-            this.Export_tab.Text = "Export";
-            this.Export_tab.UseVisualStyleBackColor = true;
+            Export_tab.Controls.Add(Export_wait);
+            Export_tab.Controls.Add(Export_preview_warning);
+            Export_tab.Controls.Add(Export_main_panel);
+            Export_tab.Controls.Add(Export_presets_panel);
+            Export_tab.Location = new System.Drawing.Point(4, 42);
+            Export_tab.Name = "Export_tab";
+            Export_tab.Size = new System.Drawing.Size(1212, 473);
+            Export_tab.TabIndex = 11;
+            Export_tab.Text = "Export";
             // 
             // Export_wait
             // 
-            this.Export_wait.AutoSize = true;
-            this.Export_wait.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
-            this.Export_wait.Location = new System.Drawing.Point(604, 302);
-            this.Export_wait.Name = "Export_wait";
-            this.Export_wait.Size = new System.Drawing.Size(250, 51);
-            this.Export_wait.TabIndex = 13;
-            this.Export_wait.Text = "Please wait...";
+            Export_wait.AutoSize = true;
+            Export_wait.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
+            Export_wait.Location = new System.Drawing.Point(603, 295);
+            Export_wait.Name = "Export_wait";
+            Export_wait.Size = new System.Drawing.Size(250, 51);
+            Export_wait.TabIndex = 13;
+            Export_wait.Text = "Please wait...";
             // 
-            // Ambient_sounds_warning
+            // Export_preview_warning
             // 
-            this.Ambient_sounds_warning.AutoSize = true;
-            this.Ambient_sounds_warning.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
-            this.Ambient_sounds_warning.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Ambient_sounds_warning.Location = new System.Drawing.Point(3, 356);
-            this.Ambient_sounds_warning.Name = "Ambient_sounds_warning";
-            this.Ambient_sounds_warning.Size = new System.Drawing.Size(1006, 51);
-            this.Ambient_sounds_warning.TabIndex = 12;
-            this.Ambient_sounds_warning.Text = "The game will crash if the prieview image is not present";
+            Export_preview_warning.AutoSize = true;
+            Export_preview_warning.Font = new System.Drawing.Font("Segoe UI Variable Display", 16.125F, System.Drawing.FontStyle.Bold);
+            Export_preview_warning.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Export_preview_warning.Location = new System.Drawing.Point(3, 416);
+            Export_preview_warning.Name = "Export_preview_warning";
+            Export_preview_warning.Size = new System.Drawing.Size(1006, 51);
+            Export_preview_warning.TabIndex = 12;
+            Export_preview_warning.Text = "The game will crash if the prieview image is not present";
             // 
-            // Map_export_panel
+            // Export_main_panel
             // 
-            this.Map_export_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Map_export_panel.Controls.Add(this.Multiplayer_prefix_checkbox);
-            this.Map_export_panel.Controls.Add(this.Map_preview_checkbox);
-            this.Map_export_panel.Controls.Add(this.Map_export_button);
-            this.Map_export_panel.Controls.Add(this.Map_export_text);
-            this.Map_export_panel.Location = new System.Drawing.Point(604, 95);
-            this.Map_export_panel.MinimumSize = new System.Drawing.Size(595, 0);
-            this.Map_export_panel.Name = "Map_export_panel";
-            this.Map_export_panel.Size = new System.Drawing.Size(595, 161);
-            this.Map_export_panel.TabIndex = 6;
+            Export_main_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Export_main_panel.Controls.Add(Export_multiplayer_prefix);
+            Export_main_panel.Controls.Add(Export_preview_copy);
+            Export_main_panel.Controls.Add(Export_button);
+            Export_main_panel.Controls.Add(Export_text);
+            Export_main_panel.Location = new System.Drawing.Point(604, 131);
+            Export_main_panel.MinimumSize = new System.Drawing.Size(600, 2);
+            Export_main_panel.Name = "Export_main_panel";
+            Export_main_panel.Size = new System.Drawing.Size(600, 161);
+            Export_main_panel.TabIndex = 6;
             // 
-            // Multiplayer_prefix_checkbox
+            // Export_multiplayer_prefix
             // 
-            this.Multiplayer_prefix_checkbox.AutoSize = true;
-            this.Multiplayer_prefix_checkbox.Location = new System.Drawing.Point(3, 124);
-            this.Multiplayer_prefix_checkbox.MinimumSize = new System.Drawing.Size(585, 0);
-            this.Multiplayer_prefix_checkbox.Name = "Multiplayer_prefix_checkbox";
-            this.Multiplayer_prefix_checkbox.Size = new System.Drawing.Size(585, 32);
-            this.Multiplayer_prefix_checkbox.TabIndex = 7;
-            this.Multiplayer_prefix_checkbox.Text = "Use a multiplayer map naming scheme";
-            this.Multiplayer_prefix_checkbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Multiplayer_prefix_checkbox.UseVisualStyleBackColor = true;
+            Export_multiplayer_prefix.AutoSize = true;
+            Export_multiplayer_prefix.Location = new System.Drawing.Point(3, 122);
+            Export_multiplayer_prefix.MinimumSize = new System.Drawing.Size(590, 0);
+            Export_multiplayer_prefix.Name = "Export_multiplayer_prefix";
+            Export_multiplayer_prefix.Size = new System.Drawing.Size(590, 34);
+            Export_multiplayer_prefix.TabIndex = 7;
+            Export_multiplayer_prefix.Text = "Use a multiplayer map naming scheme";
+            Export_multiplayer_prefix.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Export_multiplayer_prefix.UseVisualStyleBackColor = true;
             // 
-            // Map_preview_checkbox
+            // Export_preview_copy
             // 
-            this.Map_preview_checkbox.AutoSize = true;
-            this.Map_preview_checkbox.Location = new System.Drawing.Point(3, 84);
-            this.Map_preview_checkbox.MinimumSize = new System.Drawing.Size(585, 0);
-            this.Map_preview_checkbox.Name = "Map_preview_checkbox";
-            this.Map_preview_checkbox.Size = new System.Drawing.Size(585, 32);
-            this.Map_preview_checkbox.TabIndex = 5;
-            this.Map_preview_checkbox.Text = "Copy map preview";
-            this.Map_preview_checkbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Map_preview_checkbox.UseVisualStyleBackColor = true;
+            Export_preview_copy.AutoSize = true;
+            Export_preview_copy.Location = new System.Drawing.Point(3, 82);
+            Export_preview_copy.MinimumSize = new System.Drawing.Size(590, 0);
+            Export_preview_copy.Name = "Export_preview_copy";
+            Export_preview_copy.Size = new System.Drawing.Size(590, 34);
+            Export_preview_copy.TabIndex = 5;
+            Export_preview_copy.Text = "Copy map preview";
+            Export_preview_copy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Export_preview_copy.UseVisualStyleBackColor = true;
             // 
-            // Map_export_button
+            // Export_button
             // 
-            this.Map_export_button.AutoSize = true;
-            this.Map_export_button.Location = new System.Drawing.Point(3, 40);
-            this.Map_export_button.Name = "Map_export_button";
-            this.Map_export_button.Size = new System.Drawing.Size(587, 38);
-            this.Map_export_button.TabIndex = 4;
-            this.Map_export_button.Text = "Export";
-            this.Map_export_button.UseVisualStyleBackColor = true;
-            this.Map_export_button.Click += new System.EventHandler(this.Map_export_button_Click);
+            Export_button.AutoSize = true;
+            Export_button.Location = new System.Drawing.Point(3, 37);
+            Export_button.Name = "Export_button";
+            Export_button.Size = new System.Drawing.Size(590, 40);
+            Export_button.TabIndex = 4;
+            Export_button.Text = "Export";
+            Export_button.UseVisualStyleBackColor = true;
+            Export_button.Click += Map_export_button_Click;
             // 
-            // Map_export_text
+            // Export_text
             // 
-            this.Map_export_text.AutoSize = true;
-            this.Map_export_text.Location = new System.Drawing.Point(3, 9);
-            this.Map_export_text.MinimumSize = new System.Drawing.Size(585, 0);
-            this.Map_export_text.Name = "Map_export_text";
-            this.Map_export_text.Size = new System.Drawing.Size(585, 28);
-            this.Map_export_text.TabIndex = 3;
-            this.Map_export_text.Text = "Export the map to Rise of Cultures";
-            this.Map_export_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Export_text.AutoSize = true;
+            Export_text.Location = new System.Drawing.Point(3, 4);
+            Export_text.MinimumSize = new System.Drawing.Size(590, 0);
+            Export_text.Name = "Export_text";
+            Export_text.Size = new System.Drawing.Size(590, 30);
+            Export_text.TabIndex = 3;
+            Export_text.Text = "Export the map to Rise of Cultures";
+            Export_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Map_preset_panel
+            // Export_presets_panel
             // 
-            this.Map_preset_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Map_preset_panel.Controls.Add(this.Sacrifice_included_presets);
-            this.Map_preset_panel.Controls.Add(this.Sacrifice_included_checkbox);
-            this.Map_preset_panel.Controls.Add(this.Sacrifice_preset_export);
-            this.Map_preset_panel.Controls.Add(this.Sacrifice_preset_load);
-            this.Map_preset_panel.Controls.Add(this.Sacrifice_preset_text);
-            this.Map_preset_panel.Controls.Add(this.Map_preset_text);
-            this.Map_preset_panel.Controls.Add(this.Map_preset_export);
-            this.Map_preset_panel.Controls.Add(this.Map_preset_load);
-            this.Map_preset_panel.Location = new System.Drawing.Point(3, 3);
-            this.Map_preset_panel.MinimumSize = new System.Drawing.Size(595, 0);
-            this.Map_preset_panel.Name = "Map_preset_panel";
-            this.Map_preset_panel.Size = new System.Drawing.Size(595, 350);
-            this.Map_preset_panel.TabIndex = 5;
+            Export_presets_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Export_presets_panel.Controls.Add(Sacrifices_included_presets_select);
+            Export_presets_panel.Controls.Add(Sacrifices_included_presets_checkbox);
+            Export_presets_panel.Controls.Add(Sacrifices_preset_export);
+            Export_presets_panel.Controls.Add(Sacrifices_preset_load);
+            Export_presets_panel.Controls.Add(Sacrifices_preset_text);
+            Export_presets_panel.Controls.Add(Export_map_preset_text);
+            Export_presets_panel.Controls.Add(Export_map_preset_button);
+            Export_presets_panel.Controls.Add(Export_map_preset_load);
+            Export_presets_panel.Location = new System.Drawing.Point(3, 3);
+            Export_presets_panel.MinimumSize = new System.Drawing.Size(600, 2);
+            Export_presets_panel.Name = "Export_presets_panel";
+            Export_presets_panel.Size = new System.Drawing.Size(600, 410);
+            Export_presets_panel.TabIndex = 5;
             // 
-            // Sacrifice_included_presets
+            // Sacrifices_included_presets_select
             // 
-            this.Sacrifice_included_presets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Sacrifice_included_presets.FormattingEnabled = true;
-            this.Sacrifice_included_presets.Items.AddRange(new object[] {
-            "Empty",
-            "Standard",
-            "Standard (enemies close)",
-            "Naval battle",
-            "Corridors"});
-            this.Sacrifice_included_presets.Location = new System.Drawing.Point(5, 31);
-            this.Sacrifice_included_presets.Name = "Sacrifice_included_presets";
-            this.Sacrifice_included_presets.Size = new System.Drawing.Size(585, 36);
-            this.Sacrifice_included_presets.TabIndex = 7;
+            Sacrifices_included_presets_select.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            Sacrifices_included_presets_select.FormattingEnabled = true;
+            Sacrifices_included_presets_select.Items.AddRange(new object[] { "Empty", "Standard", "Standard (enemies close)", "Naval battle", "Corridors" });
+            Sacrifices_included_presets_select.Location = new System.Drawing.Point(3, 37);
+            Sacrifices_included_presets_select.Name = "Sacrifices_included_presets_select";
+            Sacrifices_included_presets_select.Size = new System.Drawing.Size(592, 38);
+            Sacrifices_included_presets_select.TabIndex = 7;
             // 
-            // Sacrifice_included_checkbox
+            // Sacrifices_included_presets_checkbox
             // 
-            this.Sacrifice_included_checkbox.AutoSize = true;
-            this.Sacrifice_included_checkbox.Location = new System.Drawing.Point(205, 1);
-            this.Sacrifice_included_checkbox.MinimumSize = new System.Drawing.Size(385, 0);
-            this.Sacrifice_included_checkbox.Name = "Sacrifice_included_checkbox";
-            this.Sacrifice_included_checkbox.Size = new System.Drawing.Size(385, 32);
-            this.Sacrifice_included_checkbox.TabIndex = 6;
-            this.Sacrifice_included_checkbox.Text = "Use an included preset";
-            this.Sacrifice_included_checkbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Sacrifice_included_checkbox.UseVisualStyleBackColor = true;
-            this.Sacrifice_included_checkbox.CheckedChanged += new System.EventHandler(this.Sacrifice_included_checkbox_CheckedChanged);
+            Sacrifices_included_presets_checkbox.AutoSize = true;
+            Sacrifices_included_presets_checkbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            Sacrifices_included_presets_checkbox.Location = new System.Drawing.Point(345, 3);
+            Sacrifices_included_presets_checkbox.MinimumSize = new System.Drawing.Size(250, 0);
+            Sacrifices_included_presets_checkbox.Name = "Sacrifices_included_presets_checkbox";
+            Sacrifices_included_presets_checkbox.Size = new System.Drawing.Size(250, 34);
+            Sacrifices_included_presets_checkbox.TabIndex = 6;
+            Sacrifices_included_presets_checkbox.Text = "Use an included preset";
+            Sacrifices_included_presets_checkbox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            Sacrifices_included_presets_checkbox.UseVisualStyleBackColor = true;
+            Sacrifices_included_presets_checkbox.CheckedChanged += Sacrifice_included_checkbox_CheckedChanged;
             // 
-            // Sacrifice_preset_export
+            // Sacrifices_preset_export
             // 
-            this.Sacrifice_preset_export.AutoSize = true;
-            this.Sacrifice_preset_export.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Sacrifice_preset_export.Location = new System.Drawing.Point(3, 121);
-            this.Sacrifice_preset_export.Name = "Sacrifice_preset_export";
-            this.Sacrifice_preset_export.Size = new System.Drawing.Size(587, 42);
-            this.Sacrifice_preset_export.TabIndex = 5;
-            this.Sacrifice_preset_export.Text = "Export";
-            this.Sacrifice_preset_export.UseVisualStyleBackColor = true;
-            this.Sacrifice_preset_export.Click += new System.EventHandler(this.Sacrifice_preset_export_Click);
+            Sacrifices_preset_export.AutoSize = true;
+            Sacrifices_preset_export.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_preset_export.Location = new System.Drawing.Point(3, 127);
+            Sacrifices_preset_export.Name = "Sacrifices_preset_export";
+            Sacrifices_preset_export.Size = new System.Drawing.Size(592, 40);
+            Sacrifices_preset_export.TabIndex = 5;
+            Sacrifices_preset_export.Text = "Export";
+            Sacrifices_preset_export.UseVisualStyleBackColor = true;
+            Sacrifices_preset_export.Click += Sacrifice_preset_export_Click;
             // 
-            // Sacrifice_preset_load
+            // Sacrifices_preset_load
             // 
-            this.Sacrifice_preset_load.AutoSize = true;
-            this.Sacrifice_preset_load.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Sacrifice_preset_load.Location = new System.Drawing.Point(3, 73);
-            this.Sacrifice_preset_load.Name = "Sacrifice_preset_load";
-            this.Sacrifice_preset_load.Size = new System.Drawing.Size(587, 42);
-            this.Sacrifice_preset_load.TabIndex = 4;
-            this.Sacrifice_preset_load.Text = "Load";
-            this.Sacrifice_preset_load.UseVisualStyleBackColor = true;
-            this.Sacrifice_preset_load.Click += new System.EventHandler(this.Sacrifice_preset_load_Click);
+            Sacrifices_preset_load.AutoSize = true;
+            Sacrifices_preset_load.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_preset_load.Location = new System.Drawing.Point(3, 81);
+            Sacrifices_preset_load.Name = "Sacrifices_preset_load";
+            Sacrifices_preset_load.Size = new System.Drawing.Size(592, 40);
+            Sacrifices_preset_load.TabIndex = 4;
+            Sacrifices_preset_load.Text = "Load";
+            Sacrifices_preset_load.UseVisualStyleBackColor = true;
+            Sacrifices_preset_load.Click += Sacrifice_preset_load_Click;
             // 
-            // Sacrifice_preset_text
+            // Sacrifices_preset_text
             // 
-            this.Sacrifice_preset_text.AutoSize = true;
-            this.Sacrifice_preset_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Sacrifice_preset_text.Location = new System.Drawing.Point(3, 0);
-            this.Sacrifice_preset_text.MinimumSize = new System.Drawing.Size(200, 0);
-            this.Sacrifice_preset_text.Name = "Sacrifice_preset_text";
-            this.Sacrifice_preset_text.Size = new System.Drawing.Size(200, 28);
-            this.Sacrifice_preset_text.TabIndex = 3;
-            this.Sacrifice_preset_text.Text = "Sacrifice preset";
-            this.Sacrifice_preset_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Sacrifices_preset_text.AutoSize = true;
+            Sacrifices_preset_text.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Sacrifices_preset_text.Location = new System.Drawing.Point(3, 4);
+            Sacrifices_preset_text.MinimumSize = new System.Drawing.Size(250, 0);
+            Sacrifices_preset_text.Name = "Sacrifices_preset_text";
+            Sacrifices_preset_text.Size = new System.Drawing.Size(250, 30);
+            Sacrifices_preset_text.TabIndex = 3;
+            Sacrifices_preset_text.Text = "Sacrifice preset";
             // 
-            // Map_preset_text
+            // Export_map_preset_text
             // 
-            this.Map_preset_text.AutoSize = true;
-            this.Map_preset_text.Location = new System.Drawing.Point(5, 224);
-            this.Map_preset_text.MinimumSize = new System.Drawing.Size(585, 0);
-            this.Map_preset_text.Name = "Map_preset_text";
-            this.Map_preset_text.Size = new System.Drawing.Size(585, 28);
-            this.Map_preset_text.TabIndex = 0;
-            this.Map_preset_text.Text = "Map preset";
-            this.Map_preset_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Export_map_preset_text.AutoSize = true;
+            Export_map_preset_text.Location = new System.Drawing.Point(3, 286);
+            Export_map_preset_text.MinimumSize = new System.Drawing.Size(590, 0);
+            Export_map_preset_text.Name = "Export_map_preset_text";
+            Export_map_preset_text.Size = new System.Drawing.Size(590, 30);
+            Export_map_preset_text.TabIndex = 0;
+            Export_map_preset_text.Text = "Map preset";
+            Export_map_preset_text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Map_preset_export
+            // Export_map_preset_button
             // 
-            this.Map_preset_export.AutoSize = true;
-            this.Map_preset_export.Location = new System.Drawing.Point(3, 303);
-            this.Map_preset_export.Name = "Map_preset_export";
-            this.Map_preset_export.Size = new System.Drawing.Size(587, 42);
-            this.Map_preset_export.TabIndex = 1;
-            this.Map_preset_export.Text = "Export";
-            this.Map_preset_export.UseVisualStyleBackColor = true;
-            this.Map_preset_export.Click += new System.EventHandler(this.Map_preset_export_Click);
+            Export_map_preset_button.AutoSize = true;
+            Export_map_preset_button.Location = new System.Drawing.Point(-1, 365);
+            Export_map_preset_button.Name = "Export_map_preset_button";
+            Export_map_preset_button.Size = new System.Drawing.Size(596, 40);
+            Export_map_preset_button.TabIndex = 1;
+            Export_map_preset_button.Text = "Export";
+            Export_map_preset_button.UseVisualStyleBackColor = true;
+            Export_map_preset_button.Click += Map_preset_export_Click;
             // 
-            // Map_preset_load
+            // Export_map_preset_load
             // 
-            this.Map_preset_load.AutoSize = true;
-            this.Map_preset_load.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Map_preset_load.Location = new System.Drawing.Point(3, 255);
-            this.Map_preset_load.Name = "Map_preset_load";
-            this.Map_preset_load.Size = new System.Drawing.Size(587, 42);
-            this.Map_preset_load.TabIndex = 2;
-            this.Map_preset_load.Text = "Load";
-            this.Map_preset_load.UseVisualStyleBackColor = true;
-            this.Map_preset_load.Click += new System.EventHandler(this.Map_preset_load_Click);
+            Export_map_preset_load.AutoSize = true;
+            Export_map_preset_load.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            Export_map_preset_load.Location = new System.Drawing.Point(-1, 319);
+            Export_map_preset_load.Name = "Export_map_preset_load";
+            Export_map_preset_load.Size = new System.Drawing.Size(596, 40);
+            Export_map_preset_load.TabIndex = 2;
+            Export_map_preset_load.Text = "Load";
+            Export_map_preset_load.UseVisualStyleBackColor = true;
+            Export_map_preset_load.Click += Map_preset_load_Click;
             // 
             // DnG_AdK_Mapedit
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1236, 566);
-            this.Controls.Add(this.Changelog_button);
-            this.Controls.Add(this.DnG_map_load);
-            this.Controls.Add(this.DnG_map_path);
-            this.Controls.Add(this.DnG_map_text);
-            this.Controls.Add(this.Tab_control);
-            this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Font = new System.Drawing.Font("Segoe UI Variable Text", 9F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1260, 630);
-            this.MinimumSize = new System.Drawing.Size(1260, 630);
-            this.Name = "DnG_AdK_Mapedit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DnG-AdK-Mapedit 1.0 Beta 2";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DnG_AdK_Mapedit_FormClosing);
-            this.Load += new System.EventHandler(this.DnG_AdK_mapedit_Load);
-            this.Tab_control.ResumeLayout(false);
-            this.Map_info_tab.ResumeLayout(false);
-            this.Map_info_tab.PerformLayout();
-            this.Resource_info.ResumeLayout(false);
-            this.Resource_info.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Map_preview)).EndInit();
-            this.Resources_tab.ResumeLayout(false);
-            this.Resources_tab.PerformLayout();
-            this.Continue_editing_panel.ResumeLayout(false);
-            this.Continue_editing_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Resources_arrow)).EndInit();
-            this.Textures_tab.ResumeLayout(false);
-            this.Textures_tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Textures_arrow)).EndInit();
-            this.Logical_grid_tab.ResumeLayout(false);
-            this.Logical_grid_tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Logical_grid_arrow)).EndInit();
-            this.Small_doodads_tab.ResumeLayout(false);
-            this.Small_doodads_tab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Small_doodads_arrow)).EndInit();
-            this.Swap_list_tab.ResumeLayout(false);
-            this.Swap_list_tab.PerformLayout();
-            this.Harbours_tab.ResumeLayout(false);
-            this.Harbours_tab.PerformLayout();
-            this.Harbour_panel.ResumeLayout(false);
-            this.Harbour_panel.PerformLayout();
-            this.Harbour_anchor_panel.ResumeLayout(false);
-            this.Harbour_anchor_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Anchor_position_Y_input)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Anchor_position_X_input)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Harbour_position_Y_input)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Harbour_position_X_input)).EndInit();
-            this.Caves_tab.ResumeLayout(false);
-            this.Caves_tab.PerformLayout();
-            this.Cave_panel.ResumeLayout(false);
-            this.Cave_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Cave_position_Y_input)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Cave_position_X_input)).EndInit();
-            this.Sacrifices_tab.ResumeLayout(false);
-            this.Sacrifices_tab.PerformLayout();
-            this.Colours_tab.ResumeLayout(false);
-            this.Colours_table.ResumeLayout(false);
-            this.Colours_table.PerformLayout();
-            this.Export_tab.ResumeLayout(false);
-            this.Export_tab.PerformLayout();
-            this.Map_export_panel.ResumeLayout(false);
-            this.Map_export_panel.PerformLayout();
-            this.Map_preset_panel.ResumeLayout(false);
-            this.Map_preset_panel.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            ClientSize = new System.Drawing.Size(1244, 591);
+            Controls.Add(Changelog_button);
+            Controls.Add(DnG_map_load);
+            Controls.Add(DnG_map_path);
+            Controls.Add(DnG_map_text);
+            Controls.Add(Tab_control);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            Name = "DnG_AdK_Mapedit";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "DnG-AdK-Mapedit 1.0 Beta 3";
+            FormClosing += DnG_AdK_Mapedit_FormClosing;
+            Load += DnG_AdK_mapedit_Load;
+            Tab_control.ResumeLayout(false);
+            Map_info_tab.ResumeLayout(false);
+            Map_info_tab.PerformLayout();
+            Map_info_resources.ResumeLayout(false);
+            Map_info_resources.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Map_info_preview).EndInit();
+            Resources_tab.ResumeLayout(false);
+            Resources_tab.PerformLayout();
+            Resources_continue_editing_panel.ResumeLayout(false);
+            Resources_continue_editing_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Resources_arrow).EndInit();
+            Textures_tab.ResumeLayout(false);
+            Textures_tab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Textures_arrow).EndInit();
+            Logical_grid_tab.ResumeLayout(false);
+            Logical_grid_tab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Logical_grid_arrow).EndInit();
+            Small_doodads_tab.ResumeLayout(false);
+            Small_doodads_tab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Small_doodads_arrow).EndInit();
+            Swap_list_tab.ResumeLayout(false);
+            Swap_list_tab.PerformLayout();
+            Harbours_tab.ResumeLayout(false);
+            Harbours_tab.PerformLayout();
+            Harbour_panel.ResumeLayout(false);
+            Harbour_panel.PerformLayout();
+            Harbour_anchor_panel.ResumeLayout(false);
+            Harbour_anchor_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Anchor_Y_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Anchor_X_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Harbour_Y_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Harbour_X_input).EndInit();
+            Caves_tab.ResumeLayout(false);
+            Caves_tab.PerformLayout();
+            Cave_panel.ResumeLayout(false);
+            Cave_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Cave_Y_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Cave_X_input).EndInit();
+            Sacrifices_tab.ResumeLayout(false);
+            Sacrifices_tab.PerformLayout();
+            Colours_tab.ResumeLayout(false);
+            Colours_table.ResumeLayout(false);
+            Colours_table.PerformLayout();
+            Environment_tab.ResumeLayout(false);
+            Environment_tab.PerformLayout();
+            Environment_panel.ResumeLayout(false);
+            Environment_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Global_sun_placement_image).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Global_shadow_intensity_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Global_sun_height_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Global_fog_full_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Global_fog_start_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Global_sun_placement_input).EndInit();
+            Environment_zone_panel.ResumeLayout(false);
+            Environment_zone_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Local_transition_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Local_radius_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Local_Y_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Local_X_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Local_fog_full_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Local_fog_start_input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Local_shadow_intensity_input).EndInit();
+            Export_tab.ResumeLayout(false);
+            Export_tab.PerformLayout();
+            Export_main_panel.ResumeLayout(false);
+            Export_main_panel.PerformLayout();
+            Export_presets_panel.ResumeLayout(false);
+            Export_presets_panel.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -2957,37 +3098,37 @@
         private System.Windows.Forms.TabPage Caves_tab;
         private System.Windows.Forms.TabPage Sacrifices_tab;
         private System.Windows.Forms.TabPage Export_tab;
-        private System.Windows.Forms.PictureBox Map_preview;
-        private System.Windows.Forms.TableLayoutPanel Resource_info;
-        private System.Windows.Forms.Label Player_count_text;
-        private System.Windows.Forms.Label Resource_text;
-        private System.Windows.Forms.LinkLabel Map_name_button;
-        private System.Windows.Forms.Label Resource_amount_text;
-        private System.Windows.Forms.LinkLabel Share_button;
-        private System.Windows.Forms.Label Coal_text;
-        private System.Windows.Forms.Label Iron_text;
-        private System.Windows.Forms.Label Salt_text;
-        private System.Windows.Forms.Label Gold_text;
-        private System.Windows.Forms.Label Gemstones_text;
-        private System.Windows.Forms.Label Stone_text;
-        private System.Windows.Forms.Label Coal_amount;
-        private System.Windows.Forms.Label Iron_amount;
-        private System.Windows.Forms.Label Salt_amount;
-        private System.Windows.Forms.Label Gold_amount;
-        private System.Windows.Forms.Label Gemstones_amount;
-        private System.Windows.Forms.Label Stone_amount;
-        private System.Windows.Forms.Label Coal_share;
-        private System.Windows.Forms.Label Iron_share;
-        private System.Windows.Forms.Label Salt_share;
-        private System.Windows.Forms.Label Gold_share;
-        private System.Windows.Forms.Label Gemstones_share;
-        private System.Windows.Forms.Label Stone_share;
+        private System.Windows.Forms.PictureBox Map_info_preview;
+        private System.Windows.Forms.TableLayoutPanel Map_info_resources;
+        private System.Windows.Forms.Label Map_info_player_amount;
+        private System.Windows.Forms.Label Map_info_resource_text;
+        private System.Windows.Forms.LinkLabel Map_info_name;
+        private System.Windows.Forms.Label Map_info_resources_amount;
+        private System.Windows.Forms.LinkLabel Map_info_resources_share;
+        private System.Windows.Forms.Label Map_info_coal_text;
+        private System.Windows.Forms.Label Map_info_iron_text;
+        private System.Windows.Forms.Label Map_info_salt_text;
+        private System.Windows.Forms.Label Map_info_gold_text;
+        private System.Windows.Forms.Label Map_info_gemstones_text;
+        private System.Windows.Forms.Label Map_info_stone_text;
+        private System.Windows.Forms.Label Map_info_coal_amount;
+        private System.Windows.Forms.Label Map_info_iron_amount;
+        private System.Windows.Forms.Label Map_info_salt_amount;
+        private System.Windows.Forms.Label Map_info_gold_amount;
+        private System.Windows.Forms.Label Map_info_gemstones_amount;
+        private System.Windows.Forms.Label Map_info_stone_amount;
+        private System.Windows.Forms.Label Map_info_coal_share;
+        private System.Windows.Forms.Label Map_info_iron_share;
+        private System.Windows.Forms.Label Map_info_salt_share;
+        private System.Windows.Forms.Label Map_info_gold_share;
+        private System.Windows.Forms.Label Map_info_gemstones_share;
+        private System.Windows.Forms.Label Map_info_stone_share;
         private System.Windows.Forms.Label Resources_from_text;
         private System.Windows.Forms.ListBox Resources_from_list;
         private System.Windows.Forms.ListBox Resources_to_list;
         private System.Windows.Forms.Label Resources_to_text;
-        private System.Windows.Forms.Button Continue_editing_button;
-        private System.Windows.Forms.Label Continue_editing_text;
+        private System.Windows.Forms.Button Resources_continue_editing_button;
+        private System.Windows.Forms.Label Resources_continue_editing_text;
         private System.Windows.Forms.PictureBox Resources_arrow;
         private System.Windows.Forms.Button Resources_swap_button;
         private System.Windows.Forms.Label Resources_wait;
@@ -3019,15 +3160,15 @@
         private System.Windows.Forms.Button Harbours_remove_button;
         private System.Windows.Forms.Button Harbours_add_button;
         private System.Windows.Forms.Panel Harbour_panel;
-        private System.Windows.Forms.Label Harbour_position_Y_text;
-        private System.Windows.Forms.Label Harbour_position_X_text;
+        private System.Windows.Forms.Label Harbour_Y_text;
+        private System.Windows.Forms.Label Harbour_X_text;
         private System.Windows.Forms.Label Harbour_rotation_text;
         private System.Windows.Forms.ComboBox Harbour_rotation_select;
         private System.Windows.Forms.Label Harbour_logical_position_warning;
-        private System.Windows.Forms.Label Buoy_2_connection_text;
-        private System.Windows.Forms.ComboBox Buoy_2_connection_select;
-        private System.Windows.Forms.ComboBox Buoy_1_connection_select;
-        private System.Windows.Forms.Label Buoy_1_connection_text;
+        private System.Windows.Forms.Label Harbour_buoy_2_text;
+        private System.Windows.Forms.ComboBox Harbour_buoy_2_select;
+        private System.Windows.Forms.ComboBox Harbour_buoy_1_select;
+        private System.Windows.Forms.Label Harbour_buoy_1_text;
         private System.Windows.Forms.Button Caves_add_button;
         private System.Windows.Forms.ListBox Caves_list_view;
         private System.Windows.Forms.Button Caves_remove_button;
@@ -3036,72 +3177,126 @@
         private System.Windows.Forms.Label Cave_type_text;
         private System.Windows.Forms.Label Cave_position_text;
         private System.Windows.Forms.Label Cave_logical_position_warning;
-        private System.Windows.Forms.NumericUpDown Harbour_position_Y_input;
-        private System.Windows.Forms.NumericUpDown Harbour_position_X_input;
-        private System.Windows.Forms.Label Cave_position_Y_text;
-        private System.Windows.Forms.Label Cave_position_X_text;
-        private System.Windows.Forms.NumericUpDown Cave_position_Y_input;
-        private System.Windows.Forms.NumericUpDown Cave_position_X_input;
+        private System.Windows.Forms.NumericUpDown Harbour_Y_input;
+        private System.Windows.Forms.NumericUpDown Harbour_X_input;
+        private System.Windows.Forms.Label Cave_Y_text;
+        private System.Windows.Forms.Label Cave_X_text;
+        private System.Windows.Forms.NumericUpDown Cave_Y_input;
+        private System.Windows.Forms.NumericUpDown Cave_X_input;
         private System.Windows.Forms.Label Sacrifices_no_research_text;
         private System.Windows.Forms.Label Sacrifices_research_text;
-        private System.Windows.Forms.NumericUpDown Anchor_position_X_input;
-        private System.Windows.Forms.Label Anchor_position_Y_text;
-        private System.Windows.Forms.NumericUpDown Anchor_position_Y_input;
+        private System.Windows.Forms.NumericUpDown Anchor_X_input;
+        private System.Windows.Forms.Label Anchor_Y_text;
+        private System.Windows.Forms.NumericUpDown Anchor_Y_input;
         private System.Windows.Forms.Label Anchor_position_text;
-        private System.Windows.Forms.Label Anchor_position_X_text;
-        private System.Windows.Forms.Button Map_preset_load;
-        private System.Windows.Forms.Button Map_preset_export;
-        private System.Windows.Forms.Label Map_preset_text;
-        private System.Windows.Forms.Label Map_export_text;
-        private System.Windows.Forms.Button Map_export_button;
-        private System.Windows.Forms.Panel Continue_editing_panel;
-        private System.Windows.Forms.Panel Map_preset_panel;
-        private System.Windows.Forms.ListView Sacrifices_no_research_Bavarians;
-        private System.Windows.Forms.ListView Sacrifices_no_research_Scots;
-        private System.Windows.Forms.ListView Sacrifices_no_research_Egyptians;
-        private System.Windows.Forms.Label No_research_Scots_usage;
-        private System.Windows.Forms.Label No_research_Egyptians_usage;
-        private System.Windows.Forms.Label No_research_Bavarians_usage;
-        private System.Windows.Forms.ImageList No_research_Bavarians_icons;
-        private System.Windows.Forms.ImageList No_research_Scots_icons;
-        private System.Windows.Forms.ImageList No_research_Egyptians_icons;
+        private System.Windows.Forms.Label Anchor_X_text;
+        private System.Windows.Forms.Button Export_map_preset_load;
+        private System.Windows.Forms.Button Export_map_preset_button;
+        private System.Windows.Forms.Label Export_map_preset_text;
+        private System.Windows.Forms.Label Export_text;
+        private System.Windows.Forms.Button Export_button;
+        private System.Windows.Forms.Panel Resources_continue_editing_panel;
+        private System.Windows.Forms.Panel Export_presets_panel;
+        private System.Windows.Forms.ListView Sacrifices_Bavarians_no_research;
+        private System.Windows.Forms.ListView Sacrifices_Scots_no_research;
+        private System.Windows.Forms.ListView Sacrifices_Egyptians_no_research;
+        private System.Windows.Forms.Label Sacrifices_Scots_no_research_usage;
+        private System.Windows.Forms.Label Sacrifices_Egyptians_no_research_usage;
+        private System.Windows.Forms.Label Sacrifices_Bavarians_no_research_usage;
+        private System.Windows.Forms.ImageList Icons_Bavarians_no_research;
+        private System.Windows.Forms.ImageList Icons_Scots_no_research;
+        private System.Windows.Forms.ImageList Icons_Egyptians_no_research;
         private System.Windows.Forms.CheckBox Harbour_anchor_checkbox;
-        private System.Windows.Forms.Label Research_Scots_usage;
-        private System.Windows.Forms.Label Research_Egyptians_usage;
-        private System.Windows.Forms.Label Research_Bavarians_usage;
+        private System.Windows.Forms.Label Sacrifices_Scots_research_usage;
+        private System.Windows.Forms.Label Sacrifices_Egyptians_research_usage;
+        private System.Windows.Forms.Label Sacrifices_Bavarians_research_usage;
         private System.Windows.Forms.Panel Harbour_anchor_panel;
-        private System.Windows.Forms.ListView Sacrifices_research_Bavarians;
-        private System.Windows.Forms.ListView Sacrifices_research_Scots;
-        private System.Windows.Forms.ListView Sacrifices_research_Egyptians;
-        private System.Windows.Forms.ImageList Research_Bavarians_icons;
-        private System.Windows.Forms.ImageList Research_Egyptians_icons;
-        private System.Windows.Forms.ImageList Research_Scots_icons;
-        private System.Windows.Forms.Button Sacrifice_preset_load;
-        private System.Windows.Forms.Label Sacrifice_preset_text;
-        private System.Windows.Forms.Panel Map_export_panel;
-        private System.Windows.Forms.Button Sacrifice_preset_export;
-        private System.Windows.Forms.Label Ambient_sounds_warning;
-        private System.Windows.Forms.CheckBox Map_preview_checkbox;
+        private System.Windows.Forms.ListView Sacrifices_Bavarians_research;
+        private System.Windows.Forms.ListView Sacrifices_Scots_research;
+        private System.Windows.Forms.ListView Sacrifices_Egyptians_research;
+        private System.Windows.Forms.ImageList Icons_Bavarians_research;
+        private System.Windows.Forms.ImageList Icons_Egyptians_research;
+        private System.Windows.Forms.ImageList Icons_Scots_research;
+        private System.Windows.Forms.Button Sacrifices_preset_load;
+        private System.Windows.Forms.Label Sacrifices_preset_text;
+        private System.Windows.Forms.Panel Export_main_panel;
+        private System.Windows.Forms.Button Sacrifices_preset_export;
+        private System.Windows.Forms.Label Export_preview_warning;
+        private System.Windows.Forms.CheckBox Export_preview_copy;
         private System.Windows.Forms.Label Export_wait;
-        private System.Windows.Forms.Label Map_prieview_text;
+        private System.Windows.Forms.Label Map_info_preview_text;
         private System.Windows.Forms.Label Map_info_size;
         private System.Windows.Forms.TabPage Colours_tab;
         private System.Windows.Forms.TableLayoutPanel Colours_table;
-        private System.Windows.Forms.Label Player_3_text;
-        private System.Windows.Forms.Label Player_2_text;
-        private System.Windows.Forms.Label Player_1_text;
-        private System.Windows.Forms.Label Player_4_text;
-        private System.Windows.Forms.Label Player_5_text;
-        private System.Windows.Forms.Label Player_6_text;
-        private System.Windows.Forms.ComboBox Player_1_select;
-        private System.Windows.Forms.ComboBox Player_6_select;
-        private System.Windows.Forms.ComboBox Player_5_select;
-        private System.Windows.Forms.ComboBox Player_4_select;
-        private System.Windows.Forms.ComboBox Player_3_select;
-        private System.Windows.Forms.ComboBox Player_2_select;
-        private System.Windows.Forms.CheckBox Sacrifice_included_checkbox;
-        private System.Windows.Forms.ComboBox Sacrifice_included_presets;
-        private System.Windows.Forms.CheckBox Multiplayer_prefix_checkbox;
+        private System.Windows.Forms.Label Colours_player_3_text;
+        private System.Windows.Forms.Label Colours_player_2_text;
+        private System.Windows.Forms.Label Colours_player_1_text;
+        private System.Windows.Forms.Label Colours_player_4_text;
+        private System.Windows.Forms.Label Colours_player_5_text;
+        private System.Windows.Forms.Label Colours_player_6_text;
+        private System.Windows.Forms.ComboBox Colours_player_1_select;
+        private System.Windows.Forms.ComboBox Colours_player_6_select;
+        private System.Windows.Forms.ComboBox Colours_player_5_select;
+        private System.Windows.Forms.ComboBox Colours_player_4_select;
+        private System.Windows.Forms.ComboBox Colours_player_3_select;
+        private System.Windows.Forms.ComboBox Colours_player_2_select;
+        private System.Windows.Forms.CheckBox Sacrifices_included_presets_checkbox;
+        private System.Windows.Forms.ComboBox Sacrifices_included_presets_select;
+        private System.Windows.Forms.CheckBox Export_multiplayer_prefix;
+        private System.Windows.Forms.TabPage Environment_tab;
+        private System.Windows.Forms.ComboBox Environment_preset_select;
+        private System.Windows.Forms.Button Environment_preset_global;
+        private System.Windows.Forms.Button Environment_preset_local;
+        private System.Windows.Forms.Panel Environment_panel;
+        private System.Windows.Forms.Panel Environment_zone_panel;
+        private System.Windows.Forms.Label Global_sun_placement_text;
+        private System.Windows.Forms.Label Global_sky_text;
+        private System.Windows.Forms.CheckBox Environment_preset_checkbox;
+        private System.Windows.Forms.NumericUpDown Global_sun_placement_input;
+        private System.Windows.Forms.ComboBox Global_sky_select;
+        private System.Windows.Forms.Label Environment_global_text;
+        private System.Windows.Forms.Button Global_fog_colour;
+        private System.Windows.Forms.Button Global_light_colour;
+        private System.Windows.Forms.Button Global_ambient_colour;
+        private System.Windows.Forms.Label Global_light_text;
+        private System.Windows.Forms.Label Global_ambient_text;
+        private System.Windows.Forms.Label Global_fog_text;
+        private System.Windows.Forms.NumericUpDown Global_fog_full_input;
+        private System.Windows.Forms.Label Global_fog_full;
+        private System.Windows.Forms.NumericUpDown Global_fog_start_input;
+        private System.Windows.Forms.Label Global_fog_start;
+        private System.Windows.Forms.NumericUpDown Global_sun_height_input;
+        private System.Windows.Forms.Label Global_sun_height_text;
+        private System.Windows.Forms.Label Environment_local_zones_text;
+        private System.Windows.Forms.Button Environment_remove_zone;
+        private System.Windows.Forms.Button Environment_add_zone;
+        private System.Windows.Forms.Button Environment_next_zone;
+        private System.Windows.Forms.Button Environment_previous_zone;
+        private System.Windows.Forms.NumericUpDown Global_shadow_intensity_input;
+        private System.Windows.Forms.Label Global_shadow_intensity_text;
+        private System.Windows.Forms.Button Local_fog_colour;
+        private System.Windows.Forms.Label Local_fog_text;
+        private System.Windows.Forms.Button Local_light_colour;
+        private System.Windows.Forms.Label Local_light_text;
+        private System.Windows.Forms.Button Local_ambient_colour;
+        private System.Windows.Forms.Label Local_ambient_text;
+        private System.Windows.Forms.Label Local_shadow_intensity_text;
+        private System.Windows.Forms.NumericUpDown Local_fog_full_input;
+        private System.Windows.Forms.Label Local_fog_full_text;
+        private System.Windows.Forms.NumericUpDown Local_fog_start_input;
+        private System.Windows.Forms.Label Local_fog_start_text;
+        private System.Windows.Forms.NumericUpDown Local_shadow_intensity_input;
+        private System.Windows.Forms.Label Local_position_text;
+        private System.Windows.Forms.NumericUpDown Local_X_input;
+        private System.Windows.Forms.NumericUpDown Local_Y_input;
+        private System.Windows.Forms.Label Local_Y_text;
+        private System.Windows.Forms.NumericUpDown Local_radius_input;
+        private System.Windows.Forms.Label Local_radius_text;
+        private System.Windows.Forms.NumericUpDown Local_transition_input;
+        private System.Windows.Forms.Label Local_transition_text;
+        private System.Windows.Forms.PictureBox Global_sun_placement_image;
+        private System.Windows.Forms.Label Local_X_text;
+        private System.Windows.Forms.CheckBox Environment_highland_water_checkbox;
     }
 }
 

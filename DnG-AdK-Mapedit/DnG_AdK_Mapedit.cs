@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -14,6 +13,28 @@ namespace DnG_AdK_Mapedit
 {
     public partial class DnG_AdK_Mapedit : Form
     {
+        private void Changelog_button_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string message = @"Changes compared to the original map converter:
+
+• (Beta 3) Dark mode support was added
+• Invalid resources are now automatically removed
+• Swapping was added to allow using new assets
+• Harbour code was added but currently it's causing game crashes
+• Caves section now works properly
+• Knowledge of exact sacrifice names is not required as icons are displayed instead
+• Sacrifice limits are now automatically checked and displayed
+• Each sacrifice preset is now stored in individual files and can be easily exported
+• Default player colours can now be customized
+• (Beta 3) Added ability to create custom environment files
+• Whole map preset can be now saved not requiring inputting values manually with each map edit
+• Support for maps with odd player counts was added
+• Maps no longer crash randomly during gameplay
+• Resource signs placed by map creators now never despawn";
+
+            MessageBox.Show(message, "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         readonly string TempFolder = Path.Combine(Path.GetTempPath(), "DnG-AdK-Mapedit/");
         private string WorkingFileName => Path.Combine(TempFolder, "temp_" + Path.GetFileName(DnG_map_path.Text));
         private string ArchiverPath => Path.Combine(TempFolder, "decryptor_s2.exe");
@@ -31,9 +52,9 @@ namespace DnG_AdK_Mapedit
         private int map_size_x;
         private int map_size_y;
 
-        private static readonly byte[] HeightsHeader = { 0x01, 0x00, 0x00, 0x00, 0x71, 0x28, 0x0B, 0x82, 0x0C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x9C, 0xFF, 0xFF, 0xFF };
-        private static readonly byte[] TexturesHeader = { 0x00, 0x00, 0x00, 0x00, 0xB4, 0x88, 0xC8, 0x75, 0x0A, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 };
-        private static readonly byte[] Resources_header = { 0x00, 0x00, 0x00, 0x00, 0xB0, 0xBB, 0xC3, 0x7C, 0x0D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 };
+        private static readonly byte[] HeightsHeader = [0x01, 0x00, 0x00, 0x00, 0x71, 0x28, 0x0B, 0x82, 0x0C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x9C, 0xFF, 0xFF, 0xFF];
+        private static readonly byte[] TexturesHeader = [0x00, 0x00, 0x00, 0x00, 0xB4, 0x88, 0xC8, 0x75, 0x0A, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00];
+        private static readonly byte[] Resources_header = [0x00, 0x00, 0x00, 0x00, 0xB0, 0xBB, 0xC3, 0x7C, 0x0D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00];
 
         private const uint CoalHex = 0x7068DCD3;      // Little-endian values
         private const uint IronHex = 0xEC5020BE;
@@ -46,13 +67,16 @@ namespace DnG_AdK_Mapedit
 
         private const uint EmptyHex = 0xFFFFFFFF;
 
-        private readonly List<(int tab, int from, int to)> Swap_list = new List<(int, int, int)>();
+        private readonly List<(int tab, int from, int to)> Swap_list = [];
 
-        private readonly List<(int pos_x, int pos_y, int rotation, bool anchorage, int anchor_x, int anchor_y, int buoy_1_connection, int buoy_2_connection)> Harbours_list = new List<(int, int, int, bool, int, int, int, int)>();
+        private readonly List<(int pos_x, int pos_y, int rotation, bool anchorage, int anchor_x, int anchor_y, int buoy_1_connection, int buoy_2_connection)> Harbours_list = [];
         // Flag to prevent UI updates from triggering save events
         private bool isUpdatingUI = false;
 
-        private readonly List<(int pos_x, int pos_y, int type)> Caves_list = new List<(int, int, int)>();
+        private readonly List<(int pos_x, int pos_y, int type)> Caves_list = [];
+
+        int current_zone_index = -1;
+        private readonly List<(Color fog_colour, Color ambient_colour, Color light_colour, float shadow_intensity, int fog_start_distance, int fog_full_distance, int pos_x, int pos_y, int radius, int transition)> Environment_zones = [];
 
         public DnG_AdK_Mapedit()
         {
@@ -65,28 +89,22 @@ namespace DnG_AdK_Mapedit
             InitializeComponent();
         }
 
-        private void Changelog_button_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string message = @"Changes compared to the original map converter:
-
-• Invalid resources are now automatically removed
-• Swapping was added to allow using new assets
-• Harbour code was added but currently it's causing game crashes
-• Caves section now works properly
-• Knowledge of exact sacrifice names is not required as icons are displayed instead
-• Sacrifice limits are now automatically checked and displayed
-• Each sacrifice preset is now stored in individual files and can be easily exported
-• Default player colours can now be customized
-• Whole map preset can be now saved not requiring inputting values manually with each map edit
-• Support for maps with odd player counts was added
-• Maps no longer crash randomly during gameplay
-• Resource signs placed by map creators now never despawn";
-
-            MessageBox.Show(message, "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void DnG_AdK_mapedit_Load(object sender, System.EventArgs e)
         {
+            //Apply dark mode
+            if (Application.IsDarkModeEnabled)
+            {
+                Changelog_button.LinkColor = Color.SkyBlue;
+                Map_info_name.LinkColor = Color.SkyBlue;
+                Map_info_resources_share.LinkColor = Color.SkyBlue;
+            }
+            Global_fog_colour.UseVisualStyleBackColor = false;
+            Global_ambient_colour.UseVisualStyleBackColor = false;
+            Global_light_colour.UseVisualStyleBackColor = false;
+            Local_fog_colour.UseVisualStyleBackColor = false;
+            Local_ambient_colour.UseVisualStyleBackColor = false;
+            Local_light_colour.UseVisualStyleBackColor = false;
+
             //For now disable broken harbour section
             Harbours_tab.Enabled = false;
 
@@ -96,24 +114,43 @@ namespace DnG_AdK_Mapedit
 
             Harbour_panel.Enabled = false;
             Harbour_anchor_panel.Enabled = false;
+
             Cave_panel.Enabled = false;
 
-            Sacrifice_included_presets.SelectedIndex = 0;
-            Sacrifice_included_presets.Enabled = false;
+            Environment_preset_select.Enabled = false;
+            Environment_preset_global.Enabled = false;
+            Environment_preset_local.Enabled = false;
+            Environment_panel.Enabled = false;
+            Environment_zone_panel.Enabled = false;
+
+            //Set default values
+            Global_sky_select.SelectedIndex = 1;
+            Global_sun_placement_input.Value = 55;
+
+            Global_sun_height_input.Value = 50;
+            Global_shadow_intensity_input.Value = 90;
+
+            Global_fog_start_input.Value = 200;
+            Global_fog_full_input.Value = 300;
+
+            Global_fog_colour.BackColor = ColorTranslator.FromHtml("#CCE6FF");
+            Global_light_colour.BackColor = ColorTranslator.FromHtml("#998099");
+            Global_ambient_colour.BackColor = ColorTranslator.FromHtml("#EFE5CF");
+
+            Sacrifices_included_presets_select.SelectedIndex = 0;
+            Sacrifices_included_presets_select.Enabled = false;
         }
 
         //User interacts with the DnG map file path textbox
         private void DnG_map_path_MouseDown(object sender, MouseEventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.Filter = "DnG map file (*.s2m)|*.s2m|All files (*.*)|*.*";
+            openFileDialog.Title = "Select a DnG map file";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                openFileDialog.Filter = "DnG map file (*.s2m)|*.s2m|All files (*.*)|*.*";
-                openFileDialog.Title = "Select a DnG map file";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    DnG_map_path.Text = openFileDialog.FileName;
-                    FileValidation();
-                }
+                DnG_map_path.Text = openFileDialog.FileName;
+                FileValidation();
             }
         }
 
@@ -138,9 +175,9 @@ namespace DnG_AdK_Mapedit
         void FileValidation()
         {
             byte[] DnG_map = File.ReadAllBytes(DnG_map_path.Text);
-            byte[] File_header = DnG_map.Take(8).ToArray();
+            byte[] File_header = [.. DnG_map.Take(8)];
             //Only compressed
-            byte[] DnG_header = { 0x12, 0x18, 0x09, 0x06, 0x72, 0x63, 0x30, 0x30 };
+            byte[] DnG_header = [0x12, 0x18, 0x09, 0x06, 0x72, 0x63, 0x30, 0x30];
 
             //If the file is a DnG map it can be decompressed with an external executable
             if (File_header.SequenceEqual(DnG_header))
@@ -155,7 +192,7 @@ namespace DnG_AdK_Mapedit
             }
 
             //Only compressed
-            byte[] SAdK_header = { 0x12, 0x18, 0x09, 0x06, 0x73, 0x61, 0x64, 0x6B };
+            byte[] SAdK_header = [0x12, 0x18, 0x09, 0x06, 0x73, 0x61, 0x64, 0x6B];
 
             if (File_header.SequenceEqual(SAdK_header))
             {
@@ -174,13 +211,9 @@ namespace DnG_AdK_Mapedit
             if (!File.Exists(ArchiverPath))
             {
                 Assembly assembly = Assembly.GetExecutingAssembly();
-                using (Stream stream = assembly.GetManifestResourceStream("DnG_AdK_Mapedit.decryptor_s2.exe"))
-                {
-                    using (FileStream fileStream = new FileStream(ArchiverPath, FileMode.Create, FileAccess.Write))
-                    {
-                        stream.CopyTo(fileStream);
-                    }
-                }
+                using Stream stream = assembly.GetManifestResourceStream("DnG_AdK_Mapedit.decryptor_s2.exe");
+                using FileStream fileStream = new(ArchiverPath, FileMode.Create, FileAccess.Write);
+                stream.CopyTo(fileStream);
             }
 
             // Many programs that accept files dragged onto their icon simply receive the
@@ -266,7 +299,7 @@ namespace DnG_AdK_Mapedit
         //Archiver process exit
         private void ExternalApp_Exited(object sender, EventArgs e)
         {
-            this.Invoke((MethodInvoker)delegate
+            this.Invoke((System.Windows.Forms.MethodInvoker)delegate
             {
                 if (Compress)
                 {
@@ -314,7 +347,7 @@ namespace DnG_AdK_Mapedit
                             }
 
                             //Copy the prieview render
-                            if (Map_preview_checkbox.Checked)
+                            if (Export_preview_copy.Checked)
                             {
                                 string preview_source = Path.ChangeExtension(DnG_map_path.Text, ".bmp");
                                 string preview_destination = Path.ChangeExtension(destinationFileName, ".bmp");
@@ -327,6 +360,17 @@ namespace DnG_AdK_Mapedit
                                         File.Copy(preview_source, preview_destination, true);
                                     }
                                 }
+                            }
+
+                            //Moving the fog file
+                            if (Environment_preset_checkbox.Checked)
+                            {
+                                string fog_file_destination = Path.Combine(Path.GetDirectoryName(destinationFileName), Map_info_name.Text + ".bin");
+                                if (File.Exists(fog_file_destination))
+                                {
+                                    File.Delete(fog_file_destination);
+                                }
+                                File.Move(Path.ChangeExtension(sourceFileName, ".bin"), fog_file_destination);
                             }
 
                             // Re-enable UI
@@ -405,14 +449,12 @@ namespace DnG_AdK_Mapedit
             string bmpPath = DnG_map_path.Text.Replace(".s2m", ".bmp");
             if (File.Exists(bmpPath))
             {
-                using (var stream = new FileStream(bmpPath, FileMode.Open, FileAccess.Read))
-                {
-                    Map_preview.BackgroundImage = Image.FromStream(stream);
-                }
+                using var stream = new FileStream(bmpPath, FileMode.Open, FileAccess.Read);
+                Map_info_preview.BackgroundImage = Image.FromStream(stream);
             }
             else
             {
-                Map_preview_checkbox.Enabled = false;
+                Export_preview_copy.Enabled = false;
             }
 
             byte[] DnG_map = File.ReadAllBytes(WorkingFileName);
@@ -421,10 +463,10 @@ namespace DnG_AdK_Mapedit
             current_byte += 12;
             //Read player count
             Player_count = (int)BitConverter.ToUInt32(DnG_map, current_byte);
-            Player_count_text.Text = "Player count: " + Player_count.ToString();
+            Map_info_player_amount.Text = "Player count: " + Player_count.ToString();
             if (Player_count < 2)
             {
-                Multiplayer_prefix_checkbox.Enabled = false;
+                Export_multiplayer_prefix.Enabled = false;
             }
             current_byte += 4;
 
@@ -440,24 +482,24 @@ namespace DnG_AdK_Mapedit
             // 1. Group controls into an array for easy iteration
             var selectors = new[]
             {
-                Player_1_select,
-                Player_2_select,
-                Player_3_select,
-                Player_4_select,
-                Player_5_select,
-                Player_6_select
+                Colours_player_1_select,
+                Colours_player_2_select,
+                Colours_player_3_select,
+                Colours_player_4_select,
+                Colours_player_5_select,
+                Colours_player_6_select
             };
 
             // 2. Map default color indices per player count (0-indexed: row 0 = 1 player)
-            int[][] presets = new int[][]
-            {
-                new[] { 0 },                  // 1 player
-                new[] { 0, 1 },               // 2 players
-                new[] { 0, 2, 3 },            // 3 players
-                new[] { 0, 2, 3, 1 },         // 4 players
-                new[] { 0, 2, 3, 1, 6 },      // 5 players
-                new[] { 0, 2, 3, 5, 1, 4 }    // 6 players
-            };
+            int[][] presets =
+            [
+                [0],                  // 1 player
+                [0, 1],               // 2 players
+                [0, 2, 3],            // 3 players
+                [0, 2, 3, 1],         // 4 players
+                [0, 2, 3, 1, 6],      // 5 players
+                [0, 2, 3, 5, 1, 4]    // 6 players
+            ];
 
             // 3. Apply settings cleanly with a single loop
             if (Player_count >= 1 && Player_count <= selectors.Length)
@@ -482,7 +524,7 @@ namespace DnG_AdK_Mapedit
             int Map_name_length = (int)BitConverter.ToUInt32(DnG_map, current_byte);
             current_byte += 4;
             string Map_name = System.Text.Encoding.UTF8.GetString(DnG_map, current_byte, Map_name_length);
-            Map_name_button.Text = Map_name.ToString();
+            Map_info_name.Text = Map_name.ToString();
             current_byte += Map_name_length;
             //Read map size
             map_size_x = (int)BitConverter.ToUInt32(DnG_map, current_byte);
@@ -492,13 +534,16 @@ namespace DnG_AdK_Mapedit
             Map_info_size.Text = "Map size: " + map_size_x.ToString() + "x" + map_size_y.ToString();
 
             //Update maximum positions
-            Harbour_position_X_input.Maximum = map_size_x - 1;
-            Anchor_position_X_input.Maximum = map_size_x - 1;
-            Cave_position_X_input.Maximum = map_size_x - 1;
+            Harbour_X_input.Maximum = map_size_x - 1;
+            Harbour_Y_input.Maximum = map_size_y - 1;
+            Anchor_X_input.Maximum = map_size_x - 1;
+            Anchor_Y_input.Maximum = map_size_y - 1;
 
-            Harbour_position_Y_input.Maximum = map_size_y - 1;
-            Anchor_position_Y_input.Maximum = map_size_y - 1;
-            Cave_position_Y_input.Maximum = map_size_y - 1;
+            Cave_X_input.Maximum = map_size_x - 1;
+            Cave_Y_input.Maximum = map_size_y - 1;
+
+            Local_X_input.Maximum = map_size_x - 1;
+            Local_Y_input.Maximum = map_size_y - 1;
 
             UpdateResources(current_byte, DnG_map);
         }
@@ -506,7 +551,7 @@ namespace DnG_AdK_Mapedit
         void UpdateResources(int current_byte, byte[] DnG_map)
         {
 
-            byte[] Empty_hex_extended = { 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF };
+            byte[] Empty_hex_extended = [0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF];
 
             //Finding the heights array header in the map file
             current_byte = FindSequenceOffset(DnG_map, HeightsHeader, current_byte);
@@ -623,12 +668,12 @@ namespace DnG_AdK_Mapedit
 
             int Total_resources = Coal_count + Iron_count + Salt_count + Gold_count + Gemstones_count + Stone_count;
 
-            SetResourceUI(Coal_amount, Coal_share, Coal_count, Total_resources);
-            SetResourceUI(Iron_amount, Iron_share, Iron_count, Total_resources);
-            SetResourceUI(Salt_amount, Salt_share, Salt_count, Total_resources);
-            SetResourceUI(Gold_amount, Gold_share, Gold_count, Total_resources);
-            SetResourceUI(Gemstones_amount, Gemstones_share, Gemstones_count, Total_resources);
-            SetResourceUI(Stone_amount, Stone_share, Stone_count, Total_resources);
+            SetResourceUI(Map_info_coal_amount, Map_info_coal_share, Coal_count, Total_resources);
+            SetResourceUI(Map_info_iron_amount, Map_info_iron_share, Iron_count, Total_resources);
+            SetResourceUI(Map_info_salt_amount, Map_info_salt_share, Salt_count, Total_resources);
+            SetResourceUI(Map_info_gold_amount, Map_info_gold_share, Gold_count, Total_resources);
+            SetResourceUI(Map_info_gemstones_amount, Map_info_gemstones_share, Gemstones_count, Total_resources);
+            SetResourceUI(Map_info_stone_amount, Map_info_stone_share, Stone_count, Total_resources);
 
             //Write the edited file back to disk
             File.WriteAllBytes(WorkingFileName, DnG_map);
@@ -637,7 +682,7 @@ namespace DnG_AdK_Mapedit
             Tab_control.Enabled = true;
         }
 
-        private void SetResourceUI(Control amountControl, Control shareControl, int count, int total)
+        private static void SetResourceUI(Label amountControl, Label shareControl, int count, int total)
         {
             amountControl.Text = count.ToString();
             shareControl.Text = total == 0
@@ -645,32 +690,15 @@ namespace DnG_AdK_Mapedit
                 : (count * 100.0 / total).ToString("F2") + "%";
         }
 
-        // Helper to find the index where a byte sequence starts
-        private int FindSequenceOffset(byte[] data, byte[] pattern, int startIndex = 0)
+        private static int FindSequenceOffset(ReadOnlySpan<byte> data, ReadOnlySpan<byte> pattern, int startIndex = 0)
         {
-            for (int i = startIndex; i <= data.Length - pattern.Length; i++)
-            {
-                if (MatchBytes(data, i, pattern))
-                    return i + pattern.Length; // Returns offset right after header
-            }
-            return -1; // Not found
-        }
-
-        // Helper method for fast byte array comparison
-        bool MatchBytes(byte[] source, int offset, byte[] target)
-        {
-            if (offset + target.Length > source.Length) return false;
-
-            for (int i = 0; i < target.Length; i++)
-            {
-                if (source[offset + i] != target[i])
-                    return false;
-            }
-            return true;
+            int index = data[startIndex..].IndexOf(pattern);
+            return index >= 0 ? startIndex + index + pattern.Length : -1;
         }
 
         //Checking if the resource is not under water
-        bool IsOnLand(byte[] DnG_map, int Heights_array_beginning, int Index_logical, int Map_size_x)
+        /*
+        private static bool IsOnLand(byte[] DnG_map, int Heights_array_beginning, int Index_logical, int Map_size_x)
         {
             //Convert to detailed grid coordinates
             int x_logical = Index_logical % Map_size_x;
@@ -692,6 +720,7 @@ namespace DnG_AdK_Mapedit
 
             return BitConverter.ToInt32(DnG_map, Heights_array_beginning + Index_detailed * 4) > -100;
         }
+        */
 
         public static bool IsRockTexture(byte[] DnG_map, int Index, int textures_beginning)
         {
@@ -707,48 +736,21 @@ namespace DnG_AdK_Mapedit
                        (value << 24);
             }
 
-            switch (value)
+            return value switch
             {
-                case 0xFEAF0FD0: // 0: rock
-                case 0xEFBEADDE: // 1: rock big
-                case 0xFECAFECA: // 2: rock small
-                case 0xFFCAFECA: // 3: rocky earth
-                case 0x00CBFECA: // 4: rock stretched source_x
-                case 0x01CBFECA: // 5: rock stretched source_y
-                case 0x02CBFECA: // 6: rocky earth big
-                case 0x03CBFECA: // 7: rocky plants
-                case 0x04CBFECA: // 8: rocky earth dark
-                case 0x04DECADE: // 9: LAVA rock
-                case 0x05DECADE: // 10: LAVA rock big
-                case 0x06DECADE: // 11: LAVA rock small
-                case 0xB0FA87CA: // 12: LAVA rock floating lava
-                case 0x80A51CFA: // 13: MED rock
-                case 0x81A51CFA: // 14: MED rock big
-                case 0x82A51CFA: // 15: MED rock small
-                case 0x83A51CFA: // 16: MED rock red
-                case 0x84A51CFA: // 17: MED rock red small
-                case 0x85A51CFA: // 18: MED rock red big
-                case 0x86A51CFA: // 19: MED rocky earth big
-                case 0x87A51CFA: // 20: MED rocky plants
-                case 0x88A51CFA: // 21: MED rocky earth dark
-                case 0x89A51CFA: // 22: MED rocky earth
-                    return true;
-
-                default:
-                    return false;
-            }
+                0xFEAF0FD0 or 0xEFBEADDE or 0xFECAFECA or 0xFFCAFECA or 0x00CBFECA or 0x01CBFECA or 0x02CBFECA or 0x03CBFECA or 0x04CBFECA or 0x04DECADE or 0x05DECADE or 0x06DECADE or 0xB0FA87CA or 0x80A51CFA or 0x81A51CFA or 0x82A51CFA or 0x83A51CFA or 0x84A51CFA or 0x85A51CFA or 0x86A51CFA or 0x87A51CFA or 0x88A51CFA or 0x89A51CFA => true,
+                _ => false,
+            };
         }
 
         //Map renaming dialog
-        private void Map_name_button_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void Map_info_name_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using (var Map_rename_dialog = new Map_renaming(Map_name_button.Text))
+            using var Map_rename_dialog = new Map_renaming(Map_info_name.Text);
+            if (Map_rename_dialog.ShowDialog(this) == DialogResult.OK)
             {
-                if (Map_rename_dialog.ShowDialog(this) == DialogResult.OK)
-                {
-                    Map_name_button.Text = Map_rename_dialog.Map_name;
-                    UpdateMapName();
-                }
+                Map_info_name.Text = Map_rename_dialog.Map_name;
+                UpdateMapName();
             }
         }
 
@@ -764,9 +766,9 @@ namespace DnG_AdK_Mapedit
             //Read the current map name length
             int Map_name_length = (int)BitConverter.ToUInt32(DnG_map, current_byte);
             //Replace the map name with the new one
-            byte[] nameBytes = System.Text.Encoding.UTF8.GetBytes(Map_name_button.Text);
+            byte[] nameBytes = System.Text.Encoding.UTF8.GetBytes(Map_info_name.Text);
             byte[] lengthBytes = BitConverter.GetBytes(nameBytes.Length);
-            byte[] combinedData = lengthBytes.Concat(nameBytes).ToArray();
+            byte[] combinedData = [.. lengthBytes, .. nameBytes];
 
             DnG_map = ReplaceSection(DnG_map, current_byte, Map_name_length + 4, combinedData);
 
@@ -774,47 +776,23 @@ namespace DnG_AdK_Mapedit
             File.WriteAllBytes(WorkingFileName, DnG_map);
         }
 
-        public static byte[] ReplaceSection(byte[] original, int startIndex, int lengthToRemove, byte[] insertData)
+        public static byte[] ReplaceSection(ReadOnlySpan<byte> original, int startIndex, int lengthToRemove, ReadOnlySpan<byte> insertData)
         {
-            // 1. Validate inputs to prevent out-of-bounds exceptions
-            if (original == null) throw new ArgumentNullException(nameof(original));
-            if (insertData == null) throw new ArgumentNullException(nameof(insertData));
-            if (startIndex < 0 || startIndex > original.Length) throw new ArgumentOutOfRangeException(nameof(startIndex));
-            if (lengthToRemove < 0 || startIndex + lengthToRemove > original.Length) throw new ArgumentOutOfRangeException(nameof(lengthToRemove));
+            ReadOnlySpan<byte> head = original[..startIndex];
+            ReadOnlySpan<byte> tail = original[(startIndex + lengthToRemove)..];
 
-            // 2. Calculate the size of the new array
-            int newSize = original.Length - lengthToRemove + insertData.Length;
-            byte[] result = new byte[newSize];
+            byte[] result = GC.AllocateUninitializedArray<byte>(head.Length + insertData.Length + tail.Length);
 
-            // 3. Copy the beginning segment (before the replaced section)
-            if (startIndex > 0)
-            {
-                Buffer.BlockCopy(original, 0, result, 0, startIndex);
-            }
-
-            // 4. Copy the new inserted data
-            if (insertData.Length > 0)
-            {
-                Buffer.BlockCopy(insertData, 0, result, startIndex, insertData.Length);
-            }
-
-            // 5. Copy the trailing segment (after the replaced section)
-            int tailLength = original.Length - (startIndex + lengthToRemove);
-            if (tailLength > 0)
-            {
-                Buffer.BlockCopy(
-                    original,
-                    startIndex + lengthToRemove,          // Source offset: skip the removed part
-                    result,
-                    startIndex + insertData.Length,       // Destination offset: right after the inserted data
-                    tailLength);
-            }
+            Span<byte> target = result;
+            head.CopyTo(target);
+            insertData.CopyTo(target[head.Length..]);
+            tail.CopyTo(target[(head.Length + insertData.Length)..]);
 
             return result;
         }
 
         //Resource share recommendations
-        private void Share_button_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void Map_info_resources_share_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("Recommended resource shares:\n\nCoal: ~40%\nIron: ~20%\nSalt: ~20%\nGold: ~20%\nGemstones: ~3%\nStone: ~3%", "Recommended resource shares", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -832,7 +810,7 @@ namespace DnG_AdK_Mapedit
             Tab_control.Enabled = false;
             Resources_wait.Refresh();
 
-            byte[] Resources_list = { 0xD3, 0xDC, 0x68, 0x70, 0xBE, 0x20, 0x50, 0xEC, 0x23, 0xD6, 0xD2, 0x09, 0x33, 0xC6, 0x41, 0x4F, 0x03, 0xC9, 0x98, 0xCB, 0xD3, 0x52, 0xE9, 0x55 };
+            byte[] Resources_list = [0xD3, 0xDC, 0x68, 0x70, 0xBE, 0x20, 0x50, 0xEC, 0x23, 0xD6, 0xD2, 0x09, 0x33, 0xC6, 0x41, 0x4F, 0x03, 0xC9, 0x98, 0xCB, 0xD3, 0x52, 0xE9, 0x55];
 
             uint From_resource = (uint)BitConverter.ToUInt32(Resources_list, Resources_from_list.SelectedIndex * 4);
             uint To_resource = (uint)BitConverter.ToUInt32(Resources_list, Resources_to_list.SelectedIndex * 4);
@@ -878,35 +856,33 @@ namespace DnG_AdK_Mapedit
         }
 
         //Save the map for further editing
-        private void Continue_editing_button_Click(object sender, EventArgs e)
+        private void Resources_continue_editing_button_Click(object sender, EventArgs e)
         {
             // Allow the user to keep the old map name even if it exceeds the maximum length, but warn them about it.
-            if (Map_name_button.Text.Length > 20)
+            if (Map_info_name.Text.Length > 20)
             {
-                MessageBox.Show("Current map name with a length of " + Map_name_button.Text.Length + " characters is larger than the maximum allowed of 20 characters", "Map name is too long", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Current map name with a length of " + Map_info_name.Text.Length + " characters is larger than the maximum allowed of 20 characters", "Map name is too long", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            using SaveFileDialog saveFileDialog = new();
+            saveFileDialog.Filter = "DnG map file (*.s2m)|*.s2m|All files (*.*)|*.*";
+            saveFileDialog.Title = "Save the map for further editing";
+            saveFileDialog.InitialDirectory = Path.GetDirectoryName(DnG_map_path.Text);
+            saveFileDialog.FileName = Path.GetFileName(DnG_map_path.Text);
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                saveFileDialog.Filter = "DnG map file (*.s2m)|*.s2m|All files (*.*)|*.*";
-                saveFileDialog.Title = "Save the map for further editing";
-                saveFileDialog.InitialDirectory = Path.GetDirectoryName(DnG_map_path.Text);
-                saveFileDialog.FileName = Path.GetFileName(DnG_map_path.Text);
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                //Allow the user to keep the new file name even if it exceeds the maximum length, but warn them about it.
+                if (Path.GetFileNameWithoutExtension(saveFileDialog.FileName).Length > 20)
                 {
-                    //Allow the user to keep the new file name even if it exceeds the maximum length, but warn them about it.
-                    if (Path.GetFileNameWithoutExtension(saveFileDialog.FileName).Length > 20)
-                    {
-                        MessageBox.Show("Current file name with a length of " + Path.GetFileNameWithoutExtension(saveFileDialog.FileName).Length + " characters is larger than the maximum allowed of 20 characters", "File name is too long", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-
-                    DnG = true;
-                    Compress = true;
-                    sourceFileName = WorkingFileName;
-                    destinationFileName = saveFileDialog.FileName;
-
-                    Archiver();
+                    MessageBox.Show("Current file name with a length of " + Path.GetFileNameWithoutExtension(saveFileDialog.FileName).Length + " characters is larger than the maximum allowed of 20 characters", "File name is too long", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+
+                DnG = true;
+                Compress = true;
+                sourceFileName = WorkingFileName;
+                destinationFileName = saveFileDialog.FileName;
+
+                Archiver();
             }
         }
 
@@ -1024,18 +1000,18 @@ namespace DnG_AdK_Mapedit
             bool previousUpdatingState = isUpdatingUI;
             isUpdatingUI = true;
 
-            Buoy_1_connection_select.Items.Clear();
-            Buoy_2_connection_select.Items.Clear();
+            Harbour_buoy_1_select.Items.Clear();
+            Harbour_buoy_2_select.Items.Clear();
 
-            Buoy_1_connection_select.Items.Add("None");
-            Buoy_2_connection_select.Items.Add("None");
+            Harbour_buoy_1_select.Items.Add("None");
+            Harbour_buoy_2_select.Items.Add("None");
 
             for (int i = 0; i < Harbours_list.Count; i++)
             {
-                Buoy_1_connection_select.Items.Add($"Harbour {i + 1} buoy 1");
-                Buoy_1_connection_select.Items.Add($"Harbour {i + 1} buoy 2");
-                Buoy_2_connection_select.Items.Add($"Harbour {i + 1} buoy 1");
-                Buoy_2_connection_select.Items.Add($"Harbour {i + 1} buoy 2");
+                Harbour_buoy_1_select.Items.Add($"Harbour {i + 1} buoy 1");
+                Harbour_buoy_1_select.Items.Add($"Harbour {i + 1} buoy 2");
+                Harbour_buoy_2_select.Items.Add($"Harbour {i + 1} buoy 1");
+                Harbour_buoy_2_select.Items.Add($"Harbour {i + 1} buoy 2");
             }
 
             // Restore previous state instead of forcing false
@@ -1054,35 +1030,35 @@ namespace DnG_AdK_Mapedit
                 // Load current selection from the list
                 var (pos_x, pos_y, rotation, anchorage, anchor_x, anchor_y, buoy_1_connection, buoy_2_connection) = Harbours_list[Harbours_list_view.SelectedIndex];
 
-                Harbour_position_X_input.Value = pos_x;
-                Harbour_position_Y_input.Value = pos_y;
+                Harbour_X_input.Value = pos_x;
+                Harbour_Y_input.Value = pos_y;
                 Harbour_rotation_select.SelectedIndex = rotation;
 
                 Harbour_anchor_checkbox.Checked = anchorage;
                 Harbour_anchor_panel.Enabled = anchorage;
 
-                Anchor_position_X_input.Value = anchor_x;
-                Anchor_position_Y_input.Value = anchor_y;
-                Buoy_1_connection_select.SelectedIndex = buoy_1_connection;
-                Buoy_2_connection_select.SelectedIndex = buoy_2_connection;
+                Anchor_X_input.Value = anchor_x;
+                Anchor_Y_input.Value = anchor_y;
+                Harbour_buoy_1_select.SelectedIndex = buoy_1_connection;
+                Harbour_buoy_2_select.SelectedIndex = buoy_2_connection;
             }
             else
             {
                 Harbour_panel.Enabled = false;
 
                 //Load default preset
-                Harbour_position_X_input.Value = 0;
-                Harbour_position_Y_input.Value = 0;
+                Harbour_X_input.Value = 0;
+                Harbour_Y_input.Value = 0;
                 Harbour_rotation_select.SelectedIndex = -1;
 
                 Harbour_anchor_checkbox.Checked = false;
                 Harbour_anchor_panel.Enabled = false;
 
-                Anchor_position_X_input.Value = 0;
-                Anchor_position_Y_input.Value = 0;
+                Anchor_X_input.Value = 0;
+                Anchor_Y_input.Value = 0;
                 //"None"
-                Buoy_1_connection_select.SelectedIndex = 0;
-                Buoy_2_connection_select.SelectedIndex = 0;
+                Harbour_buoy_1_select.SelectedIndex = 0;
+                Harbour_buoy_2_select.SelectedIndex = 0;
             }
 
             isUpdatingUI = false; // Re-enable saving to list
@@ -1166,8 +1142,8 @@ namespace DnG_AdK_Mapedit
             int oldSelectedB1 = Harbours_list[index].buoy_1_connection;
             int oldSelectedB2 = Harbours_list[index].buoy_2_connection;
 
-            int selectedB1 = Buoy_1_connection_select.SelectedIndex;
-            int selectedB2 = Buoy_2_connection_select.SelectedIndex;
+            int selectedB1 = Harbour_buoy_1_select.SelectedIndex;
+            int selectedB2 = Harbour_buoy_2_select.SelectedIndex;
             bool selectionCorrected = false;
 
             // 1. Prevent self-connection
@@ -1224,19 +1200,19 @@ namespace DnG_AdK_Mapedit
             if (selectionCorrected)
             {
                 isUpdatingUI = true;
-                Buoy_1_connection_select.SelectedIndex = selectedB1;
-                Buoy_2_connection_select.SelectedIndex = selectedB2;
+                Harbour_buoy_1_select.SelectedIndex = selectedB1;
+                Harbour_buoy_2_select.SelectedIndex = selectedB2;
                 isUpdatingUI = false;
             }
 
             // 6. Save data
             Harbours_list[index] = (
-                (int)Harbour_position_X_input.Value,
-                (int)Harbour_position_Y_input.Value,
+                (int)Harbour_X_input.Value,
+                (int)Harbour_Y_input.Value,
                 Harbour_rotation_select.SelectedIndex,
                 Harbour_anchor_checkbox.Checked,
-                (int)Anchor_position_X_input.Value,
-                (int)Anchor_position_Y_input.Value,
+                (int)Anchor_X_input.Value,
+                (int)Anchor_Y_input.Value,
                 selectedB1,
                 selectedB2
             );
@@ -1348,8 +1324,8 @@ namespace DnG_AdK_Mapedit
                 // Load current selection from the list by destructuring the tuple
                 var (posX, posY, type) = Caves_list[index];
 
-                Cave_position_X_input.Value = posX;
-                Cave_position_Y_input.Value = posY;
+                Cave_X_input.Value = posX;
+                Cave_Y_input.Value = posY;
                 Cave_type_select.SelectedIndex = type;
             }
             else
@@ -1357,13 +1333,14 @@ namespace DnG_AdK_Mapedit
                 Cave_panel.Enabled = false;
 
                 // Load default preset
-                Cave_position_X_input.Value = 0;
-                Cave_position_Y_input.Value = 0;
+                Cave_X_input.Value = 0;
+                Cave_Y_input.Value = 0;
                 Cave_type_select.SelectedIndex = -1;
             }
 
             isUpdatingUI = false; // Re-enable saving to list
         }
+
 
         // This method is called by ALL input change events (3)
         private void SaveCurrentCaveData(object sender, EventArgs e)
@@ -1374,14 +1351,349 @@ namespace DnG_AdK_Mapedit
             int index = Caves_list_view.SelectedIndex;
 
             Caves_list[index] = (
-                (int)Cave_position_X_input.Value,
-                (int)Cave_position_Y_input.Value,
+                (int)Cave_X_input.Value,
+                (int)Cave_Y_input.Value,
                 Cave_type_select.SelectedIndex
             );
         }
 
+        private void Environment_preset_global_Click(object sender, EventArgs e)
+        {
+            string selectedPreset = Environment_preset_select.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedPreset))
+            {
+                MessageBox.Show("Please select an embedded preset from the list.", "No Preset Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            // Locate the resource ending with "{selectedPreset}.bin" (case-insensitive)
+            string resourceName = assembly.GetManifestResourceNames()
+                .FirstOrDefault(r => r.EndsWith($"{selectedPreset}.bin", StringComparison.OrdinalIgnoreCase));
+
+            if (resourceName == null)
+            {
+                MessageBox.Show($"Embedded preset '{selectedPreset}' was not found in assembly resources.", "Error Loading Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using Stream preset_stream = assembly.GetManifestResourceStream(resourceName);
+            byte[] environment_preset = new byte[preset_stream.Length];
+            preset_stream.ReadExactly(environment_preset);
+            int current_preset_byte = 0;
+
+            int sky_texture = BitConverter.ToInt32(environment_preset, current_preset_byte);
+            switch (sky_texture)
+            {
+                //Bavaria
+                case 0:
+                    Global_sky_select.SelectedIndex = 1;
+                    break;
+                //Starfield
+                case 1:
+                    Global_sky_select.SelectedIndex = 0;
+                    break;
+                //Egypt
+                case 2:
+                    Global_sky_select.SelectedIndex = 2;
+                    break;
+                //Bavaria
+                case 3:
+                    Global_sky_select.SelectedIndex = 1;
+                    break;
+                //Scotland
+                case 4:
+                    Global_sky_select.SelectedIndex = 3;
+                    break;
+            }
+            current_preset_byte += 4;
+
+            Global_sun_placement_input.Value = BitConverter.ToInt32(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+
+            int sun_height = BitConverter.ToInt32(environment_preset, current_preset_byte);
+            if (sun_height > 100)
+            {
+                sun_height = 200 - sun_height;
+            }
+            Global_sun_height_input.Value = sun_height;
+            current_preset_byte += 4;
+
+            float[] fog_colour = new float[3];
+            float[] ambient_colour = new float[3];
+            float[] light_colour = new float[3];
+            fog_colour[0] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            light_colour[0] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            ambient_colour[0] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            fog_colour[1] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            light_colour[1] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            ambient_colour[1] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            fog_colour[2] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            light_colour[2] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            ambient_colour[2] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            Global_fog_colour.BackColor = Color.FromArgb((int)(fog_colour[0] * 255f), (int)(fog_colour[1] * 255f), (int)(fog_colour[2] * 255f));
+            Global_ambient_colour.BackColor = Color.FromArgb((int)(ambient_colour[0] * 255f), (int)(ambient_colour[1] * 255f), (int)(ambient_colour[2] * 255f));
+            Global_light_colour.BackColor = Color.FromArgb((int)(light_colour[0] * 255f), (int)(light_colour[1] * 255f), (int)(light_colour[2] * 255f));
+
+            Global_shadow_intensity_input.Value = (decimal)BitConverter.ToSingle(environment_preset, current_preset_byte) * 100;
+            current_preset_byte += 4;
+
+            Global_fog_start_input.Value = (decimal)BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            Global_fog_full_input.Value = (decimal)BitConverter.ToSingle(environment_preset, current_preset_byte);
+            //current_preset_byte += 4;
+        }
+
+        private void Environment_preset_local_Click(object sender, EventArgs e)
+        {
+            string selectedPreset = Environment_preset_select.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedPreset))
+            {
+                MessageBox.Show("Please select an embedded preset from the list.", "No Preset Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            // Locate the resource ending with "{selectedPreset}.bin" (case-insensitive)
+            string resourceName = assembly.GetManifestResourceNames()
+                .FirstOrDefault(r => r.EndsWith($"{selectedPreset}.bin", StringComparison.OrdinalIgnoreCase));
+
+            if (resourceName == null)
+            {
+                MessageBox.Show($"Embedded preset '{selectedPreset}' was not found in assembly resources.", "Error Loading Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (Environment_zones.Count == 0)
+            {
+                Environment_add_zone_Click(sender, e);
+            }
+
+            using Stream preset_stream = assembly.GetManifestResourceStream(resourceName);
+            byte[] environment_preset = new byte[preset_stream.Length];
+            preset_stream.ReadExactly(environment_preset);
+            //Skip sky texture, sun placement and sun height
+            int current_preset_byte = 12;
+
+            float[] fog_colour = new float[3];
+            float[] ambient_colour = new float[3];
+            float[] light_colour = new float[3];
+            fog_colour[0] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            light_colour[0] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            ambient_colour[0] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            fog_colour[1] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            light_colour[1] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            ambient_colour[1] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            fog_colour[2] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            light_colour[2] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            ambient_colour[2] = BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            Local_fog_colour.BackColor = Color.FromArgb((int)(fog_colour[0] * 255f), (int)(fog_colour[1] * 255f), (int)(fog_colour[2] * 255f));
+            Local_ambient_colour.BackColor = Color.FromArgb((int)(ambient_colour[0] * 255f), (int)(ambient_colour[1] * 255f), (int)(ambient_colour[2] * 255f));
+            Local_light_colour.BackColor = Color.FromArgb((int)(light_colour[0] * 255f), (int)(light_colour[1] * 255f), (int)(light_colour[2] * 255f));
+
+            Local_shadow_intensity_input.Value = (decimal)BitConverter.ToSingle(environment_preset, current_preset_byte) * 100;
+            current_preset_byte += 4;
+
+            Local_fog_start_input.Value = (decimal)BitConverter.ToSingle(environment_preset, current_preset_byte);
+            current_preset_byte += 4;
+            Local_fog_full_input.Value = (decimal)BitConverter.ToSingle(environment_preset, current_preset_byte);
+            //current_preset_byte += 4;
+        }
+
+        private void Environment_preset_checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Environment_preset_checkbox.Checked)
+            {
+                Environment_preset_select.Enabled = true;
+                Environment_preset_global.Enabled = true;
+                Environment_preset_local.Enabled = true;
+
+                Environment_panel.Enabled = true;
+            }
+            else
+            {
+                Environment_preset_select.Enabled = false;
+                Environment_preset_global.Enabled = false;
+                Environment_preset_local.Enabled = false;
+
+                Environment_panel.Enabled = false;
+            }
+        }
+
+        private void Global_fog_colour_Click(object sender, EventArgs e)
+        {
+            ColourSelectionDialog(1, Global_fog_colour.BackColor);
+        }
+
+        private void Global_ambient_colour_Click(object sender, EventArgs e)
+        {
+            ColourSelectionDialog(2, Global_ambient_colour.BackColor);
+        }
+
+        private void Global_light_colour_Click(object sender, EventArgs e)
+        {
+            ColourSelectionDialog(3, Global_light_colour.BackColor);
+        }
+
+        private void Environment_add_zone_Click(object sender, EventArgs e)
+        {
+            Environment_zones.Add((
+                ColorTranslator.FromHtml("#CCE6FF"), // Default fog colour
+                ColorTranslator.FromHtml("#EFE5CF"), // Default ambient colour
+                ColorTranslator.FromHtml("#998099"), // Default light colour
+                90,                             // Default shadow intensity
+                200,                            // Default fog start distance
+                300,                            // Default fog full distance
+                0,                              // Default X position
+                0,                              // Default Y position
+                0,                              // Default radius
+                0                               // Default transition
+            ));
+            if (Environment_zones.Count == 1)
+            {
+                current_zone_index = 0;
+            }
+            LoadZoneDataToUI();
+        }
+
+        private void Environment_remove_zone_Click(object sender, EventArgs e)
+        {
+            if (Environment_zones.Count > 0)
+            {
+                Environment_zones.RemoveAt(current_zone_index);
+                if (current_zone_index >= Environment_zones.Count)
+                {
+                    current_zone_index = Environment_zones.Count - 1;
+                }
+                LoadZoneDataToUI();
+            }
+        }
+
+        private void Environment_previous_zone_Click(object sender, EventArgs e)
+        {
+            if (current_zone_index > 0)
+            {
+                current_zone_index--;
+            }
+            LoadZoneDataToUI();
+        }
+
+        private void Environment_next_zone_Click(object sender, EventArgs e)
+        {
+            if (current_zone_index < Environment_zones.Count - 1)
+            {
+                current_zone_index++;
+            }
+            LoadZoneDataToUI();
+        }
+
+        private void LoadZoneDataToUI()
+        {
+            if (current_zone_index >= 0 && current_zone_index < Environment_zones.Count)
+            {
+                Environment_zone_panel.Enabled = true;
+                Environment_local_zones_text.Text = $"Local zones {current_zone_index + 1}/{Environment_zones.Count}";
+
+                var (fog_colour, ambient_colour, light_colour, shadow_intensity, fog_start_distance, fog_full_distance, pos_x, pos_y, radius, transition) = Environment_zones[current_zone_index];
+                Local_fog_colour.BackColor = fog_colour;
+                Local_ambient_colour.BackColor = ambient_colour;
+                Local_light_colour.BackColor = light_colour;
+                Local_shadow_intensity_input.Value = (decimal)shadow_intensity;
+                Local_fog_start_input.Value = fog_start_distance;
+                Local_fog_full_input.Value = fog_full_distance;
+                Local_X_input.Value = pos_x;
+                Local_Y_input.Value = pos_y;
+                Local_radius_input.Value = radius;
+                Local_transition_input.Value = transition;
+            }
+            else
+            {
+                Environment_zone_panel.Enabled = false;
+                Environment_local_zones_text.Text = "Local zones 0/0";
+            }
+        }
+
+        private void UpdateZonesList(object sender, EventArgs e)
+        {
+            if (current_zone_index >= 0 && current_zone_index < Environment_zones.Count)
+            {
+                Environment_zones[current_zone_index] = (
+                    Local_fog_colour.BackColor,
+                    Local_ambient_colour.BackColor,
+                    Local_light_colour.BackColor,
+                    (float)Local_shadow_intensity_input.Value,
+                    (int)Local_fog_start_input.Value,
+                    (int)Local_fog_full_input.Value,
+                    (int)Local_X_input.Value,
+                    (int)Local_Y_input.Value,
+                    (int)Local_radius_input.Value,
+                    (int)Local_transition_input.Value
+                );
+            }
+        }
+
+        private void Local_fog_colour_Click(object sender, EventArgs e)
+        {
+            ColourSelectionDialog(4, Local_fog_colour.BackColor);
+        }
+
+        private void Local_ambient_colour_Click(object sender, EventArgs e)
+        {
+            ColourSelectionDialog(5, Local_ambient_colour.BackColor);
+        }
+
+        private void Local_light_colour_Click(object sender, EventArgs e)
+        {
+            ColourSelectionDialog(6, Local_light_colour.BackColor);
+        }
+
+        private void ColourSelectionDialog(int target, Color source_color)
+        {
+            using HexColorDialog colorDialog = new(source_color);
+
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                ApplySelectedColor(target, colorDialog.SelectedColor);
+            }
+        }
+
+        private void ApplySelectedColor(int target, Color color)
+        {
+            switch (target)
+            {
+                case 1: Global_fog_colour.BackColor = color; break;
+                case 2: Global_ambient_colour.BackColor = color; break;
+                case 3: Global_light_colour.BackColor = color; break;
+                case 4: Local_fog_colour.BackColor = color; UpdateZonesList(null, null); break;
+                case 5: Local_ambient_colour.BackColor = color; UpdateZonesList(null, null); break;
+                case 6: Local_light_colour.BackColor = color; UpdateZonesList(null, null); break;
+            }
+        }
+
         // Sacrifices amount update
-        private void UpdateUsageStatus(System.Windows.Forms.ListView listView, Label label, string factionName, int maxLimit)
+        private static void UpdateUsageStatus(System.Windows.Forms.ListView listView, Label label, string factionName, int maxLimit)
         {
             int selectedCount = listView.CheckedItems.Count;
             label.Text = $"{factionName} {selectedCount}/{maxLimit}";
@@ -1403,33 +1715,33 @@ namespace DnG_AdK_Mapedit
         // --- Event Handlers (No Research) ---
 
         private void Sacrifices_no_research_Bavarians_ItemChecked(object sender, ItemCheckedEventArgs e) =>
-            UpdateUsageStatus(Sacrifices_no_research_Bavarians, No_research_Bavarians_usage, "Bavarians", 4);
+            UpdateUsageStatus(Sacrifices_Bavarians_no_research, Sacrifices_Bavarians_no_research_usage, "Bavarians", 4);
 
         private void Sacrifices_no_research_Egyptians_ItemChecked(object sender, ItemCheckedEventArgs e) =>
-            UpdateUsageStatus(Sacrifices_no_research_Egyptians, No_research_Egyptians_usage, "Egyptians", 4);
+            UpdateUsageStatus(Sacrifices_Egyptians_no_research, Sacrifices_Egyptians_no_research_usage, "Egyptians", 4);
 
         private void Sacrifices_no_research_Scots_ItemChecked(object sender, ItemCheckedEventArgs e) =>
-            UpdateUsageStatus(Sacrifices_no_research_Scots, No_research_Scots_usage, "Scots", 4);
+            UpdateUsageStatus(Sacrifices_Scots_no_research, Sacrifices_Scots_no_research_usage, "Scots", 4);
 
         // --- Event Handlers (Research) ---
 
         private void Sacrifices_research_Bavarians_ItemChecked(object sender, ItemCheckedEventArgs e) =>
-            UpdateUsageStatus(Sacrifices_research_Bavarians, Research_Bavarians_usage, "Bavarians", 8);
+            UpdateUsageStatus(Sacrifices_Bavarians_research, Sacrifices_Bavarians_research_usage, "Bavarians", 8);
 
         private void Sacrifices_research_Egyptians_ItemChecked(object sender, ItemCheckedEventArgs e) =>
-            UpdateUsageStatus(Sacrifices_research_Egyptians, Research_Egyptians_usage, "Egyptians", 8);
+            UpdateUsageStatus(Sacrifices_Egyptians_research, Sacrifices_Egyptians_research_usage, "Egyptians", 8);
 
         private void Sacrifices_research_Scots_ItemChecked(object sender, ItemCheckedEventArgs e) =>
-            UpdateUsageStatus(Sacrifices_research_Scots, Research_Scots_usage, "Scots", 8);
+            UpdateUsageStatus(Sacrifices_Scots_research, Sacrifices_Scots_research_usage, "Scots", 8);
 
         // --- Preset Helpers ---
 
-        private string GetCheckedIndices(System.Windows.Forms.ListView lv)
+        private static string GetCheckedIndices(System.Windows.Forms.ListView lv)
         {
             return string.Join(",", lv.CheckedIndices.Cast<int>());
         }
 
-        private void SetCheckedIndices(System.Windows.Forms.ListView lv, string indicesStr)
+        private static void SetCheckedIndices(System.Windows.Forms.ListView lv, string indicesStr)
         {
             foreach (ListViewItem item in lv.Items)
             {
@@ -1476,22 +1788,20 @@ namespace DnG_AdK_Mapedit
 
         private void Sacrifice_preset_export_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog { Filter = "DnG-AdK-Mapedit sacrifice preset (*.dams)|*.dams", Title = "Export Sacrifice Preset" })
+            using SaveFileDialog sfd = new() { Filter = "DnG-AdK-Mapedit sacrifice preset (*.dams)|*.dams", Title = "Export Sacrifice Preset" };
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    var lines = new List<string>
+                var lines = new List<string>
                     {
-                        GetCheckedIndices(Sacrifices_no_research_Bavarians),
-                        GetCheckedIndices(Sacrifices_no_research_Egyptians),
-                        GetCheckedIndices(Sacrifices_no_research_Scots),
-                        GetCheckedIndices(Sacrifices_research_Bavarians),
-                        GetCheckedIndices(Sacrifices_research_Egyptians),
-                        GetCheckedIndices(Sacrifices_research_Scots)
+                        GetCheckedIndices(Sacrifices_Bavarians_no_research),
+                        GetCheckedIndices(Sacrifices_Egyptians_no_research),
+                        GetCheckedIndices(Sacrifices_Scots_no_research),
+                        GetCheckedIndices(Sacrifices_Bavarians_research),
+                        GetCheckedIndices(Sacrifices_Egyptians_research),
+                        GetCheckedIndices(Sacrifices_Scots_research)
                     };
 
-                    File.WriteAllLines(sfd.FileName, lines);
-                }
+                File.WriteAllLines(sfd.FileName, lines);
             }
         }
         private void Sacrifice_preset_load_Click(object sender, EventArgs e)
@@ -1501,9 +1811,9 @@ namespace DnG_AdK_Mapedit
                 string[] lines = null;
 
                 // 1. Check if we should load from embedded resources
-                if (Sacrifice_included_checkbox.Checked)
+                if (Sacrifices_included_presets_checkbox.Checked)
                 {
-                    string selectedPreset = Sacrifice_included_presets.SelectedItem?.ToString();
+                    string selectedPreset = Sacrifices_included_presets_select.SelectedItem?.ToString();
 
                     if (string.IsNullOrEmpty(selectedPreset))
                     {
@@ -1524,43 +1834,39 @@ namespace DnG_AdK_Mapedit
                     }
 
                     // Read lines directly from the embedded stream
-                    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                    using (StreamReader reader = new StreamReader(stream))
+                    using Stream stream = assembly.GetManifestResourceStream(resourceName);
+                    using StreamReader reader = new(stream);
+                    List<string> lineList = [];
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
                     {
-                        List<string> lineList = new List<string>();
-                        string line;
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            lineList.Add(line);
-                        }
-                        lines = lineList.ToArray();
+                        lineList.Add(line);
                     }
+                    lines = [.. lineList];
                 }
                 else
                 {
                     // 2. Load from file on disk via dialog
-                    using (OpenFileDialog ofd = new OpenFileDialog { Filter = "DnG-AdK-Mapedit sacrifice preset (*.dams)|*.dams", Title = "Load Sacrifice Preset" })
+                    using OpenFileDialog ofd = new() { Filter = "DnG-AdK-Mapedit sacrifice preset (*.dams)|*.dams", Title = "Load Sacrifice Preset" };
+                    if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        if (ofd.ShowDialog() == DialogResult.OK)
-                        {
-                            lines = File.ReadAllLines(ofd.FileName);
-                        }
-                        else
-                        {
-                            return; // User cancelled
-                        }
+                        lines = File.ReadAllLines(ofd.FileName);
+                    }
+                    else
+                    {
+                        return; // User cancelled
                     }
                 }
 
                 // 3. Apply the preset data to controls
                 if (lines != null && lines.Length >= 6)
                 {
-                    SetCheckedIndices(Sacrifices_no_research_Bavarians, lines[0]);
-                    SetCheckedIndices(Sacrifices_no_research_Egyptians, lines[1]);
-                    SetCheckedIndices(Sacrifices_no_research_Scots, lines[2]);
-                    SetCheckedIndices(Sacrifices_research_Bavarians, lines[3]);
-                    SetCheckedIndices(Sacrifices_research_Egyptians, lines[4]);
-                    SetCheckedIndices(Sacrifices_research_Scots, lines[5]);
+                    SetCheckedIndices(Sacrifices_Bavarians_no_research, lines[0]);
+                    SetCheckedIndices(Sacrifices_Egyptians_no_research, lines[1]);
+                    SetCheckedIndices(Sacrifices_Scots_no_research, lines[2]);
+                    SetCheckedIndices(Sacrifices_Bavarians_research, lines[3]);
+                    SetCheckedIndices(Sacrifices_Egyptians_research, lines[4]);
+                    SetCheckedIndices(Sacrifices_Scots_research, lines[5]);
                 }
                 else
                 {
@@ -1575,13 +1881,13 @@ namespace DnG_AdK_Mapedit
 
         private void Sacrifice_included_checkbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (Sacrifice_included_checkbox.Checked)
+            if (Sacrifices_included_presets_checkbox.Checked)
             {
-                Sacrifice_included_presets.Enabled = true;
+                Sacrifices_included_presets_select.Enabled = true;
             }
             else
             {
-                Sacrifice_included_presets.Enabled = false;
+                Sacrifices_included_presets_select.Enabled = false;
             }
         }
 
@@ -1589,204 +1895,397 @@ namespace DnG_AdK_Mapedit
 
         private void Map_preset_export_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog { Filter = "DnG-AdK-Mapedit map preset (*.damp)|*.damp", Title = "Export Map Preset" })
+            using SaveFileDialog sfd = new()
+            { Filter = "DnG-AdK-Mapedit map preset (*.damp)|*.damp", Title = "Export Map Preset" };
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                if (sfd.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    try
+                    using StreamWriter sw = new(sfd.FileName);
+                    sw.WriteLine("[MAP_NAME]");
+                    sw.WriteLine(Map_info_name.Text);
+
+                    sw.WriteLine("[SWAPS]");
+                    foreach (var (tab, from, to) in Swap_list)
+                        sw.WriteLine($"{tab},{from},{to}");
+
+                    sw.WriteLine("[HARBOURS]");
+                    foreach (var (pos_x, pos_y, rotation, anchorage, anchor_x, anchor_y, buoy_1_connection, buoy_2_connection) in Harbours_list)
+                        sw.WriteLine($"{pos_x},{pos_y},{rotation},{anchorage},{anchor_x},{anchor_y},{buoy_1_connection},{buoy_2_connection}");
+
+                    sw.WriteLine("[CAVES]");
+                    foreach (var (pos_x, pos_y, type) in Caves_list)
+                        sw.WriteLine($"{pos_x},{pos_y},{type}");
+
+                    sw.WriteLine("[SACRIFICES]");
+                    sw.WriteLine(GetCheckedIndices(Sacrifices_Bavarians_no_research));
+                    sw.WriteLine(GetCheckedIndices(Sacrifices_Egyptians_no_research));
+                    sw.WriteLine(GetCheckedIndices(Sacrifices_Scots_no_research));
+                    sw.WriteLine(GetCheckedIndices(Sacrifices_Bavarians_research));
+                    sw.WriteLine(GetCheckedIndices(Sacrifices_Egyptians_research));
+                    sw.WriteLine(GetCheckedIndices(Sacrifices_Scots_research));
+
+                    sw.WriteLine("[COLOURS]");
+                    sw.WriteLine(Player_count);
+                    var selectors = new[]
                     {
-                        using (StreamWriter sw = new StreamWriter(sfd.FileName))
-                        {
-                            sw.WriteLine("[MAP_NAME]");
-                            sw.WriteLine(Map_name_button.Text);
-
-                            sw.WriteLine("[SWAPS]");
-                            foreach (var (tab, from, to) in Swap_list)
-                                sw.WriteLine($"{tab},{from},{to}");
-
-                            sw.WriteLine("[HARBOURS]");
-                            foreach (var (pos_x, pos_y, rotation, anchorage, anchor_x, anchor_y, buoy_1_connection, buoy_2_connection) in Harbours_list)
-                                sw.WriteLine($"{pos_x},{pos_y},{rotation},{anchorage},{anchor_x},{anchor_y},{buoy_1_connection},{buoy_2_connection}");
-
-                            sw.WriteLine("[CAVES]");
-                            foreach (var (pos_x, pos_y, type) in Caves_list)
-                                sw.WriteLine($"{pos_x},{pos_y},{type}");
-
-                            sw.WriteLine("[SACRIFICES]");
-                            sw.WriteLine(GetCheckedIndices(Sacrifices_no_research_Bavarians));
-                            sw.WriteLine(GetCheckedIndices(Sacrifices_no_research_Egyptians));
-                            sw.WriteLine(GetCheckedIndices(Sacrifices_no_research_Scots));
-                            sw.WriteLine(GetCheckedIndices(Sacrifices_research_Bavarians));
-                            sw.WriteLine(GetCheckedIndices(Sacrifices_research_Egyptians));
-                            sw.WriteLine(GetCheckedIndices(Sacrifices_research_Scots));
-
-                            sw.WriteLine("[COLOURS]");
-                            sw.WriteLine(Player_count);
-                            var selectors = new[]
-                            {
-                                Player_1_select, Player_2_select, Player_3_select,
-                                Player_4_select, Player_5_select, Player_6_select
+                                Colours_player_1_select, Colours_player_2_select, Colours_player_3_select,
+                                Colours_player_4_select, Colours_player_5_select, Colours_player_6_select
                             };
-                            sw.WriteLine(string.Join(",", selectors.Take(Player_count).Select(s => s.SelectedIndex)));
+                    sw.WriteLine(string.Join(",", selectors.Take(Player_count).Select(s => s.SelectedIndex)));
+
+                    sw.WriteLine("[ENVIRONMENT]");
+                    sw.WriteLine(Environment_highland_water_checkbox.Checked ? "1" : "0");
+                    sw.WriteLine(Environment_preset_checkbox.Checked ? "1" : "0");
+                    if (Environment_preset_checkbox.Checked)
+                    {
+                        sw.WriteLine($"{Global_sky_select.SelectedIndex},{Global_sun_placement_input.Value},{Global_sun_height_input.Value},{Global_shadow_intensity_input.Value},{Global_fog_start_input.Value},{Global_fog_full_input.Value},{Global_fog_colour.BackColor},{Global_light_colour.BackColor},{Global_ambient_colour.BackColor}");
+                        foreach (var (fog_colour, ambient_colour, light_colour, shadow_intensity, fog_start_distance, fog_full_distance, pos_x, pos_y, radius, transition) in Environment_zones)
+                        {
+                            sw.WriteLine($"{fog_colour},{ambient_colour},{light_colour},{shadow_intensity},{fog_start_distance},{fog_full_distance},{pos_x},{pos_y},{radius},{transition}");
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to export map preset:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to export map preset:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void Map_preset_load_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog { Filter = "DnG-AdK-Mapedit map preset (*.damp)|*.damp", Title = "Load Map Preset" })
+            using OpenFileDialog ofd = new() { Filter = "DnG-AdK-Mapedit map preset (*.damp)|*.damp", Title = "Load Map Preset" };
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                if (ofd.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    try
+                    isUpdatingUI = true;
+
+                    string[] lines = File.ReadAllLines(ofd.FileName);
+                    string currentSection = "";
+                    int sacrificeLine = 0;
+                    int colourLine = 0;
+                    int environmentLine = 0;
+                    int savedPlayerCount = 0;
+
+                    Swap_list.Clear();
+                    Swap_list_view.Items.Clear();
+                    Harbours_list.Clear();
+                    Harbours_list_view.Items.Clear();
+                    Caves_list.Clear();
+                    Caves_list_view.Items.Clear();
+
+                    foreach (string rawLine in lines)
                     {
-                        isUpdatingUI = true;
+                        string line = rawLine.Trim();
 
-                        string[] lines = File.ReadAllLines(ofd.FileName);
-                        string currentSection = "";
-                        int sacrificeLine = 0;
-                        int colourLine = 0;
-                        int savedPlayerCount = 0;
-
-                        Swap_list.Clear();
-                        Swap_list_view.Items.Clear();
-                        Harbours_list.Clear();
-                        Harbours_list_view.Items.Clear();
-                        Caves_list.Clear();
-                        Caves_list_view.Items.Clear();
-
-                        foreach (string rawLine in lines)
+                        // Detect section header
+                        if (line.StartsWith('[') && line.EndsWith(']'))
                         {
-                            string line = rawLine.Trim();
-
-                            // Detect section header
-                            if (line.StartsWith("[") && line.EndsWith("]"))
+                            currentSection = line;
+                            if (currentSection == "[SACRIFICES]") sacrificeLine = 0;
+                            if (currentSection == "[COLOURS]") colourLine = 0;
+                            if (currentSection == "[ENVIRONMENT]")
                             {
-                                currentSection = line;
-                                if (currentSection == "[SACRIFICES]") sacrificeLine = 0;
-                                if (currentSection == "[COLOURS]") colourLine = 0;
-                                continue;
+                                environmentLine = 0;
+                                Environment_zones.Clear();
                             }
-
-                            if (currentSection == "[MAP_NAME]")
-                            {
-                                if (!string.IsNullOrEmpty(line))
-                                {
-                                    Map_name_button.Text = line;
-                                    UpdateMapName();
-                                }
-                            }
-                            else if (currentSection == "[SWAPS]")
-                            {
-                                if (string.IsNullOrWhiteSpace(line)) continue;
-                                var parts = line.Split(',');
-                                if (parts.Length == 3 && int.TryParse(parts[0], out int tab) && int.TryParse(parts[1], out int from) && int.TryParse(parts[2], out int to))
-                                {
-                                    Swap_list.Add((tab, from, to));
-                                    Swap_list_view.Items.Add(GetSwapDisplayText(tab, from, to));
-                                }
-                            }
-                            else if (currentSection == "[HARBOURS]")
-                            {
-                                if (string.IsNullOrWhiteSpace(line)) continue;
-                                var parts = line.Split(',');
-                                if (parts.Length == 8 &&
-                                    int.TryParse(parts[0], out int px) && int.TryParse(parts[1], out int py) &&
-                                    int.TryParse(parts[2], out int rot) && bool.TryParse(parts[3], out bool anch) &&
-                                    int.TryParse(parts[4], out int ax) && int.TryParse(parts[5], out int ay) &&
-                                    int.TryParse(parts[6], out int b1) && int.TryParse(parts[7], out int b2))
-                                {
-                                    Harbours_list.Add((px, py, rot, anch, ax, ay, b1, b2));
-                                    Harbours_list_view.Items.Add(Harbours_list.Count.ToString());
-                                }
-                            }
-                            else if (currentSection == "[CAVES]")
-                            {
-                                if (string.IsNullOrWhiteSpace(line)) continue;
-                                var parts = line.Split(',');
-                                if (parts.Length == 3 &&
-                                    int.TryParse(parts[0], out int cx) && int.TryParse(parts[1], out int cy) &&
-                                    int.TryParse(parts[2], out int ct))
-                                {
-                                    Caves_list.Add((cx, cy, ct));
-                                    Caves_list_view.Items.Add(Caves_list.Count.ToString());
-                                }
-                            }
-                            else if (currentSection == "[SACRIFICES]")
-                            {
-                                // Do NOT skip empty lines here; empty string means 0 items selected for this faction
-                                switch (sacrificeLine)
-                                {
-                                    case 0: SetCheckedIndices(Sacrifices_no_research_Bavarians, line); break;
-                                    case 1: SetCheckedIndices(Sacrifices_no_research_Egyptians, line); break;
-                                    case 2: SetCheckedIndices(Sacrifices_no_research_Scots, line); break;
-                                    case 3: SetCheckedIndices(Sacrifices_research_Bavarians, line); break;
-                                    case 4: SetCheckedIndices(Sacrifices_research_Egyptians, line); break;
-                                    case 5: SetCheckedIndices(Sacrifices_research_Scots, line); break;
-                                }
-                                sacrificeLine++;
-                            }
-                            else if (currentSection == "[COLOURS]")
-                            {
-                                if (string.IsNullOrWhiteSpace(line)) continue;
-
-                                if (colourLine == 0)
-                                {
-                                    int.TryParse(line, out savedPlayerCount);
-                                    colourLine++;
-                                }
-                                else if (colourLine == 1)
-                                {
-                                    // Only load color selections if saved player count matches the current map's player count
-                                    if (savedPlayerCount == Player_count)
-                                    {
-                                        var selectors = new[]
-                                        {
-                                            Player_1_select, Player_2_select, Player_3_select,
-                                            Player_4_select, Player_5_select, Player_6_select
-                                        };
-
-                                        var parts = line.Split(',');
-                                        int maxPlayers = Math.Min(parts.Length, Math.Min(Player_count, selectors.Length));
-
-                                        for (int i = 0; i < maxPlayers; i++)
-                                        {
-                                            if (int.TryParse(parts[i].Trim(), out int colourIdx) &&
-                                                colourIdx >= 0 &&
-                                                colourIdx < selectors[i].Items.Count)
-                                            {
-                                                selectors[i].SelectedIndex = colourIdx;
-                                            }
-                                        }
-                                    }
-                                    colourLine++;
-                                }
-                            }
+                            continue;
                         }
 
-                        isUpdatingUI = false;
+                        if (currentSection == "[MAP_NAME]")
+                        {
+                            if (!string.IsNullOrEmpty(line))
+                            {
+                                Map_info_name.Text = line;
+                                UpdateMapName();
+                            }
+                        }
+                        else if (currentSection == "[SWAPS]")
+                        {
+                            if (string.IsNullOrWhiteSpace(line)) continue;
+                            var parts = line.Split(',');
+                            if (parts.Length == 3 && int.TryParse(parts[0], out int tab) && int.TryParse(parts[1], out int from) && int.TryParse(parts[2], out int to))
+                            {
+                                Swap_list.Add((tab, from, to));
+                                Swap_list_view.Items.Add(GetSwapDisplayText(tab, from, to));
+                            }
+                        }
+                        else if (currentSection == "[HARBOURS]")
+                        {
+                            if (string.IsNullOrWhiteSpace(line)) continue;
+                            var parts = line.Split(',');
+                            if (parts.Length == 8 &&
+                                int.TryParse(parts[0], out int px) && int.TryParse(parts[1], out int py) &&
+                                int.TryParse(parts[2], out int rot) && bool.TryParse(parts[3], out bool anch) &&
+                                int.TryParse(parts[4], out int ax) && int.TryParse(parts[5], out int ay) &&
+                                int.TryParse(parts[6], out int b1) && int.TryParse(parts[7], out int b2))
+                            {
+                                Harbours_list.Add((px, py, rot, anch, ax, ay, b1, b2));
+                                Harbours_list_view.Items.Add(Harbours_list.Count.ToString());
+                            }
+                        }
+                        else if (currentSection == "[CAVES]")
+                        {
+                            if (string.IsNullOrWhiteSpace(line)) continue;
+                            var parts = line.Split(',');
+                            if (parts.Length == 3 &&
+                                int.TryParse(parts[0], out int cx) && int.TryParse(parts[1], out int cy) &&
+                                int.TryParse(parts[2], out int ct))
+                            {
+                                Caves_list.Add((cx, cy, ct));
+                                Caves_list_view.Items.Add(Caves_list.Count.ToString());
+                            }
+                        }
+                        else if (currentSection == "[SACRIFICES]")
+                        {
+                            // Do NOT skip empty lines here; empty string means 0 items selected for this faction
+                            switch (sacrificeLine)
+                            {
+                                case 0: SetCheckedIndices(Sacrifices_Bavarians_no_research, line); break;
+                                case 1: SetCheckedIndices(Sacrifices_Egyptians_no_research, line); break;
+                                case 2: SetCheckedIndices(Sacrifices_Scots_no_research, line); break;
+                                case 3: SetCheckedIndices(Sacrifices_Bavarians_research, line); break;
+                                case 4: SetCheckedIndices(Sacrifices_Egyptians_research, line); break;
+                                case 5: SetCheckedIndices(Sacrifices_Scots_research, line); break;
+                            }
+                            sacrificeLine++;
+                        }
+                        else if (currentSection == "[COLOURS]")
+                        {
+                            if (string.IsNullOrWhiteSpace(line)) continue;
 
-                        UpdateBuoyDropdownItems();
+                            if (colourLine == 0)
+                            {
+                                if (!int.TryParse(line, out savedPlayerCount))
+                                {
+                                    MessageBox.Show("Failed to parse saved player count.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                                colourLine++;
+                            }
+                            else if (colourLine == 1)
+                            {
+                                // Only load color selections if saved player count matches the current map's player count
+                                if (savedPlayerCount == Player_count)
+                                {
+                                    var selectors = new[]
+                                    {
+                                Colours_player_1_select, Colours_player_2_select, Colours_player_3_select,
+                                Colours_player_4_select, Colours_player_5_select, Colours_player_6_select
+                            };
 
-                        if (Harbours_list.Count > 0) Harbours_list_view.SelectedIndex = 0;
-                        else UpdateHarbourPanel();
+                                    var parts = line.Split(',');
+                                    int maxPlayers = Math.Min(parts.Length, Math.Min(Player_count, selectors.Length));
 
-                        if (Caves_list.Count > 0) Caves_list_view.SelectedIndex = 0;
-                        else UpdateCavePanel();
+                                    for (int i = 0; i < maxPlayers; i++)
+                                    {
+                                        if (int.TryParse(parts[i].Trim(), out int colourIdx) &&
+                                            colourIdx >= 0 &&
+                                            colourIdx < selectors[i].Items.Count)
+                                        {
+                                            selectors[i].SelectedIndex = colourIdx;
+                                        }
+                                    }
+                                }
+                                colourLine++;
+                            }
+                        }
+                        else if (currentSection == "[ENVIRONMENT]")
+                        {
+                            if (string.IsNullOrWhiteSpace(line)) continue;
+
+                            if (environmentLine == 0)
+                            {
+                                // Line 0: Highland Water Checkbox
+                                Environment_highland_water_checkbox.Checked = line == "1";
+                                environmentLine++;
+                            }
+                            else if (environmentLine == 1)
+                            {
+                                // Line 1: Preset Checkbox
+                                Environment_preset_checkbox.Checked = line == "1";
+                                environmentLine++;
+                            }
+                            else if (environmentLine == 2)
+                            {
+                                // Line 2: Global Environment Settings
+                                if (Environment_preset_checkbox.Checked)
+                                {
+                                    var parts = SplitCsvWithBrackets(line);
+                                    if (parts.Length >= 9)
+                                    {
+                                        // [0] Sky Selection Index
+                                        if (int.TryParse(parts[0], out int skyIdx) && skyIdx >= 0 && skyIdx < Global_sky_select.Items.Count)
+                                            Global_sky_select.SelectedIndex = skyIdx;
+
+                                        // [1] Sun Placement
+                                        if (decimal.TryParse(parts[1], System.Globalization.CultureInfo.InvariantCulture, out decimal sunP) || decimal.TryParse(parts[1], out sunP))
+                                            Global_sun_placement_input.Value = Math.Clamp(sunP, Global_sun_placement_input.Minimum, Global_sun_placement_input.Maximum);
+
+                                        // [2] Sun Height
+                                        if (decimal.TryParse(parts[2], System.Globalization.CultureInfo.InvariantCulture, out decimal sunH) || decimal.TryParse(parts[2], out sunH))
+                                            Global_sun_height_input.Value = Math.Clamp(sunH, Global_sun_height_input.Minimum, Global_sun_height_input.Maximum);
+
+                                        // [3] Shadow Intensity
+                                        if (decimal.TryParse(parts[3], System.Globalization.CultureInfo.InvariantCulture, out decimal shadowI) || decimal.TryParse(parts[3], out shadowI))
+                                            Global_shadow_intensity_input.Value = Math.Clamp(shadowI, Global_shadow_intensity_input.Minimum, Global_shadow_intensity_input.Maximum);
+
+                                        // [4] Fog Start
+                                        if (decimal.TryParse(parts[4], System.Globalization.CultureInfo.InvariantCulture, out decimal fogS) || decimal.TryParse(parts[4], out fogS))
+                                            Global_fog_start_input.Value = Math.Clamp(fogS, Global_fog_start_input.Minimum, Global_fog_start_input.Maximum);
+
+                                        // [5] Fog Full
+                                        if (decimal.TryParse(parts[5], System.Globalization.CultureInfo.InvariantCulture, out decimal fogF) || decimal.TryParse(parts[5], out fogF))
+                                            Global_fog_full_input.Value = Math.Clamp(fogF, Global_fog_full_input.Minimum, Global_fog_full_input.Maximum);
+
+                                        // [6] Fog Color, [7] Light Color, [8] Ambient Color
+                                        Global_fog_colour.BackColor = ParseColor(parts[6]);
+                                        Global_light_colour.BackColor = ParseColor(parts[7]);
+                                        Global_ambient_colour.BackColor = ParseColor(parts[8]);
+                                    }
+                                }
+                                environmentLine++;
+                            }
+                            else
+                            {
+                                // Line 3+: Environment Zones
+                                if (Environment_preset_checkbox.Checked)
+                                {
+                                    var parts = SplitCsvWithBrackets(line);
+                                    if (parts.Length >= 10)
+                                    {
+                                        Color fogCol = ParseColor(parts[0]);
+                                        Color ambCol = ParseColor(parts[1]);
+                                        Color lightCol = ParseColor(parts[2]);
+
+                                        if (ParseInt(parts[3], out int shadowIntensity) &&
+                                            ParseInt(parts[4], out int fogStartDist) &&
+                                            ParseInt(parts[5], out int fogFullDist) &&
+                                            ParseInt(parts[6], out int posX) &&
+                                            ParseInt(parts[7], out int posY) &&
+                                            ParseInt(parts[8], out int radius) &&
+                                            ParseInt(parts[9], out int transition))
+                                        {
+                                            Environment_zones.Add((fogCol, ambCol, lightCol, shadowIntensity, fogStartDist, fogFullDist, posX, posY, radius, transition));
+                                        }
+                                    }
+                                }
+                                environmentLine++;
+                            }
+                        }
                     }
-                    catch (Exception ex)
+
+                    isUpdatingUI = false;
+
+                    UpdateBuoyDropdownItems();
+
+                    if (Harbours_list.Count > 0) Harbours_list_view.SelectedIndex = 0;
+                    else UpdateHarbourPanel();
+
+                    if (Caves_list.Count > 0) Caves_list_view.SelectedIndex = 0;
+                    else UpdateCavePanel();
+
+                    if (Environment_zones.Count > 0)
                     {
-                        isUpdatingUI = false;
-                        MessageBox.Show("Failed to load map preset. The file might be corrupted.\n" + ex.Message, "Error Loading Map Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        current_zone_index = 0;
+                        LoadZoneDataToUI();
                     }
                 }
+                catch (Exception ex)
+                {
+                    isUpdatingUI = false;
+                    MessageBox.Show("Failed to load map preset. The file might be corrupted.\n" + ex.Message, "Error Loading Map Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        private static string[] SplitCsvWithBrackets(string input)
+        {
+            List<string> result = [];
+            int bracketDepth = 0;
+            int startIndex = 0;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == '[') bracketDepth++;
+                else if (input[i] == ']') { if (bracketDepth > 0) bracketDepth--; }
+                else if (input[i] == ',' && bracketDepth == 0)
+                {
+                    result.Add(input[startIndex..i].Trim());
+                    startIndex = i + 1;
+                }
+            }
+
+            if (startIndex <= input.Length)
+            {
+                result.Add(input[startIndex..].Trim());
+            }
+
+            return [.. result];
+        }
+
+        private static Color ParseColor(string colorStr)
+        {
+            if (string.IsNullOrWhiteSpace(colorStr)) return Color.Black;
+
+            try
+            {
+                var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(Color));
+                if (converter != null && converter.CanConvertFrom(typeof(string)))
+                {
+                    object result = converter.ConvertFromString(colorStr);
+                    if (result is Color c) return c;
+                }
+            }
+            catch { }
+
+            try
+            {
+                string clean = colorStr.Replace("Color", "").Replace("[", "").Replace("]", "").Trim();
+                var parts = clean.Split(',');
+                int a = 255, r = 0, g = 0, b = 0;
+                bool parsedAny = false;
+
+                foreach (var part in parts)
+                {
+                    var kv = part.Split('=');
+                    if (kv.Length == 2)
+                    {
+                        string key = kv[0].Trim().ToUpperInvariant();
+                        if (int.TryParse(kv[1].Trim(), out int val))
+                        {
+                            if (key == "A") { a = val; parsedAny = true; }
+                            else if (key == "R") { r = val; parsedAny = true; }
+                            else if (key == "G") { g = val; parsedAny = true; }
+                            else if (key == "B") { b = val; parsedAny = true; }
+                        }
+                    }
+                }
+
+                if (parsedAny) return Color.FromArgb(a, r, g, b);
+            }
+            catch { }
+
+            return Color.Black;
+        }
+
+        private static bool ParseInt(string input, out int value)
+        {
+            if (int.TryParse(input, out value)) return true;
+            if (decimal.TryParse(input, System.Globalization.CultureInfo.InvariantCulture, out decimal d))
+            {
+                value = (int)Math.Round(d);
+                return true;
+            }
+            if (decimal.TryParse(input, out d))
+            {
+                value = (int)Math.Round(d);
+                return true;
+            }
+            value = 0;
+            return false;
         }
 
         private async void Map_export_button_Click(object sender, EventArgs e)
@@ -1835,12 +2334,12 @@ namespace DnG_AdK_Mapedit
             //Check if the sacrifice amount limits are not crossed
             var sacrificeChecks = new (System.Windows.Forms.ListView lv, string name, int max)[]
             {
-                (Sacrifices_no_research_Bavarians, "Bavarians (No Research)", 4),
-                (Sacrifices_no_research_Egyptians, "Egyptians (No Research)", 4),
-                (Sacrifices_no_research_Scots, "Scots (No Research)", 4),
-                (Sacrifices_research_Bavarians, "Bavarians (Research)", 8),
-                (Sacrifices_research_Egyptians, "Egyptians (Research)", 8),
-                (Sacrifices_research_Scots, "Scots (Research)", 8)
+                (Sacrifices_Bavarians_no_research, "Bavarians (No Research)", 4),
+                (Sacrifices_Egyptians_no_research, "Egyptians (No Research)", 4),
+                (Sacrifices_Scots_no_research, "Scots (No Research)", 4),
+                (Sacrifices_Bavarians_research, "Bavarians (Research)", 8),
+                (Sacrifices_Egyptians_research, "Egyptians (Research)", 8),
+                (Sacrifices_Scots_research, "Scots (Research)", 8)
             };
 
             foreach (var (lv, name, max) in sacrificeChecks)
@@ -1855,8 +2354,8 @@ namespace DnG_AdK_Mapedit
             //Check if 2 players don't have the same default colour
             var colourSelectors = new[]
             {
-                Player_1_select, Player_2_select, Player_3_select,
-                Player_4_select, Player_5_select, Player_6_select
+                Colours_player_1_select, Colours_player_2_select, Colours_player_3_select,
+                Colours_player_4_select, Colours_player_5_select, Colours_player_6_select
             };
 
             var activeColours = colourSelectors
@@ -1872,13 +2371,13 @@ namespace DnG_AdK_Mapedit
             }
 
             //In this case do not allow the user to proceed
-            if (Map_name_button.Text.Length > 20)
+            if (Map_info_name.Text.Length > 20)
             {
-                MessageBox.Show("Current map name with a length of " + Map_name_button.Text.Length + " characters is larger than the maximum allowed of 20 characters", "Map name is too long", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Current map name with a length of " + Map_info_name.Text.Length + " characters is larger than the maximum allowed of 20 characters", "Map name is too long", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            SaveFileDialog saveFileDialog = new();
 
             using (saveFileDialog)
             {
@@ -1896,7 +2395,7 @@ namespace DnG_AdK_Mapedit
 
                     string selectedFileName = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
 
-                    if (Multiplayer_prefix_checkbox.Checked)
+                    if (Export_multiplayer_prefix.Checked)
                     {
                         if (selectedFileName.Length > 15)
                         {
@@ -1932,13 +2431,13 @@ namespace DnG_AdK_Mapedit
             }
 
             // Capture UI data on the UI thread before offloading heavy work
-            int[] selectedColours = colourSelectors.Select(s => s.SelectedIndex).ToArray();
-            int[] bavariansNoRes = Sacrifices_no_research_Bavarians.CheckedIndices.Cast<int>().ToArray();
-            int[] bavariansRes = Sacrifices_research_Bavarians.CheckedIndices.Cast<int>().ToArray();
-            int[] egyptiansNoRes = Sacrifices_no_research_Egyptians.CheckedIndices.Cast<int>().ToArray();
-            int[] egyptiansRes = Sacrifices_research_Egyptians.CheckedIndices.Cast<int>().ToArray();
-            int[] scotsNoRes = Sacrifices_no_research_Scots.CheckedIndices.Cast<int>().ToArray();
-            int[] scotsRes = Sacrifices_research_Scots.CheckedIndices.Cast<int>().ToArray();
+            int[] selectedColours = [.. colourSelectors.Select(s => s.SelectedIndex)];
+            int[] bavariansNoRes = [.. Sacrifices_Bavarians_no_research.CheckedIndices.Cast<int>()];
+            int[] bavariansRes = [.. Sacrifices_Bavarians_research.CheckedIndices.Cast<int>()];
+            int[] egyptiansNoRes = [.. Sacrifices_Egyptians_no_research.CheckedIndices.Cast<int>()];
+            int[] egyptiansRes = [.. Sacrifices_Egyptians_research.CheckedIndices.Cast<int>()];
+            int[] scotsNoRes = [.. Sacrifices_Scots_no_research.CheckedIndices.Cast<int>()];
+            int[] scotsRes = [.. Sacrifices_Scots_research.CheckedIndices.Cast<int>()];
 
             Export_wait.Visible = true;
             Tab_control.Enabled = false;
@@ -1957,7 +2456,13 @@ namespace DnG_AdK_Mapedit
                     string tempFile = Path.Combine(TempFolder, Path.GetFileName(saveFileDialog.FileName));
                     File.WriteAllBytes(tempFile, exportedMap);
 
-                    if (Multiplayer_prefix_checkbox.Checked)
+                    if (Environment_preset_checkbox.Checked)
+                    {
+                        byte[] fogFile = FogFileExport();
+                        File.WriteAllBytes(Path.ChangeExtension(tempFile, ".bin"), fogFile);
+                    }
+
+                    if (Export_multiplayer_prefix.Checked)
                     {
                         string directory = Path.GetDirectoryName(saveFileDialog.FileName);
                         string baseFileName = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
@@ -1987,6 +2492,106 @@ namespace DnG_AdK_Mapedit
                 Export_wait.Visible = false;
                 Tab_control.Enabled = true;
             }
+        }
+
+        private byte[] FogFileExport()
+        {
+            MemoryStream fog_file = new();
+            using (BinaryWriter w = new(fog_file))
+            {
+                //Sky texture
+                switch (Global_sky_select.SelectedIndex)
+                {
+                    case 0: //Starlight
+                        w.Write([0x01, 0x00, 0x00, 0x00]);
+                        break;
+                    case 1: // Bavarian
+                        w.Write([0x03, 0x00, 0x00, 0x00]);
+                        break;
+                    case 2: // Egyptian
+                        w.Write([0x02, 0x00, 0x00, 0x00]);
+                        break;
+                    case 3: // Scottish
+                        w.Write([0x04, 0x00, 0x00, 0x00]);
+                        break;
+                }
+
+                //Sun position
+                w.Write((int)Global_sun_placement_input.Value);
+                //Sun height
+                w.Write((int)Global_sun_height_input.Value);
+
+                Color fog_colour = Global_fog_colour.BackColor;
+                Color ambient_colour = Global_ambient_colour.BackColor;
+                Color light_colour = Global_light_colour.BackColor;
+
+                w.Write(fog_colour.R / 255f);
+                w.Write(light_colour.R / 255f);
+                w.Write(ambient_colour.R / 255f);
+
+                w.Write(fog_colour.G / 255f);
+                w.Write(light_colour.G / 255f);
+                w.Write(ambient_colour.G / 255f);
+
+                w.Write(fog_colour.B / 255f);
+                w.Write(light_colour.B / 255f);
+                w.Write(ambient_colour.B / 255f);
+
+                //Shadow intensity
+                w.Write((float)Global_shadow_intensity_input.Value / 100f);
+
+                //Fog start distance
+                w.Write((float)Global_fog_start_input.Value);
+                //Full fog distance
+                w.Write((float)Global_fog_full_input.Value);
+
+                //Local zones
+                w.Write(Environment_zones.Count);
+                foreach (var zone in Environment_zones)
+                {
+                    fog_colour = zone.fog_colour;
+                    ambient_colour = zone.ambient_colour;
+                    light_colour = zone.light_colour;
+
+                    w.Write(fog_colour.R / 255f);
+                    w.Write(ambient_colour.R / 255f);
+                    w.Write(light_colour.R / 255f);
+
+                    w.Write(fog_colour.G / 255f);
+                    w.Write(ambient_colour.G / 255f);
+                    w.Write(light_colour.G / 255f);
+
+                    w.Write(fog_colour.B / 255f);
+                    w.Write(ambient_colour.B / 255f);
+                    w.Write(light_colour.B / 255f);
+
+                    //Shadow intensity
+                    w.Write((float)zone.shadow_intensity / 100f);
+
+                    //Fog start distance
+                    w.Write((float)zone.fog_start_distance);
+                    //Full fog distance
+                    w.Write((float)zone.fog_full_distance);
+
+                    //Position relative to centre
+                    if (zone.pos_y % 2 == 0)
+                    {
+                        w.Write((float)(zone.pos_x * 4 - map_size_x * 2));
+                    }
+                    else
+                    {
+                        w.Write((float)(zone.pos_x * 4 + 2 - map_size_x * 2));
+                    }
+                    w.Write((float)(zone.pos_y * 4 - map_size_y * 2));
+
+                    //Radius
+                    w.Write((float)(zone.radius * 4));
+
+                    //Radius + transition
+                    w.Write((float)((zone.radius + zone.transition) * 4));
+                }
+            }
+            return fog_file.ToArray();
         }
 
         // Pre-parsed static inverted byte arrays for sacrifice items
@@ -2023,36 +2628,37 @@ namespace DnG_AdK_Mapedit
 
             // Read template directly into MemoryStream
             Assembly assembly = Assembly.GetExecutingAssembly();
-            MemoryStream adk_memory_stream = new MemoryStream();
+            MemoryStream adk_memory_stream = new();
             using (Stream stream = assembly.GetManifestResourceStream("DnG_AdK_Mapedit.MP_6P_snowflake.s2m"))
             {
                 stream.CopyTo(adk_memory_stream);
             }
 
-            int template_area = 110 * 110;
+            int template_map_area = 110 * 110;
 
             //Skip to the player count byte
             current_dng_byte += 12;
             int current_adk_byte = 24;
 
             //Overwrite player count
+            int template_map_players = BitConverter.ToInt32(adk_memory_stream.ToArray(), current_adk_byte);
             adk_memory_stream.Position = current_adk_byte;
             adk_memory_stream.Write(BitConverter.GetBytes(Player_count), 0, 4);
             current_dng_byte += 4;
             current_adk_byte += 4;
 
             //Overwrite start positions (template map has 6 players)
-            int startPosLength = 20 * Player_count;
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 120, DnG_map, current_dng_byte, startPosLength);
-            current_adk_byte += startPosLength;
-            current_dng_byte += startPosLength;
+            int start_positions_data_length = 20 * Player_count;
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 120, DnG_map, current_dng_byte, start_positions_data_length);
+            current_adk_byte += start_positions_data_length;
+            current_dng_byte += start_positions_data_length;
 
             //Owerwrite map name
-            int mapNameLength = BitConverter.ToInt32(DnG_map, current_dng_byte);
-            int mapNameTotalBytes = mapNameLength + 4;
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 19, DnG_map, current_dng_byte, mapNameTotalBytes);
-            current_adk_byte += mapNameTotalBytes;
-            current_dng_byte += mapNameTotalBytes;
+            int map_name_length = BitConverter.ToInt32(DnG_map, current_dng_byte);
+            int map_name_length_total = map_name_length + 4;
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 19, DnG_map, current_dng_byte, map_name_length_total);
+            current_adk_byte += map_name_length_total;
+            current_dng_byte += map_name_length_total;
 
             //Overwrite map dimensions
             adk_memory_stream.Position = current_adk_byte;
@@ -2063,12 +2669,12 @@ namespace DnG_AdK_Mapedit
 
             //Overwrite player types
             adk_memory_stream.Position = current_adk_byte;
-            adk_memory_stream.Write(new byte[] { 0x02, 0x00, 0x00, 0x00 }, 0, 4);
+            adk_memory_stream.Write([0x02, 0x00, 0x00, 0x00], 0, 4);
             current_adk_byte += 4;
 
             for (int i = 2; i <= 8; i++)
             {
-                byte[] typeBytes = (i > Player_count) ? new byte[] { 0, 0, 0, 0 } : new byte[] { 1, 0, 0, 0 };
+                byte[] typeBytes = (i > Player_count) ? [0, 0, 0, 0] : [1, 0, 0, 0];
                 adk_memory_stream.Write(typeBytes, 0, 4);
                 current_adk_byte += 4;
             }
@@ -2088,15 +2694,38 @@ namespace DnG_AdK_Mapedit
 
                 //Write default difficulty level (0 = weak, 1 = normal, 2 = strong)
                 adk_memory_stream.Position = current_adk_byte;
-                byte[] difficulty = (i == 1 || i > Player_count) ? new byte[] { 0, 0, 0, 0 } : new byte[] { 2, 0, 0, 0 };
+                byte[] difficulty = (i == 1 || i > Player_count) ? [0, 0, 0, 0] : [2, 0, 0, 0];
                 adk_memory_stream.Write(difficulty, 0, 4);
                 current_adk_byte += 4;
             }
             current_dng_byte += 128;
 
+            //Overwrite water shader type
+            if (Environment_highland_water_checkbox.Checked)
+            {
+                adk_memory_stream.Position = current_adk_byte;
+                adk_memory_stream.Write([0x01, 0x00, 0x00, 0x00], 0, 4);
+            }
+            else
+            {
+
+                adk_memory_stream.Position = current_adk_byte;
+                int water_type = BitConverter.ToInt32(DnG_map, current_dng_byte);
+                if (water_type > 0)
+                {
+                    adk_memory_stream.Write(BitConverter.GetBytes(water_type + 1), 0, 4);
+                }
+                else
+                {
+                    adk_memory_stream.Write([0x00, 0x00, 0x00, 0x00], 0, 4);
+                }
+            }
+            current_dng_byte += 4;
+            current_adk_byte += 4;
+
             //Skip to the UUID
-            current_dng_byte += 28;
-            current_adk_byte += 28;
+            current_dng_byte += 24;
+            current_adk_byte += 24;
             //Overwrite UUID
             ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 16, DnG_map, current_dng_byte, 16);
             current_adk_byte += 16;
@@ -2113,7 +2742,7 @@ namespace DnG_AdK_Mapedit
             current_adk_byte += 4;
 
             //Remove the template chests section
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 124, new byte[] { 0, 0, 0, 0 });
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 124, [0, 0, 0, 0]);
             current_adk_byte += 4;
 
             //Skip scripted map start resources and static 4 bytes before it
@@ -2121,25 +2750,25 @@ namespace DnG_AdK_Mapedit
 
             // Sacrifices Section
             byte[] sacBytes;
-            using (MemoryStream sacrificeData = new MemoryStream())
-            using (BinaryWriter writer = new BinaryWriter(sacrificeData))
+            using (MemoryStream sacrificeData = new())
+            using (BinaryWriter writer = new(sacrificeData))
             {
                 writer.Write(3); // 3 nations
 
                 // Bavarians (.Reverse() matches the old InsertRange LIFO behavior)
-                writer.Write(new byte[] { 0xA3, 0x78, 0xD3, 0xB0 });
+                writer.Write([0xA3, 0x78, 0xD3, 0xB0]);
                 writer.Write(bavariansNoRes.Length + bavariansRes.Length);
                 foreach (int idx in bavariansNoRes.Reverse()) writer.Write(BavariansNoResearch[idx]);
                 foreach (int idx in bavariansRes.Reverse()) writer.Write(BavariansResearch[idx]);
 
                 // Egyptians
-                writer.Write(new byte[] { 0x33, 0x6D, 0x01, 0xF5 });
+                writer.Write([0x33, 0x6D, 0x01, 0xF5]);
                 writer.Write(egyptiansNoRes.Length + egyptiansRes.Length);
                 foreach (int idx in egyptiansNoRes.Reverse()) writer.Write(EgyptiansNoResearch[idx]);
                 foreach (int idx in egyptiansRes.Reverse()) writer.Write(EgyptiansResearch[idx]);
 
                 // Scots
-                writer.Write(new byte[] { 0xA3, 0xFD, 0x7F, 0x49 });
+                writer.Write([0xA3, 0xFD, 0x7F, 0x49]);
                 writer.Write(scotsNoRes.Length + scotsRes.Length);
                 foreach (int idx in scotsNoRes.Reverse()) writer.Write(ScotsNoResearch[idx]);
                 foreach (int idx in scotsRes.Reverse()) writer.Write(ScotsResearch[idx]);
@@ -2222,7 +2851,7 @@ namespace DnG_AdK_Mapedit
             //Overwrite texture data
             int textures_beginning = current_adk_byte;
             int textures_data_length = map_area * 4;
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_area * 4, DnG_map, current_dng_byte, textures_data_length);
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_map_area * 4, DnG_map, current_dng_byte, textures_data_length);
             current_dng_byte += textures_data_length;
             current_adk_byte += textures_data_length;
 
@@ -2235,7 +2864,7 @@ namespace DnG_AdK_Mapedit
             current_dng_byte += 4;
             //Overwrite gridstate data (length should be the same as the texture data)
             int gridstates_beginning = current_adk_byte;
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_area * 4, DnG_map, current_dng_byte, textures_data_length);
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_map_area * 4, DnG_map, current_dng_byte, textures_data_length);
             current_dng_byte += textures_data_length;
 
             adk_byte_array = adk_memory_stream.ToArray();
@@ -2299,7 +2928,7 @@ namespace DnG_AdK_Mapedit
             }
 
             // --- ANCHORAGE TEXTURE & GRIDSTATE CODE ---
-            byte[] pavementTexture = new byte[] { 0x01, 0xDE, 0xCA, 0xDE };
+            byte[] pavementTexture = [0x01, 0xDE, 0xCA, 0xDE];
 
             for (int i = 0; i < Harbours_list.Count; i++)
             {
@@ -2341,7 +2970,7 @@ namespace DnG_AdK_Mapedit
             current_adk_byte += 8; current_dng_byte += 8;
             //Overwrite resources array
             int resources_data_length = map_area * 8;
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_area * 8, DnG_map, current_dng_byte, resources_data_length);
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_map_area * 8, DnG_map, current_dng_byte, resources_data_length);
             current_dng_byte += resources_data_length;
             current_adk_byte += resources_data_length;
 
@@ -2353,7 +2982,7 @@ namespace DnG_AdK_Mapedit
             ReplaceStreamBytes(adk_memory_stream, current_adk_byte + 4, 0, BitConverter.GetBytes(map_size_y));
             current_adk_byte += 8; current_dng_byte += 8;
             //Overwrite territory map data (length should be the same as the texture data)
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_area * 4, DnG_map, current_dng_byte, textures_data_length);
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_map_area * 4, DnG_map, current_dng_byte, textures_data_length);
             current_dng_byte += textures_data_length;
             current_adk_byte += textures_data_length;
 
@@ -2366,13 +2995,13 @@ namespace DnG_AdK_Mapedit
             current_adk_byte += 8; current_dng_byte += 8;
             //Overwrite exploration map data
             int exploration_map_length = map_area * 32;
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_area * 32, DnG_map, current_dng_byte, exploration_map_length);
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, template_map_area * 32, DnG_map, current_dng_byte, exploration_map_length);
             current_dng_byte += exploration_map_length;
             current_adk_byte += exploration_map_length;
 
             //For now just overwrite the continents map without modifing the source
-            byte[] depositsHeaderDng = new byte[] { 0x04, 0x00, 0x00, 0x00, 0xAE, 0xEB, 0x66, 0xEF, 0x09, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 };
-            byte[] depositsHeaderAdk = new byte[] { 0x06, 0x00, 0x00, 0x00, 0xAE, 0xEB, 0x66, 0xEF, 0x09, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 };
+            byte[] depositsHeaderDng = [0x04, 0x00, 0x00, 0x00, 0xAE, 0xEB, 0x66, 0xEF, 0x09, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00];
+            byte[] depositsHeaderAdk = [0x06, 0x00, 0x00, 0x00, 0xAE, 0xEB, 0x66, 0xEF, 0x09, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00];
 
             adk_byte_array = adk_memory_stream.ToArray();
             int depositsOffsetDng = FindSequenceOffset(DnG_map, depositsHeaderDng, current_dng_byte);
@@ -2401,7 +3030,7 @@ namespace DnG_AdK_Mapedit
             int animals_beginning = current_adk_byte;
             int animals_amount = BitConverter.ToInt32(DnG_map, current_dng_byte);
 
-            byte[] doodadsHeader = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x3C, 0xCC, 0xBC, 0x8E, 0x0D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00 };
+            byte[] doodadsHeader = [0x00, 0x00, 0x00, 0x00, 0x3C, 0xCC, 0xBC, 0x8E, 0x0D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00];
             adk_byte_array = adk_memory_stream.ToArray();
             int doodadsOffsetDng = FindSequenceOffset(DnG_map, doodadsHeader, current_dng_byte);
             int doodadsOffsetAdk = FindSequenceOffset(adk_byte_array, doodadsHeader, current_adk_byte);
@@ -2431,13 +3060,13 @@ namespace DnG_AdK_Mapedit
             {
                 if (harbour.anchorage)
                 {
-                    MemoryStream anchorDoodad = new MemoryStream();
-                    using (BinaryWriter w = new BinaryWriter(anchorDoodad))
+                    MemoryStream anchorDoodad = new();
+                    using (BinaryWriter w = new(anchorDoodad))
                     {
-                        w.Write(new byte[] { 0x00, 0x1b, 0xff, 0xf1 });
-                        w.Write(new byte[] { 0x01, 0x00, 0x00, 0x00, 0x5B, 0x76, 0x5C, 0xEF, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                        w.Write([0x00, 0x1b, 0xff, 0xf1]);
+                        w.Write([0x01, 0x00, 0x00, 0x00, 0x5B, 0x76, 0x5C, 0xEF, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
                         w.Write(GenerateUniqueID());
-                        w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D, 0x85, 0x47, 0x6F, 0x0F, 0x00, 0x00, 0x00 });
+                        w.Write([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D, 0x85, 0x47, 0x6F, 0x0F, 0x00, 0x00, 0x00]);
 
                         int anchor_x = (harbour.anchor_y % 2 == 0) ? harbour.anchor_x * 4 : (harbour.anchor_x * 4) + 2;
                         w.Write(anchor_x);
@@ -2515,26 +3144,26 @@ namespace DnG_AdK_Mapedit
             {
                 foreach (var (connection_id, harbour_1_id, harbour_2_id, buoy_source_x, buoy_source_y, buoy_target_x, buoy_target_y) in Buoy_connections)
                 {
-                    MemoryStream buoyStream = new MemoryStream();
-                    using (BinaryWriter w = new BinaryWriter(buoyStream))
+                    MemoryStream buoyStream = new();
+                    using (BinaryWriter w = new(buoyStream))
                     {
                         //Write the first static value and the ID header
-                        w.Write(new byte[] { 0x01, 0x00, 0x00, 0x00, 0x2D, 0xD1, 0x27, 0x1C, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                        w.Write([0x01, 0x00, 0x00, 0x00, 0x2D, 0xD1, 0x27, 0x1C, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
                         //Write the connection ID
                         w.Write(connection_id);
                         w.Write(0);
                         //Write the ID header
-                        w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                        w.Write([0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
                         //Write the first harbour ID
                         w.Write(harbour_1_id);
                         w.Write(0);
                         //Write the ID header
-                        w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                        w.Write([0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
                         //Write the second harbour ID
                         w.Write(harbour_2_id);
                         w.Write(0);
                         //Write the third static value
-                        w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x3C, 0xF8, 0x25, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF });
+                        w.Write([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x3C, 0xF8, 0x25, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
                     }
 
                     byte[] bBytes = buoyStream.ToArray();
@@ -2542,7 +3171,7 @@ namespace DnG_AdK_Mapedit
                     current_adk_byte += bBytes.Length;
 
                     //Compute the path connecting the buoys
-                    int[][] buoyPath = FindPath(heightmap_logical, new[] { buoy_source_x, buoy_source_y }, new[] { buoy_target_x, buoy_target_y }, established_connections);
+                    int[][] buoyPath = FindPath(heightmap_logical, [buoy_source_x, buoy_source_y], [buoy_target_x, buoy_target_y], established_connections);
 
                     if (buoyPath != null)
                     {
@@ -2551,11 +3180,11 @@ namespace DnG_AdK_Mapedit
 
                         foreach (int[] step in buoyPath)
                         {
-                            MemoryStream stepMs = new MemoryStream();
-                            using (BinaryWriter w = new BinaryWriter(stepMs))
+                            MemoryStream stepMs = new();
+                            using (BinaryWriter w = new(stepMs))
                             {
                                 //PatternCursor
-                                w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                                w.Write([0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
                                 //X
                                 w.Write(step[0]);
                                 //Y
@@ -2588,18 +3217,18 @@ namespace DnG_AdK_Mapedit
                 var harbour = Harbours_list[i];
                 int harbour_rotation = harbour.rotation;
 
-                MemoryStream harbourStream = new MemoryStream();
-                using (BinaryWriter w = new BinaryWriter(harbourStream))
+                MemoryStream harbourStream = new();
+                using (BinaryWriter w = new(harbourStream))
                 {
                     //Write harbour rotation
                     w.Write((byte[])HarbourRotations[harbour_rotation].Clone());
 
-                    w.Write(new byte[] { 0x02, 0x00, 0x00, 0x00, 0x0F, 0xA9, 0xE5, 0x3E, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                    w.Write([0x02, 0x00, 0x00, 0x00, 0x0F, 0xA9, 0xE5, 0x3E, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
 
                     //Write a harbour ID
                     w.Write(Harbour_data[i].harbour_id);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
 
                     //Write harbour flag stream_offset
                     w.Write(harbour.pos_x);
@@ -2608,71 +3237,71 @@ namespace DnG_AdK_Mapedit
                     //Set the mystery value to 2 in order to skip creation of a separate array storing harbour IDs
                     w.Write(2);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x7F, 0x63, 0xCD, 0xE0, 0x13, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0x7F, 0x63, 0xCD, 0xE0, 0x13, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
 
                     //Write buoy 1 docking stream_offset 1
                     var dOffset = buoy1_docking_positions[harbour_rotation, 0];
                     w.Write(harbour.pos_x + dOffset.offsetX);
                     w.Write(harbour.pos_y + dOffset.offsetY);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
 
                     //Write buoy 1 docking stream_offset 2
                     dOffset = buoy1_docking_positions[harbour_rotation, 1];
                     w.Write(harbour.pos_x + dOffset.offsetX);
                     w.Write(harbour.pos_y + dOffset.offsetY);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
 
                     //Write buoy 1 connection ID
                     if (harbour.buoy_1_connection <= 0)
-                        w.Write(new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF });
+                        w.Write([0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
                     else
                     {
                         w.Write(Harbour_data[i].buoy_1_connection_id);
                         w.Write(0);
                     }
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
 
                     //Write buoy 1 world stream_offset
                     var (x, y) = GetBuoyWorldCoordinates(harbour, 0);
                     w.Write(x);
                     w.Write(y);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x7F, 0x63, 0xCD, 0xE0, 0x13, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0x7F, 0x63, 0xCD, 0xE0, 0x13, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
 
                     //Write buoy 2 docking stream_offset 1
                     dOffset = buoy2_docking_positions[harbour_rotation, 0];
                     w.Write(harbour.pos_x + dOffset.offsetX);
                     w.Write(harbour.pos_y + dOffset.offsetY);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0x20, 0x87, 0x07, 0xFF, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
 
                     //Write buoy 2 docking stream_offset 2
                     dOffset = buoy2_docking_positions[harbour_rotation, 1];
                     w.Write(harbour.pos_x + dOffset.offsetX);
                     w.Write(harbour.pos_y + dOffset.offsetY);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
 
                     //Write buoy 2 connection ID
                     if (harbour.buoy_2_connection <= 0)
-                        w.Write(new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF });
+                        w.Write([0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
                     else
                     {
                         w.Write(Harbour_data[i].buoy_2_connection_id);
                         w.Write(0);
                     }
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
 
                     // Write buoy 2 world stream_offset
                     var buoy2Coords = GetBuoyWorldCoordinates(harbour, 1);
                     w.Write(buoy2Coords.x);
                     w.Write(buoy2Coords.y);
 
-                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF });
+                    w.Write([0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
                 }
 
                 byte[] harbourBytes = harbourStream.ToArray();
@@ -2691,17 +3320,17 @@ namespace DnG_AdK_Mapedit
             int caves_amount = Caves_list.Count;
 
             // Pass leaveOpen: true so disposing the writer won't close adk_memory_stream
-            using (BinaryWriter writer = new BinaryWriter(adk_memory_stream, System.Text.Encoding.UTF8, leaveOpen: true))
+            using (BinaryWriter writer = new(adk_memory_stream, System.Text.Encoding.UTF8, leaveOpen: true))
             {
                 // Write the caves data to the AdK map
                 writer.Write(caves_amount);
                 foreach (var (pos_x, pos_y, type) in Caves_list)
                 {
                     writer.Write(CaveTypes[type]);
-                    writer.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x74, 0x76, 0x80, 0x4A, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                    writer.Write([0x00, 0x00, 0x00, 0x00, 0x74, 0x76, 0x80, 0x4A, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
                     writer.Write(GenerateUniqueID());
                     // Pattern cursor
-                    writer.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                    writer.Write([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
                     // X
                     writer.Write(pos_x);
                     // Y
@@ -2895,7 +3524,7 @@ namespace DnG_AdK_Mapedit
                     else
                     {
                         //Extraction
-                        List<(int pos_x, int pos_y, byte[] ID)> extracted_objects = new List<(int, int, byte[])>();
+                        List<(int pos_x, int pos_y, byte[] ID)> extracted_objects = [];
 
                         //Deposits
                         if (source_type <= 1)
@@ -3109,31 +3738,31 @@ namespace DnG_AdK_Mapedit
                             {
                                 if (!logical_grid_blocking[pos_x, pos_y])
                                 {
-                                    MemoryStream deposit_stream = new MemoryStream();
-                                    using (BinaryWriter w = new BinaryWriter(deposit_stream))
+                                    MemoryStream deposit_stream = new();
+                                    using (BinaryWriter w = new(deposit_stream))
                                     {
                                         w.Write(target);
-                                        w.Write(new byte[] {
+                                        w.Write([
     0x01, 0x00, 0x00, 0x00, 0x39, 0x9D, 0xDB, 0x95,
     0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00
-});
+]);
                                         //ID
                                         w.Write(ID);
-                                        w.Write(new byte[] {
+                                        w.Write([
     0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54,
     0x0D, 0x00, 0x00, 0x00
-});
+]);
                                         //Logical X
                                         w.Write(pos_x);
                                         //Logical Y
                                         w.Write(pos_y);
-                                        w.Write(new byte[] {
+                                        w.Write([
     0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5,
     0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
     0x1D, 0x85, 0x47, 0x6F, 0x0F, 0x00, 0x00, 0x00
-});
+]);
                                         //Detailed X
                                         if (pos_y % 2 == 0)
                                         {
@@ -3145,7 +3774,7 @@ namespace DnG_AdK_Mapedit
                                         }
                                         //Detailed Y
                                         w.Write(pos_y * 4);
-                                        w.Write(new byte[] { 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF });
+                                        w.Write([0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF]);
                                     }
 
                                     // Calculate grid state offset
@@ -3191,25 +3820,25 @@ namespace DnG_AdK_Mapedit
                                         {
                                             if (!logical_grid_animals[pos_x, pos_y])
                                             {
-                                                MemoryStream animal_stream = new MemoryStream();
-                                                using (BinaryWriter w = new BinaryWriter(animal_stream))
+                                                MemoryStream animal_stream = new();
+                                                using (BinaryWriter w = new(animal_stream))
                                                 {
                                                     w.Write(target);
-                                                    w.Write(new byte[] {
+                                                    w.Write([
     0x02, 0x00, 0x00, 0x00, 0xE4, 0x8A, 0x52, 0x6A,
     0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00
-});
+]);
                                                     w.Write(ID);
-                                                    w.Write(new byte[] {
+                                                    w.Write([
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00
-});
+]);
                                                     //X
                                                     w.Write(pos_x);
                                                     //Y
                                                     w.Write(pos_y);
-                                                    w.Write(new byte[] {
+                                                    w.Write([
     0x01, 0x00, 0x00, 0x00, 0x77, 0x67, 0x5B, 0x0D,
     0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x93, 0xE4, 0x70, 0x1B, 0x0E, 0x00, 0x00, 0x00,
@@ -3217,26 +3846,26 @@ namespace DnG_AdK_Mapedit
     0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54,
     0x0D, 0x00, 0x00, 0x00
-});
+]);
                                                     //X
                                                     w.Write(pos_x);
                                                     //Y
                                                     w.Write(pos_y);
-                                                    w.Write(new byte[] {
+                                                    w.Write([
     0x00, 0x00, 0x00, 0x00, 0xAE, 0x02, 0x54, 0x70,
     0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00
-});
+]);
                                                     //X
                                                     w.Write(pos_x);
                                                     //Y
                                                     w.Write(pos_y);
-                                                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                                                    w.Write([0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
                                                     //X
                                                     w.Write(pos_x);
                                                     //Y
                                                     w.Write(pos_y);
-                                                    w.Write(new byte[] {
+                                                    w.Write([
     0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54,
     0x0D, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
@@ -3246,7 +3875,7 @@ namespace DnG_AdK_Mapedit
     0x6A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
-});
+]);
                                                 }
 
                                                 ReplaceStreamBytes(adk_memory_stream, animals_beginning + 4, 0, animal_stream.ToArray(), 0, -1);
@@ -3271,13 +3900,13 @@ namespace DnG_AdK_Mapedit
                                         {
                                             if (!logical_grid_blocking[pos_x, pos_y])
                                             {
-                                                MemoryStream blocking_doodad_stream = new MemoryStream();
-                                                using (BinaryWriter w = new BinaryWriter(blocking_doodad_stream))
+                                                MemoryStream blocking_doodad_stream = new();
+                                                using (BinaryWriter w = new(blocking_doodad_stream))
                                                 {
                                                     w.Write(target);
-                                                    w.Write(new byte[] { 0x01, 0x00, 0x00, 0x00, 0x5B, 0x76, 0x5C, 0xEF, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                                                    w.Write([0x01, 0x00, 0x00, 0x00, 0x5B, 0x76, 0x5C, 0xEF, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
                                                     w.Write(ID);
-                                                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x1D, 0x85, 0x47, 0x6F, 0x0F, 0x00, 0x00, 0x00 });
+                                                    w.Write([0x00, 0x00, 0x00, 0x00, 0x1D, 0x85, 0x47, 0x6F, 0x0F, 0x00, 0x00, 0x00]);
                                                     //Detailed X
                                                     if (pos_y % 2 == 0)
                                                     {
@@ -3323,11 +3952,11 @@ namespace DnG_AdK_Mapedit
                                         {
                                             if (!logical_grid_ambients[pos_x, pos_y])
                                             {
-                                                MemoryStream ambient_stream = new MemoryStream();
-                                                using (BinaryWriter w = new BinaryWriter(ambient_stream))
+                                                MemoryStream ambient_stream = new();
+                                                using (BinaryWriter w = new(ambient_stream))
                                                 {
                                                     w.Write(target);
-                                                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                                                    w.Write([0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
                                                     //X
                                                     w.Write(pos_x);
                                                     //Y
@@ -3352,14 +3981,14 @@ namespace DnG_AdK_Mapedit
                                         {
                                             if (!logical_grid_blocking[pos_x, pos_y])
                                             {
-                                                MemoryStream cave_stream = new MemoryStream();
-                                                using (BinaryWriter w = new BinaryWriter(cave_stream))
+                                                MemoryStream cave_stream = new();
+                                                using (BinaryWriter w = new(cave_stream))
                                                 {
                                                     w.Write(target);
-                                                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0x74, 0x76, 0x80, 0x4A, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00 });
+                                                    w.Write([0x00, 0x00, 0x00, 0x00, 0x74, 0x76, 0x80, 0x4A, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
                                                     w.Write(ID);
                                                     // Pattern cursor
-                                                    w.Write(new byte[] { 0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00 });
+                                                    w.Write([0x00, 0x00, 0x00, 0x00, 0xA2, 0xFE, 0x49, 0x54, 0x0D, 0x00, 0x00, 0x00]);
                                                     // X
                                                     w.Write(pos_x);
                                                     // Y
@@ -3461,7 +4090,7 @@ namespace DnG_AdK_Mapedit
                     adk_memory_stream.Read(payload, 0, 52);
 
                     // Remove source entry from stream
-                    ReplaceStreamBytes(adk_memory_stream, pos, srcStride, new byte[0], 0, 0);
+                    ReplaceStreamBytes(adk_memory_stream, pos, srcStride, [], 0, 0);
 
                     // Update source count and offset headers
                     if (has_source_lifetime)
@@ -3524,8 +4153,8 @@ namespace DnG_AdK_Mapedit
             //Remove water sign lifetime doodad with no texture
             if (lifetime_doodads_amount > 0)
             {
-                int water_sign = BitConverter.ToInt32(new byte[] { 0x43, 0xA3, 0x1A, 0x12 }, 0);
-                byte[] empty_buffer = Array.Empty<byte>();
+                int water_sign = BitConverter.ToInt32([0x43, 0xA3, 0x1A, 0x12], 0);
+                byte[] empty_buffer = [];
 
                 // Iterate backward to prevent stream index shifts from affecting remaining checks
                 for (int i = lifetime_doodads_amount - 1; i >= 0; i--)
@@ -3579,10 +4208,10 @@ namespace DnG_AdK_Mapedit
             }
         }
 
-        readonly Random rand = new Random();
+        readonly Random rand = new();
 
         // List of all used IDs
-        readonly HashSet<int> used_IDs = new HashSet<int>();
+        readonly HashSet<int> used_IDs = [];
 
         private int GenerateUniqueID()
         {
@@ -3614,10 +4243,10 @@ namespace DnG_AdK_Mapedit
 
         // Generated results
         public List<(int connection_id, int harbour_1_id, int harbour_2_id, int buoy_source_x, int buoy_source_y, int buoy_target_x, int buoy_target_y)> Buoy_connections
-            = new List<(int, int, int, int, int, int, int)>();
+            = [];
 
         public List<(int harbour_id, int buoy_1_connection_id, int buoy_2_connection_id)> Harbour_data
-            = new List<(int, int, int)>();
+            = [];
 
         public void GenerateBuoyConnections()
         {
@@ -3662,12 +4291,12 @@ namespace DnG_AdK_Mapedit
         /// <summary>
         /// Calculates world coordinates for a specific buoy on a harbor.
         /// </summary>
-        public (int x, int y) GetBuoyWorldCoordinates(
+        public static (int x, int y) GetBuoyWorldCoordinates(
             (int pos_x, int pos_y, int rotation, bool anchorage, int anchor_x, int anchor_y, int buoy_1_connection, int buoy_2_connection) harbor,
             int buoySubIndex)
         {
             if (harbor.rotation < 0 || harbor.rotation > 7)
-                throw new ArgumentOutOfRangeException(nameof(harbor.rotation), "Rotation index must be between 0 and 7.");
+                throw new ArgumentOutOfRangeException(nameof(harbor), "Rotation index must be between 0 and 7.");
 
             var (offset_x, offset_y) = BuoyOffsets[harbor.rotation, buoySubIndex];
             return (harbor.pos_x + offset_x, harbor.pos_y + offset_y);
@@ -3726,20 +4355,13 @@ namespace DnG_AdK_Mapedit
             harbourBuoyConnectionIds[targetHarborIdx, targetBuoySubIdx] = connectionId;
         }
 
-        readonly List<int[]> established_connections = new List<int[]>();
+        readonly List<int[]> established_connections = [];
 
-        public readonly struct State : IEquatable<State>
+        public readonly struct State(int row, int col, int direction) : IEquatable<State>
         {
-            public int Row { get; }
-            public int Col { get; }
-            public int Direction { get; }
-
-            public State(int row, int col, int direction)
-            {
-                Row = row;
-                Col = col;
-                Direction = direction;
-            }
+            public int Row { get; } = row;
+            public int Col { get; } = col;
+            public int Direction { get; } = direction;
 
             public bool Equals(State other)
             {
@@ -3753,56 +4375,51 @@ namespace DnG_AdK_Mapedit
 
             public override int GetHashCode()
             {
-                unchecked
-                {
-                    int hash = 17;
-                    hash = hash * 31 + Row;
-                    hash = hash * 31 + Col;
-                    hash = hash * 31 + Direction;
-                    return hash;
-                }
+                return HashCode.Combine(Row, Col, Direction);
+            }
+
+            public static bool operator ==(State left, State right)
+            {
+                return left.Equals(right);
+            }
+
+            public static bool operator !=(State left, State right)
+            {
+                return !(left == right);
             }
         }
 
-        private class Node
+        private class Node(DnG_AdK_Mapedit.State state, int gCost, int hCost, DnG_AdK_Mapedit.Node parent = null)
         {
-            public State State { get; }
-            public int GCost { get; }
-            public int HCost { get; }
+            public State State { get; } = state;
+            public int GCost { get; } = gCost;
+            public int HCost { get; } = hCost;
             public int FCost => GCost + HCost;
-            public Node Parent { get; }
-
-            public Node(State state, int gCost, int hCost, Node parent = null)
-            {
-                State = state;
-                GCost = gCost;
-                HCost = hCost;
-                Parent = parent;
-            }
+            public Node Parent { get; } = parent;
         }
 
         // Direction offsets for Odd-R grid (0: E, 1: SE, 2: SW, 3: W, 4: NW, 5: NE)
-        private static readonly int[][][] Offsets = new int[][][]
-        {
+        private static readonly int[][][] Offsets =
+        [
         // Even Rows (source_y % 2 == 0)
-        new int[][] {
-            new int[] { 0, 1 },  // 0: East
-            new int[] { 1, 0 },  // 1: SE
-            new int[] { 1, -1 }, // 2: SW
-            new int[] { 0, -1 }, // 3: West
-            new int[] { -1, -1 },// 4: NW
-            new int[] { -1, 0 }  // 5: NE
-        },
+        [
+            [0, 1],  // 0: East
+            [1, 0],  // 1: SE
+            [1, -1], // 2: SW
+            [0, -1], // 3: West
+            [-1, -1],// 4: NW
+            [-1, 0]  // 5: NE
+        ],
         // Odd Rows (source_y % 2 != 0) - Shifted Right
-        new int[][] {
-            new int[] { 0, 1 },  // 0: East
-            new int[] { 1, 1 },  // 1: SE
-            new int[] { 1, 0 },  // 2: SW
-            new int[] { 0, -1 }, // 3: West
-            new int[] { -1, 0 }, // 4: NW
-            new int[] { -1, 1 }  // 5: NE
-        }
-        };
+        [
+            [0, 1],  // 0: East
+            [1, 1],  // 1: SE
+            [1, 0],  // 2: SW
+            [0, -1], // 3: West
+            [-1, 0], // 4: NW
+            [-1, 1]  // 5: NE
+        ]
+        ];
 
         /// <summary>
         /// Finds the optimal path from start to goal as an array of [source_x, source_y] coordinates.
@@ -3825,7 +4442,7 @@ namespace DnG_AdK_Mapedit
             int goalCol = goal[0], goalRow = goal[1];
 
             // Store already reserved coordinates for O(1) lookup
-            HashSet<Tuple<int, int>> blockedCoordinates = new HashSet<Tuple<int, int>>();
+            HashSet<Tuple<int, int>> blockedCoordinates = [];
             if (establishedPaths != null)
             {
                 foreach (var coord in establishedPaths)
@@ -3848,11 +4465,11 @@ namespace DnG_AdK_Mapedit
                 return null;
             }
 
-            MinHeapPriorityQueue<Node> openSet = new MinHeapPriorityQueue<Node>();
-            Dictionary<State, int> gCosts = new Dictionary<State, int>();
+            MinHeapPriorityQueue<Node> openSet = new();
+            Dictionary<State, int> gCosts = [];
 
-            State startState = new State(startRow, startCol, -1);
-            Node startNode = new Node(startState, 0, GetHeuristic(startRow, startCol, goalRow, goalCol));
+            State startState = new(startRow, startCol, -1);
+            Node startNode = new(startState, 0, GetHeuristic(startRow, startCol, goalRow, goalCol));
 
             openSet.Enqueue(startNode, startNode.FCost);
             gCosts[startState] = 0;
@@ -3902,13 +4519,13 @@ namespace DnG_AdK_Mapedit
                         stepCost += 1;
 
                     int newGCost = current.GCost + stepCost;
-                    State nextState = new State(nextRow, nextCol, dir);
+                    State nextState = new(nextRow, nextCol, dir);
 
                     if (!gCosts.TryGetValue(nextState, out int existingG) || newGCost < existingG)
                     {
                         gCosts[nextState] = newGCost;
                         int hCost = GetHeuristic(nextRow, nextCol, goalRow, goalCol);
-                        Node neighborNode = new Node(nextState, newGCost, hCost, current);
+                        Node neighborNode = new(nextState, newGCost, hCost, current);
                         openSet.Enqueue(neighborNode, neighborNode.FCost);
                     }
                 }
@@ -3917,16 +4534,16 @@ namespace DnG_AdK_Mapedit
             if (bestGoalNode == null) return null;
 
             // Reconstruct path to int[][] array of [source_x, source_y] coordinates
-            List<int[]> pathList = new List<int[]>();
+            List<int[]> pathList = [];
             Node curr = bestGoalNode;
             while (curr != null)
             {
-                pathList.Add(new int[] { curr.State.Col, curr.State.Row }); // [source_x, source_y]
+                pathList.Add([curr.State.Col, curr.State.Row]); // [source_x, source_y]
                 curr = curr.Parent;
             }
 
             pathList.Reverse();
-            return pathList.ToArray();
+            return [.. pathList];
         }
 
         private static bool IsNearLand(int[,] map, int r, int c, int maxR, int maxC)
@@ -3963,7 +4580,7 @@ namespace DnG_AdK_Mapedit
         // Min-heap Binary Priority Queue implementation for .NET 4.8
         private class MinHeapPriorityQueue<T>
         {
-            private readonly List<Tuple<T, int>> elements = new List<Tuple<T, int>>();
+            private readonly List<Tuple<T, int>> elements = [];
 
             public int Count => elements.Count;
 
@@ -4004,17 +4621,17 @@ namespace DnG_AdK_Mapedit
             }
         }
 
-        private static readonly byte[][] HarbourRotations = new byte[][]
-{
-    new byte[] { 0x85, 0x19, 0xAA, 0xAA }, // 0: South-west
-    new byte[] { 0x03, 0x69, 0xB8, 0xF7 }, // 1: North-west
-    new byte[] { 0xB3, 0xFC, 0x08, 0xCC }, // 2: South-east
-    new byte[] { 0x53, 0x89, 0xB0, 0xD2 }, // 3: North-east
-    new byte[] { 0xD3, 0x81, 0x9C, 0x6C }, // 4: North
-    new byte[] { 0xD3, 0xE1, 0x52, 0xF2 }, // 5: South
-    new byte[] { 0xC3, 0x04, 0xC0, 0x8B }, // 6: East
-    new byte[] { 0x43, 0xB7, 0x84, 0x8F }  // 7: West
-};
+        private static readonly byte[][] HarbourRotations =
+[
+    [0x85, 0x19, 0xAA, 0xAA], // 0: South-west
+    [0x03, 0x69, 0xB8, 0xF7], // 1: North-west
+    [0xB3, 0xFC, 0x08, 0xCC], // 2: South-east
+    [0x53, 0x89, 0xB0, 0xD2], // 3: North-east
+    [0xD3, 0x81, 0x9C, 0x6C], // 4: North
+    [0xD3, 0xE1, 0x52, 0xF2], // 5: South
+    [0xC3, 0x04, 0xC0, 0x8B], // 6: East
+    [0x43, 0xB7, 0x84, 0x8F]  // 7: West
+];
 
         private static readonly (int offsetX, int offsetY)[,] buoy1_docking_positions = new (int, int)[8, 2]
         {
@@ -4040,25 +4657,25 @@ namespace DnG_AdK_Mapedit
         { (-5,  -1), (-5,  1) }  // 7: harbor_w
         };
 
-        private static readonly byte[][] CaveTypes = new byte[][]
-    {
-        new byte[] { 0xD8, 0x70, 0xB3, 0xA3 }, // 0: AnimalSpawn (Deer, Elk, Rabbit)
-        new byte[] { 0x23, 0x89, 0xA5, 0x07 }, // 1: SheepSpawn
-        new byte[] { 0x33, 0x10, 0x75, 0xBE }, // 2: DeerSpawn
-        new byte[] { 0x53, 0xB9, 0x3D, 0x52 }, // 3: RabbitSpawn
-        new byte[] { 0x72, 0xC8, 0xA5, 0xFC }, // 4: __Highland Bear Spawn
-        new byte[] { 0x73, 0xC8, 0xA5, 0xFC }, // 5: !!!MED Bear Spawn
-        new byte[] { 0x74, 0xC8, 0xA5, 0xFC }, // 6: Bear Spawn
-        new byte[] { 0x75, 0xC8, 0xA5, 0xFC }, // 7: --Snow Polar Bear Spawn (+ Mountain Hare)
-        new byte[] { 0x76, 0xC8, 0xA5, 0xFC }, // 8: __Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)
-        new byte[] { 0x77, 0xC8, 0xA5, 0xFC }, // 9: Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
-        new byte[] { 0x78, 0xC8, 0xA5, 0xFC }, // 10: !!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
-        new byte[] { 0x79, 0xC8, 0xA5, 0xFC }  // 11: !!!MED Camel Spawn
-    };
+        private static readonly byte[][] CaveTypes =
+    [
+        [0xD8, 0x70, 0xB3, 0xA3], // 0: AnimalSpawn (Deer, Elk, Rabbit)
+        [0x23, 0x89, 0xA5, 0x07], // 1: SheepSpawn
+        [0x33, 0x10, 0x75, 0xBE], // 2: DeerSpawn
+        [0x53, 0xB9, 0x3D, 0x52], // 3: RabbitSpawn
+        [0x72, 0xC8, 0xA5, 0xFC], // 4: __Highland Bear Spawn
+        [0x73, 0xC8, 0xA5, 0xFC], // 5: !!!MED Bear Spawn
+        [0x74, 0xC8, 0xA5, 0xFC], // 6: Bear Spawn
+        [0x75, 0xC8, 0xA5, 0xFC], // 7: --Snow Polar Bear Spawn (+ Mountain Hare)
+        [0x76, 0xC8, 0xA5, 0xFC], // 8: __Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)
+        [0x77, 0xC8, 0xA5, 0xFC], // 9: Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
+        [0x78, 0xC8, 0xA5, 0xFC], // 10: !!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
+        [0x79, 0xC8, 0xA5, 0xFC]  // 11: !!!MED Camel Spawn
+    ];
 
         // Array storing the texture type corresponding to each terrain index (0 to 72)
-        private static readonly int[] DnG_texture_types = new int[]
-        {
+        private static readonly int[] DnG_texture_types =
+        [
         2, // [0]  !!!MED (RES) rocky earth 2
         2, // [1]  !!!MED (RES) rocky earth big 2
         2, // [2]  !!!MED (RES) rocky earth dark 2
@@ -4132,11 +4749,11 @@ namespace DnG_AdK_Mapedit
         3, // [70] §§Desert sand small dune 3
         3, // [71] §§Desert sand small ripple 3
         3  // [72] §§Desert sand yellow 3
-        };
+        ];
 
         // Array storing the texture type corresponding to each terrain index (0 to 40)
-        private static readonly int[] AdK_texture_types = new int[]
-        {
+        private static readonly int[] AdK_texture_types =
+        [
         1, // [0]  __Highland meadow bright 1
         1, // [1]  __Highland meadow bright rocks 1
         1, // [2]  __Highland meadow medium 1
@@ -4178,133 +4795,130 @@ namespace DnG_AdK_Mapedit
         4, // [38] --Snow Ice Clean Dark 4
         4, // [39] --Snow medium border 4
         4  // [40] --Snow soft border 4
-        };
+        ];
 
-        private static readonly byte[][] DnG_textures = new byte[][]
-{
-        new byte[] { 0x89, 0xA5, 0x1C, 0xFA }, // [0]  !!!MED (RES) rocky earth
-        new byte[] { 0x86, 0xA5, 0x1C, 0xFA }, // [1]  !!!MED (RES) rocky earth big
-        new byte[] { 0x88, 0xA5, 0x1C, 0xFA }, // [2]  !!!MED (RES) rocky earth dark
-        new byte[] { 0x87, 0xA5, 0x1C, 0xFA }, // [3]  !!!MED (RES) rocky plants
-        new byte[] { 0x70, 0xA5, 0x1C, 0xFA }, // [4]  !!!MED ground 00
-        new byte[] { 0x71, 0xA5, 0x1C, 0xFA }, // [5]  !!!MED ground 01
-        new byte[] { 0x60, 0xA5, 0x1C, 0xFA }, // [6]  !!!MED meadow 00
-        new byte[] { 0x61, 0xA5, 0x1C, 0xFA }, // [7]  !!!MED meadow 01
-        new byte[] { 0x62, 0xA5, 0x1C, 0xFA }, // [8]  !!!MED meadow 02
-        new byte[] { 0x63, 0xA5, 0x1C, 0xFA }, // [9]  !!!MED meadow 03
-        new byte[] { 0x80, 0xA5, 0x1C, 0xFA }, // [10] !!!MED rock
-        new byte[] { 0x81, 0xA5, 0x1C, 0xFA }, // [11] !!!MED rock big
-        new byte[] { 0x83, 0xA5, 0x1C, 0xFA }, // [12] !!!MED rock red
-        new byte[] { 0x85, 0xA5, 0x1C, 0xFA }, // [13] !!!MED rock red big
-        new byte[] { 0x84, 0xA5, 0x1C, 0xFA }, // [14] !!!MED rock red small
-        new byte[] { 0x82, 0xA5, 0x1C, 0xFA }, // [15] !!!MED rock small
-        new byte[] { 0x90, 0xA5, 0x1C, 0xFA }, // [16] !!!MED seaground rock
-        new byte[] { 0x91, 0xA5, 0x1C, 0xFA }, // [17] !!!MED seaground rock red
-        new byte[] { 0x8A, 0xA5, 0x1C, 0xFA }, // [18] !!!MED stone ground
-        new byte[] { 0x03, 0xDE, 0xCA, 0xDE }, // [19] ((00 LAVA 01
-        new byte[] { 0x0A, 0xDE, 0xCA, 0xDE }, // [20] ((00 LAVA 01 soft
-        new byte[] { 0x08, 0xDE, 0xCA, 0xDE }, // [21] ((00 LAVA 02
-        new byte[] { 0x70, 0xDB, 0x7A, 0xF6 }, // [22] ((00 LAVA Meadow 00
-        new byte[] { 0x70, 0xBB, 0xCA, 0xF1 }, // [23] ((00 LAVA Sand 00
-        new byte[] { 0x02, 0xDE, 0xCA, 0xDE }, // [24] ((00 LAVA ground
-        new byte[] { 0x09, 0xDE, 0xCA, 0xDE }, // [25] ((00 LAVA ground flat
-        new byte[] { 0x07, 0xDE, 0xCA, 0xDE }, // [26] ((00 LAVA ground rough
-        new byte[] { 0x04, 0xDE, 0xCA, 0xDE }, // [27] ((00 LAVA rock
-        new byte[] { 0x05, 0xDE, 0xCA, 0xDE }, // [28] ((00 LAVA rock big
-        new byte[] { 0xB0, 0xFA, 0x87, 0xCA }, // [29] ((00 LAVA rock floating lava
-        new byte[] { 0x06, 0xDE, 0xCA, 0xDE }, // [30] ((00 LAVA rock small
-        new byte[] { 0xFF, 0xCA, 0xFE, 0xCA }, // [31] (RES) rocky earth
-        new byte[] { 0x02, 0xCB, 0xFE, 0xCA }, // [32] (RES) rocky earth big
-        new byte[] { 0x04, 0xCB, 0xFE, 0xCA }, // [33] (RES) rocky earth dark
-        new byte[] { 0x03, 0xCB, 0xFE, 0xCA }, // [34] (RES) rocky plants
-        new byte[] { 0x1A, 0x70, 0x56, 0xCA }, // [35] DO NOT USE
-        new byte[] { 0x01, 0xDE, 0xCA, 0xDE }, // [36] HARBOR
-        new byte[] { 0x73, 0x18, 0xD3, 0x76 }, // [37] border
-        new byte[] { 0xC2, 0xFA, 0x45, 0x45 }, // [38] earth
-        new byte[] { 0xC4, 0xFA, 0x45, 0x45 }, // [39] leaf
-        new byte[] { 0xE3, 0xE8, 0xE4, 0xBF }, // [40] meadow
-        new byte[] { 0xC3, 0xFA, 0x45, 0x45 }, // [41] meadow bright
-        new byte[] { 0xC6, 0xFA, 0x45, 0x45 }, // [42] meadow dark small
-        new byte[] { 0x10, 0x11, 0x5E, 0xDE }, // [43] meadow ground
-        new byte[] { 0xC5, 0xFA, 0x45, 0x45 }, // [44] meadow leaf
-        new byte[] { 0xC7, 0xFA, 0x45, 0x45 }, // [45] meadow red flowers
-        new byte[] { 0xC1, 0xFA, 0x45, 0x45 }, // [46] meadow yellow flowers
-        new byte[] { 0xFE, 0xAF, 0x0F, 0xD0 }, // [47] rock
-        new byte[] { 0xEF, 0xBE, 0xAD, 0xDE }, // [48] rock big
-        new byte[] { 0xFE, 0xCA, 0xFE, 0xCA }, // [49] rock small
-        new byte[] { 0x00, 0xCB, 0xFE, 0xCA }, // [50] rock stretched source_x
-        new byte[] { 0x01, 0xCB, 0xFE, 0xCA }, // [51] rock stretched source_y
-        new byte[] { 0x0D, 0xB0, 0xDE, 0xBA }, // [52] sand
-        new byte[] { 0x0E, 0xB0, 0xDE, 0xBA }, // [53] sand stones
-        new byte[] { 0x0B, 0xB0, 0xBE, 0xBA }, // [54] seaground
-        new byte[] { 0xE4, 0x74, 0x33, 0x01 }, // [55] seaground plants
-        new byte[] { 0xE6, 0x74, 0x33, 0x01 }, // [56] seaground plants rock
-        new byte[] { 0xE7, 0x74, 0x33, 0x01 }, // [57] seaground rock
-        new byte[] { 0xE8, 0x74, 0x33, 0x01 }, // [58] seaground rocky
-        new byte[] { 0xE5, 0x74, 0x33, 0x01 }, // [59] seaground sand
-        new byte[] { 0xFF, 0xE0, 0xAD, 0x0F }, // [60] snow
-        new byte[] { 0x05, 0xCB, 0xFE, 0xCA }, // [61] stone ground
-        new byte[] { 0xE4, 0x04, 0x00, 0x68 }, // [62] swamp land
-        new byte[] { 0xE6, 0x04, 0x00, 0x68 }, // [63] swamp meadow (unblocked)
-        new byte[] { 0xE5, 0x04, 0x00, 0x68 }, // [64] swamp water
-        new byte[] { 0xB3, 0xD1, 0x6B, 0xFE }, // [65] water
-        new byte[] { 0xC0, 0xA8, 0x7F, 0x77 }, // [66] §§Desert earth
-        new byte[] { 0xC9, 0xFA, 0x45, 0x45 }, // [67] §§Desert meadow
-        new byte[] { 0x0F, 0xB0, 0xDE, 0xBA }, // [68] §§Desert sand dune
-        new byte[] { 0x12, 0xB0, 0xDE, 0xBA }, // [69] §§Desert sand ripple
-        new byte[] { 0x11, 0xB0, 0xDE, 0xBA }, // [70] §§Desert sand small dune
-        new byte[] { 0x13, 0xB0, 0xDE, 0xBA }, // [71] §§Desert sand small ripple
-        new byte[] { 0x10, 0xB0, 0xDE, 0xBA }  // [72] §§Desert sand yellow
-};
+        private static readonly byte[][] DnG_textures =
+[
+        [0x89, 0xA5, 0x1C, 0xFA], // [0]  !!!MED (RES) rocky earth
+        [0x86, 0xA5, 0x1C, 0xFA], // [1]  !!!MED (RES) rocky earth big
+        [0x88, 0xA5, 0x1C, 0xFA], // [2]  !!!MED (RES) rocky earth dark
+        [0x87, 0xA5, 0x1C, 0xFA], // [3]  !!!MED (RES) rocky plants
+        [0x70, 0xA5, 0x1C, 0xFA], // [4]  !!!MED ground 00
+        [0x71, 0xA5, 0x1C, 0xFA], // [5]  !!!MED ground 01
+        [0x60, 0xA5, 0x1C, 0xFA], // [6]  !!!MED meadow 00
+        [0x61, 0xA5, 0x1C, 0xFA], // [7]  !!!MED meadow 01
+        [0x62, 0xA5, 0x1C, 0xFA], // [8]  !!!MED meadow 02
+        [0x63, 0xA5, 0x1C, 0xFA], // [9]  !!!MED meadow 03
+        [0x80, 0xA5, 0x1C, 0xFA], // [10] !!!MED rock
+        [0x81, 0xA5, 0x1C, 0xFA], // [11] !!!MED rock big
+        [0x83, 0xA5, 0x1C, 0xFA], // [12] !!!MED rock red
+        [0x85, 0xA5, 0x1C, 0xFA], // [13] !!!MED rock red big
+        [0x84, 0xA5, 0x1C, 0xFA], // [14] !!!MED rock red small
+        [0x82, 0xA5, 0x1C, 0xFA], // [15] !!!MED rock small
+        [0x90, 0xA5, 0x1C, 0xFA], // [16] !!!MED seaground rock
+        [0x91, 0xA5, 0x1C, 0xFA], // [17] !!!MED seaground rock red
+        [0x8A, 0xA5, 0x1C, 0xFA], // [18] !!!MED stone ground
+        [0x03, 0xDE, 0xCA, 0xDE], // [19] ((00 LAVA 01
+        [0x0A, 0xDE, 0xCA, 0xDE], // [20] ((00 LAVA 01 soft
+        [0x08, 0xDE, 0xCA, 0xDE], // [21] ((00 LAVA 02
+        [0x70, 0xDB, 0x7A, 0xF6], // [22] ((00 LAVA Meadow 00
+        [0x70, 0xBB, 0xCA, 0xF1], // [23] ((00 LAVA Sand 
+        [0x04, 0xDE, 0xCA, 0xDE], // [27] ((00 LAVA rock
+        [0x05, 0xDE, 0xCA, 0xDE], // [28] ((00 LAVA rock big
+        [0xB0, 0xFA, 0x87, 0xCA], // [29] ((00 LAVA rock floating lava
+        [0x06, 0xDE, 0xCA, 0xDE], // [30] ((00 LAVA rock small
+        [0xFF, 0xCA, 0xFE, 0xCA], // [31] (RES) rocky earth
+        [0x02, 0xCB, 0xFE, 0xCA], // [32] (RES) rocky earth big
+        [0x04, 0xCB, 0xFE, 0xCA], // [33] (RES) rocky earth dark
+        [0x03, 0xCB, 0xFE, 0xCA], // [34] (RES) rocky plants
+        [0x1A, 0x70, 0x56, 0xCA], // [35] DO NOT USE
+        [0x01, 0xDE, 0xCA, 0xDE], // [36] HARBOR
+        [0x73, 0x18, 0xD3, 0x76], // [37] border
+        [0xC2, 0xFA, 0x45, 0x45], // [38] earth
+        [0xC4, 0xFA, 0x45, 0x45], // [39] leaf
+        [0xE3, 0xE8, 0xE4, 0xBF], // [40] meadow
+        [0xC3, 0xFA, 0x45, 0x45], // [41] meadow bright
+        [0xC6, 0xFA, 0x45, 0x45], // [42] meadow dark small
+        [0x10, 0x11, 0x5E, 0xDE], // [43] meadow ground
+        [0xC5, 0xFA, 0x45, 0x45], // [44] meadow leaf
+        [0xC7, 0xFA, 0x45, 0x45], // [45] meadow red flowers
+        [0xC1, 0xFA, 0x45, 0x45], // [46] meadow yellow flowers
+        [0xFE, 0xAF, 0x0F, 0xD0], // [47] rock
+        [0xEF, 0xBE, 0xAD, 0xDE], // [48] rock big
+        [0xFE, 0xCA, 0xFE, 0xCA], // [49] rock small
+        [0x00, 0xCB, 0xFE, 0xCA], // [50] rock stretched source_x
+        [0x01, 0xCB, 0xFE, 0xCA], // [51] rock stretched source_y
+        [0x0D, 0xB0, 0xDE, 0xBA], // [52] sand
+        [0x0E, 0xB0, 0xDE, 0xBA], // [53] sand stones
+        [0x0B, 0xB0, 0xBE, 0xBA], // [54] seaground
+        [0xE4, 0x74, 0x33, 0x01], // [55] seaground plants
+        [0xE6, 0x74, 0x33, 0x01], // [56] seaground plants rock
+        [0xE7, 0x74, 0x33, 0x01], // [57] seaground rock
+        [0xE8, 0x74, 0x33, 0x01], // [58] seaground rocky
+        [0xE5, 0x74, 0x33, 0x01], // [59] seaground sand
+        [0xFF, 0xE0, 0xAD, 0x0F], // [60] snow
+        [0x05, 0xCB, 0xFE, 0xCA], // [61] stone ground
+        [0xE4, 0x04, 0x00, 0x68], // [62] swamp land
+        [0xE6, 0x04, 0x00, 0x68], // [63] swamp meadow (unblocked)
+        [0xE5, 0x04, 0x00, 0x68], // [64] swamp water
+        [0xB3, 0xD1, 0x6B, 0xFE], // [65] water
+        [0xC0, 0xA8, 0x7F, 0x77], // [66] §§Desert earth
+        [0xC9, 0xFA, 0x45, 0x45], // [67] §§Desert meadow
+        [0x0F, 0xB0, 0xDE, 0xBA], // [68] §§Desert sand dune
+        [0x12, 0xB0, 0xDE, 0xBA], // [69] §§Desert sand ripple
+        [0x11, 0xB0, 0xDE, 0xBA], // [70] §§Desert sand small dune
+        [0x13, 0xB0, 0xDE, 0xBA], // [71] §§Desert sand small ripple
+        [0x10, 0xB0, 0xDE, 0xBA]  // [72] §§Desert sand yellow
+];
 
         // Array storing the 4-byte sequences for each terrain entry (index 0 to 40)
-        private static readonly byte[][] AdK_textures = new byte[][]
-        {
-        new byte[] { 0x02, 0x4A, 0xC4, 0x7A }, // [0]  __Highland meadow bright
-        new byte[] { 0x03, 0x4A, 0xC4, 0x7A }, // [1]  __Highland meadow bright rocks
-        new byte[] { 0x04, 0x4A, 0xC4, 0x7A }, // [2]  __Highland meadow medium
-        new byte[] { 0x05, 0x4A, 0xC4, 0x7A }, // [3]  __Highland meadow medium rocks
-        new byte[] { 0x06, 0x4A, 0xC4, 0x7A }, // [4]  __Highland meadow dark
-        new byte[] { 0x07, 0x4A, 0xC4, 0x7A }, // [5]  __Highland meadow dark rocks
-        new byte[] { 0x00, 0x4D, 0xC4, 0x7A }, // [6]  __Highland earth fir moss
-        new byte[] { 0x01, 0x4D, 0xC4, 0x7A }, // [7]  __Highland earth fir
-        new byte[] { 0x02, 0x4D, 0xC4, 0x7A }, // [8]  __Highland earth
-        new byte[] { 0x02, 0x4B, 0xC4, 0x7A }, // [9]  __Highland rock
-        new byte[] { 0x03, 0x4B, 0xC4, 0x7A }, // [10] __Highland rock big
-        new byte[] { 0x04, 0x4B, 0xC4, 0x7A }, // [11] __Highland (RES) rocky earth
-        new byte[] { 0x05, 0x4B, 0xC4, 0x7A }, // [12] __Highland rock flat
-        new byte[] { 0x06, 0x4B, 0xC4, 0x7A }, // [13] __Highland rock dark big
-        new byte[] { 0x07, 0x4B, 0xC4, 0x7A }, // [14] __Highland rock dark flat
-        new byte[] { 0x08, 0x4B, 0xC4, 0x7A }, // [15] __Highland rock braid flat
-        new byte[] { 0x0D, 0x4B, 0xC4, 0x7A }, // [16] __Highland stone ground
-        new byte[] { 0x09, 0x4B, 0xC4, 0x7A }, // [17] --Snow highland rock much
-        new byte[] { 0x0A, 0x4B, 0xC4, 0x7A }, // [18] --Snow highland rock
-        new byte[] { 0x0B, 0x4B, 0xC4, 0x7A }, // [19] --Snow highland rock part
-        new byte[] { 0x0C, 0x4B, 0xC4, 0x7A }, // [20] --Snow (RES) rocky earth
-        new byte[] { 0x0B, 0x4E, 0xC4, 0x7A }, // [21] --Snow meadow
-        new byte[] { 0x0C, 0x4E, 0xC4, 0x7A }, // [22] --Snow meadow snow
-        new byte[] { 0x0D, 0x4E, 0xC4, 0x7A }, // [23] --Snow meadow snow 2
-        new byte[] { 0x0E, 0x4E, 0xC4, 0x7A }, // [24] --Snow meadow snow 3
-        new byte[] { 0x0F, 0x4E, 0xC4, 0x7A }, // [25] --Snow meadow Treeground 80x80,200x200
-        new byte[] { 0x10, 0x4E, 0xC4, 0x7A }, // [26] --Snow meadow Treeground 125x125
-        new byte[] { 0x11, 0x4E, 0xC4, 0x7A }, // [27] --Snow meadow Treeground 170x170
-        new byte[] { 0x12, 0x4E, 0xC4, 0x7A }, // [28] --Snow meadow Treeground 255x255
-        new byte[] { 0x10, 0x4C, 0xC4, 0x7A }, // [29] __Highland swamp land
-        new byte[] { 0x11, 0x4C, 0xC4, 0x7A }, // [30] __Highland swamp water
-        new byte[] { 0x12, 0x4C, 0xC4, 0x7A }, // [31] __Highland swamp meadow (unblocked)
-        new byte[] { 0x02, 0x4C, 0xC4, 0x7A }, // [32] __Highland seaground rocks
-        new byte[] { 0x03, 0x4C, 0xC4, 0x7A }, // [33] __Highland seaground rocks dark flat
-        new byte[] { 0x04, 0x4C, 0xC4, 0x7A }, // [34] __Highland seaground pebbles
-        new byte[] { 0x0E, 0x5E, 0xC4, 0x7A }, // [35] --Snow Ice Crackles
-        new byte[] { 0x0F, 0x5E, 0xC4, 0x7A }, // [36] --Snow Ice Crackles Dark
-        new byte[] { 0x10, 0x5E, 0xC4, 0x7A }, // [37] --Snow Ice Clean
-        new byte[] { 0x13, 0x5E, 0xC4, 0x7A }, // [38] --Snow Ice Clean Dark
-        new byte[] { 0x11, 0x5E, 0xC4, 0x7A }, // [39] --Snow medium border
-        new byte[] { 0x12, 0x5E, 0xC4, 0x7A }  // [40] --Snow soft border
-        };
+        private static readonly byte[][] AdK_textures =
+        [
+        [0x02, 0x4A, 0xC4, 0x7A], // [0]  __Highland meadow bright
+        [0x03, 0x4A, 0xC4, 0x7A], // [1]  __Highland meadow bright rocks
+        [0x04, 0x4A, 0xC4, 0x7A], // [2]  __Highland meadow medium
+        [0x05, 0x4A, 0xC4, 0x7A], // [3]  __Highland meadow medium rocks
+        [0x06, 0x4A, 0xC4, 0x7A], // [4]  __Highland meadow dark
+        [0x07, 0x4A, 0xC4, 0x7A], // [5]  __Highland meadow dark rocks
+        [0x00, 0x4D, 0xC4, 0x7A], // [6]  __Highland earth fir moss
+        [0x01, 0x4D, 0xC4, 0x7A], // [7]  __Highland earth fir
+        [0x02, 0x4D, 0xC4, 0x7A], // [8]  __Highland earth
+        [0x02, 0x4B, 0xC4, 0x7A], // [9]  __Highland rock
+        [0x03, 0x4B, 0xC4, 0x7A], // [10] __Highland rock big
+        [0x04, 0x4B, 0xC4, 0x7A], // [11] __Highland (RES) rocky earth
+        [0x05, 0x4B, 0xC4, 0x7A], // [12] __Highland rock flat
+        [0x06, 0x4B, 0xC4, 0x7A], // [13] __Highland rock dark big
+        [0x07, 0x4B, 0xC4, 0x7A], // [14] __Highland rock dark flat
+        [0x08, 0x4B, 0xC4, 0x7A], // [15] __Highland rock braid flat
+        [0x0D, 0x4B, 0xC4, 0x7A], // [16] __Highland stone ground
+        [0x09, 0x4B, 0xC4, 0x7A], // [17] --Snow highland rock much
+        [0x0A, 0x4B, 0xC4, 0x7A], // [18] --Snow highland rock
+        [0x0B, 0x4B, 0xC4, 0x7A], // [19] --Snow highland rock part
+        [0x0C, 0x4B, 0xC4, 0x7A], // [20] --Snow (RES) rocky earth
+        [0x0B, 0x4E, 0xC4, 0x7A], // [21] --Snow meadow
+        [0x0C, 0x4E, 0xC4, 0x7A], // [22] --Snow meadow snow
+        [0x0D, 0x4E, 0xC4, 0x7A], // [23] --Snow meadow snow 2
+        [0x0E, 0x4E, 0xC4, 0x7A], // [24] --Snow meadow snow 3
+        [0x0F, 0x4E, 0xC4, 0x7A], // [25] --Snow meadow Treeground 80x80,200x200
+        [0x10, 0x4E, 0xC4, 0x7A], // [26] --Snow meadow Treeground 125x125
+        [0x11, 0x4E, 0xC4, 0x7A], // [27] --Snow meadow Treeground 170x170
+        [0x12, 0x4E, 0xC4, 0x7A], // [28] --Snow meadow Treeground 255x255
+        [0x10, 0x4C, 0xC4, 0x7A], // [29] __Highland swamp land
+        [0x11, 0x4C, 0xC4, 0x7A], // [30] __Highland swamp water
+        [0x12, 0x4C, 0xC4, 0x7A], // [31] __Highland swamp meadow (unblocked)
+        [0x02, 0x4C, 0xC4, 0x7A], // [32] __Highland seaground rocks
+        [0x03, 0x4C, 0xC4, 0x7A], // [33] __Highland seaground rocks dark flat
+        [0x04, 0x4C, 0xC4, 0x7A], // [34] __Highland seaground pebbles
+        [0x0E, 0x5E, 0xC4, 0x7A], // [35] --Snow Ice Crackles
+        [0x0F, 0x5E, 0xC4, 0x7A], // [36] --Snow Ice Crackles Dark
+        [0x10, 0x5E, 0xC4, 0x7A], // [37] --Snow Ice Clean
+        [0x13, 0x5E, 0xC4, 0x7A], // [38] --Snow Ice Clean Dark
+        [0x11, 0x5E, 0xC4, 0x7A], // [39] --Snow medium border
+        [0x12, 0x5E, 0xC4, 0x7A]  // [40] --Snow soft border
+        ];
 
-        private static readonly int[] DnG_logical_grid_types = new int[]
-{
+        private static readonly int[] DnG_logical_grid_types =
+[
     1, //!!!MED StoneResourceA01
     1, //!!!MED StoneResourceA02
     1, //!!!MED StoneResourceA03
@@ -4363,10 +4977,10 @@ namespace DnG_AdK_Mapedit
     4, //small water stream
     4, //swamp
     4, //water waves
-};
+];
 
-        private static readonly int[] AdK_logical_grid_types = new int[]
-{
+        private static readonly int[] AdK_logical_grid_types =
+[
     1, //field_egypt
     0, //__HighlandFirA
     0, //__HighlandFirB
@@ -4422,131 +5036,131 @@ namespace DnG_AdK_Mapedit
     5, //Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
     5, //!!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
     5, //!!!MED Camel Spawn
-};
+];
 
-        private static readonly byte[][] DnG_logical_grid = new byte[][]
-{
-    new byte[] { 0xD0, 0x7F, 0xAB, 0x1D }, // 0: !!!MED StoneResourceA01
-    new byte[] { 0xD1, 0x7F, 0xAB, 0x1D }, // 1: !!!MED StoneResourceA02
-    new byte[] { 0xD2, 0x7F, 0xAB, 0x1D }, // 2: !!!MED StoneResourceA03
-    new byte[] { 0xD3, 0x7F, 0xAB, 0x1D }, // 3: !!!MED StoneResourceA04
-    new byte[] { 0xD4, 0x7F, 0xAB, 0x1D }, // 4: !!!MED StoneResourceA05
-    new byte[] { 0xD5, 0x7F, 0xAB, 0x1D }, // 5: !!!MED StoneResourceA06
-    new byte[] { 0x78, 0x2E, 0xCF, 0xE8 }, // 6: AfricanA
-    new byte[] { 0x7C, 0x2E, 0xCF, 0xE8 }, // 7: AsianA
-    new byte[] { 0x73, 0xCE, 0x99, 0x7E }, // 8: BirchA
-    new byte[] { 0xB3, 0x87, 0x32, 0x06 }, // 9: BirchB
-    new byte[] { 0x83, 0xCB, 0x9C, 0x48 }, // 10: BirchC
-    new byte[] { 0xB3, 0x47, 0x9F, 0x11 }, // 11: BroadLeafA
-    new byte[] { 0xD3, 0x21, 0xCF, 0xE6 }, // 12: BroadLeafB
-    new byte[] { 0xC3, 0x44, 0xEF, 0xAD }, // 13: BroadLeafC
-    new byte[] { 0x76, 0x2E, 0xCF, 0xE8 }, // 14: CypressA
-    new byte[] { 0x9E, 0x4C, 0xED, 0xDF }, // 15: Field01
-    new byte[] { 0x73, 0x0E, 0x2D, 0x73 }, // 16: FirA
-    new byte[] { 0x73, 0x0E, 0xCF, 0xE6 }, // 17: FirB
-    new byte[] { 0x79, 0x2E, 0xCF, 0xE8 }, // 18: LavaTreeA
-    new byte[] { 0x7A, 0x2E, 0xCF, 0xE8 }, // 19: LavaTreeB
-    new byte[] { 0x7B, 0x2E, 0xCF, 0xE8 }, // 20: LavaTreeC
-    new byte[] { 0x77, 0x2E, 0xCF, 0xE8 }, // 21: OliveA
-    new byte[] { 0x74, 0x1E, 0xCF, 0xE7 }, // 22: PalmA
-    new byte[] { 0x75, 0x2E, 0xCF, 0xE8 }, // 23: PalmB
-    new byte[] { 0x0E, 0xD6, 0x1B, 0x9F }, // 24: StoneResourceA01
-    new byte[] { 0x5E, 0x11, 0xB1, 0x5B }, // 25: StoneResourceA02
-    new byte[] { 0xEE, 0x5B, 0xEF, 0x21 }, // 26: StoneResourceA03
-    new byte[] { 0x8E, 0xCD, 0x46, 0x19 }, // 27: StoneResourceA04
-    new byte[] { 0x9E, 0x6A, 0x93, 0x5D }, // 28: StoneResourceA05
-    new byte[] { 0xFE, 0xA2, 0x2B, 0xE4 }, // 29: StoneResourceA06
-    new byte[] { 0xA0, 0xC0, 0x91, 0xFA }, // 30: !!MED rock 1
-    new byte[] { 0xA1, 0xC0, 0x91, 0xFA }, // 31: !!MED rock 2
-    new byte[] { 0xA2, 0xC0, 0x91, 0xFA }, // 32: !!MED rock 3
-    new byte[] { 0xA3, 0xC0, 0x91, 0xFA }, // 33: !!MED rock 4
-    new byte[] { 0xA0, 0xEE, 0xFF, 0xCA }, // 34: ((LAVA rock 0
-    new byte[] { 0xA1, 0xEE, 0xFF, 0xCA }, // 35: ((LAVA rock 1
-    new byte[] { 0xA2, 0xEE, 0xFF, 0xCA }, // 36: ((LAVA rock 2
-    new byte[] { 0xE6, 0xBE, 0xDE, 0xFA }, // 37: Gate01
-    new byte[] { 0xA0, 0xE0, 0xAF, 0x6F }, // 38: rock 1
-    new byte[] { 0xA1, 0xE0, 0xAF, 0x6F }, // 39: rock 2
-    new byte[] { 0xA2, 0xE0, 0xAF, 0x6F }, // 40: rock 3
-    new byte[] { 0xA3, 0xE0, 0xAF, 0x6F }, // 41: rock 4
-    new byte[] { 0x83, 0xEF, 0x9B, 0x4A }, // 42: Deer
-    new byte[] { 0x94, 0x7C, 0x6E, 0x70 }, // 43: Elk
-    new byte[] { 0x76, 0x7B, 0x79, 0x41 }, // 44: Rabbit
-    new byte[] { 0x73, 0x48, 0xDC, 0x5B }, // 45: Beach
-    new byte[] { 0x23, 0x3A, 0xF2, 0x31 }, // 46: Low Desert Wind
-    new byte[] { 0x13, 0x3D, 0xEF, 0x67 }, // 47: Middle Desert Wind
-    new byte[] { 0xF3, 0x02, 0x56, 0xDF }, // 48: Strong Desert Wind
-    new byte[] { 0x23, 0x9A, 0xF5, 0x89 }, // 49: bright Forest with birds
-    new byte[] { 0x63, 0x53, 0x8E, 0x11 }, // 50: dark Forest with owl
-    new byte[] { 0xA3, 0xBB, 0x52, 0xA9 }, // 51: lava
-    new byte[] { 0xD3, 0xD2, 0xAA, 0x5A }, // 52: meadow with much crickets
-    new byte[] { 0xD3, 0x37, 0x34, 0x62 }, // 53: meadow with some crickets and birds
-    new byte[] { 0xF3, 0x51, 0x5D, 0x87 }, // 54: river
-    new byte[] { 0xD3, 0x57, 0x57, 0xF3 }, // 55: small water stream
-    new byte[] { 0x63, 0xA7, 0x68, 0x3B }, // 56: swamp
-    new byte[] { 0x13, 0x71, 0xA6, 0x00 }  // 57: water waves
-};
+        private static readonly byte[][] DnG_logical_grid =
+[
+    [0xD0, 0x7F, 0xAB, 0x1D], // 0: !!!MED StoneResourceA01
+    [0xD1, 0x7F, 0xAB, 0x1D], // 1: !!!MED StoneResourceA02
+    [0xD2, 0x7F, 0xAB, 0x1D], // 2: !!!MED StoneResourceA03
+    [0xD3, 0x7F, 0xAB, 0x1D], // 3: !!!MED StoneResourceA04
+    [0xD4, 0x7F, 0xAB, 0x1D], // 4: !!!MED StoneResourceA05
+    [0xD5, 0x7F, 0xAB, 0x1D], // 5: !!!MED StoneResourceA06
+    [0x78, 0x2E, 0xCF, 0xE8 ], // 6: AfricanA
+    [0x7C, 0x2E, 0xCF, 0xE8 ], // 7: AsianA
+    [0x73, 0xCE, 0x99, 0x7E ], // 8: BirchA
+    [0xB3, 0x87, 0x32, 0x06 ], // 9: BirchB
+    [0x83, 0xCB, 0x9C, 0x48 ], // 10: BirchC
+    [0xB3, 0x47, 0x9F, 0x11 ], // 11: BroadLeafA
+    [0xD3, 0x21, 0xCF, 0xE6 ], // 12: BroadLeafB
+    [0xC3, 0x44, 0xEF, 0xAD ], // 13: BroadLeafC
+    [0x76, 0x2E, 0xCF, 0xE8 ], // 14: CypressA
+    [0x9E, 0x4C, 0xED, 0xDF ], // 15: Field01
+    [0x73, 0x0E, 0x2D, 0x73], // 16: FirA
+    [0x73, 0x0E, 0xCF, 0xE6 ], // 17: FirB
+    [0x79, 0x2E, 0xCF, 0xE8 ], // 18: LavaTreeA
+    [0x7A, 0x2E, 0xCF, 0xE8 ], // 19: LavaTreeB
+    [0x7B, 0x2E, 0xCF, 0xE8 ], // 20: LavaTreeC
+    [0x77, 0x2E, 0xCF, 0xE8 ], // 21: OliveA
+    [0x74, 0x1E, 0xCF, 0xE7 ], // 22: PalmA
+    [0x75, 0x2E, 0xCF, 0xE8 ], // 23: PalmB
+    [0x0E, 0xD6, 0x1B, 0x9F ], // 24: StoneResourceA01
+    [0x5E, 0x11, 0xB1, 0x5B ], // 25: StoneResourceA02
+    [0xEE, 0x5B, 0xEF, 0x21 ], // 26: StoneResourceA03
+    [0x8E, 0xCD, 0x46, 0x19 ], // 27: StoneResourceA04
+    [0x9E, 0x6A, 0x93, 0x5D ], // 28: StoneResourceA05
+    [0xFE, 0xA2, 0x2B, 0xE4], // 29: StoneResourceA06
+    [0xA0, 0xC0, 0x91, 0xFA ], // 30: !!MED rock 1
+    [0xA1, 0xC0, 0x91, 0xFA ], // 31: !!MED rock 2
+    [0xA2, 0xC0, 0x91, 0xFA ], // 32: !!MED rock 3
+    [0xA3, 0xC0, 0x91, 0xFA], // 33: !!MED rock 4
+    [0xA0, 0xEE, 0xFF, 0xCA ], // 34: ((LAVA rock 0
+    [0xA1, 0xEE, 0xFF, 0xCA ], // 35: ((LAVA rock 1
+    [0xA2, 0xEE, 0xFF, 0xCA ], // 36: ((LAVA rock 2
+    [0xE6, 0xBE, 0xDE, 0xFA ], // 37: Gate01
+    [0xA0, 0xE0, 0xAF, 0x6F ], // 38: rock 1
+    [0xA1, 0xE0, 0xAF, 0x6F ], // 39: rock 2
+    [0xA2, 0xE0, 0xAF, 0x6F ], // 40: rock 3
+    [0xA3, 0xE0, 0xAF, 0x6F ], // 41: rock 4
+    [0x83, 0xEF, 0x9B, 0x4A ], // 42: Deer
+    [0x94, 0x7C, 0x6E, 0x70 ], // 43: Elk
+    [0x76, 0x7B, 0x79, 0x41 ], // 44: Rabbit
+    [0x73, 0x48, 0xDC, 0x5B ], // 45: Beach
+    [0x23, 0x3A, 0xF2, 0x31 ], // 46: Low Desert Wind
+    [0x13, 0x3D, 0xEF, 0x67 ], // 47: Middle Desert Wind
+    [0xF3, 0x02, 0x56, 0xDF ], // 48: Strong Desert Wind
+    [0x23, 0x9A, 0xF5, 0x89 ], // 49: bright Forest with birds
+    [0x63, 0x53, 0x8E, 0x11 ], // 50: dark Forest with owl
+    [0xA3, 0xBB, 0x52, 0xA9 ], // 51: lava
+    [0xD3, 0xD2, 0xAA, 0x5A ], // 52: meadow with much crickets
+    [0xD3, 0x37, 0x34, 0x62 ], // 53: meadow with some crickets and birds
+    [0xF3, 0x51, 0x5D, 0x87 ], // 54: river
+    [0xD3, 0x57, 0x57, 0xF3 ], // 55: small water stream
+    [0x63, 0xA7, 0x68, 0x3B ], // 56: swamp
+    [0x13, 0x71, 0xA6, 0x00 ]  // 57: water waves
+];
 
-        private static readonly byte[][] AdK_logical_grid = new byte[][]
-        {
-    new byte[] { 0x1A, 0x2E, 0x6B, 0xA2 }, // 0: field_egypt
-    new byte[] { 0x7D, 0x2E, 0xCF, 0xE8 }, // 1: __HighlandFirA
-    new byte[] { 0x7E, 0x2E, 0xCF, 0xE8 }, // 2: __HighlandFirB
-    new byte[] { 0x7F, 0x2E, 0xCF, 0xE8 }, // 3: __HighlandFirC
-    new byte[] { 0x80, 0x2E, 0xCF, 0xE8 }, // 4: --SnowFirA straight pos
-    new byte[] { 0x81, 0x2E, 0xCF, 0xE8 }, // 5: --SnowFirB straight pos
-    new byte[] { 0x82, 0x2E, 0xCF, 0xE8 }, // 6: --SnowFirC straight pos
-    new byte[] { 0x83, 0x2E, 0xCF, 0xE8 }, // 7: --SnowFirA random pos
-    new byte[] { 0x84, 0x2E, 0xCF, 0xE8 }, // 8: --SnowFirB random pos
-    new byte[] { 0x85, 0x2E, 0xCF, 0xE8 }, // 9: --SnowFirC random pos
-    new byte[] { 0x86, 0x2E, 0xCF, 0xE8 }, // 10: --SnowFirD random pos
-    new byte[] { 0x87, 0x2E, 0xCF, 0xE8 }, // 11: --SnowFirE random pos
-    new byte[] { 0x88, 0x2E, 0xCF, 0xE8 }, // 12: --SnowFirF random pos
-    new byte[] { 0x89, 0x2E, 0xCF, 0xE8 }, // 13: Weeping Willow
-    new byte[] { 0x8A, 0x2E, 0xCF, 0xE8 }, // 14: Birch New 1
-    new byte[] { 0x8B, 0x2E, 0xCF, 0xE8 }, // 15: Birch New 2
-    new byte[] { 0x8C, 0x2E, 0xCF, 0xE8 }, // 16: Birch New 3
-    new byte[] { 0x8D, 0x2E, 0xCF, 0xE8 }, // 17: Chestnut 1
-    new byte[] { 0x8E, 0x2E, 0xCF, 0xE8 }, // 18: Chestnut 2
-    new byte[] { 0x8F, 0x2E, 0xCF, 0xE8 }, // 19: Chestnut 3
-    new byte[] { 0x90, 0x2E, 0xCF, 0xE8 }, // 20: Apple Tree 1
-    new byte[] { 0x91, 0x2E, 0xCF, 0xE8 }, // 21: Apple Tree 2
-    new byte[] { 0x10, 0xBB, 0x81, 0xA1 }, // 22: __Highland rock 1
-    new byte[] { 0x11, 0xBB, 0x81, 0xA1 }, // 23: __Highland rock 2
-    new byte[] { 0x12, 0xBB, 0x81, 0xA1 }, // 24: __Highland rock 3
-    new byte[] { 0x13, 0xBB, 0x81, 0xA1 }, // 25: __Highland rock 4
-    new byte[] { 0x20, 0x10, 0x2F, 0xF2 }, // 26: --Snow Iceberg 1
-    new byte[] { 0x21, 0x10, 0x2F, 0xF2 }, // 27: --Snow Iceberg 2
-    new byte[] { 0x03, 0x2D, 0x66, 0x3D }, // 28: Tent
-    new byte[] { 0x33, 0xCA, 0xAE, 0x62 }, // 29: Sheep
-    new byte[] { 0x72, 0xA5, 0x1F, 0x10 }, // 30: Bear
-    new byte[] { 0x73, 0xA5, 0x1F, 0x10 }, // 31: Ox
-    new byte[] { 0x79, 0xA5, 0x1F, 0x10 }, // 32: Highland Cattle
-    new byte[] { 0x74, 0xA5, 0x1F, 0x10 }, // 33: Goat
-    new byte[] { 0x75, 0xA5, 0x1F, 0x10 }, // 34: Polarbear
-    new byte[] { 0x76, 0xA5, 0x1F, 0x10 }, // 35: Mountain Hare
-    new byte[] { 0x77, 0xA5, 0x1F, 0x10 }, // 36: Boar
-    new byte[] { 0x78, 0xA5, 0x1F, 0x10 }, // 37: Camel
-    new byte[] { 0x53, 0x0D, 0x69, 0xA4 }, // 38: hightlands less birds
-    new byte[] { 0x23, 0xB1, 0x89, 0x6C }, // 39: hightlands normal birds
-    new byte[] { 0x83, 0xE4, 0x4E, 0x71 }, // 40: hightlands much birds
-    new byte[] { 0x63, 0x0A, 0x6C, 0x6E }, // 41: ice
-    new byte[] { 0x43, 0xEB, 0x22, 0xF5 }, // 42: mountains
-    new byte[] { 0xD8, 0x70, 0xB3, 0xA3 }, // 43: AnimalSpawn (Deer, Elk, Rabbit)
-    new byte[] { 0x23, 0x89, 0xA5, 0x07 }, // 44: SheepSpawn
-    new byte[] { 0x33, 0x10, 0x75, 0xBE }, // 45: DeerSpawn
-    new byte[] { 0x53, 0xB9, 0x3D, 0x52 }, // 46: RabbitSpawn
-    new byte[] { 0x72, 0xC8, 0xA5, 0xFC }, // 47: __Highland Bear Spawn
-    new byte[] { 0x73, 0xC8, 0xA5, 0xFC }, // 48: !!!MED Bear Spawn
-    new byte[] { 0x74, 0xC8, 0xA5, 0xFC }, // 49: Bear Spawn
-    new byte[] { 0x75, 0xC8, 0xA5, 0xFC }, // 50: --Snow Polar Bear Spawn (+ Mountain Hare)
-    new byte[] { 0x76, 0xC8, 0xA5, 0xFC }, // 51: __Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)
-    new byte[] { 0x77, 0xC8, 0xA5, 0xFC }, // 52: Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
-    new byte[] { 0x78, 0xC8, 0xA5, 0xFC }, // 53: !!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
-    new byte[] { 0x79, 0xC8, 0xA5, 0xFC }  // 54: !!!MED Camel Spawn
-        };
+        private static readonly byte[][] AdK_logical_grid =
+        [
+    [0x1A, 0x2E, 0x6B, 0xA2], // 0: field_egypt
+    [0x7D, 0x2E, 0xCF, 0xE8 ], // 1: __HighlandFirA
+    [0x7E, 0x2E, 0xCF, 0xE8 ], // 2: __HighlandFirB
+    [0x7F, 0x2E, 0xCF, 0xE8 ], // 3: __HighlandFirC
+    [0x80, 0x2E, 0xCF, 0xE8 ], // 4: --SnowFirA straight pos
+    [0x81, 0x2E, 0xCF, 0xE8 ], // 5: --SnowFirB straight pos
+    [0x82, 0x2E, 0xCF, 0xE8 ], // 6: --SnowFirC straight pos
+    [0x83, 0x2E, 0xCF, 0xE8 ], // 7: --SnowFirA random pos
+    [0x84, 0x2E, 0xCF, 0xE8 ], // 8: --SnowFirB random pos
+    [0x85, 0x2E, 0xCF, 0xE8 ], // 9: --SnowFirC random pos
+    [0x86, 0x2E, 0xCF, 0xE8 ], // 10: --SnowFirD random pos
+    [0x87, 0x2E, 0xCF, 0xE8 ], // 11: --SnowFirE random pos
+    [0x88, 0x2E, 0xCF, 0xE8 ], // 12: --SnowFirF random pos
+    [0x89, 0x2E, 0xCF, 0xE8 ], // 13: Weeping Willow
+    [0x8A, 0x2E, 0xCF, 0xE8 ], // 14: Birch New 1
+    [0x8B, 0x2E, 0xCF, 0xE8], // 15: Birch New 2
+    [0x8C, 0x2E, 0xCF, 0xE8], // 16: Birch New 3
+    [0x8D, 0x2E, 0xCF, 0xE8 ], // 17: Chestnut 1
+    [0x8E, 0x2E, 0xCF, 0xE8 ], // 18: Chestnut 2
+    [0x8F, 0x2E, 0xCF, 0xE8 ], // 19: Chestnut 3
+    [0x90, 0x2E, 0xCF, 0xE8 ], // 20: Apple Tree 1
+    [0x91, 0x2E, 0xCF, 0xE8 ], // 21: Apple Tree 2
+    [0x10, 0xBB, 0x81, 0xA1], // 22: __Highland rock 1
+    [0x11, 0xBB, 0x81, 0xA1], // 23: __Highland rock 2
+    [0x12, 0xBB, 0x81, 0xA1 ], // 24: __Highland rock 3
+    [0x13, 0xBB, 0x81, 0xA1 ], // 25: __Highland rock 4
+    [0x20, 0x10, 0x2F, 0xF2 ], // 26: --Snow Iceberg 1
+    [0x21, 0x10, 0x2F, 0xF2 ], // 27: --Snow Iceberg 2
+    [0x03, 0x2D, 0x66, 0x3D ], // 28: Tent
+    [0x33, 0xCA, 0xAE, 0x62 ], // 29: Sheep
+    [0x72, 0xA5, 0x1F, 0x10], // 30: Bear
+    [0x73, 0xA5, 0x1F, 0x10 ], // 31: Ox
+    [0x79, 0xA5, 0x1F, 0x10 ], // 32: Highland Cattle
+    [0x74, 0xA5, 0x1F, 0x10 ], // 33: Goat
+    [0x75, 0xA5, 0x1F, 0x10 ], // 34: Polarbear
+    [0x76, 0xA5, 0x1F, 0x10 ], // 35: Mountain Hare
+    [0x77, 0xA5, 0x1F, 0x10 ], // 36: Boar
+    [0x78, 0xA5, 0x1F, 0x10 ], // 37: Camel
+    [0x53, 0x0D, 0x69, 0xA4 ], // 38: hightlands less birds
+    [0x23, 0xB1, 0x89, 0x6C ], // 39: hightlands normal birds
+    [0x83, 0xE4, 0x4E, 0x71 ], // 40: hightlands much birds
+    [0x63, 0x0A, 0x6C, 0x6E ], // 41: ice
+    [0x43, 0xEB, 0x22, 0xF5 ], // 42: mountains
+    [0xD8, 0x70, 0xB3, 0xA3 ], // 43: AnimalSpawn (Deer, Elk, Rabbit)
+    [0x23, 0x89, 0xA5, 0x07 ], // 44: SheepSpawn
+    [0x33, 0x10, 0x75, 0xBE ], // 45: DeerSpawn
+    [0x53, 0xB9, 0x3D, 0x52 ], // 46: RabbitSpawn
+    [0x72, 0xC8, 0xA5, 0xFC ], // 47: __Highland Bear Spawn
+    [0x73, 0xC8, 0xA5, 0xFC ], // 48: !!!MED Bear Spawn
+    [0x74, 0xC8, 0xA5, 0xFC ], // 49: Bear Spawn
+    [0x75, 0xC8, 0xA5, 0xFC ], // 50: --Snow Polar Bear Spawn (+ Mountain Hare)
+    [0x76, 0xC8, 0xA5, 0xFC ], // 51: __Highland Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Highland Cattle)
+    [0x77, 0xC8, 0xA5, 0xFC ], // 52: Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
+    [0x78, 0xC8, 0xA5, 0xFC ], // 53: !!!MED Misc Spawn (Deer, Boar, Elk, Rabbit, Goat, Ox)
+    [0x79, 0xC8, 0xA5, 0xFC ]  // 54: !!!MED Camel Spawn
+        ];
 
-        private static readonly int[] is_lifetime_dng = new int[]
-{
+        private static readonly int[] is_lifetime_dng =
+[
     0, //!!MED nettle
     0, //!!MED nettle big
     0, //!!MED nettle high
@@ -4644,10 +5258,10 @@ namespace DnG_AdK_Mapedit
     0, //waterplant 3
     0, //wreck
     0  //wreck big
-};
+];
 
-        private static readonly int[] is_lifetime_adk = new int[]
-{
+        private static readonly int[] is_lifetime_adk =
+[
     0, //Chest
     0, //OpenChest
     1, //Coal (endless)
@@ -4696,159 +5310,159 @@ namespace DnG_AdK_Mapedit
     0, //__Highland Fog 02
     0, //Male Duck
     0  //Female Duck
-};
+];
 
-        private static readonly byte[][] doodads_dng = new byte[][]
-{
-    new byte[] { 0x30, 0x42, 0xA7, 0xBC }, //!!MED nettle
-    new byte[] { 0x31, 0x42, 0xA7, 0xBC }, //!!MED nettle big
-    new byte[] { 0x32, 0x42, 0xA7, 0xBC }, //!!MED nettle high
-    new byte[] { 0xC0, 0x17, 0xFF, 0xAA }, //((LAVA fog
-    new byte[] { 0xC1, 0x17, 0xFF, 0xAA }, //((LAVA fog high
-    new byte[] { 0xC2, 0x17, 0xFF, 0xAA }, //((LAVA fog highest
-    new byte[] { 0xC3, 0x17, 0xFF, 0xAA }, //((LAVA fog vertical
-    new byte[] { 0x93, 0xB7, 0xEE, 0x90 }, //Coal (few)
-    new byte[] { 0x43, 0x61, 0x09, 0xC5 }, //Coal (medium)
-    new byte[] { 0xF3, 0x6F, 0xAD, 0x00 }, //Coal (much)
-    new byte[] { 0x13, 0x0A, 0xCB, 0xDA }, //DoNotUse-Skull01
-    new byte[] { 0x43, 0x23, 0xF4, 0x28 }, //Empty
-    new byte[] { 0xD3, 0x1A, 0x77, 0x96 }, //Gold (few)
-    new byte[] { 0xA3, 0xC3, 0x6A, 0xE0 }, //Gold (medium)
-    new byte[] { 0x23, 0xD1, 0x12, 0xE8 }, //Gold (much)
-    new byte[] { 0x93, 0xA1, 0x24, 0x31 }, //Granit (few)
-    new byte[] { 0x53, 0x0D, 0xCF, 0x8E }, //Granit (medium)
-    new byte[] { 0x73, 0x47, 0x68, 0x17 }, //Granit (much)
-    new byte[] { 0x63, 0xE5, 0xDB, 0x45 }, //Iron (few)
-    new byte[] { 0xE3, 0x52, 0x3A, 0xD3 }, //Iron (medium)
-    new byte[] { 0x23, 0xF1, 0x82, 0x4B }, //Iron (much)
-    new byte[] { 0x43, 0xA3, 0x1A, 0x12 }, //Water
-    new byte[] { 0x9D, 0xA7, 0xF5, 0xD5 }, //bones0
-    new byte[] { 0xCD, 0x22, 0x51, 0x17 }, //bones1
-    new byte[] { 0xAD, 0xA4, 0x45, 0x72 }, //bones2
-    new byte[] { 0x5D, 0x6E, 0x83, 0x37 }, //bones3
-    new byte[] { 0xDE, 0x2E, 0x27, 0x6B }, //bush01
-    new byte[] { 0xEE, 0x50, 0x20, 0x48 }, //cactus01
-    new byte[] { 0x0E, 0x8B, 0x06, 0xA3 }, //cactus02
-    new byte[] { 0x7E, 0x5B, 0x18, 0xEC }, //cactus03
-    new byte[] { 0x39, 0xAE, 0xF5, 0x89 }, //cactus04
-    new byte[] { 0x1E, 0xE8, 0xBF, 0xF2 }, //dead Tree 1
-    new byte[] { 0x1F, 0xE8, 0xBF, 0xF2 }, //dead Tree 2
-    new byte[] { 0xCE, 0x31, 0x24, 0xA1 }, //fern big
-    new byte[] { 0x33, 0xAE, 0xF5, 0x89 }, //fern medium
-    new byte[] { 0x34, 0xAE, 0xF5, 0x89 }, //fern small
-    new byte[] { 0xE0, 0xF1, 0xA0, 0xAA }, //fingerpost E
-    new byte[] { 0xE6, 0xF1, 0xA0, 0xAA }, //fingerpost N
-    new byte[] { 0xE7, 0xF1, 0xA0, 0xAA }, //fingerpost NE
-    new byte[] { 0xE5, 0xF1, 0xA0, 0xAA }, //fingerpost NW
-    new byte[] { 0xE2, 0xF1, 0xA0, 0xAA }, //fingerpost S
-    new byte[] { 0xE1, 0xF1, 0xA0, 0xAA }, //fingerpost SE
-    new byte[] { 0xE3, 0xF1, 0xA0, 0xAA }, //fingerpost SW
-    new byte[] { 0xE4, 0xF1, 0xA0, 0xAA }, //fingerpost W
-    new byte[] { 0xE4, 0xAF, 0xA1, 0x0F }, //flower red
-    new byte[] { 0xE5, 0xAF, 0xA1, 0x0F }, //flower red big
-    new byte[] { 0xE6, 0xAF, 0xA1, 0x0F }, //flower red high
-    new byte[] { 0xED, 0xAF, 0xA1, 0x0F }, //flower violet
-    new byte[] { 0xEE, 0xAF, 0xA1, 0x0F }, //flower violet big
-    new byte[] { 0xEF, 0xAF, 0xA1, 0x0F }, //flower violet high
-    new byte[] { 0xE7, 0xAF, 0xA1, 0x0F }, //flower white
-    new byte[] { 0xE8, 0xAF, 0xA1, 0x0F }, //flower white big
-    new byte[] { 0xE9, 0xAF, 0xA1, 0x0F }, //flower white high
-    new byte[] { 0xEA, 0xAF, 0xA1, 0x0F }, //flower yellow
-    new byte[] { 0xEB, 0xAF, 0xA1, 0x0F }, //flower yellow big
-    new byte[] { 0xEC, 0xAF, 0xA1, 0x0F }, //flower yellow high
-    new byte[] { 0xF0, 0xAF, 0xA1, 0x0F }, //grass translucent
-    new byte[] { 0xF1, 0xAF, 0xA1, 0x0F }, //grass translucent big dark
-    new byte[] { 0xAE, 0x37, 0xD1, 0x3A }, //grass01
-    new byte[] { 0xAF, 0x37, 0xD1, 0x3A }, //grass02
-    new byte[] { 0xB0, 0x37, 0xD1, 0x3A }, //grass03
-    new byte[] { 0xB1, 0x37, 0xD1, 0x3A }, //grass04
-    new byte[] { 0x36, 0xAE, 0xF5, 0x89 }, //high flower red
-    new byte[] { 0x35, 0xAE, 0xF5, 0x89 }, //high flower red big
-    new byte[] { 0xBE, 0x34, 0xD4, 0x04 }, //high flower white
-    new byte[] { 0xFE, 0xCD, 0x49, 0xFB }, //high flower white big
-    new byte[] { 0x38, 0xAE, 0xF5, 0x89 }, //high flower yellow
-    new byte[] { 0x37, 0xAE, 0xF5, 0x89 }, //high flower yellow big
-    new byte[] { 0xF2, 0xEF, 0xAD, 0xAC }, //mushroom brown
-    new byte[] { 0xF3, 0xEF, 0xAD, 0xAC }, //mushroom brown big
-    new byte[] { 0xF0, 0xEF, 0xAD, 0xAC }, //mushroom red
-    new byte[] { 0xF1, 0xEF, 0xAD, 0xAC }, //mushroom red big
-    new byte[] { 0xE1, 0xAF, 0xA1, 0x0F }, //nettle
-    new byte[] { 0xE2, 0xAF, 0xA1, 0x0F }, //nettle big
-    new byte[] { 0xE3, 0xAF, 0xA1, 0x0F }, //nettle high
-    new byte[] { 0x10, 0xE3, 0x11, 0xFA }, //shell
-    new byte[] { 0x11, 0xE3, 0x11, 0xFA }, //shell small
-    new byte[] { 0x4E, 0x1F, 0x5C, 0x45 }, //stone01
-    new byte[] { 0x4F, 0x1F, 0x5C, 0x45 }, //stone01 grey
-    new byte[] { 0x3E, 0x02, 0x36, 0xEA }, //stone02
-    new byte[] { 0x3F, 0x02, 0x36, 0xEA }, //stone02 grey
-    new byte[] { 0x8E, 0xD8, 0x41, 0x9F }, //stone03
-    new byte[] { 0x8F, 0xD8, 0x41, 0x9F }, //stone03 grey
-    new byte[] { 0x6E, 0xBE, 0xCB, 0xA7 }, //stone04
-    new byte[] { 0x6F, 0xBE, 0xCB, 0xA7 }, //stone04 grey
-    new byte[] { 0xE3, 0xBE, 0xDE, 0xFA }, //swamp calmus 01
-    new byte[] { 0xE4, 0xBE, 0xDE, 0xFA }, //swamp calmus 02
-    new byte[] { 0xE5, 0xBE, 0xDE, 0xFA }, //swamp calmus 03
-    new byte[] { 0xE1, 0xBE, 0xDE, 0xFA }, //swampthing01
-    new byte[] { 0xE2, 0xBE, 0xDE, 0xFA }, //swampthing02
-    new byte[] { 0x30, 0xA2, 0xD6, 0xF1 }, //waterlily 1
-    new byte[] { 0x31, 0xA2, 0xD6, 0xF1 }, //waterlily 2
-    new byte[] { 0x30, 0xA2, 0xC6, 0xF1 }, //waterplant 1
-    new byte[] { 0x31, 0xA2, 0xC6, 0xF1 }, //waterplant 2
-    new byte[] { 0x32, 0xA2, 0xC6, 0xF1 }, //waterplant 3
-    new byte[] { 0x10, 0xE2, 0x11, 0xFA }, //wreck
-    new byte[] { 0x11, 0xE2, 0x11, 0xFA }  //wreck big
-};
+        private static readonly byte[][] doodads_dng =
+[
+    [0x30, 0x42, 0xA7, 0xBC], //!!MED nettle
+    [0x31, 0x42, 0xA7, 0xBC], //!!MED nettle big
+    [0x32, 0x42, 0xA7, 0xBC], //!!MED nettle high
+    [0xC0, 0x17, 0xFF, 0xAA], //((LAVA fog
+    [0xC1, 0x17, 0xFF, 0xAA], //((LAVA fog high
+    [0xC2, 0x17, 0xFF, 0xAA], //((LAVA fog highest
+    [0xC3, 0x17, 0xFF, 0xAA], //((LAVA fog vertical
+    [0x93, 0xB7, 0xEE, 0x90], //Coal (few)
+    [0x43, 0x61, 0x09, 0xC5], //Coal (medium)
+    [0xF3, 0x6F, 0xAD, 0x00], //Coal (much)
+    [0x13, 0x0A, 0xCB, 0xDA], //DoNotUse-Skull01
+    [0x43, 0x23, 0xF4, 0x28], //Empty
+    [0xD3, 0x1A, 0x77, 0x96], //Gold (few)
+    [0xA3, 0xC3, 0x6A, 0xE0], //Gold (medium)
+    [0x23, 0xD1, 0x12, 0xE8], //Gold (much)
+    [0x93, 0xA1, 0x24, 0x31], //Granit (few)
+    [0x53, 0x0D, 0xCF, 0x8E], //Granit (medium)
+    [0x73, 0x47, 0x68, 0x17], //Granit (much)
+    [0x63, 0xE5, 0xDB, 0x45], //Iron (few)
+    [0xE3, 0x52, 0x3A, 0xD3], //Iron (medium)
+    [0x23, 0xF1, 0x82, 0x4B], //Iron (much)
+    [0x43, 0xA3, 0x1A, 0x12], //Water
+    [0x9D, 0xA7, 0xF5, 0xD5], //bones0
+    [0xCD, 0x22, 0x51, 0x17], //bones1
+    [0xAD, 0xA4, 0x45, 0x72], //bones2
+    [0x5D, 0x6E, 0x83, 0x37], //bones3
+    [0xDE, 0x2E, 0x27, 0x6B], //bush01
+    [0xEE, 0x50, 0x20, 0x48], //cactus01
+    [0x0E, 0x8B, 0x06, 0xA3], //cactus02
+    [0x7E, 0x5B, 0x18, 0xEC], //cactus03
+    [0x39, 0xAE, 0xF5, 0x89], //cactus04
+    [0x1E, 0xE8, 0xBF, 0xF2], //dead Tree 1
+    [0x1F, 0xE8, 0xBF, 0xF2], //dead Tree 2
+    [0xCE, 0x31, 0x24, 0xA1], //fern big
+    [0x33, 0xAE, 0xF5, 0x89], //fern medium
+    [0x34, 0xAE, 0xF5, 0x89], //fern small
+    [0xE0, 0xF1, 0xA0, 0xAA], //fingerpost E
+    [0xE6, 0xF1, 0xA0, 0xAA], //fingerpost N
+    [0xE7, 0xF1, 0xA0, 0xAA], //fingerpost NE
+    [0xE5, 0xF1, 0xA0, 0xAA], //fingerpost NW
+    [0xE2, 0xF1, 0xA0, 0xAA], //fingerpost S
+    [0xE1, 0xF1, 0xA0, 0xAA], //fingerpost SE
+    [0xE3, 0xF1, 0xA0, 0xAA], //fingerpost SW
+    [0xE4, 0xF1, 0xA0, 0xAA], //fingerpost W
+    [0xE4, 0xAF, 0xA1, 0x0F], //flower red
+    [0xE5, 0xAF, 0xA1, 0x0F], //flower red big
+    [0xE6, 0xAF, 0xA1, 0x0F], //flower red high
+    [0xED, 0xAF, 0xA1, 0x0F], //flower violet
+    [0xEE, 0xAF, 0xA1, 0x0F], //flower violet big
+    [0xEF, 0xAF, 0xA1, 0x0F], //flower violet high
+    [0xE7, 0xAF, 0xA1, 0x0F], //flower white
+    [0xE8, 0xAF, 0xA1, 0x0F], //flower white big
+    [0xE9, 0xAF, 0xA1, 0x0F], //flower white high
+    [0xEA, 0xAF, 0xA1, 0x0F], //flower yellow
+    [0xEB, 0xAF, 0xA1, 0x0F], //flower yellow big
+    [0xEC, 0xAF, 0xA1, 0x0F], //flower yellow high
+    [0xF0, 0xAF, 0xA1, 0x0F], //grass translucent
+    [0xF1, 0xAF, 0xA1, 0x0F], //grass translucent big dark
+    [0xAE, 0x37, 0xD1, 0x3A], //grass01
+    [0xAF, 0x37, 0xD1, 0x3A], //grass02
+    [0xB0, 0x37, 0xD1, 0x3A], //grass03
+    [0xB1, 0x37, 0xD1, 0x3A], //grass04
+    [0x36, 0xAE, 0xF5, 0x89], //high flower red
+    [0x35, 0xAE, 0xF5, 0x89], //high flower red big
+    [0xBE, 0x34, 0xD4, 0x04], //high flower white
+    [0xFE, 0xCD, 0x49, 0xFB], //high flower white big
+    [0x38, 0xAE, 0xF5, 0x89], //high flower yellow
+    [0x37, 0xAE, 0xF5, 0x89], //high flower yellow big
+    [0xF2, 0xEF, 0xAD, 0xAC], //mushroom brown
+    [0xF3, 0xEF, 0xAD, 0xAC], //mushroom brown big
+    [0xF0, 0xEF, 0xAD, 0xAC], //mushroom red
+    [0xF1, 0xEF, 0xAD, 0xAC], //mushroom red big
+    [0xE1, 0xAF, 0xA1, 0x0F], //nettle
+    [0xE2, 0xAF, 0xA1, 0x0F], //nettle big
+    [0xE3, 0xAF, 0xA1, 0x0F], //nettle high
+    [0x10, 0xE3, 0x11, 0xFA], //shell
+    [0x11, 0xE3, 0x11, 0xFA], //shell small
+    [0x4E, 0x1F, 0x5C, 0x45], //stone01
+    [0x4F, 0x1F, 0x5C, 0x45], //stone01 grey
+    [0x3E, 0x02, 0x36, 0xEA], //stone02
+    [0x3F, 0x02, 0x36, 0xEA], //stone02 grey
+    [0x8E, 0xD8, 0x41, 0x9F], //stone03
+    [0x8F, 0xD8, 0x41, 0x9F], //stone03 grey
+    [0x6E, 0xBE, 0xCB, 0xA7], //stone04
+    [0x6F, 0xBE, 0xCB, 0xA7], //stone04 grey
+    [0xE3, 0xBE, 0xDE, 0xFA], //swamp calmus 01
+    [0xE4, 0xBE, 0xDE, 0xFA], //swamp calmus 02
+    [0xE5, 0xBE, 0xDE, 0xFA], //swamp calmus 03
+    [0xE1, 0xBE, 0xDE, 0xFA], //swampthing01
+    [0xE2, 0xBE, 0xDE, 0xFA], //swampthing02
+    [0x30, 0xA2, 0xD6, 0xF1], //waterlily 1
+    [0x31, 0xA2, 0xD6, 0xF1], //waterlily 2
+    [0x30, 0xA2, 0xC6, 0xF1], //waterplant 1
+    [0x31, 0xA2, 0xC6, 0xF1], //waterplant 2
+    [0x32, 0xA2, 0xC6, 0xF1], //waterplant 3
+    [0x10, 0xE2, 0x11, 0xFA], //wreck
+    [0x11, 0xE2, 0x11, 0xFA]  //wreck big
+];
 
-        private static readonly byte[][] doodads_adk = new byte[][]
-{
-    new byte[] { 0x74, 0xBE, 0x45, 0x7A }, //Chest
-    new byte[] { 0x34, 0xBF, 0xF9, 0x16 }, //OpenChest
-    new byte[] { 0x63, 0xA0, 0x5A, 0xC5 }, //Coal (endless)
-    new byte[] { 0x73, 0x9D, 0x5D, 0x8F }, //Iron (endless)
-    new byte[] { 0x63, 0xC0, 0xCA, 0x28 }, //Gold (endless)
-    new byte[] { 0xE3, 0xD2, 0x45, 0xB2 }, //Granite (endless)
-    new byte[] { 0x33, 0xD2, 0x28, 0x4E }, //Gemstones (few)
-    new byte[] { 0x03, 0x76, 0x96, 0xE8 }, //Gemstones (medium)
-    new byte[] { 0x53, 0x6C, 0xC5, 0x2E }, //Gemstones (much)
-    new byte[] { 0x03, 0x0D, 0xDF, 0x3A }, //Gemstones (endless)
-    new byte[] { 0xC3, 0xDC, 0x20, 0xF2 }, //Salt (few)
-    new byte[] { 0xC3, 0x3C, 0xD7, 0x77 }, //Salt (medium)
-    new byte[] { 0xF3, 0x58, 0x23, 0xBB }, //Salt (much)
-    new byte[] { 0xA3, 0x7E, 0x36, 0x32 }, //Salt (endless)
-    new byte[] { 0x01, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 01 moving
-    new byte[] { 0x02, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 01 static
-    new byte[] { 0x03, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 02 static
-    new byte[] { 0x04, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 03 static
-    new byte[] { 0x05, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 04 static
-    new byte[] { 0x06, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 05 static
-    new byte[] { 0x07, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 06 moving
-    new byte[] { 0x08, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 07 moving
-    new byte[] { 0x09, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 08 moving
-    new byte[] { 0x0A, 0xBB, 0x81, 0xA1 }, //--Snow Ice Floe 09 moving
-    new byte[] { 0x20, 0xBB, 0x81, 0xA1 }, //__Highland fern big
-    new byte[] { 0x21, 0xBB, 0x81, 0xA1 }, //__Highland fern miedium
-    new byte[] { 0x22, 0xBB, 0x81, 0xA1 }, //__Highland fern small
-    new byte[] { 0x30, 0xBB, 0x81, 0xA1 }, //__Highland nettle
-    new byte[] { 0x31, 0xBB, 0x81, 0xA1 }, //__Highland nettle big
-    new byte[] { 0x32, 0xBB, 0x81, 0xA1 }, //__Highland nettle high
-    new byte[] { 0x33, 0xBB, 0x81, 0xA1 }, //__Highland Edelweiss 1
-    new byte[] { 0x34, 0xBB, 0x81, 0xA1 }, //__Highland Edelweiss 2
-    new byte[] { 0x35, 0xBB, 0x81, 0xA1 }, //__Highland Edelweiss 3
-    new byte[] { 0x36, 0xBB, 0x81, 0xA1 }, //__Highland Snowdrop
-    new byte[] { 0x37, 0xBB, 0x81, 0xA1 }, //__Highland Crocus
-    new byte[] { 0x40, 0xBB, 0x81, 0xA1 }, //__Highland Foundling 1
-    new byte[] { 0x41, 0xBB, 0x81, 0xA1 }, //__Highland Foundling 2
-    new byte[] { 0x42, 0xBB, 0x81, 0xA1 }, //__Highland Foundling 3
-    new byte[] { 0x43, 0xBB, 0x81, 0xA1 }, //__Highland Underwater Foundling 1
-    new byte[] { 0x44, 0xBB, 0x81, 0xA1 }, //__Highland Underwater Foundling 2
-    new byte[] { 0x45, 0xBB, 0x81, 0xA1 }, //__Highland Underwater Foundling 3
-    new byte[] { 0x40, 0xBC, 0x81, 0xA1 }, //__Highland swamp calmus 01
-    new byte[] { 0x41, 0xBC, 0x81, 0xA1 }, //__Highland swamp calmus 02
-    new byte[] { 0x42, 0xBC, 0x81, 0xA1 }, //__Highland swamp calmus 03
-    new byte[] { 0x00, 0xBD, 0x81, 0xA1 }, //__Highland Fog 01
-    new byte[] { 0x01, 0xBD, 0x81, 0xA1 }, //__Highland Fog 02
-    new byte[] { 0x10, 0xBD, 0x81, 0xA1 }, //Male Duck
-    new byte[] { 0x11, 0xBD, 0x81, 0xA1 }  //Female Duck
-};
+        private static readonly byte[][] doodads_adk =
+[
+    [0x74, 0xBE, 0x45, 0x7A], //Chest
+    [0x34, 0xBF, 0xF9, 0x16], //OpenChest
+    [0x63, 0xA0, 0x5A, 0xC5], //Coal (endless)
+    [0x73, 0x9D, 0x5D, 0x8F], //Iron (endless)
+    [0x63, 0xC0, 0xCA, 0x28], //Gold (endless)
+    [0xE3, 0xD2, 0x45, 0xB2], //Granite (endless)
+    [0x33, 0xD2, 0x28, 0x4E], //Gemstones (few)
+    [0x03, 0x76, 0x96, 0xE8], //Gemstones (medium)
+    [0x53, 0x6C, 0xC5, 0x2E], //Gemstones (much)
+    [0x03, 0x0D, 0xDF, 0x3A], //Gemstones (endless)
+    [0xC3, 0xDC, 0x20, 0xF2], //Salt (few)
+    [0xC3, 0x3C, 0xD7, 0x77], //Salt (medium)
+    [0xF3, 0x58, 0x23, 0xBB], //Salt (much)
+    [0xA3, 0x7E, 0x36, 0x32], //Salt (endless)
+    [0x01, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 01 moving
+    [0x02, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 01 static
+    [0x03, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 02 static
+    [0x04, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 03 static
+    [0x05, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 04 static
+    [0x06, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 05 static
+    [0x07, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 06 moving
+    [0x08, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 07 moving
+    [0x09, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 08 moving
+    [0x0A, 0xBB, 0x81, 0xA1], //--Snow Ice Floe 09 moving
+    [0x20, 0xBB, 0x81, 0xA1], //__Highland fern big
+    [0x21, 0xBB, 0x81, 0xA1], //__Highland fern miedium
+    [0x22, 0xBB, 0x81, 0xA1], //__Highland fern small
+    [0x30, 0xBB, 0x81, 0xA1], //__Highland nettle
+    [0x31, 0xBB, 0x81, 0xA1], //__Highland nettle big
+    [0x32, 0xBB, 0x81, 0xA1], //__Highland nettle high
+    [0x33, 0xBB, 0x81, 0xA1], //__Highland Edelweiss 1
+    [0x34, 0xBB, 0x81, 0xA1], //__Highland Edelweiss 2
+    [0x35, 0xBB, 0x81, 0xA1], //__Highland Edelweiss 3
+    [0x36, 0xBB, 0x81, 0xA1], //__Highland Snowdrop
+    [0x37, 0xBB, 0x81, 0xA1], //__Highland Crocus
+    [0x40, 0xBB, 0x81, 0xA1], //__Highland Foundling 1
+    [0x41, 0xBB, 0x81, 0xA1], //__Highland Foundling 2
+    [0x42, 0xBB, 0x81, 0xA1], //__Highland Foundling 3
+    [0x43, 0xBB, 0x81, 0xA1], //__Highland Underwater Foundling 1
+    [0x44, 0xBB, 0x81, 0xA1], //__Highland Underwater Foundling 2
+    [0x45, 0xBB, 0x81, 0xA1], //__Highland Underwater Foundling 3
+    [0x40, 0xBC, 0x81, 0xA1], //__Highland swamp calmus 01
+    [0x41, 0xBC, 0x81, 0xA1], //__Highland swamp calmus 02
+    [0x42, 0xBC, 0x81, 0xA1], //__Highland swamp calmus 03
+    [0x00, 0xBD, 0x81, 0xA1], //__Highland Fog 01
+    [0x01, 0xBD, 0x81, 0xA1], //__Highland Fog 02
+    [0x10, 0xBD, 0x81, 0xA1], //Male Duck
+    [0x11, 0xBD, 0x81, 0xA1]  //Female Duck
+];
     }
 }

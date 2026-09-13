@@ -29,58 +29,57 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Map_renaming));
-            this.Map_name_edit = new System.Windows.Forms.TextBox();
-            this.Accept_button = new System.Windows.Forms.Button();
-            this.Cancel_button = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            Map_name_edit = new System.Windows.Forms.TextBox();
+            Accept_button = new System.Windows.Forms.Button();
+            Cancel_button = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // Map_name_edit
             // 
-            this.Map_name_edit.Location = new System.Drawing.Point(12, 12);
-            this.Map_name_edit.Name = "Map_name_edit";
-            this.Map_name_edit.Size = new System.Drawing.Size(332, 36);
-            this.Map_name_edit.TabIndex = 0;
+            Map_name_edit.Location = new System.Drawing.Point(12, 12);
+            Map_name_edit.Name = "Map_name_edit";
+            Map_name_edit.Size = new System.Drawing.Size(332, 23);
+            Map_name_edit.TabIndex = 0;
             // 
             // Accept_button
             // 
-            this.Accept_button.AutoSize = true;
-            this.Accept_button.Location = new System.Drawing.Point(12, 59);
-            this.Accept_button.Name = "Accept_button";
-            this.Accept_button.Size = new System.Drawing.Size(160, 40);
-            this.Accept_button.TabIndex = 1;
-            this.Accept_button.Text = "Accept";
-            this.Accept_button.UseVisualStyleBackColor = true;
-            this.Accept_button.Click += new System.EventHandler(this.Accept_button_Click);
+            Accept_button.AutoSize = true;
+            Accept_button.Location = new System.Drawing.Point(12, 41);
+            Accept_button.Name = "Accept_button";
+            Accept_button.Size = new System.Drawing.Size(160, 40);
+            Accept_button.TabIndex = 1;
+            Accept_button.Text = "Accept";
+            Accept_button.UseVisualStyleBackColor = true;
+            Accept_button.Click += Accept_button_Click;
             // 
             // Cancel_button
             // 
-            this.Cancel_button.AutoSize = true;
-            this.Cancel_button.Location = new System.Drawing.Point(184, 59);
-            this.Cancel_button.Name = "Cancel_button";
-            this.Cancel_button.Size = new System.Drawing.Size(160, 40);
-            this.Cancel_button.TabIndex = 2;
-            this.Cancel_button.Text = "Cancel";
-            this.Cancel_button.UseVisualStyleBackColor = true;
-            this.Cancel_button.Click += new System.EventHandler(this.Cancel_button_Click);
+            Cancel_button.AutoSize = true;
+            Cancel_button.Location = new System.Drawing.Point(184, 41);
+            Cancel_button.Name = "Cancel_button";
+            Cancel_button.Size = new System.Drawing.Size(160, 40);
+            Cancel_button.TabIndex = 2;
+            Cancel_button.Text = "Cancel";
+            Cancel_button.UseVisualStyleBackColor = true;
+            Cancel_button.Click += Cancel_button_Click;
             // 
             // Map_renaming
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(356, 111);
-            this.Controls.Add(this.Cancel_button);
-            this.Controls.Add(this.Accept_button);
-            this.Controls.Add(this.Map_name_edit);
-            this.Font = new System.Drawing.Font("Segoe UI Variable Text", 9.142858F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "Map_renaming";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Rename map";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            ClientSize = new System.Drawing.Size(356, 87);
+            Controls.Add(Cancel_button);
+            Controls.Add(Accept_button);
+            Controls.Add(Map_name_edit);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            Name = "Map_renaming";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Rename map";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
