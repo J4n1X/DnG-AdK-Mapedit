@@ -1937,13 +1937,21 @@ namespace DnG_AdK_Mapedit
                     sw.WriteLine("[ENVIRONMENT]");
                     sw.WriteLine(Environment_highland_water_checkbox.Checked ? "1" : "0");
                     sw.WriteLine(Environment_preset_checkbox.Checked ? "1" : "0");
+
                     if (Environment_preset_checkbox.Checked)
                     {
-                        sw.WriteLine($"{Global_sky_select.SelectedIndex},{Global_sun_placement_input.Value},{Global_sun_height_input.Value},{Global_shadow_intensity_input.Value},{Global_fog_start_input.Value},{Global_fog_full_input.Value},{Global_fog_colour.BackColor},{Global_light_colour.BackColor},{Global_ambient_colour.BackColor}");
+                        // Use a single interpolated string literal without '+' operators
+                        sw.WriteLine(FormattableString.Invariant(
+                            $"{Global_sky_select.SelectedIndex},{Global_sun_placement_input.Value},{Global_sun_height_input.Value},{Global_shadow_intensity_input.Value},{Global_fog_start_input.Value},{Global_fog_full_input.Value},{Global_fog_colour.BackColor.ToArgb()},{Global_light_colour.BackColor.ToArgb()},{Global_ambient_colour.BackColor.ToArgb()}"
+                        ));
+
                         foreach (var (fog_colour, ambient_colour, light_colour, shadow_intensity, fog_start_distance, fog_full_distance, pos_x, pos_y, radius, transition) in Environment_zones)
                         {
-                            sw.WriteLine($"{fog_colour},{ambient_colour},{light_colour},{shadow_intensity},{fog_start_distance},{fog_full_distance},{pos_x},{pos_y},{radius},{transition}");
+                            sw.WriteLine(FormattableString.Invariant(
+                                $"{fog_colour.ToArgb()},{ambient_colour.ToArgb()},{light_colour.ToArgb()},{shadow_intensity},{fog_start_distance},{fog_full_distance},{pos_x},{pos_y},{radius},{transition}"
+                            ));
                         }
+
                     }
                 }
                 catch (Exception ex)
@@ -2230,17 +2238,13 @@ namespace DnG_AdK_Mapedit
         {
             if (string.IsNullOrWhiteSpace(colorStr)) return Color.Black;
 
-            try
+            // Parse integer ARGB values
+            if (int.TryParse(colorStr, out int argb))
             {
-                var converter = System.ComponentModel.TypeDescriptor.GetConverter(typeof(Color));
-                if (converter != null && converter.CanConvertFrom(typeof(string)))
-                {
-                    object result = converter.ConvertFromString(colorStr);
-                    if (result is Color c) return c;
-                }
+                return Color.FromArgb(argb);
             }
-            catch { }
 
+            // Fallback for legacy color format
             try
             {
                 string clean = colorStr.Replace("Color", "").Replace("[", "").Replace("]", "").Trim();
