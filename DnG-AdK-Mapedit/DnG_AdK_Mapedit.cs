@@ -3146,7 +3146,7 @@ namespace DnG_AdK_Mapedit
             //Write buoy connections
             if (Harbours_list.Count > 0)
             {
-                foreach (var (connection_id, harbour_1_id, harbour_2_id, buoy_source_x, buoy_source_y, buoy_target_x, buoy_target_y) in Buoy_connections)
+                foreach (var (connection_id, harbour_source_id, harbour_target_id, buoy_source_x, buoy_source_y, buoy_target_x, buoy_target_y) in Buoy_connections)
                 {
                     MemoryStream buoyStream = new();
                     using (BinaryWriter w = new(buoyStream))
@@ -3158,13 +3158,13 @@ namespace DnG_AdK_Mapedit
                         w.Write(0);
                         //Write the ID header
                         w.Write([0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
-                        //Write the first harbour ID
-                        w.Write(harbour_1_id);
+                        //Write the source harbour ID
+                        w.Write(harbour_source_id);
                         w.Write(0);
                         //Write the ID header
                         w.Write([0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00]);
-                        //Write the second harbour ID
-                        w.Write(harbour_2_id);
+                        //Write the target harbour ID
+                        w.Write(harbour_target_id);
                         w.Write(0);
                         //Write the third static value
                         w.Write([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x3C, 0xF8, 0x25, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDD, 0x2D, 0xFD, 0xC5, 0x0E, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]);
@@ -4246,7 +4246,7 @@ namespace DnG_AdK_Mapedit
         };
 
         // Generated results
-        public List<(int connection_id, int harbour_1_id, int harbour_2_id, int buoy_source_x, int buoy_source_y, int buoy_target_x, int buoy_target_y)> Buoy_connections
+        public List<(int connection_id, int harbour_source_id, int harbour_target_id, int buoy_source_x, int buoy_source_y, int buoy_target_x, int buoy_target_y)> Buoy_connections
             = [];
 
         public List<(int harbour_id, int buoy_1_connection_id, int buoy_2_connection_id)> Harbour_data
