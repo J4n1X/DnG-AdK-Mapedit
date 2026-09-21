@@ -34,6 +34,8 @@ Here you can add salt and gemstones to the map.
 
 Swapping allows to use new assets by replacing ones accessible in the 10th Anniversary map editor.
 
+[This file](https://www.moddb.com/games/the-settlers-ii-10th-anniversary/downloads/hidden-in-editor) unlocks textures and objects that may be useful for swapping and map creation:
+
 - Like in the resources tab select one object in every list on the specific tab and click "swap".
 - Non-blocking doodads lay on a separate, denser grid than the rest of the objects. That's why they are listed separately.
 - Replacing specific tree types or mineable stones with caves spawning animals is an alternative option for adding them to inputting coordinates manually. They are on the bottom on the list and contain the word "spawn".
