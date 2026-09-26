@@ -14,16 +14,16 @@ The only remaining feature is the ability to add harbours to the map.
 
 ## How to use:
 ### Map info tab
-<img width="1274" height="664" alt="image" src="https://github.com/user-attachments/assets/91b36c2a-a199-4b69-816f-bdd1da86ab2b" />
+<img width="1266" height="647" alt="Zrzut ekranu_20260926_141818" src="https://github.com/user-attachments/assets/1d2ebd1b-d34f-44e4-bd88-f3e64e675b1e" />
 Displays information about the map, most importantly the resources section.
 
 - Clicking the "share" text reveals the recommended proportions of resources present on the map.
 - Amount of salt present on the map must be larger than gold.
-- "Map name" is used when generating savegame names and loading the environment files. It can be changed by clicking it.
+- "Map name" is used when generating save-game names and loading the environment files. It can be changed by clicking it.
 - Preview render (`.bmp` file) must be present in the same directory as the exported map and have the same name otherwise crashing the game.
 
 ### Resources tab
-<img width="1269" height="661" alt="image" src="https://github.com/user-attachments/assets/633adff7-e6cb-4688-b8d4-6e32cd85ba57" />
+<img width="1266" height="647" alt="Zrzut ekranu_20260926_141850" src="https://github.com/user-attachments/assets/7fdce28b-8a52-4d1b-bc18-41b300948eb0" />
 Here you can add salt and gemstones to the map.
 
 - Select one resource in every list and click "swap".
@@ -38,23 +38,23 @@ Swapping allows to use new assets by replacing ones accessible in the 10th Anniv
 
 - Like in the resources tab select one object in every list on the specific tab and click "swap".
 - Non-blocking doodads lay on a separate, denser grid than the rest of the objects. That's why they are listed separately.
-- Replacing specific tree types or mineable stones with caves spawning animals is an alternative option for adding them to inputting coordinates manually. They are on the bottom on the list and contain the word "spawn".
+- Replacing specific tree types or mine-able stones with caves spawning animals is an alternative option for adding them to inputting coordinates manually. They are on the bottom on the list and contain the word "spawn".
 - Swaps will be executed from top to the bottom of the list.
 - If a map is meant to mostly use highland or snow textures "highland" water shader can be applied.
 
 ### Harbour (currently disabled) and animal caves tabs
-<img width="1270" height="664" alt="image" src="https://github.com/user-attachments/assets/32529ad0-90fc-46d2-bbaa-e8dce6377200" />
+<img width="1266" height="647" alt="Zrzut ekranu_20260926_141932" src="https://github.com/user-attachments/assets/7711a335-da03-435e-af9d-4becf07d35f5" />
 
 - Clicking the remove button in both harbours and animal caves will remove the currently displayed item in the list.
-- All fields allowing to enter coordinates use the logical grid. Map editor displays the detailed grid coordinates by default. To convert from detailed to logical coordinates divide them by 4 and remove the decimal component or switch the statusbar to show logical coordinates (`Tools` -> `Statusbar` -> `Logical`)
+- All fields allowing to enter coordinates use the logical grid. Map editor displays the detailed grid coordinates by default. To convert from detailed to logical coordinates divide them by 4 and remove the decimal component or switch the status-bar to show logical coordinates (`Tools` -> `Statusbar` -> `Logical`)
 - Harbours can be connected in an infinite chain like in mission 10 or form any polygon like in mission 11. Double-ship connections between two harbours should be possible but I'm unable to test that.
 
 ### Environment tab
-<img width="1275" height="662" alt="image" src="https://github.com/user-attachments/assets/12d1c59f-5a51-46c4-a062-66d5677cd981" />
+<img width="1266" height="647" alt="Zrzut ekranu_20260926_142005" src="https://github.com/user-attachments/assets/88fc00e1-82bb-4ca6-b0ff-346beff0692c" />
 
 - Global preset dictates sky texture and sun or moon placement.
 - Sky textures have a very high impact on ice and water colours.
-- To ensure a compatibily with different aspect ratios fog start distance should be set to 200 and full fog distance to 300.
+- To ensure a compatibility with different aspect ratios fog start distance should be set to 200 and full fog distance to 300.
 - Manually created presets may run into oversaturation problems. If they target a grassland environment green channel value should be lowered.
 - It's recommended to use a combination of included presets.
 
@@ -62,16 +62,16 @@ Maps using custom environment files have to be placed in `game folder/game/data/
 
 ### Players tab
 
-Default colours were designed for multiplayer maps with clockwise or counterclockwise start positions placement. In case of 4-player maps start positions placement does not matter.
+Default colours were designed for multiplayer maps with clockwise or counter-clockwise start positions placement. In case of 2 and 4-player maps start positions placement does not matter.
 
 ### Sacrifices tab
 
 Most maps should use one of the included presets in the export section
 
 ### Export tab
-<img width="1270" height="662" alt="image" src="https://github.com/user-attachments/assets/e12f86e6-3ceb-41a1-9016-86383e543e99" />
+<img width="1266" height="647" alt="Zrzut ekranu_20260926_142035" src="https://github.com/user-attachments/assets/1cc1a0cb-4371-473c-ad42-2b4a1ef5b8d5" />
 
-- If "Use an included preset" checkbox is check the "load" button will load the currently selected sacrifice preset.
+- If "Use an included preset" checkbox is checked the "load" button will load the currently selected sacrifice preset.
 - "Map presets" create a backup of export settings except resource swapping.
 - If the map preview is not present in the same directory under the same name as the map file the game will crash.
 - Multiplayer maps have to be placed in `game folder/game/data/maps/freegamemaps` directory and have it's file name start with the `MP_` prefix.
