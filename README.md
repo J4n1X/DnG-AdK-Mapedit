@@ -34,7 +34,7 @@ Here you can add salt and gemstones to the map.
 
 Swapping allows to use new assets by replacing ones accessible in the 10th Anniversary map editor.
 
-[This file](https://www.moddb.com/games/the-settlers-ii-10th-anniversary/downloads/hidden-in-editor) unlocks textures and objects that may be useful for swapping and map creation:
+[This file](https://www.moddb.com/games/the-settlers-ii-10th-anniversary/downloads/hidden-in-editor) unlocks textures and objects that may be useful for swapping and map creation.
 
 - Like in the resources tab select one object in every list on the specific tab and click "swap".
 - Non-blocking doodads lay on a separate, denser grid than the rest of the objects. That's why they are listed separately.
@@ -49,14 +49,6 @@ Swapping allows to use new assets by replacing ones accessible in the 10th Anniv
 - All fields allowing to enter coordinates use the logical grid. Map editor displays the detailed grid coordinates by default. To convert from detailed to logical coordinates divide them by 4 and remove the decimal component or switch the statusbar to show logical coordinates (`Tools` -> `Statusbar` -> `Logical`)
 - Harbours can be connected in an infinite chain like in mission 10 or form any polygon like in mission 11. Double-ship connections between two harbours should be possible but I'm unable to test that.
 
-### Sacrifices tab
-
-Most maps should use one of the included presets in the export section
-
-### Colours tab
-
-Default colours were designed for multiplayer maps with clockwise or counterclockwise start positions placement. In case of 4-player maps start positions placement does not matter.
-
 ### Environment tab
 <img width="1275" height="662" alt="image" src="https://github.com/user-attachments/assets/12d1c59f-5a51-46c4-a062-66d5677cd981" />
 
@@ -67,6 +59,14 @@ Default colours were designed for multiplayer maps with clockwise or countercloc
 - It's recommended to use a combination of included presets.
 
 Maps using custom environment files have to be placed in `game folder/game/data/maps/freegamemaps` directory.
+
+### Players tab
+
+Default colours were designed for multiplayer maps with clockwise or counterclockwise start positions placement. In case of 4-player maps start positions placement does not matter.
+
+### Sacrifices tab
+
+Most maps should use one of the included presets in the export section
 
 ### Export tab
 <img width="1270" height="662" alt="image" src="https://github.com/user-attachments/assets/e12f86e6-3ceb-41a1-9016-86383e543e99" />

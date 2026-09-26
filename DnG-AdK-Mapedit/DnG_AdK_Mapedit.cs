@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using File = System.IO.File;
@@ -15,6 +16,7 @@ namespace DnG_AdK_Mapedit
     {
         private void Changelog_button_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Changelog_button.LinkVisited = true;
             string message = @"Changes compared to the original map converter:
 
 • (Beta 3) Dark mode support was added
@@ -25,9 +27,10 @@ namespace DnG_AdK_Mapedit
 • Knowledge of exact sacrifice names is not required as icons are displayed instead
 • Sacrifice limits are now automatically checked and displayed
 • Each sacrifice preset is now stored in individual files and can be easily exported
-• Default player colours can now be customized
+• Default player colours and (Beta 4) difficulties can now be customized
 • (Beta 3) Added ability to create custom environment files
 • Whole map preset can be now saved not requiring inputting values manually with each map edit
+• (Beta 4) Map creator receives an information about forester crash fix
 • Support for maps with odd player counts was added
 • Maps no longer crash randomly during gameplay
 • Resource signs placed by map creators now never despawn";
@@ -97,24 +100,30 @@ namespace DnG_AdK_Mapedit
                 Changelog_button.LinkColor = Color.SkyBlue;
                 Map_info_name.LinkColor = Color.SkyBlue;
                 Map_info_resources_share.LinkColor = Color.SkyBlue;
+                Export_forester_fix.LinkColor = Color.SkyBlue;
             }
-            Global_fog_colour.UseVisualStyleBackColor = false;
-            Global_ambient_colour.UseVisualStyleBackColor = false;
-            Global_light_colour.UseVisualStyleBackColor = false;
-            Local_fog_colour.UseVisualStyleBackColor = false;
-            Local_ambient_colour.UseVisualStyleBackColor = false;
-            Local_light_colour.UseVisualStyleBackColor = false;
-
-            //For now disable broken harbour section
-            Harbours_tab.Enabled = false;
 
             Resources_wait.Visible = false;
             Export_wait.Visible = false;
             Tab_control.Enabled = false;
 
+            Resources_swap_button.Enabled = false;
+            Textures_swap_button.Enabled = false;
+            Logical_grid_swap_button.Enabled = false;
+            Small_doodads_swap_button.Enabled = false;
+
+            Swap_move_down_button.Enabled = false;
+            Swap_remove_button.Enabled = false;
+            Swap_move_up_button.Enabled = false;
+
+            //For now disable broken harbour section
+            Harbours_tab.Enabled = false;
+
+            Harbours_remove_button.Enabled = false;
             Harbour_panel.Enabled = false;
             Harbour_anchor_panel.Enabled = false;
 
+            Caves_remove_button.Enabled = false;
             Cave_panel.Enabled = false;
 
             Environment_preset_select.Enabled = false;
@@ -122,6 +131,10 @@ namespace DnG_AdK_Mapedit
             Environment_preset_local.Enabled = false;
             Environment_panel.Enabled = false;
             Environment_zone_panel.Enabled = false;
+
+            Environment_remove_zone.Enabled = false;
+            Environment_previous_zone.Enabled = false;
+            Environment_next_zone.Enabled = false;
 
             //Set default values
             Global_sky_select.SelectedIndex = 1;
@@ -479,18 +492,32 @@ namespace DnG_AdK_Mapedit
             //06 00 00 00 -> pink
             //07 00 00 00 -> light blue
 
-            // 1. Group controls into an array for easy iteration
-            var selectors = new[]
+            //Group controls into an array for easy iteration
+            var colour_selectors = new[]
             {
-                Colours_player_1_select,
-                Colours_player_2_select,
-                Colours_player_3_select,
-                Colours_player_4_select,
-                Colours_player_5_select,
-                Colours_player_6_select
+                Players_1_colour_select,
+                Players_2_colour_select,
+                Players_3_colour_select,
+                Players_4_colour_select,
+                Players_5_colour_select,
+                Players_6_colour_select
             };
 
-            // 2. Map default color indices per player count (0-indexed: row 0 = 1 player)
+            //00 00 00 00 -> weak
+            //01 00 00 00 -> normal
+            //02 00 00 00 -> strong
+
+            var difficulty_selectors = new[]
+            {
+                Players_1_difficulty_select,
+                Players_2_difficulty_select,
+                Players_3_difficulty_select,
+                Players_4_difficulty_select,
+                Players_5_difficulty_select,
+                Players_6_difficulty_select
+            };
+
+            //Default colour presets for each player count
             int[][] presets =
             [
                 [0],                  // 1 player
@@ -501,31 +528,37 @@ namespace DnG_AdK_Mapedit
                 [0, 2, 3, 5, 1, 4]    // 6 players
             ];
 
-            // 3. Apply settings cleanly with a single loop
-            if (Player_count >= 1 && Player_count <= selectors.Length)
+            //Applying default player information
+            if (Player_count >= 1 && Player_count <= colour_selectors.Length)
             {
                 int[] activePreset = presets[Player_count - 1];
 
-                for (int i = 0; i < selectors.Length; i++)
+                for (int i = 0; i < colour_selectors.Length; i++)
                 {
                     bool isActive = i < Player_count;
-                    selectors[i].Enabled = isActive;
+                    colour_selectors[i].Enabled = isActive;
+                    difficulty_selectors[i].Enabled = isActive;
 
                     if (isActive)
                     {
-                        selectors[i].SelectedIndex = activePreset[i];
+                        colour_selectors[i].SelectedIndex = activePreset[i];
+                        difficulty_selectors[i].SelectedIndex = 2; // Default to "strong" difficulty
                     }
                 }
             }
 
             //Skip start positions
             current_byte += 20 * Player_count;
-            //Read map name
-            int Map_name_length = (int)BitConverter.ToUInt32(DnG_map, current_byte);
+            //Read map name length
+            int map_name_length = (int)BitConverter.ToUInt32(DnG_map, current_byte);
             current_byte += 4;
-            string Map_name = System.Text.Encoding.UTF8.GetString(DnG_map, current_byte, Map_name_length);
-            Map_info_name.Text = Map_name.ToString();
-            current_byte += Map_name_length;
+
+            //Decode using Windows-1252 encoding
+            Encoding win1252 = Encoding.GetEncoding(1252);
+            string map_name = win1252.GetString(DnG_map, current_byte, map_name_length);
+
+            Map_info_name.Text = map_name;
+            current_byte += map_name_length;
             //Read map size
             map_size_x = (int)BitConverter.ToUInt32(DnG_map, current_byte);
             current_byte += 4;
@@ -542,8 +575,14 @@ namespace DnG_AdK_Mapedit
             Cave_X_input.Maximum = map_size_x - 1;
             Cave_Y_input.Maximum = map_size_y - 1;
 
-            Local_X_input.Maximum = map_size_x - 1;
-            Local_Y_input.Maximum = map_size_y - 1;
+            int max_radius = (int)Math.Ceiling(Math.Sqrt(map_size_x * map_size_x + map_size_y * map_size_y));
+
+            Local_X_input.Minimum = -max_radius;
+            Local_X_input.Maximum = map_size_x - 1 + max_radius;
+            Local_Y_input.Minimum = -max_radius;
+            Local_Y_input.Maximum = map_size_y - 1 + max_radius;
+            Local_radius_input.Maximum = max_radius;
+            Local_transition_input.Maximum = max_radius;
 
             UpdateResources(current_byte, DnG_map);
         }
@@ -551,7 +590,7 @@ namespace DnG_AdK_Mapedit
         void UpdateResources(int current_byte, byte[] DnG_map)
         {
 
-            byte[] Empty_hex_extended = [0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF];
+            byte[] empty_hex_extended = [0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF];
 
             //Finding the heights array header in the map file
             current_byte = FindSequenceOffset(DnG_map, HeightsHeader, current_byte);
@@ -604,12 +643,12 @@ namespace DnG_AdK_Mapedit
                 }
 
                 // Check if the resource amount is greater than 0
-                if ((int)BitConverter.ToUInt32(DnG_map, current_byte) > 0)
+                if (BitConverter.ToInt32(DnG_map, current_byte) > 0)
                 {
                     current_byte += 4; // Skip the resource amount
 
                     // Skip empty resources
-                    if (EmptyHex == (uint)BitConverter.ToUInt32(DnG_map, current_byte))
+                    if (EmptyHex == BitConverter.ToUInt32(DnG_map, current_byte))
                     {
                         current_byte += 4;
                     }
@@ -627,11 +666,11 @@ namespace DnG_AdK_Mapedit
                     //Remove invalid resources that are not on rock textures
                     else if (!IsRockTexture(DnG_map, j, textures_beginning))
                     {
-                        uint resourceType = BitConverter.ToUInt32(DnG_map, current_byte);
+                        int resourceType = BitConverter.ToInt32(DnG_map, current_byte);
                         if (resourceType != FishHex)
                         {
                             //Clear both amount and type for this resource entry.
-                            Array.Copy(Empty_hex_extended, 0, DnG_map, current_byte - 4, Empty_hex_extended.Length);
+                            Array.Copy(empty_hex_extended, 0, DnG_map, current_byte - 4, empty_hex_extended.Length);
                         }
                         current_byte += 4;
                     }
@@ -650,7 +689,7 @@ namespace DnG_AdK_Mapedit
                             case FishHex: /* Skip */ break;
                             // Remove unused water resource: clear both amount and type for this entry.
                             case WaterHex:
-                                Array.Copy(Empty_hex_extended, 0, DnG_map, current_byte - 4, 8);
+                                Array.Copy(empty_hex_extended, 0, DnG_map, current_byte - 4, 8);
                                 break;
                             default:
                                 MessageBox.Show($"Unknown resource type found at byte offset {current_byte} with a hex value of {BitConverter.ToUInt32(DnG_map, current_byte):X8}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -759,62 +798,64 @@ namespace DnG_AdK_Mapedit
         {
             byte[] DnG_map = File.ReadAllBytes(WorkingFileName);
             int current_byte = 0;
-            //Skip the header
+
+            // Skip the header
             current_byte += 12;
-            //Skip start positions and the player count
+
+            // Skip start positions and the player count
             current_byte += 20 * (int)BitConverter.ToUInt32(DnG_map, current_byte) + 4;
-            //Read the current map name length
-            int Map_name_length = (int)BitConverter.ToUInt32(DnG_map, current_byte);
-            //Replace the map name with the new one
-            byte[] nameBytes = System.Text.Encoding.UTF8.GetBytes(Map_info_name.Text);
+
+            // Read the old map name length
+            int oldNameLength = (int)BitConverter.ToUInt32(DnG_map, current_byte);
+            int oldSectionLength = oldNameLength + 4; // 4-byte length prefix + name bytes
+
+            // Encode new map name
+            Encoding win1252 = Encoding.GetEncoding(1252);
+            byte[] nameBytes = win1252.GetBytes(Map_info_name.Text);
             byte[] lengthBytes = BitConverter.GetBytes(nameBytes.Length);
-            byte[] combinedData = [.. lengthBytes, .. nameBytes];
 
-            DnG_map = ReplaceSection(DnG_map, current_byte, Map_name_length + 4, combinedData);
+            // Replace section in-place using slice ranges and collection expressions
+            DnG_map = [
+                .. DnG_map[..current_byte],
+        .. lengthBytes,
+        .. nameBytes,
+        .. DnG_map[(current_byte + oldSectionLength)..]
+            ];
 
-            //Write the edited file back to disk
+            // Write the edited file back to disk
             File.WriteAllBytes(WorkingFileName, DnG_map);
-        }
-
-        public static byte[] ReplaceSection(ReadOnlySpan<byte> original, int startIndex, int lengthToRemove, ReadOnlySpan<byte> insertData)
-        {
-            ReadOnlySpan<byte> head = original[..startIndex];
-            ReadOnlySpan<byte> tail = original[(startIndex + lengthToRemove)..];
-
-            byte[] result = GC.AllocateUninitializedArray<byte>(head.Length + insertData.Length + tail.Length);
-
-            Span<byte> target = result;
-            head.CopyTo(target);
-            insertData.CopyTo(target[head.Length..]);
-            tail.CopyTo(target[(head.Length + insertData.Length)..]);
-
-            return result;
         }
 
         //Resource share recommendations
         private void Map_info_resources_share_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            Map_info_resources_share.LinkVisited = true;
             MessageBox.Show("Recommended resource shares:\n\nCoal: ~40%\nIron: ~20%\nSalt: ~20%\nGold: ~20%\nGemstones: ~3%\nStone: ~3%", "Recommended resource shares", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Resources_selection(object sender, EventArgs e)
+        {
+            if (Resources_from_list.SelectedIndex != -1 && Resources_to_list.SelectedIndex != -1)
+            {
+                Resources_swap_button.Enabled = true;
+            }
+            else
+            {
+                Resources_swap_button.Enabled = false;
+            }
         }
 
         private void Resources_swap_button_Click(object sender, EventArgs e)
         {
-            //Check if the user has selected both resources to swap
-            if (Resources_from_list.SelectedIndex == -1 || Resources_to_list.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select both resources to swap.", "No resources selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             Resources_wait.Visible = true;
             Tab_control.Enabled = false;
             Resources_wait.Refresh();
 
-            byte[] Resources_list = [0xD3, 0xDC, 0x68, 0x70, 0xBE, 0x20, 0x50, 0xEC, 0x23, 0xD6, 0xD2, 0x09, 0x33, 0xC6, 0x41, 0x4F, 0x03, 0xC9, 0x98, 0xCB, 0xD3, 0x52, 0xE9, 0x55];
+            byte[] resources_list = [0xD3, 0xDC, 0x68, 0x70, 0xBE, 0x20, 0x50, 0xEC, 0x23, 0xD6, 0xD2, 0x09, 0x33, 0xC6, 0x41, 0x4F, 0x03, 0xC9, 0x98, 0xCB, 0xD3, 0x52, 0xE9, 0x55];
 
-            uint From_resource = (uint)BitConverter.ToUInt32(Resources_list, Resources_from_list.SelectedIndex * 4);
-            uint To_resource = (uint)BitConverter.ToUInt32(Resources_list, Resources_to_list.SelectedIndex * 4);
-            byte[] To_resource_bytes = BitConverter.GetBytes(To_resource);
+            int from_resource = BitConverter.ToInt32(resources_list, Resources_from_list.SelectedIndex * 4);
+            int to_resource = BitConverter.ToInt32(resources_list, Resources_to_list.SelectedIndex * 4);
+            byte[] to_resource_bytes = BitConverter.GetBytes(to_resource);
 
             byte[] DnG_map = File.ReadAllBytes(WorkingFileName);
             int current_byte = 0;
@@ -831,19 +872,19 @@ namespace DnG_AdK_Mapedit
             }
 
             // Reading map size and calculating resource array length
-            int Map_size_x = (int)BitConverter.ToUInt32(DnG_map, current_byte);
+            int map_size_x = BitConverter.ToInt32(DnG_map, current_byte);
             current_byte += 4;
-            int Map_size_y = (int)BitConverter.ToUInt32(DnG_map, current_byte);
+            int map_size_y = BitConverter.ToInt32(DnG_map, current_byte);
             current_byte += 4;
-            int Resource_array_length = Map_size_x * Map_size_y;
+            int resource_array_length = map_size_x * map_size_y;
             //Skip first resource amount
             current_byte += 4;
 
-            for (int i = 0; i < Resource_array_length; i++)
+            for (int i = 0; i < resource_array_length; i++)
             {
-                if (From_resource == (uint)BitConverter.ToUInt32(DnG_map, current_byte))
+                if (from_resource == BitConverter.ToInt32(DnG_map, current_byte))
                 {
-                    Array.Copy(To_resource_bytes, 0, DnG_map, current_byte, 4);
+                    Array.Copy(to_resource_bytes, 0, DnG_map, current_byte, 4);
                 }
                 current_byte += 8;
             }
@@ -886,15 +927,55 @@ namespace DnG_AdK_Mapedit
             }
         }
 
-        // Helper method to handle all swap additions
-        private void AddSwapEntry(ListBox fromList, ListBox toList, int typeId, string warningMessage)
+        private void Textures_selection(object sender, EventArgs e)
         {
-            if (fromList.SelectedIndex == -1 || toList.SelectedIndex == -1)
+            if (Textures_from_list.SelectedIndex != -1 && Textures_to_list.SelectedIndex != -1)
             {
-                MessageBox.Show(warningMessage, "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                Textures_swap_button.Enabled = true;
             }
+            else
+            {
+                Textures_swap_button.Enabled = false;
+            }
+        }
 
+        private void Textures_swap_button_Click(object sender, EventArgs e) =>
+    AddSwapEntry(Textures_from_list, Textures_to_list, 1);
+
+        private void Logical_grid_selection(object sender, EventArgs e)
+        {
+            if (Logical_grid_from_list.SelectedIndex != -1 && Logical_grid_to_list.SelectedIndex != -1)
+            {
+                Logical_grid_swap_button.Enabled = true;
+            }
+            else
+            {
+                Logical_grid_swap_button.Enabled = false;
+            }
+        }
+
+        private void Logical_grid_swap_button_Click(object sender, EventArgs e) =>
+            AddSwapEntry(Logical_grid_from_list, Logical_grid_to_list, 2);
+
+        private void Small_doodads_selection(object sender, EventArgs e)
+        {
+            if (Small_doodads_from_list.SelectedIndex != -1 && Small_doodads_to_list.SelectedIndex != -1)
+            {
+                Small_doodads_swap_button.Enabled = true;
+            }
+            else
+            {
+                Small_doodads_swap_button.Enabled = false;
+            }
+        }
+
+        private void Small_doodads_swap_button_Click(object sender, EventArgs e) =>
+            AddSwapEntry(Small_doodads_from_list, Small_doodads_to_list, 3);
+
+
+        // Helper method to handle all swap additions
+        private void AddSwapEntry(ListBox fromList, ListBox toList, int typeId)
+        {
             string displayText = $"{fromList.Text} -> {toList.Text}";
 
             if (!Swap_list_view.Items.Contains(displayText))
@@ -904,15 +985,60 @@ namespace DnG_AdK_Mapedit
             }
         }
 
-        // Cleaned-up event handlers:
-        private void Textures_swap_button_Click(object sender, EventArgs e) =>
-            AddSwapEntry(Textures_from_list, Textures_to_list, 1, "Please select both textures to swap.");
+        private string GetSwapDisplayText(int tab, int from, int to)
+        {
+            try
+            {
+                switch (tab)
+                {
+                    case 1:
+                        if (from < Textures_from_list.Items.Count && to < Textures_to_list.Items.Count)
+                            return $"{Textures_from_list.Items[from]} -> {Textures_to_list.Items[to]}";
+                        break;
+                    case 2:
+                        if (from < Logical_grid_from_list.Items.Count && to < Logical_grid_to_list.Items.Count)
+                            return $"{Logical_grid_from_list.Items[from]} -> {Logical_grid_to_list.Items[to]}";
+                        break;
+                    case 3:
+                        if (from < Small_doodads_from_list.Items.Count && to < Small_doodads_to_list.Items.Count)
+                            return $"{Small_doodads_from_list.Items[from]} -> {Small_doodads_to_list.Items[to]}";
+                        break;
+                }
+            }
+            catch { }
 
-        private void Logical_grid_swap_button_Click(object sender, EventArgs e) =>
-            AddSwapEntry(Logical_grid_from_list, Logical_grid_to_list, 2, "Please select both objects to swap.");
+            return $"Swap (Tab {tab}): {from} -> {to}";
+        }
 
-        private void Small_doodads_swap_button_Click(object sender, EventArgs e) =>
-            AddSwapEntry(Small_doodads_from_list, Small_doodads_to_list, 3, "Please select both doodads to swap.");
+        private void Swap_list_view_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Swap_list_view.SelectedIndex > 0)
+            {
+                Swap_move_down_button.Enabled = true;
+            }
+            else
+            {
+                Swap_move_down_button.Enabled = false;
+            }
+
+            if (Swap_list_view.SelectedIndex != -1)
+            {
+                Swap_remove_button.Enabled = true;
+            }
+            else
+            {
+                Swap_remove_button.Enabled = false;
+            }
+
+            if (Swap_list_view.SelectedIndex < Swap_list_view.Items.Count - 1 && Swap_list_view.SelectedIndex != -1)
+            {
+                Swap_move_up_button.Enabled = true;
+            }
+            else
+            {
+                Swap_move_up_button.Enabled = false;
+            }
+        }
 
         private void Swap_move_down_button_Click(object sender, EventArgs e)
         {
@@ -1066,6 +1192,15 @@ namespace DnG_AdK_Mapedit
 
         private void Harbours_list_view_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Harbours_list_view.SelectedIndex != -1)
+            {
+                Harbours_remove_button.Enabled = true;
+            }
+            else
+            {
+                Harbours_remove_button.Enabled = false;
+            }
+
             UpdateHarbourPanel();
         }
 
@@ -1267,6 +1402,15 @@ namespace DnG_AdK_Mapedit
 
         private void Caves_list_view_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Caves_list_view.SelectedIndex != -1)
+            {
+                Caves_remove_button.Enabled = true;
+            }
+            else
+            {
+                Caves_remove_button.Enabled = false;
+            }
+
             UpdateCavePanel();
         }
 
@@ -1357,15 +1501,16 @@ namespace DnG_AdK_Mapedit
             );
         }
 
+
+        private void Environment_preset_select_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Environment_preset_global.Enabled = true;
+            Environment_preset_local.Enabled = true;
+        }
+
         private void Environment_preset_global_Click(object sender, EventArgs e)
         {
             string selectedPreset = Environment_preset_select.SelectedItem?.ToString();
-
-            if (string.IsNullOrEmpty(selectedPreset))
-            {
-                MessageBox.Show("Please select an embedded preset from the list.", "No Preset Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             var assembly = Assembly.GetExecutingAssembly();
 
@@ -1527,8 +1672,11 @@ namespace DnG_AdK_Mapedit
             if (Environment_preset_checkbox.Checked)
             {
                 Environment_preset_select.Enabled = true;
-                Environment_preset_global.Enabled = true;
-                Environment_preset_local.Enabled = true;
+                if (Environment_preset_select.SelectedIndex != -1)
+                {
+                    Environment_preset_global.Enabled = true;
+                    Environment_preset_local.Enabled = true;
+                }
 
                 Environment_panel.Enabled = true;
             }
@@ -1616,6 +1764,24 @@ namespace DnG_AdK_Mapedit
                 Environment_zone_panel.Enabled = true;
                 Environment_local_zones_text.Text = $"Local zones {current_zone_index + 1}/{Environment_zones.Count}";
 
+                Environment_remove_zone.Enabled = true;
+                if (current_zone_index > 0)
+                {
+                    Environment_previous_zone.Enabled = true;
+                }
+                else
+                {
+                    Environment_previous_zone.Enabled = false;
+                }
+                if (current_zone_index < Environment_zones.Count - 1)
+                {
+                    Environment_next_zone.Enabled = true;
+                }
+                else
+                {
+                    Environment_next_zone.Enabled = false;
+                }
+
                 var (fog_colour, ambient_colour, light_colour, shadow_intensity, fog_start_distance, fog_full_distance, pos_x, pos_y, radius, transition) = Environment_zones[current_zone_index];
                 Local_fog_colour.BackColor = fog_colour;
                 Local_ambient_colour.BackColor = ambient_colour;
@@ -1632,6 +1798,10 @@ namespace DnG_AdK_Mapedit
             {
                 Environment_zone_panel.Enabled = false;
                 Environment_local_zones_text.Text = "Local zones 0/0";
+
+                Environment_remove_zone.Enabled = false;
+                Environment_previous_zone.Enabled = false;
+                Environment_next_zone.Enabled = false;
             }
         }
 
@@ -1757,31 +1927,6 @@ namespace DnG_AdK_Mapedit
                     lv.Items[idx].Checked = true;
                 }
             }
-        }
-
-        private string GetSwapDisplayText(int tab, int from, int to)
-        {
-            try
-            {
-                switch (tab)
-                {
-                    case 1:
-                        if (from < Textures_from_list.Items.Count && to < Textures_to_list.Items.Count)
-                            return $"{Textures_from_list.Items[from]} -> {Textures_to_list.Items[to]}";
-                        break;
-                    case 2:
-                        if (from < Logical_grid_from_list.Items.Count && to < Logical_grid_to_list.Items.Count)
-                            return $"{Logical_grid_from_list.Items[from]} -> {Logical_grid_to_list.Items[to]}";
-                        break;
-                    case 3:
-                        if (from < Small_doodads_from_list.Items.Count && to < Small_doodads_to_list.Items.Count)
-                            return $"{Small_doodads_from_list.Items[from]} -> {Small_doodads_to_list.Items[to]}";
-                        break;
-                }
-            }
-            catch { }
-
-            return $"Swap (Tab {tab}): {from} -> {to}";
         }
 
         // --- Sacrifice Presets ---
@@ -1925,14 +2070,22 @@ namespace DnG_AdK_Mapedit
                     sw.WriteLine(GetCheckedIndices(Sacrifices_Egyptians_research));
                     sw.WriteLine(GetCheckedIndices(Sacrifices_Scots_research));
 
-                    sw.WriteLine("[COLOURS]");
+                    //Old presets use [COLOURS]
+                    sw.WriteLine("[PLAYERS]");
                     sw.WriteLine(Player_count);
-                    var selectors = new[]
+                    var colour_selectors = new[]
                     {
-                                Colours_player_1_select, Colours_player_2_select, Colours_player_3_select,
-                                Colours_player_4_select, Colours_player_5_select, Colours_player_6_select
+                                Players_1_colour_select, Players_2_colour_select, Players_3_colour_select,
+                                Players_4_colour_select, Players_5_colour_select, Players_6_colour_select
                             };
-                    sw.WriteLine(string.Join(",", selectors.Take(Player_count).Select(s => s.SelectedIndex)));
+                    sw.WriteLine(string.Join(",", colour_selectors.Take(Player_count).Select(s => s.SelectedIndex)));
+                    //New
+                    var difficulty_selectors = new[]
+                    {
+                                Players_1_difficulty_select, Players_2_difficulty_select, Players_3_difficulty_select,
+                                Players_4_difficulty_select, Players_5_difficulty_select, Players_6_difficulty_select
+                            };
+                    sw.WriteLine(string.Join(",", difficulty_selectors.Take(Player_count).Select(s => s.SelectedIndex)));
 
                     sw.WriteLine("[ENVIRONMENT]");
                     sw.WriteLine(Environment_highland_water_checkbox.Checked ? "1" : "0");
@@ -1961,6 +2114,7 @@ namespace DnG_AdK_Mapedit
             }
         }
 
+        //Only load swaps section if Export_map_preset_swaps checkbox is checked.
         private void Map_preset_load_Click(object sender, EventArgs e)
         {
             using OpenFileDialog ofd = new() { Filter = "DnG-AdK-Mapedit map preset (*.damp)|*.damp", Title = "Load Map Preset" };
@@ -1973,7 +2127,7 @@ namespace DnG_AdK_Mapedit
                     string[] lines = File.ReadAllLines(ofd.FileName);
                     string currentSection = "";
                     int sacrificeLine = 0;
-                    int colourLine = 0;
+                    int playersLine = 0;
                     int environmentLine = 0;
                     int savedPlayerCount = 0;
 
@@ -1992,13 +2146,19 @@ namespace DnG_AdK_Mapedit
                         if (line.StartsWith('[') && line.EndsWith(']'))
                         {
                             currentSection = line;
+
                             if (currentSection == "[SACRIFICES]") sacrificeLine = 0;
-                            if (currentSection == "[COLOURS]") colourLine = 0;
+                            if (currentSection == "[COLOURS]" || currentSection == "[PLAYERS]") playersLine = 0;
                             if (currentSection == "[ENVIRONMENT]")
                             {
                                 environmentLine = 0;
                                 Environment_zones.Clear();
                             }
+                            continue;
+                        }
+
+                        if (Export_map_preset_swaps.Checked && currentSection != "[SWAPS]")
+                        {
                             continue;
                         }
 
@@ -2060,28 +2220,29 @@ namespace DnG_AdK_Mapedit
                             }
                             sacrificeLine++;
                         }
-                        else if (currentSection == "[COLOURS]")
+                        else if (currentSection == "[COLOURS]" || currentSection == "[PLAYERS]")
                         {
                             if (string.IsNullOrWhiteSpace(line)) continue;
 
-                            if (colourLine == 0)
+                            if (playersLine == 0)
                             {
+                                // Line 0: Saved Player Count
                                 if (!int.TryParse(line, out savedPlayerCount))
                                 {
                                     MessageBox.Show("Failed to parse saved player count.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
                                 }
-                                colourLine++;
+                                playersLine++;
                             }
-                            else if (colourLine == 1)
+                            else if (playersLine == 1)
                             {
-                                // Only load color selections if saved player count matches the current map's player count
+                                // Line 1: Player Colors
                                 if (savedPlayerCount == Player_count)
                                 {
                                     var selectors = new[]
                                     {
-                                Colours_player_1_select, Colours_player_2_select, Colours_player_3_select,
-                                Colours_player_4_select, Colours_player_5_select, Colours_player_6_select
+                                Players_1_colour_select, Players_2_colour_select, Players_3_colour_select,
+                                Players_4_colour_select, Players_5_colour_select, Players_6_colour_select
                             };
 
                                     var parts = line.Split(',');
@@ -2097,7 +2258,33 @@ namespace DnG_AdK_Mapedit
                                         }
                                     }
                                 }
-                                colourLine++;
+                                playersLine++;
+                            }
+                            else if (playersLine == 2 && currentSection == "[PLAYERS]")
+                            {
+                                // Line 2: Player Difficulties (New section only)
+                                if (savedPlayerCount == Player_count)
+                                {
+                                    var selectors = new[]
+                                    {
+                                Players_1_difficulty_select, Players_2_difficulty_select, Players_3_difficulty_select,
+                                Players_4_difficulty_select, Players_5_difficulty_select, Players_6_difficulty_select
+                            };
+
+                                    var parts = line.Split(',');
+                                    int maxPlayers = Math.Min(parts.Length, Math.Min(Player_count, selectors.Length));
+
+                                    for (int i = 0; i < maxPlayers; i++)
+                                    {
+                                        if (int.TryParse(parts[i].Trim(), out int diffIdx) &&
+                                            diffIdx >= 0 &&
+                                            diffIdx < selectors[i].Items.Count)
+                                        {
+                                            selectors[i].SelectedIndex = diffIdx;
+                                        }
+                                    }
+                                }
+                                playersLine++;
                             }
                         }
                         else if (currentSection == "[ENVIRONMENT]")
@@ -2292,6 +2479,19 @@ namespace DnG_AdK_Mapedit
             return false;
         }
 
+
+        private void Export_forester_fix_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Export_forester_fix.LinkVisited = true;
+
+            // Open the URL
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://www.moddb.com/games/the-settlers-rise-of-cultures/downloads/forester-crash-fix",
+                UseShellExecute = true
+            });
+        }
+
         private async void Map_export_button_Click(object sender, EventArgs e)
         {
             //Start with safety checks
@@ -2335,6 +2535,56 @@ namespace DnG_AdK_Mapedit
                 }
             }
 
+            //Check if all zones are at least partially in-bounds and if the maximum radius indluding transition is not excedded.
+            int max_radius = (int)Math.Ceiling(Math.Sqrt(map_size_x * map_size_x + map_size_y * map_size_y));
+            for (int i = 0; i < Environment_zones.Count; i++)
+            {
+                var (fog_colour, ambient_colour, light_colour, shadow_intensity, fog_start_distance, fog_full_distance, pos_x, pos_y, radius, transition) = Environment_zones[i];
+                int effectiveRadius = radius + transition;
+                if (effectiveRadius > max_radius)
+                {
+                    MessageBox.Show($"Environment Zone #{i + 1} has an effective radius ({effectiveRadius}) that exceeds the maximum allowed ({max_radius}).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Find the closest point on the rectangle to the circle's center
+                int closestX = Math.Clamp(pos_x, 0, map_size_x);
+                int closestY = Math.Clamp(pos_y, 0, map_size_y);
+
+                // Calculate distance delta
+                int deltaX = pos_x - closestX;
+                int deltaY = pos_y - closestY;
+
+                // Compare squared distance against squared radius to avoid costly square root operations
+                double distanceSquared = (double)deltaX * deltaX + (double)deltaY * deltaY;
+                double radiusSquared = (double)effectiveRadius * effectiveRadius;
+
+                if (distanceSquared > radiusSquared)
+                {
+                    MessageBox.Show($"Environment Zone #{i + 1} is completely out of bounds.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            //Check if 2 players don't have the same default colour
+            var colourSelectors = new[]
+            {
+                Players_1_colour_select, Players_2_colour_select, Players_3_colour_select,
+                Players_4_colour_select, Players_5_colour_select, Players_6_colour_select
+            };
+
+            var activeColours = colourSelectors
+                .Take(Player_count)
+                .Select(s => s.SelectedIndex)
+                .Where(idx => idx >= 0)
+                .ToList();
+
+            if (activeColours.Count != activeColours.Distinct().Count())
+            {
+                MessageBox.Show("Two or more active players have been assigned the same default colour.", "Colour overlap", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             //Check if the sacrifice amount limits are not crossed
             var sacrificeChecks = new (System.Windows.Forms.ListView lv, string name, int max)[]
             {
@@ -2353,25 +2603,6 @@ namespace DnG_AdK_Mapedit
                     MessageBox.Show($"Sacrifice limit exceeded for {name}. Maximum allowed is {max}.", "Sacrifice limits crossed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-            }
-
-            //Check if 2 players don't have the same default colour
-            var colourSelectors = new[]
-            {
-                Colours_player_1_select, Colours_player_2_select, Colours_player_3_select,
-                Colours_player_4_select, Colours_player_5_select, Colours_player_6_select
-            };
-
-            var activeColours = colourSelectors
-                .Take(Player_count)
-                .Select(s => s.SelectedIndex)
-                .Where(idx => idx >= 0)
-                .ToList();
-
-            if (activeColours.Count != activeColours.Distinct().Count())
-            {
-                MessageBox.Show("Two or more active players have been assigned the same default colour.", "Colour overlap", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
             }
 
             //In this case do not allow the user to proceed
@@ -2436,6 +2667,16 @@ namespace DnG_AdK_Mapedit
 
             // Capture UI data on the UI thread before offloading heavy work
             int[] selectedColours = [.. colourSelectors.Select(s => s.SelectedIndex)];
+            int[] selectedDifficulties = [.. new[]
+            {
+                Players_1_difficulty_select.SelectedIndex,
+                Players_2_difficulty_select.SelectedIndex,
+                Players_3_difficulty_select.SelectedIndex,
+                Players_4_difficulty_select.SelectedIndex,
+                Players_5_difficulty_select.SelectedIndex,
+                Players_6_difficulty_select.SelectedIndex
+            }];
+
             int[] bavariansNoRes = [.. Sacrifices_Bavarians_no_research.CheckedIndices.Cast<int>()];
             int[] bavariansRes = [.. Sacrifices_Bavarians_research.CheckedIndices.Cast<int>()];
             int[] egyptiansNoRes = [.. Sacrifices_Egyptians_no_research.CheckedIndices.Cast<int>()];
@@ -2449,7 +2690,7 @@ namespace DnG_AdK_Mapedit
             try
             {
                 byte[] exportedMap = await Task.Run(() => MapExportScript(
-                    selectedColours,
+                    selectedColours, selectedDifficulties,
                     bavariansNoRes, bavariansRes,
                     egyptiansNoRes, egyptiansRes,
                     scotsNoRes, scotsRes
@@ -2621,7 +2862,7 @@ namespace DnG_AdK_Mapedit
         }
 
         private byte[] MapExportScript(
-            int[] selectedColours,
+            int[] selectedColours, int[] selectedDifficulties,
             int[] bavariansNoRes, int[] bavariansRes,
             int[] egyptiansNoRes, int[] egyptiansRes,
             int[] scotsNoRes, int[] scotsRes)
@@ -2657,12 +2898,24 @@ namespace DnG_AdK_Mapedit
             current_adk_byte += start_positions_data_length;
             current_dng_byte += start_positions_data_length;
 
-            //Owerwrite map name
-            int map_name_length = BitConverter.ToInt32(DnG_map, current_dng_byte);
-            int map_name_length_total = map_name_length + 4;
-            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 19, DnG_map, current_dng_byte, map_name_length_total);
-            current_adk_byte += map_name_length_total;
-            current_dng_byte += map_name_length_total;
+            // 1. Read source length and total byte count from DnG map
+            int dng_map_name_length = BitConverter.ToInt32(DnG_map, current_dng_byte);
+            int dng_map_name_length_total = dng_map_name_length + 4;
+
+            // 2. Read existing target length from ADK stream to know how many bytes to remove
+            adk_memory_stream.Position = current_adk_byte;
+            byte[] adkLengthBuffer = new byte[4];
+            adk_memory_stream.ReadExactly(adkLengthBuffer);
+
+            int adk_map_name_length = BitConverter.ToInt32(adkLengthBuffer, 0);
+            int adk_bytes_to_replace = adk_map_name_length + 4; // Old length prefix (4) + old string
+
+            // 3. Replace the exact length of the old section in ADK with the new section from DnG
+            ReplaceStreamBytes(adk_memory_stream, current_adk_byte, adk_bytes_to_replace, DnG_map, current_dng_byte, dng_map_name_length_total);
+
+            // 4. Advance offsets by what was read / written
+            current_adk_byte += dng_map_name_length_total;
+            current_dng_byte += dng_map_name_length_total;
 
             //Overwrite map dimensions
             adk_memory_stream.Position = current_adk_byte;
@@ -2696,9 +2949,9 @@ namespace DnG_AdK_Mapedit
                 adk_memory_stream.Write(BitConverter.GetBytes(color), 0, 4);
                 current_adk_byte += 8; // Include skipped scripted map player teams
 
-                //Write default difficulty level (0 = weak, 1 = normal, 2 = strong)
+                //Write difficulty levels
                 adk_memory_stream.Position = current_adk_byte;
-                byte[] difficulty = (i == 1 || i > Player_count) ? [0, 0, 0, 0] : [2, 0, 0, 0];
+                byte[] difficulty = (i == 1 || i > Player_count) ? [0, 0, 0, 0] : BitConverter.GetBytes(selectedDifficulties[i - 1]);
                 adk_memory_stream.Write(difficulty, 0, 4);
                 current_adk_byte += 4;
             }
