@@ -3,6 +3,8 @@
 This tool allows to create maps for The Settlers - Rise of Cultures using the map editor from The Settlers II - 10th Anniversary (It can't edit Rise of Cultures maps).
 Maps can be published on the discord server: https://discord.gg/UAXH3VS9Qy
 
+Multiplayer maps pack can be found here: https://www.moddb.com/games/the-settlers-rise-of-cultures/addons/sadk-multiplayer-maps-pack
+
 The only remaining feature is the ability to add harbours to the map.
 
 ## Most important changes compared to the old map converter from 2009:
