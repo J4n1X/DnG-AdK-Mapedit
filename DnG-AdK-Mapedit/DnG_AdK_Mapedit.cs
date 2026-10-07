@@ -2966,11 +2966,6 @@ namespace DnG_AdK_Mapedit
             }
             current_dng_byte += 128;
 
-            //Victory mode
-            adk_memory_stream.Position = current_adk_byte;
-            adk_memory_stream.Write([0x00, 0x00, 0x00, 0x00], 0, 4);
-            current_adk_byte += 4;
-
             //Overwrite water shader type
             if (Environment_highland_water_checkbox.Checked)
             {
@@ -2996,7 +2991,7 @@ namespace DnG_AdK_Mapedit
 
             //Skip to the UUID
             current_dng_byte += 24;
-            current_adk_byte += 20;
+            current_adk_byte += 24;
             //Each exported map needs its own UUID, the lobby identifies maps by it
             ReplaceStreamBytes(adk_memory_stream, current_adk_byte, 16, Guid.NewGuid().ToByteArray());
             current_adk_byte += 16;
